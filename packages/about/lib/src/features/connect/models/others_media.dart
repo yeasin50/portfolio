@@ -15,6 +15,9 @@ class Youtube extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "Youtube:$channel";
 }
 
 class Medium extends Contact {
@@ -31,5 +34,10 @@ class Medium extends Contact {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  @override
+  String toString() {
+    return "Medium: $username";
   }
 }

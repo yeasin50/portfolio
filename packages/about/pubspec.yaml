@@ -10,6 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_blurhash: ^0.7.0
+  intl: ^0.18.1
+  my_utils:
+    git:
+      url: https://github.com/yeasin50/my_utils.git
+      ref: master
   url_launcher: ^6.1.14
 
 dev_dependencies:

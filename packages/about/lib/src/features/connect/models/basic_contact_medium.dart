@@ -1,4 +1,3 @@
-
 part of 'contact.dart';
 
 class PhoneContact implements Contact {
@@ -16,6 +15,9 @@ class PhoneContact implements Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => phoneNumber;
 }
 
 class Email extends Contact {
@@ -33,6 +35,9 @@ class Email extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => email;
 }
 
 class LinkedIn extends Contact {
@@ -50,6 +55,9 @@ class LinkedIn extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "LinkedIn";
 }
 
 class Telegram extends Contact {
@@ -67,6 +75,9 @@ class Telegram extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "Telegram";
 }
 
 class Website extends Contact {
@@ -83,4 +94,7 @@ class Website extends Contact {
       throw 'Could not launch $url';
     }
   }
+  
+  @override
+  String toString() => url.split('//').last;
 }

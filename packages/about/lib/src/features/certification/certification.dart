@@ -1,1 +1,1 @@
-export 'models/certification_model.dart';
+export 'models/certificate.dart';

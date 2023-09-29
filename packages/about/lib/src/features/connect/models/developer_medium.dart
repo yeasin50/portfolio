@@ -15,6 +15,9 @@ class StackOverflow extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "StackOverflow";
 }
 
 class HackerRank extends Contact {
@@ -32,6 +35,9 @@ class HackerRank extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "HackerRank";
 }
 
 class LeetCode extends Contact {
@@ -49,4 +55,7 @@ class LeetCode extends Contact {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  String toString() => "LeetCode";
 }

@@ -3,6 +3,8 @@ import 'package:about/src/features/connect/utility/ontap_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../fixtures/fixture.dart';
+
 class _UnknownContact with OnTapMixin {
   const _UnknownContact();
 }
@@ -58,6 +60,12 @@ void main() {
       test('on Other', () {
         expect(const OtherSite(name: "", url: "", data: "").onTap(), ok);
       });
+    });
+
+    group('From json', () {
+      final data = fixture('connect.json');
+
+      
     });
   });
 }

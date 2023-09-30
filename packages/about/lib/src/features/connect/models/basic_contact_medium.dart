@@ -10,20 +10,9 @@ class PhoneContact extends Contact with OnTapMixin {
 }
 
 class Email extends Contact with OnTapMixin {
- const  Email({required this.email});
+  const Email({required this.email});
 
   final String email;
-
-  @override
-  Future<void> onTap() async {
-    final url = 'mailto:$email';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   String toString() => email;
@@ -32,11 +21,11 @@ class Email extends Contact with OnTapMixin {
 class Address extends Contact {
   final String address;
 
- const  Address({required this.address});
+  const Address({required this.address});
 }
 
 class LinkedIn extends Contact with OnTapMixin {
- const  LinkedIn({required this.username});
+  const LinkedIn({required this.username});
 
   final String username;
 
@@ -45,7 +34,7 @@ class LinkedIn extends Contact with OnTapMixin {
 }
 
 class Telegram extends Contact with OnTapMixin {
- const  Telegram({required this.username});
+  const Telegram({required this.username});
 
   final String username;
 
@@ -54,19 +43,9 @@ class Telegram extends Contact with OnTapMixin {
 }
 
 class Website extends Contact with OnTapMixin {
- const  Website({required this.url});
+  const Website({required this.url});
 
   final String url;
-
-  @override
-  Future<void> onTap() async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   String toString() => url.split('//').last;

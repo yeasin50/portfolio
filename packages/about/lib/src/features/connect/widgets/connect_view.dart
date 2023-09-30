@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../about.dart';
 import '../../common/widgets/link_textview.dart';
+import 'contact_itembuilder.dart';
 
 class ContactView extends StatelessWidget {
   const ContactView({
@@ -26,20 +27,3 @@ class ContactView extends StatelessWidget {
   }
 }
 
-class ContactItemBuilder extends StatelessWidget {
-  const ContactItemBuilder({
-    super.key,
-    required this.contact,
-  });
-
-  final Contact contact;
-
-  @override
-  Widget build(BuildContext context) {
-    //TODO: create seprate builder for each type of contact
-    return LinkTextView(
-      paragraph: contact.toString(),
-      onTap: () async {},
-    );
-  }
-}

@@ -1,61 +1,52 @@
 part of 'contact.dart';
 
-class StackOverflow extends Contact {
+class StackOverflow extends Contact with OnTapMixin {
   const StackOverflow({required this.id});
 
   final String id;
 
   @override
-  Future<void> onTap() async {
-    final url = 'https://stackoverflow.com/users/$id';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
   String toString() => "StackOverflow";
 }
 
-class HackerRank extends Contact {
+class GitHub extends Contact with OnTapMixin {
+  const GitHub({required this.userId});
+
+  final String userId;
+
+  @override
+  String toString() {
+    return "GitHub";
+  }
+}
+
+class HackerRank extends Contact with OnTapMixin {
   const HackerRank({required this.username});
 
   final String username;
 
   @override
-  Future<void> onTap() async {
-    final url = 'https://www.hackerrank.com/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
   String toString() => "HackerRank";
 }
 
-class LeetCode extends Contact {
+///! need to test
+class LeetCode extends Contact with OnTapMixin {
   const LeetCode({required this.username});
 
   final String username;
 
   @override
-  Future<void> onTap() async {
-    final url = 'https://leetcode.com/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
   String toString() => "LeetCode";
+}
+
+class OtherSite extends Contact with OnTapMixin {
+  const OtherSite({
+    required this.name,
+    required this.url,
+    required this.data,
+  });
+
+  final String name;
+  final String url;
+  final String data;
 }

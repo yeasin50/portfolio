@@ -36,11 +36,10 @@ class ContactItemBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: create seprate builder for each type of contact
     return LinkTextView(
       paragraph: contact.toString(),
-      onTap: () async {
-        await contact.onTap();
-      },
+      onTap: () async {},
     );
   }
 }

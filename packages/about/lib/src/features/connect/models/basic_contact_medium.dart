@@ -1,27 +1,16 @@
 part of 'contact.dart';
 
-class PhoneContact implements Contact {
+class PhoneContact extends Contact with OnTapMixin {
   const PhoneContact({required this.phoneNumber});
 
   final String phoneNumber;
 
   @override
-  Future<void> onTap() async {
-    final url = 'tel:$phoneNumber';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
   String toString() => phoneNumber;
 }
 
-class Email extends Contact {
-  Email({required this.email});
+class Email extends Contact with OnTapMixin {
+ const  Email({required this.email});
 
   final String email;
 
@@ -40,48 +29,32 @@ class Email extends Contact {
   String toString() => email;
 }
 
-class LinkedIn extends Contact {
-  LinkedIn({required this.username});
+class Address extends Contact {
+  final String address;
+
+ const  Address({required this.address});
+}
+
+class LinkedIn extends Contact with OnTapMixin {
+ const  LinkedIn({required this.username});
 
   final String username;
-
-  @override
-  Future<void> onTap() async {
-    final url = 'https://www.linkedin.com/in/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   String toString() => "LinkedIn";
 }
 
-class Telegram extends Contact {
-  Telegram({required this.username});
+class Telegram extends Contact with OnTapMixin {
+ const  Telegram({required this.username});
 
   final String username;
-
-  @override
-  Future<void> onTap() async {
-    final url = 'https://t.me/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   String toString() => "Telegram";
 }
 
-class Website extends Contact {
-  Website({required this.url});
+class Website extends Contact with OnTapMixin {
+ const  Website({required this.url});
 
   final String url;
 
@@ -94,7 +67,7 @@ class Website extends Contact {
       throw 'Could not launch $url';
     }
   }
-  
+
   @override
   String toString() => url.split('//').last;
 }

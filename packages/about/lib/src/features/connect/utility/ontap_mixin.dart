@@ -2,7 +2,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../connect.dart';
 
-mixin OnTapMixin{
+mixin OnTapMixin {
   Future<void> onTap() async {
     //should only use on child Contact class
     assert(
@@ -43,11 +43,6 @@ mixin OnTapMixin{
         await launchWeb('https://github.com/$userId');
         break;
 
-      case Twitter:
-        final username = (this as Twitter).username;
-        await launchWeb('https://twitter.com/$username');
-        break;
-
       case HackerRank:
         final username = (this as HackerRank).username;
         await launchWeb('https://www.hackerrank.com/$username');
@@ -58,10 +53,23 @@ mixin OnTapMixin{
         await launchWeb('https://www.youtube.com/channel/$channel');
         break;
 
+      case Twitter:
+        final username = (this as Twitter).username;
+        await launchWeb('https://twitter.com/$username');
+        break;
+
+      case Medium:
+       final url = 'https://medium.com/@${(this as Medium).username}';
+        await launchWeb(url);
+        break;
+
       case OtherSite:
         final url = (this as OtherSite).url;
         await launchWeb(url);
         break;
+
+      default:
+        throw 'OnTapMixin: onTap() not implemented for ${runtimeType.toString()}';
     }
   }
 

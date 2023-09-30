@@ -49,4 +49,7 @@ class OtherSite extends Contact with OnTapMixin {
   final String name;
   final String url;
   final String data;
+
+  @override
+  String toString() => name;
 }

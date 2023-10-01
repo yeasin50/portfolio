@@ -3,18 +3,23 @@ import 'dart:convert';
 class Skill {
   const Skill({
     required this.type,
-    required this.skills,
-  });
+    required this.values,
+    required this.levels,
+  }) : assert(values.length == levels.length, 'values and levels must have the same length');
 
   // this will be the title like "Programming Languages", "Frameworks", etc.
   final String type;
-  final List<String> skills;
+  final List<String> values;
+
+  /// use decimal to represent the level of skill between 0 and 1
+  final List<double> levels;
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
     result.addAll({'type': type});
-    result.addAll({'skills': skills});
+    result.addAll({'values': values});
+    result.addAll({'levels': levels});
 
     return result;
   }
@@ -22,7 +27,8 @@ class Skill {
   factory Skill.fromMap(Map<String, dynamic> map) {
     return Skill(
       type: map['type'] ?? '',
-      skills: List<String>.from(map['skills']),
+      values: List<String>.from(map['values']),
+      levels: List<double>.from(map['levels']),
     );
   }
 

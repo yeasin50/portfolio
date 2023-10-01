@@ -16,7 +16,7 @@ class SkillView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(skill.type),
-        ...skill.skills.map((skill) => Text(skill)).toList(),
+        ...skill.values.map((skill) => Text(skill)).toList(),
       ],
     );
   }

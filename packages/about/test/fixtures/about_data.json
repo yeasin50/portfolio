@@ -1,0 +1,62 @@
+{
+  "certificates": [
+    {
+      "name": "test certificates",
+      "organization": {
+        "name": "test organization"
+      }
+    }
+  ],
+  "contacts": {
+    "phoneNumber": "+8801715469898",
+    "email": "yeasinsheikh50@gmail.com",
+    "address": "Dhaka, Bangladesh",
+    "linkedIn": "yeasinsheikh",
+    "website": "sites.google.com/view/yeasinsheikh",
+    "telegram": "yeasinsheikh",
+
+    "github": "yeasin50",
+    "stackOverflow": "10157127",
+    "hackerRank": "yeasinsheikh50"
+  },
+  "educations": [
+    {
+      "degree": "B.Sc. in Computer Science and Engineering",
+      "school": {
+        "name": "X International University"
+      },
+      "field": "Computer Science and Engineering",
+
+      "start": 1577836800000
+    }
+  ],
+
+  "experiences": [
+    {
+      "title": "Flutter Developer",
+      "company": {
+        "name": "X Industry"
+      },
+      "location": "Remote",
+      "start": 1577836800000
+    }
+  ],
+  "skills": [
+    {
+      "type": "Programming Languages",
+      "values": ["Dart", "Java", "C++", "C", "Python"],
+      "levels": [0.8, 0.7, 0.6, 0.5, 0.4]
+    },
+    {
+      "type": "Mobile Application Development",
+      "values": ["Flutter", "Android"],
+      "levels": [0.9, 0.7]
+    },
+
+    {
+      "type": "Tools",
+      "values": ["Git", "Figma", "Firebase", "Linux", "Windows"],
+      "levels": [0.8, 0.7, 0.6, 0.7, 0.6]
+    }
+  ]
+}

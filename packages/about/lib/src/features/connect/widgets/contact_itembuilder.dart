@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../about.dart';
-import '../../common/widgets/link_textview.dart';
 
 class ContactItemBuilder extends StatelessWidget {
   const ContactItemBuilder({

@@ -1,6 +1,5 @@
-import 'package:url_launcher/url_launcher.dart';
 
-import '../utility/ontap_mixin.dart';
+import '../utility/on_tap_mixin.dart';
 
 part 'basic_contact_medium.dart';
 part 'developer_medium.dart';

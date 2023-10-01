@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../about.dart';
-import '../../common/widgets/link_textview.dart';
-import 'contact_itembuilder.dart';
 
 class ContactView extends StatelessWidget {
   const ContactView({
@@ -26,4 +24,3 @@ class ContactView extends StatelessWidget {
     );
   }
 }
-

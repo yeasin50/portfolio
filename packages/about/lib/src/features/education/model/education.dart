@@ -37,7 +37,7 @@ class Education {
       result.addAll({'field': field});
     }
 
-    result.addAll({'start': start!.millisecondsSinceEpoch});
+    result.addAll({'start': start.millisecondsSinceEpoch});
 
     if (end != null) {
       result.addAll({'end': end!.millisecondsSinceEpoch});

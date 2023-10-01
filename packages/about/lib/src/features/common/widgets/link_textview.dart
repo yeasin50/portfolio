@@ -53,7 +53,7 @@ class _LinkTextViewState extends State<LinkTextView> {
       spans.add(
         TextSpan(
           text: widget.paragraph,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
           recognizer: _tapGestureRecognizer,
         ),
       );
@@ -70,7 +70,7 @@ class _LinkTextViewState extends State<LinkTextView> {
       spans.add(
         TextSpan(
           text: linkText,
-          style: TextStyle(color: Colors.blue),
+          style: const TextStyle(color: Colors.blue),
           recognizer: _tapGestureRecognizer,
         ),
       );

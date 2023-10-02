@@ -10,7 +10,7 @@ void main() {
     final data = fixture('about_data.json');
 
     test('should be able to parse json', () {
-      final map = jsonDecode(data) ;
+      final map = jsonDecode(data);
       final AboutPageData aboutPageData = AboutPageData.fromMap(map);
       expect(aboutPageData, isA<AboutPageData>());
     });

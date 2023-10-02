@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../../common/models/organization.dart';
 
@@ -54,16 +55,21 @@ class Education {
   }
 
   factory Education.fromMap(Map<String, dynamic> map) {
-    return Education(
-      school: Organization.fromMap(map['school']),
-      degree: map['degree'] ?? '',
-      field: map['field'],
-      start: DateTime.fromMillisecondsSinceEpoch(map['start']),
-      end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end']) : null,
-      grade: map['grade'],
-      description: map['description'],
-      images: List<String>.from(map['images']),
-    );
+    try {
+      return Education(
+        school: Organization.fromMap(map['school']),
+        degree: map['degree'] ?? '',
+        field: map['field'],
+        start: DateTime.fromMillisecondsSinceEpoch(map['start']),
+        end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end']) : null,
+        grade: map['grade'],
+        description: map['description'],
+        images: List<String>.from(map['images']??[]),
+      );
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
   }
 
   String toJson() => json.encode(toMap());

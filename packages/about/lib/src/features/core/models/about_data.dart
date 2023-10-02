@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:about/about.dart';
 
@@ -18,13 +19,18 @@ class AboutPageData {
   final List<Skill> skills;
 
   factory AboutPageData.fromMap(Map<String, dynamic> map) {
-    return AboutPageData(
-      certificates: List<Certificate>.from(map['certificates']?.map((x) => Certificate.fromMap(x))),
-      contacts: contactFromJson(map['contacts']),
-      educations: List<Education>.from(map['educations']?.map((x) => Education.fromMap(x))),
-      experiences: [], // List<Experience>.from(map['experiences']?.map((x) => Experience.fromMap(x))),
-      skills: [], // List<Skill>.from(map['skills']?.map((x) => Skill.fromMap(x))),
-    );
+    try {
+      return AboutPageData(
+        certificates: List<Certificate>.from(map['certificates']?.map((x) => Certificate.fromMap(x))),
+        contacts: contactFromJson(map['contacts']),
+        educations: List<Education>.from(map['educations']?.map((x) => Education.fromMap(x))),
+        experiences: List<Experience>.from(map['experiences']?.map((x) => Experience.fromMap(x))),
+        skills: List<Skill>.from(map['skills']?.map((x) => Skill.fromMap(x))),
+      );
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
   }
 
   factory AboutPageData.fromJson(String source) => AboutPageData.fromMap(json.decode(source));

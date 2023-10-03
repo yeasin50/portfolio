@@ -6,7 +6,7 @@ class Responsive {
   Responsive._internal();
 
   static Size? _size;
-  Size? get size => _size;
+  static Size? get size => _size;
 
   static late double _maxMobileWidth;
   static late double _maxTabletWidth;

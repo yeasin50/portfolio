@@ -56,7 +56,11 @@ void main() {
       test('should return OtherSite', () {
         const MapEntry entry = MapEntry(
           'other',
-          {"name": "Yeasin Sheikh", "url": "https://yeasinsheikh", "data": "what is this?"},
+          {
+            "name": "Yeasin Sheikh",
+            "url": "https://yeasinsheikh",
+            "data": "what is this?"
+          },
         );
         expect(fromMapEntry(entry), isA<OtherSite>());
       });

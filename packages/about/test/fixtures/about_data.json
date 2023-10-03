@@ -1,4 +1,15 @@
 {
+  "name": {
+    "first": "Md. Yeasin",
+    "last": "Sheikh"
+  },
+
+  "description": {
+    "imageUrl": "https://avatars.githubusercontent.com/u/46500228?s=400&u=c2d34bf57d4fa21e2976ee9ceea5fc3153cef231&v=4",
+    "title": "Flutter Developer",
+    "description": "A passionate flutter developer who loves to solve problems & build mobile applications."
+  },
+
   "certificates": [
     {
       "name": "test certificates",

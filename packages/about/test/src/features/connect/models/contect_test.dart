@@ -2,7 +2,6 @@ import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
 class _UnknownContact with OnTapMixin {
   const _UnknownContact();
 }
@@ -15,7 +14,8 @@ void main() {
       final ok = isA<Future<void>>();
 
       test('should assert other than Contact', () {
-        expect(() =>  const _UnknownContact().onTap(), throwsA(isA<AssertionError>()));
+        expect(() => const _UnknownContact().onTap(),
+            throwsA(isA<AssertionError>()));
       });
 
       test('on PhoneContact', () {

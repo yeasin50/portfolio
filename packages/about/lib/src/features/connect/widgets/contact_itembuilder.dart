@@ -38,9 +38,15 @@ class ContactItemBuilder extends StatelessWidget {
     LinkedIn => (FontAwesomeIcons.linkedinIn, (contact as LinkedIn).onTap()),
     Telegram => (FontAwesomeIcons.telegram, (contact as Telegram).onTap()),
     Website => (Icons.web, (contact as Website).onTap()),
-    StackOverflow => (FontAwesomeIcons.stackOverflow, (contact as StackOverflow).onTap()),
+    StackOverflow => (
+        FontAwesomeIcons.stackOverflow,
+        (contact as StackOverflow).onTap()
+      ),
     GitHub => (FontAwesomeIcons.github, (contact as GitHub).onTap()),
-    HackerRank => (FontAwesomeIcons.hackerrank, (contact as HackerRank).onTap()),
+    HackerRank => (
+        FontAwesomeIcons.hackerrank,
+        (contact as HackerRank).onTap()
+      ),
     LeetCode => (FontAwesomeIcons.link, (contact as LeetCode).onTap()),
     OtherSite => (FontAwesomeIcons.link, (contact as OtherSite).onTap()),
     _ => throw UnimplementedError(),

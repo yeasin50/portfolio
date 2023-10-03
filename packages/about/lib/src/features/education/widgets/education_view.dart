@@ -14,6 +14,7 @@ class EducationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Education',
@@ -37,8 +38,12 @@ class EducationItemBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(education.school.name),
+        Text(
+          education.school.name,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         Text(education.degree),
         if (education.field != null) Text(education.field!),
         Text(experienceDateFormat(education.start, education.end)),

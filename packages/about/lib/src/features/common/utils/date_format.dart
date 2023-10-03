@@ -6,7 +6,7 @@ String experienceDateFormat(DateTime start, DateTime? end) {
   return '$startString - $endString';
 }
 
-String certificateDateFormat(DateTime start, DateTime? end) {
+String certificateDateFormat(DateTime start) {
   final startString = DateFormat('MMM yyyy').format(start);
   return 'Issued $startString';
 }

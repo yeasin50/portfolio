@@ -5,7 +5,8 @@ class Skill {
     required this.type,
     required this.values,
     required this.levels,
-  }) : assert(values.length == levels.length, 'values and levels must have the same length');
+  }) : assert(values.length == levels.length,
+            'values and levels must have the same length');
 
   // this will be the title like "Programming Languages", "Frameworks", etc.
   final String type;

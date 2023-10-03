@@ -40,14 +40,17 @@ class Experience {
       title: map['title'] ?? '',
       company: Organization.fromMap(map['company'] ?? {}),
       start: DateTime.fromMillisecondsSinceEpoch(map['start']),
-      end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end']) : null,
+      end: map['end'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['end'])
+          : null,
       description: map['description'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Experience.fromJson(String source) => Experience.fromMap(json.decode(source));
+  factory Experience.fromJson(String source) =>
+      Experience.fromMap(json.decode(source));
 
   @override
   String toString() {

@@ -59,7 +59,7 @@ mixin OnTapMixin {
         break;
 
       case Medium:
-       final url = 'https://medium.com/@${(this as Medium).username}';
+        final url = 'https://medium.com/@${(this as Medium).username}';
         await launchWeb(url);
         break;
 

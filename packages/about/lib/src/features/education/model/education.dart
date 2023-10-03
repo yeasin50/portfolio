@@ -61,10 +61,12 @@ class Education {
         degree: map['degree'] ?? '',
         field: map['field'],
         start: DateTime.fromMillisecondsSinceEpoch(map['start']),
-        end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end']) : null,
+        end: map['end'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['end'])
+            : null,
         grade: map['grade'],
         description: map['description'],
-        images: List<String>.from(map['images']??[]),
+        images: List<String>.from(map['images'] ?? []),
       );
     } catch (e) {
       log(e.toString());
@@ -74,5 +76,6 @@ class Education {
 
   String toJson() => json.encode(toMap());
 
-  factory Education.fromJson(String source) => Education.fromMap(json.decode(source));
+  factory Education.fromJson(String source) =>
+      Education.fromMap(json.decode(source));
 }

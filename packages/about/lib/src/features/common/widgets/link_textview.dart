@@ -58,9 +58,11 @@ class _LinkTextViewState extends State<LinkTextView> {
         ),
       );
     } else {
-      final firstPart = widget.paragraph.substring(0, widget.paragraph.indexOf(widget.linkText!));
+      final firstPart = widget.paragraph
+          .substring(0, widget.paragraph.indexOf(widget.linkText!));
       final linkText = widget.linkText!;
-      final lastPart = widget.paragraph.substring(widget.paragraph.indexOf(widget.linkText!) + widget.linkText!.length);
+      final lastPart = widget.paragraph.substring(
+          widget.paragraph.indexOf(widget.linkText!) + widget.linkText!.length);
 
       spans.add(
         TextSpan(

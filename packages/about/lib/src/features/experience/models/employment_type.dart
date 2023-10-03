@@ -1,4 +1,4 @@
-enum EmploymentType{
+enum EmploymentType {
   fullTime,
   partTime,
   contract,

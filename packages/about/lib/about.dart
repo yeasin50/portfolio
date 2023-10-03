@@ -6,3 +6,4 @@ export 'src/features/intro/intro.dart';
 export 'src/features/education/education.dart';
 export 'src/features/experience/experience.dart';
 export 'src/features/skill/skill.dart';
+export 'src/features/core/core.dart';

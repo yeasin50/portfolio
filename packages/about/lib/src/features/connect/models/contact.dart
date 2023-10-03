@@ -1,4 +1,3 @@
-
 import '../utility/on_tap_mixin.dart';
 
 part 'basic_contact_medium.dart';

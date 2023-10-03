@@ -53,14 +53,21 @@ class Certificate {
       credentialUrl: map['credentialUrl'],
       imageUrl: map['imageUrl'],
       description: map['description'],
-      issueDate: map['issueDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['issueDate']) : null,
-      expirationDate: map['expirationDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['expirationDate']) : null,
+      issueDate: map['issueDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['issueDate'])
+          : null,
+      expirationDate: map['expirationDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['expirationDate'])
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Certificate.fromJson(String source) => Certificate.fromMap(json.decode(source));
+  factory Certificate.fromJson(String source) =>
+      Certificate.fromMap(json.decode(source));
+
+  
 
   @override
   String toString() {

@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:my_utils/my_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../about.dart';
@@ -14,15 +16,15 @@ class ExperienceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Experience',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+          style: theme.textTheme.headlineSmall,
         ),
+        8.verticalSpacer,
         ...experiences
             .map(
               (experience) => Padding(
@@ -52,7 +54,8 @@ class ExperienceItemBuilder extends StatelessWidget {
         Text.rich(
           TextSpan(
             text: experience.company.name,
-            recognizer: _tryToLaunch(companyUrl),
+            style: Theme.of(context).textTheme.titleMedium,
+            recognizer: TapGestureRecognizer()..onTap = () => _tryToLaunch(companyUrl),
           ),
         ),
         Text(experience.title),

@@ -41,7 +41,8 @@ class Organization {
 
   String toJson() => json.encode(toMap());
 
-  factory Organization.fromJson(String source) => Organization.fromMap(json.decode(source));
+  factory Organization.fromJson(String source) =>
+      Organization.fromMap(json.decode(source));
 
   @override
   String toString() {

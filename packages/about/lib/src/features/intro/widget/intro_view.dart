@@ -1,5 +1,4 @@
 import '../../../../about.dart';
-import '../models/description.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -18,19 +17,23 @@ class IntroView extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           name.toString(),
-          style: theme.textTheme.headlineMedium,
+          style: theme.textTheme.headlineLarge,
         ),
-        16.verticalSpacer,
+        8.verticalSpacer,
         Text(
           description.title,
-          style: theme.textTheme.titleMedium,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
         ),
-        16.verticalSpacer,
+        8.verticalSpacer,
         Text(
           description.description,
+          style: theme.textTheme.bodyMedium,
         ),
       ],
     );

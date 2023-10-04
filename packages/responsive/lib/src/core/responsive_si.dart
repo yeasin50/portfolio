@@ -6,7 +6,12 @@ class Responsive {
   Responsive._internal();
 
   static Size? _size;
-  static Size? get size => _size;
+  static Size get size {
+    assert(_size != null, () {
+      return 'Responsive not initialized. Please call Responsive.init(context) or Responsive.initWithSize(size)';
+    });
+    return Size(_size!.width > kMaxWidth ? kMaxWidth : _size!.width, _size!.height);
+  }
 
   static late double _maxMobileWidth;
   static late double _maxTabletWidth;
@@ -30,6 +35,10 @@ class Responsive {
     _maxMobileWidth = maxMobileWidth;
     _maxTabletWidth = maxTabletWidth;
   }
+
+  static bool isMobile = screenType == ScreenType.mobile;
+  static bool isTablet = screenType == ScreenType.tablet;
+  static bool isDesktop = screenType == ScreenType.desktop;
 
   static ScreenType get screenType {
     assert(_size != null, () {

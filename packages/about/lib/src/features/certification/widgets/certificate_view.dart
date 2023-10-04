@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../about.dart';
 import '../../common/utils/date_format.dart';
 
-class CertificateView extends StatelessWidget {
+class CertificateView extends StatefulWidget {
   const CertificateView({
     super.key,
     required this.certificates,
@@ -13,9 +13,14 @@ class CertificateView extends StatelessWidget {
   final List<Certificate> certificates;
 
   @override
+  State<CertificateView> createState() => _CertificateViewState();
+}
+
+class _CertificateViewState extends State<CertificateView> {
+  late List previewItems = widget.certificates.length > 5 ? widget.certificates.sublist(0, 5) : widget.certificates;
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final previewItems = certificates.length > 5 ? certificates.sublist(0, 5) : certificates;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,13 +34,15 @@ class CertificateView extends StatelessWidget {
           (e) => CertificateItemBuilder(certificate: e),
         ),
 
-        if (certificates.length > 5)
+        if (widget.certificates.length > 5)
           TextButton(
             onPressed: () {
-              ///todo: show more
+              setState(() {
+                previewItems = previewItems.length == widget.certificates.length ? widget.certificates.sublist(0, 5) : widget.certificates;
+              });
             },
             child: Text(
-              'See more',
+              previewItems.length == widget.certificates.length ? 'Show less' : 'Show more',
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: Colors.blueAccent,
                 decoration: TextDecoration.underline,
@@ -66,7 +73,7 @@ class _CertificateItemBuilderState extends State<CertificateItemBuilder> {
   Widget build(BuildContext context) {
     logger.i("hasCredentialUrl: $hasCredentialUrl");
     final theme = Theme.of(context);
-    
+
     //!remove or find purpose on release
     var toolRichMessage = TextSpan(
       style: theme.textTheme.bodyMedium,

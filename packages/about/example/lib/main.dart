@@ -23,17 +23,7 @@ class AboutPageSetup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ///*
-    // final data = AboutPageData(
-    //   certificates: certificates,
-    //   contacts: contacts,
-    //   educations: educations,
-    //   experiences: experiences,
-    //   skills: skills,
-    // );
-    // return AboutPage(
-    //     data: data
-    //   );
+    
     final jsonPath = 'assets/json/about.json';
 
     _load() async {

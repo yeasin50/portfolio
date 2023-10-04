@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../about.dart';
 import '../../common/utils/date_format.dart';
 
-class ExperienceView extends StatelessWidget {
+class ExperienceView extends StatefulWidget {
   const ExperienceView({
     super.key,
     required this.experiences,
@@ -14,6 +14,12 @@ class ExperienceView extends StatelessWidget {
 
   final List<Experience> experiences;
 
+  @override
+  State<ExperienceView> createState() => _ExperienceViewState();
+}
+
+class _ExperienceViewState extends State<ExperienceView> {
+  late List previewItems = widget.experiences.length > 5 ? widget.experiences.sublist(0, 5) : widget.experiences;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -25,7 +31,7 @@ class ExperienceView extends StatelessWidget {
           style: theme.textTheme.headlineSmall,
         ),
         8.verticalSpacer,
-        ...experiences
+        ...previewItems
             .map(
               (experience) => Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
@@ -33,6 +39,21 @@ class ExperienceView extends StatelessWidget {
               ),
             )
             .toList(),
+        if (widget.experiences.length > 5)
+          TextButton(
+            onPressed: () {
+              setState(() {
+                previewItems = previewItems.length == widget.experiences.length ? widget.experiences.sublist(0, 5) : widget.experiences;
+              });
+            },
+            child: Text(
+              previewItems.length == widget.experiences.length ? 'Show less' : 'Show more',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: Colors.blueAccent,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
       ],
     );
   }

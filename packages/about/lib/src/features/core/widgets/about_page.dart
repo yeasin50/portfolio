@@ -1,10 +1,9 @@
-import 'package:about/about.dart';
-import 'package:about/src/features/certification/widgets/certificate_view.dart';
-import 'package:about/src/features/core/models/about_data.dart';
-import 'package:about/src/features/core/provider/about_data_provider.dart';
-import 'package:about/src/features/education/widgets/education_view.dart';
-import 'package:about/src/features/experience/widgets/experience_view.dart';
-import 'package:about/src/features/intro/widget/intro_view.dart';
+import '../../../../about.dart';
+import '../../certification/widgets/certificate_view.dart';
+import '../provider/about_data_provider.dart';
+import '../../education/widgets/education_view.dart';
+import '../../experience/widgets/experience_view.dart';
+import '../../intro/widget/intro_view.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 import 'package:responsive/responsive.dart';

@@ -17,7 +17,9 @@ class CertificateView extends StatefulWidget {
 }
 
 class _CertificateViewState extends State<CertificateView> {
-  late List previewItems = widget.certificates.length > 5 ? widget.certificates.sublist(0, 5) : widget.certificates;
+  late List previewItems = widget.certificates.length > 5
+      ? widget.certificates.sublist(0, 5)
+      : widget.certificates;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -38,11 +40,15 @@ class _CertificateViewState extends State<CertificateView> {
           TextButton(
             onPressed: () {
               setState(() {
-                previewItems = previewItems.length == widget.certificates.length ? widget.certificates.sublist(0, 5) : widget.certificates;
+                previewItems = previewItems.length == widget.certificates.length
+                    ? widget.certificates.sublist(0, 5)
+                    : widget.certificates;
               });
             },
             child: Text(
-              previewItems.length == widget.certificates.length ? 'Show less' : 'Show more',
+              previewItems.length == widget.certificates.length
+                  ? 'Show less'
+                  : 'Show more',
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: Colors.blueAccent,
                 decoration: TextDecoration.underline,
@@ -80,11 +86,13 @@ class _CertificateItemBuilderState extends State<CertificateItemBuilder> {
       children: [
         if (widget.certificate.issueDate != null)
           TextSpan(
-            text: "issued on ${certificateDateFormat(widget.certificate.issueDate!)}",
+            text:
+                "issued on ${certificateDateFormat(widget.certificate.issueDate!)}",
           ),
         if (widget.certificate.expirationDate != null)
           TextSpan(
-            text: " and expired on ${certificateDateFormat(widget.certificate.expirationDate!)}",
+            text:
+                " and expired on ${certificateDateFormat(widget.certificate.expirationDate!)}",
           ),
         if (widget.certificate.credentialUrl != null)
           TextSpan(
@@ -114,7 +122,9 @@ class _CertificateItemBuilderState extends State<CertificateItemBuilder> {
               text: widget.certificate.name,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: hasCredentialUrl && _isHover ? Colors.blueAccent : null,
-                decoration: hasCredentialUrl && _isHover ? TextDecoration.underline : null,
+                decoration: hasCredentialUrl && _isHover
+                    ? TextDecoration.underline
+                    : null,
               ),
             ),
             const TextSpan(text: " By "),

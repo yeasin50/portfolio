@@ -67,8 +67,6 @@ class Certificate {
   factory Certificate.fromJson(String source) =>
       Certificate.fromMap(json.decode(source));
 
-  
-
   @override
   String toString() {
     return 'Certificate(name: $name, organization: $organization, credentialUrl: $credentialUrl, imageUrl: $imageUrl, description: $description, issueDate: $issueDate, expirationDate: $expirationDate)';

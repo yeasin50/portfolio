@@ -3,6 +3,7 @@ part of 'contact.dart';
 class StackOverflow extends Contact with OnTapMixin {
   const StackOverflow({required this.id});
 
+  static const String key = 'stackOverflow';
   final String id;
 
   @override
@@ -12,6 +13,7 @@ class StackOverflow extends Contact with OnTapMixin {
 class GitHub extends Contact with OnTapMixin {
   const GitHub({required this.userId});
 
+  static const String key = 'github';
   final String userId;
 
   @override
@@ -23,6 +25,7 @@ class GitHub extends Contact with OnTapMixin {
 class HackerRank extends Contact with OnTapMixin {
   const HackerRank({required this.username});
 
+  static const String key = 'hackerRank';
   final String username;
 
   @override
@@ -33,6 +36,7 @@ class HackerRank extends Contact with OnTapMixin {
 class LeetCode extends Contact with OnTapMixin {
   const LeetCode({required this.username});
 
+  static const String key = 'leetCode';
   final String username;
 
   @override
@@ -46,6 +50,7 @@ class OtherSite extends Contact with OnTapMixin {
     required this.data,
   });
 
+  static const String key = 'other';
   final String name;
   final String url;
   final String data;

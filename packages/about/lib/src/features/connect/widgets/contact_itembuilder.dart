@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_utils/my_utils.dart';
 
 import '../../../../about.dart';
 
@@ -15,7 +16,10 @@ class ContactItemBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = getItem(contact);
     return InkWell(
-      onTap: () => data.$2,
+      onTap: () {
+        logger.i('launching ${contact.runtimeType}');
+        data.$2?.call();
+      },
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -30,25 +34,26 @@ class ContactItemBuilder extends StatelessWidget {
   }
 }
 
-(IconData icon, Future<void>? onTap) getItem(Contact contact) {
+/// This function will return a [IconData] and [Function] based on the [Contact] type.
+/// * [Address] will return [Icons.location_on] and [null]
+/// ! [Contact] type must be implemented in [contactFromJson] function.
+/// else it will throw [UnimplementedError]
+(IconData icon, Function? onTap) getItem(Contact contact) {
   final data = switch (contact.runtimeType) {
-    PhoneContact => (FontAwesomeIcons.phone, (contact as PhoneContact).onTap()),
-    Email => (Icons.email, (contact as Email).onTap()),
+    PhoneContact => (FontAwesomeIcons.phone, (contact as PhoneContact).onTap),
+    Email => (Icons.email, (contact as Email).onTap),
     Address => (Icons.location_on, null),
-    LinkedIn => (FontAwesomeIcons.linkedinIn, (contact as LinkedIn).onTap()),
-    Telegram => (FontAwesomeIcons.telegram, (contact as Telegram).onTap()),
-    Website => (Icons.web, (contact as Website).onTap()),
+    LinkedIn => (FontAwesomeIcons.linkedinIn, (contact as LinkedIn).onTap),
+    Telegram => (FontAwesomeIcons.telegram, (contact as Telegram).onTap),
+    Website => (Icons.web, (contact as Website).onTap),
     StackOverflow => (
         FontAwesomeIcons.stackOverflow,
-        (contact as StackOverflow).onTap()
+        (contact as StackOverflow).onTap
       ),
-    GitHub => (FontAwesomeIcons.github, (contact as GitHub).onTap()),
-    HackerRank => (
-        FontAwesomeIcons.hackerrank,
-        (contact as HackerRank).onTap()
-      ),
-    LeetCode => (FontAwesomeIcons.link, (contact as LeetCode).onTap()),
-    OtherSite => (FontAwesomeIcons.link, (contact as OtherSite).onTap()),
+    GitHub => (FontAwesomeIcons.github, (contact as GitHub).onTap),
+    HackerRank => (FontAwesomeIcons.hackerrank, (contact as HackerRank).onTap),
+    LeetCode => (FontAwesomeIcons.link, (contact as LeetCode).onTap),
+    OtherSite => (FontAwesomeIcons.link, (contact as OtherSite).onTap),
     _ => throw UnimplementedError(),
   };
 

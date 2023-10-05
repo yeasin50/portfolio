@@ -3,6 +3,7 @@ part of 'contact.dart';
 class PhoneContact extends Contact with OnTapMixin {
   const PhoneContact({required this.phoneNumber});
 
+  static const String key = 'phone';
   final String phoneNumber;
 
   @override
@@ -12,6 +13,7 @@ class PhoneContact extends Contact with OnTapMixin {
 class Email extends Contact with OnTapMixin {
   const Email({required this.email});
 
+  static const String key = 'email';
   final String email;
 
   @override
@@ -19,14 +21,19 @@ class Email extends Contact with OnTapMixin {
 }
 
 class Address extends Contact {
+  const Address({required this.address});
+
+  static const String key = 'address';
   final String address;
 
-  const Address({required this.address});
+  @override
+  String toString() => address;
 }
 
 class LinkedIn extends Contact with OnTapMixin {
   const LinkedIn({required this.username});
 
+  static const String key = 'linkedIn';
   final String username;
 
   @override
@@ -36,6 +43,7 @@ class LinkedIn extends Contact with OnTapMixin {
 class Telegram extends Contact with OnTapMixin {
   const Telegram({required this.username});
 
+  static const String key = 'telegram';
   final String username;
 
   @override
@@ -45,6 +53,7 @@ class Telegram extends Contact with OnTapMixin {
 class Website extends Contact with OnTapMixin {
   const Website({required this.url});
 
+  static const String key = 'website';
   final String url;
 
   @override

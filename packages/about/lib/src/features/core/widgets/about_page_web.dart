@@ -30,10 +30,13 @@ class AboutWebView extends StatelessWidget {
                   )
                 ],
               ),
-              24.verticalSpacer,
-              const Divider(thickness: 2),
-              const ExpRow(),
-              const Divider(thickness: 2),
+              // 24.verticalSpacer,
+              // const Divider(thickness: 2),
+              // const ExpRow(),
+              // const Divider(thickness: 2),
+              ContactView(
+                connects: data.contacts,
+              ),
             ],
           ),
         ),

@@ -23,7 +23,6 @@ class AboutPageSetup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final jsonPath = 'assets/json/about.json';
 
     _load() async {

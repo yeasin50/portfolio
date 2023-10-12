@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import '../../common/models/organization.dart';
 
-class Certification {
-  const Certification({
+class Certificate {
+  const Certificate({
     required this.name,
     required this.organization,
-    this.credentialId,
+    this.credentialUrl,
+    this.imageUrl,
     this.description,
     this.issueDate,
     this.expirationDate,
@@ -14,7 +15,8 @@ class Certification {
 
   final String name;
   final Organization organization;
-  final String? credentialId;
+  final String? credentialUrl;
+  final String? imageUrl;
   final String? description;
 
   final DateTime? issueDate;
@@ -25,8 +27,11 @@ class Certification {
 
     result.addAll({'name': name});
     result.addAll({'organization': organization.toMap()});
-    if (credentialId != null) {
-      result.addAll({'credentialId': credentialId});
+    if (credentialUrl != null) {
+      result.addAll({'credentialUrl': credentialUrl});
+    }
+    if (imageUrl != null) {
+      result.addAll({'imageUrl': imageUrl});
     }
     if (description != null) {
       result.addAll({'description': description});
@@ -41,23 +46,29 @@ class Certification {
     return result;
   }
 
-  factory Certification.fromMap(Map<String, dynamic> map) {
-    return Certification(
+  factory Certificate.fromMap(Map<String, dynamic> map) {
+    return Certificate(
       name: map['name'] ?? '',
       organization: Organization.fromMap(map['organization']),
-      credentialId: map['credentialId'],
+      credentialUrl: map['credentialUrl'],
+      imageUrl: map['imageUrl'],
       description: map['description'],
-      issueDate: map['issueDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['issueDate']) : null,
-      expirationDate: map['expirationDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['expirationDate']) : null,
+      issueDate: map['issueDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['issueDate'])
+          : null,
+      expirationDate: map['expirationDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['expirationDate'])
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Certification.fromJson(String source) => Certification.fromMap(json.decode(source));
+  factory Certificate.fromJson(String source) =>
+      Certificate.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Certification(name: $name, organization: ${organization.toString()}, credentialId: $credentialId, description: $description, issueDate: $issueDate, expirationDate: $expirationDate)';
+    return 'Certificate(name: $name, organization: $organization, credentialUrl: $credentialUrl, imageUrl: $imageUrl, description: $description, issueDate: $issueDate, expirationDate: $expirationDate)';
   }
 }

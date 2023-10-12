@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../../common/models/organization.dart';
 
@@ -7,7 +8,7 @@ class Education {
     required this.school,
     required this.degree,
     this.field,
-    this.start,
+    required this.start,
     this.end,
     this.grade,
     this.description,
@@ -17,7 +18,7 @@ class Education {
   final Organization school;
   final String degree;
   final String? field;
-  final DateTime? start;
+  final DateTime start;
   final DateTime? end;
   final String? grade;
   final String? description;
@@ -36,9 +37,9 @@ class Education {
     if (field != null) {
       result.addAll({'field': field});
     }
-    if (start != null) {
-      result.addAll({'start': start!.millisecondsSinceEpoch});
-    }
+
+    result.addAll({'start': start.millisecondsSinceEpoch});
+
     if (end != null) {
       result.addAll({'end': end!.millisecondsSinceEpoch});
     }
@@ -54,19 +55,27 @@ class Education {
   }
 
   factory Education.fromMap(Map<String, dynamic> map) {
-    return Education(
-      school: Organization.fromMap(map['school']),
-      degree: map['degree'] ?? '',
-      field: map['field'],
-      start: map['start'] != null ? DateTime.fromMillisecondsSinceEpoch(map['start']) : null,
-      end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end']) : null,
-      grade: map['grade'],
-      description: map['description'],
-      images: List<String>.from(map['images']),
-    );
+    try {
+      return Education(
+        school: Organization.fromMap(map['school']),
+        degree: map['degree'] ?? '',
+        field: map['field'],
+        start: DateTime.fromMillisecondsSinceEpoch(map['start']),
+        end: map['end'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['end'])
+            : null,
+        grade: map['grade'],
+        description: map['description'],
+        images: List<String>.from(map['images'] ?? []),
+      );
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Education.fromJson(String source) => Education.fromMap(json.decode(source));
+  factory Education.fromJson(String source) =>
+      Education.fromMap(json.decode(source));
 }

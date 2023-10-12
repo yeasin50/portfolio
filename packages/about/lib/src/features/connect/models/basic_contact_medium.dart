@@ -1,86 +1,61 @@
-
 part of 'contact.dart';
 
-class PhoneContact implements Contact {
+class PhoneContact extends Contact with OnTapMixin {
   const PhoneContact({required this.phoneNumber});
 
+  static const String key = 'phone';
   final String phoneNumber;
 
   @override
-  Future<void> onTap() async {
-    final url = 'tel:$phoneNumber';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  String toString() => phoneNumber;
 }
 
-class Email extends Contact {
-  Email({required this.email});
+class Email extends Contact with OnTapMixin {
+  const Email({required this.email});
 
+  static const String key = 'email';
   final String email;
 
   @override
-  Future<void> onTap() async {
-    final url = 'mailto:$email';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  String toString() => email;
 }
 
-class LinkedIn extends Contact {
-  LinkedIn({required this.username});
+class Address extends Contact {
+  const Address({required this.address});
 
+  static const String key = 'address';
+  final String address;
+
+  @override
+  String toString() => address;
+}
+
+class LinkedIn extends Contact with OnTapMixin {
+  const LinkedIn({required this.username});
+
+  static const String key = 'linkedIn';
   final String username;
 
   @override
-  Future<void> onTap() async {
-    final url = 'https://www.linkedin.com/in/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  String toString() => "LinkedIn";
 }
 
-class Telegram extends Contact {
-  Telegram({required this.username});
+class Telegram extends Contact with OnTapMixin {
+  const Telegram({required this.username});
 
+  static const String key = 'telegram';
   final String username;
 
   @override
-  Future<void> onTap() async {
-    final url = 'https://t.me/$username';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  String toString() => "Telegram";
 }
 
-class Website extends Contact {
-  Website({required this.url});
+class Website extends Contact with OnTapMixin {
+  const Website({required this.url});
 
+  static const String key = 'website';
   final String url;
 
   @override
-  Future<void> onTap() async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  String toString() => url.split('//').last;
 }

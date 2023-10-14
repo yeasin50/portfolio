@@ -1,0 +1,51 @@
+{
+  "title": "Privacy Policy",
+  "items": [
+    {
+      "title": "Information Collection",
+      "items": [
+        "We collect personal information you provide, such as your name, email address, and other contact details.",
+        "We collect information about your usage of the website, including IP addresses, device information, and usage patterns."
+      ]
+    },
+    {
+      "title": "Information Use",
+      "items": [
+        "We use your information to provide job matching services, improve our website, and communicate with you.",
+        "We do not sell, trade, or rent your personal information to third parties.",
+        "You have the option to provide consent to share your information with potential employers when using our services. This consent can be updated or withdrawn at any time."
+      ]
+    },
+    {
+      "title": "Email Notifications",
+      "items": [
+        "You have the option to agree to receive email notifications about job opportunities and updates from us. You can manage your notification preferences in your account settings."
+      ]
+    },
+    {
+      "title": "Data Security",
+      "items": [
+        "We implement security measures to protect your data but cannot guarantee absolute security.",
+        "You are responsible for keeping your login credentials secure."
+      ]
+    },
+    {
+      "title": "Cookies",
+      "items": [
+        "We use cookies and similar technologies to collect information about your interactions with our website."
+      ]
+    },
+    {
+      "title": "Third-Party Links",
+      "items": [
+        "Our website may contain links to third-party websites. We are not responsible for their privacy practices."
+      ]
+    },
+    {
+      "title": "Updates to the Privacy Policy",
+      "items": [
+        "We may update this Privacy Policy. You are encouraged to review it periodically."
+      ]
+    }
+  ]
+}

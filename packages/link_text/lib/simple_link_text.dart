@@ -2,9 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-@Deprecated("use package instead ")
-class LinkTextView extends StatefulWidget {
-  LinkTextView({
+///  to preview and navigate on  [linkText]
+/// currently it will have single link [url]
+///
+class SimpleLinkText extends StatefulWidget {
+  SimpleLinkText({
     super.key,
     required this.paragraph,
     this.url,
@@ -28,10 +30,10 @@ class LinkTextView extends StatefulWidget {
   /// Callback when the link is tapped. default it will launch the url in browser.
   final VoidCallback? onTap;
   @override
-  State<LinkTextView> createState() => _LinkTextViewState();
+  State<SimpleLinkText> createState() => _SimpleLinkTextState();
 }
 
-class _LinkTextViewState extends State<LinkTextView> {
+class _SimpleLinkTextState extends State<SimpleLinkText> {
   late final TapGestureRecognizer _tapGestureRecognizer;
 
   List<TextSpan> spans = [];

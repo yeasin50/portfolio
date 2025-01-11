@@ -1,9 +1,10 @@
 name: portfolio
 
 packages:
-  - package/**
-  - apps/**
-  - '*'
+  - packages/core
+  - packages/education
+  - packages/experience
+  - packages/link_text
 
 scripts:
   test:selective_unit_test:
@@ -28,13 +29,13 @@ scripts:
   gen_coverage: melos exec -- "\$MELOS_ROOT_PATH/combine_coverage.sh"
 
   upgrade:
-   run: melos exec -- flutter pub upgrade --major-versions
-   description: upgrade all packages
+    run: melos exec -- flutter pub upgrade --major-versions
+    description: upgrade all packages
 
   cache_repair:
-   run: melos exec -- flutter pub cache repair
-   description: upgrade all packages  
-  
+    run: melos exec -- flutter pub cache repair
+    description: upgrade all packages
+
   pub_get:
-   run: melos exec -- flutter pub  get
-   description:  get packages
+    run: melos exec -- flutter pub  get
+    description: get packages

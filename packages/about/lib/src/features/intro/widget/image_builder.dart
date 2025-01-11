@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
-import 'package:responsive/responsive.dart';
 
 class NetworkImageBuilder extends StatelessWidget {
   const NetworkImageBuilder({
@@ -16,13 +15,12 @@ class NetworkImageBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isMobile = Responsive.screenType == ScreenType.mobile;
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: isMobile ? 200 : 300,
+        maxWidth: 300,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(isMobile ? 16 : 24),
+        borderRadius: BorderRadius.circular(16),
         child: AspectRatio(
           aspectRatio: 1,
           child: hash == null

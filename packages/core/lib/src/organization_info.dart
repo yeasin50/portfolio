@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-@Deprecated("use `core` pkg  instead")
 class Organization {
   const Organization({
     required this.name,

@@ -1,19 +1,16 @@
 name: example
 description: A new Flutter project to test the package.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   about:
     path: ../
-    
-  responsive:
-    path: ../../responsive/
 
 dev_dependencies:
   flutter_test:

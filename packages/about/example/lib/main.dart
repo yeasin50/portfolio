@@ -1,7 +1,6 @@
 import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:responsive/responsive.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,8 +11,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Responsive.init(context);
-
     return MaterialApp(home: AboutPageSetup());
   }
 }

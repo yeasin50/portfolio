@@ -1,12 +1,12 @@
 part of 'git_user_info.dart';
 
+@Deprecated("gonna drop this. too much dependency")
 class GithubGraphQuery {
-  GithubGraphQuery(this.query);
+  GithubGraphQuery([this.query = _userInfo]);
   final String query;
 
-  GithubGraphQuery addUserInfo() {
-    /// viewer instance
-    const String userInfo = """
+  /// viewer instance
+  static const String _userInfo = """
    viewer {
         name
         email
@@ -29,12 +29,9 @@ class GithubGraphQuery {
     }
 """;
 
-    return GithubGraphQuery(query + userInfo);
-  }
-
   GithubGraphQuery contributionCollection() {
     const String contribution = """
- viewer{
+      viewer {
         contributionsCollection {
             endedAt
             hasActivityInThePast
@@ -54,35 +51,43 @@ class GithubGraphQuery {
             totalRepositoriesWithContributedPullRequests
             totalRepositoryContributions
         }
-    }
+      }
 """;
-    return GithubGraphQuery(query + contribution);
+    return GithubGraphQuery("$query\n$contribution");
   }
 
   GithubGraphQuery getTopRep({required String userId, int limit = 10}) {
     final String topUserStaredRepo = """
- repositories(first: $limit, orderBy: { field: STARGAZERS, direction: DESC }) {
-            totalCount,
-            nodes {
-                name
-                description
-                forkCount
-                isPrivate
-                createdAt
-                updatedAt
-                stargazerCount
-                url
-                languages(first: 5) {
-                    totalCount
+    user(login: "$userId") {
+        gists{
+            totalCount 
+        } 
+        repositories(first: $limit, orderBy: { field: STARGAZERS, direction: DESC }) {
+                    totalCount,
                     nodes {
                         name
-                        color
+                        description
+                        forkCount
+                        isPrivate
+                        createdAt
+                        updatedAt
+                        stargazerCount
+                        url
+                        languages(first: 5) {
+                            totalCount
+                            nodes {
+                                name
+                                color
+                            }
+                        }
                     }
                 }
-            }
         }
 """;
 
-    return GithubGraphQuery(query + topUserStaredRepo);
+    return GithubGraphQuery("$query\n$topUserStaredRepo");
   }
+
+  @override
+  String toString() => 'GithubGraphQuery(query: $query)';
 }

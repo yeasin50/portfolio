@@ -1,7 +1,5 @@
 library github_stats;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/domain/git_user_info.dart';
+export 'src/domain/github_user.dart';
+export 'src/presentation/git_user_overview_card.dart';

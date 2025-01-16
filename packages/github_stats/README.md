@@ -1,8 +1,6 @@
 # Get Github user's info
 
-## TODO:
-
-Get the token from
+<s>Get the token from</s> not using graphql
 
 > settings > Developer Setting > Personal access tokens > Generate new token
 
@@ -12,9 +10,13 @@ Get the token from
 
 You can also provide access to the private repository,
 
+> Dropped GraphQL support; http is much faster and less heavy
+> There are good limitation on rest, not sure will add more; will check later
+
 ## Features
 
-- [ ] Get user profile
-  - [ ] info
+- [x] Get user profile
+  - [x] public repo, gist, followers
 - [ ] specific repo's insight
-- [ ] limited total starts to the first 100 for single query
+- [ ] git graph
+<!-- - [ ] limited total starts to the first 100 for single query -->

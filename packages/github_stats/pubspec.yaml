@@ -2,7 +2,7 @@ name: github_stats
 description: >
   To show github stats; userInfo
    - specific repo's details 
-   - activity graph
+   - [ ] activity graph
 
 publish_to: none
 
@@ -16,6 +16,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

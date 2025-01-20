@@ -18,3 +18,12 @@ y: hum
 z: if you are planing to play again, not a bad idea though.
 n: man
 y: hum, gonna do it with melos, A solder must always clean gun 😂
+x: Why you are taking such a pain, when you can put everything on single flutter project.
+y: yea, ig I want to show in different way
+x: does it worth the time? end of the, you will improve in certain way where last one will be the better one. is not it?
+y: I can not deny this. but If I like to have N style I can always tweak in the package
+x: what is the purpose of the history of N tweaks?
+y: nothing Ig, just different flavor of app, yea; could just change the entry point
+x: -\_-, why complicated then
+y: just to practice mono-repo 😐
+x: yea you've no life, don;t know how sort out and prioritize things; improve can be done later, make it Work first

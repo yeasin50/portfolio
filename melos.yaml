@@ -1,10 +1,12 @@
 name: portfolio
 
 packages:
+  - apps/**
   - packages/core
   - packages/education
   - packages/experience
   - packages/link_text
+  - packages/project
 
 scripts:
   test:selective_unit_test:

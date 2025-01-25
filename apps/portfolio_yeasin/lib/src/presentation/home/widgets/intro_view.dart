@@ -16,11 +16,13 @@ class IntroInfo {
     required this.name,
     required this.title,
     required this.shortTitle,
+    required this.description,
   });
 
   final String name;
   final String title;
   final String shortTitle;
+  final String description;
 }
 
 /// show user [name] and [intro];
@@ -59,29 +61,49 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
       end: textTheme.titleLarge,
     ).lerp(t).copyWith(color: textColor);
 
+    final LayerLink layerLink = LayerLink();
+
     return Stack(
       children: [
         Align(
-          alignment: Alignment.lerp(Alignment.center, Alignment.topLeft, t)!,
+          alignment: Alignment.lerp(
+            const Alignment(0, -.35),
+            Alignment.topLeft,
+            t,
+          )!,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 info.name,
                 style: nameTextStyle,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
               ),
-              DefaultSelectionStyle(
-                child: Text(
-                  lerpText(info.title, info.shortTitle, t),
-                  textAlign: TextAlign.start,
-                  style: titleTextStyle,
+              CompositedTransformTarget(
+                link: layerLink,
+                child: DefaultSelectionStyle(
+                  child: Text(
+                    lerpText(info.title, info.shortTitle, t),
+                    textAlign: TextAlign.left,
+                    style: titleTextStyle,
+                  ),
                 ),
               ),
             ],
           ),
-        )
+        ),
+        CompositedTransformFollower(
+          link: layerLink,
+          targetAnchor: Alignment.bottomCenter,
+          followerAnchor: Alignment.bottomCenter,
+          offset: const Offset(0, 64),
+          child: Text(
+            lerpText(info.description, "", t * 2),
+            textAlign: TextAlign.center,
+            style: textTheme.headlineLarge?.copyWith(color: textColor),
+          ),
+        ),
       ],
     );
   }

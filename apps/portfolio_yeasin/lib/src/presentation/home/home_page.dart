@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../_common/utils/snap_physics.dart';
 import 'widgets/intro_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,9 +15,11 @@ class _HomePageState extends State<HomePage>
   ///
 
   final IntroInfo info = const IntroInfo(
-    name: "Md. Yeasin Sheikh",
+    name: "Md.Yeasin Sheikh",
     title: "Software Developer | Flutter specialist",
     shortTitle: "Software Developer | Flutter",
+    description:
+        "A passionate lifespan love to solve problems and create values.",
   );
 
   final scrollController = ScrollController();
@@ -38,10 +39,12 @@ class _HomePageState extends State<HomePage>
   /// That's why we need it
   void onPointerSignal(PointerSignalEvent event) {
     if (animationController.isAnimating) return;
+    final pageHeight = MediaQuery.sizeOf(context).height;
+
     if (event is PointerScrollEvent) {
-      if (event.scrollDelta.dy > 0) {
+      if (event.scrollDelta.dy > 0 && scrollController.offset < pageHeight) {
         animationController.forward();
-      } else {
+      } else if (scrollController.offset < pageHeight) {
         animationController.reverse();
       }
     }
@@ -58,30 +61,34 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-        body: Listener(
-      onPointerSignal: onPointerSignal,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        child: CustomScrollView(
-          controller: scrollController,
-          physics: IntroSnapScrollPhysics(snapHeight: size.height),
-          slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: IntroPersistenceHeaderDelegate(
-                info: info,
-                maxHeight: size.height,
-                minHeight: minIntroHeight,
+      body: Listener(
+        onPointerSignal: onPointerSignal,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+          child: CustomScrollView(
+            controller: scrollController,
+            //! DOES not work,
+            // physics: animationController.isAnimating
+            //     ? null
+            //     : IntroSnapScrollPhysics(snapHeight: size.height),
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: IntroPersistenceHeaderDelegate(
+                  info: info,
+                  maxHeight: size.height,
+                  minHeight: minIntroHeight,
+                ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: size.height * 3,
-              ),
-            )
-          ],
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: size.height * 3,
+                ),
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(height: 12),
         itemBuilder: (ct, i) => ProjectTile(
           project: projects[i],
+          tileType: ProjectTileType.titleLarge,
         ),
       ),
     );

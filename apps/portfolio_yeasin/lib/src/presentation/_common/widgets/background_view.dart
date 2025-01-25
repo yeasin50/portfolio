@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_theme.dart';
+import '../../../app/app_theme.dart';
 
 class BackgroundView extends StatefulWidget {
   const BackgroundView({

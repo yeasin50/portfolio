@@ -1,18 +1,23 @@
 name: portfolio_yeasin
-description: "A new Flutter to create portfolio for Me "
+description: >
+  A new Flutter to create portfolio for 
+  Me 🤭
 
 publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.6.0
 
 dependencies:
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+
+  core:
+    path: ../../packages/core
 
 dev_dependencies:
   flutter_test:

@@ -14,4 +14,12 @@ class PortfolioDateFormat {
     final startString = DateFormat('MMM yyyy').format(start);
     return 'Issued $startString';
   }
+
+   static String work(DateTime start) {
+    final startString = DateFormat('MMM yyyy').format(start);
+    return 'Issued $startString';
+  }
+
+  // ("MMM.yyyy")
+
 }

@@ -96,8 +96,8 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
         CompositedTransformFollower(
           link: layerLink,
           targetAnchor: Alignment.bottomCenter,
-          followerAnchor: Alignment.bottomCenter,
-          offset: const Offset(0, 64),
+          followerAnchor: Alignment.topCenter,
+          offset: const Offset(0, 28),
           child: Text(
             lerpText(info.description, "", t * 2),
             textAlign: TextAlign.center,

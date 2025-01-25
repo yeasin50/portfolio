@@ -1,8 +1,8 @@
 name: portfolio_workspace
 
 environment:
-  sdk: ^3.5.3
-  flutter: ">=1.17.0"
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.3.0 <4.0.0"
 
 dev_dependencies:
   melos: ^6.3.1

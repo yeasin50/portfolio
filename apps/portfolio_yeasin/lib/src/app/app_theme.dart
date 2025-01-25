@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'theme/card_theme_ext.dart';
+
 enum AppThemeMode {
   dark,
   light,
@@ -7,57 +9,24 @@ enum AppThemeMode {
 }
 
 class AppThemeConfig {
-  static List<Color> backgroundColor({
-    bool isDark = false,
-    double lerp = 1,
-  }) {
-    return isDark
-        ? [
-            Color.lerp(
-              const Color(0xFF1E1E30),
-              const Color(0xFF3D3D5C),
-              lerp,
-            )!,
-            Color.lerp(
-              const Color(0xFF24243E),
-              const Color(0xFF4A4A6A),
-              lerp,
-            )!
-          ]
-        : [
-            Color.lerp(
-              const Color(0xFFB2EBF2),
-              const Color(0xFFFFF3E0),
-              lerp,
-            )!,
-            Color.lerp(
-              const Color(0xFFE3F2FD),
-              const Color(0xFFEDE7F6),
-              lerp,
-            )!
-          ];
-  }
-
   static ThemeData data(AppThemeMode mode) {
     return ThemeData(
       scaffoldBackgroundColor: Colors.transparent,
       extensions: switch (mode) {
-        AppThemeMode.dark => [AppTheme.darkTheme()],
-        AppThemeMode.light => [AppTheme.dayTheme()],
-        _ => [AppTheme.darkTheme()],
+        AppThemeMode.light => [
+            AppTheme.dayTheme(),
+            WorkCardTheme.dayCardTheme(),
+          ],
+        _ => [
+            AppTheme.darkTheme(),
+            WorkCardTheme.darkCardTheme(),
+          ],
       },
     );
   }
 }
 
 class AppTheme extends ThemeExtension<AppTheme> {
-  final List<Color> backgroundGradient;
-  final Color primaryText;
-  final Color secondaryText;
-  final Color buttonColor;
-  final Color buttonTextColor;
-  final Color mutedText; // Muted or disabled text color
-
   const AppTheme({
     required this.backgroundGradient,
     required this.primaryText,
@@ -66,6 +35,13 @@ class AppTheme extends ThemeExtension<AppTheme> {
     required this.buttonTextColor,
     required this.mutedText,
   });
+
+  final List<Color> backgroundGradient;
+  final Color primaryText;
+  final Color secondaryText;
+  final Color buttonColor;
+  final Color buttonTextColor;
+  final Color mutedText; // Muted or disabled text color
 
   static AppTheme darkTheme() {
     return const AppTheme(

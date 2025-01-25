@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:project/src/project_info.dart';
+import './project_card.dart';
 
 enum ProjectTileType {
   //  date, title, roll and ...
@@ -9,6 +9,8 @@ enum ProjectTileType {
   /// title will be displayLarge
   /// date/category/roll with Large title
   titleLarge,
+
+  grid,
 }
 
 class ProjectTile extends StatelessWidget {
@@ -27,27 +29,27 @@ class ProjectTile extends StatelessWidget {
 
     final Project p = Project.ui;
 
-    final date = DateFormat("MMM.yyyy").format(p.createdAt);
+    final date = PortfolioDateFormat.work(p.createdAt);
 
     final title = Text(
       p.title,
       style: textTheme.titleLarge,
     );
 
-    if (tileType == ProjectTileType.titleLarge) {
-      return _ProjectTileLargeTitle(project: project);
-    }
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(date),
-        const SizedBox(width: 12),
-        title,
-        const SizedBox(width: 12),
-        Text("${p.category} / ${p.roll}"),
-      ],
-    );
+    return switch (tileType) {
+      ProjectTileType.titleLarge => _ProjectTileLargeTitle(project: project),
+      ProjectTileType.grid => ProjectCard(project: project),
+      _ => Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(date),
+            const SizedBox(width: 12),
+            title,
+            const SizedBox(width: 12),
+            Text("${p.category} / ${p.roll}"),
+          ],
+        )
+    };
   }
 }
 
@@ -67,7 +69,7 @@ class _ProjectTileLargeTitle extends StatelessWidget {
       style: textTheme.displayMedium,
     );
 
-    final date = DateFormat("MMM.yyyy").format(p.createdAt);
+    final date = PortfolioDateFormat.work(p.createdAt);
     final subTitle = Text("$date / ${p.category} / ${p.roll}");
 
     final width = MediaQuery.sizeOf(context).width;

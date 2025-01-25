@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,6 +72,7 @@ class _HomePageState extends State<HomePage>
             // physics: animationController.isAnimating
             //     ? null
             //     : IntroSnapScrollPhysics(snapHeight: size.height),
+
             slivers: [
               SliverPersistentHeader(
                 pinned: true,
@@ -80,11 +82,7 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: size.height * 3,
-                ),
-              )
+              SliverToBoxAdapter(child: WorkItems()),
             ],
           ),
         ),

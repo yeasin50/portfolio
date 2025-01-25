@@ -11,7 +11,7 @@ class YeasinPortfolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppThemeConfig.data(AppThemeMode.dark),
+      theme: AppThemeConfig.data(AppThemeMode.light),
       scrollBehavior: const ScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../_common/widgets/navigation_buttons.dart';
 import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
@@ -82,7 +83,9 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              SliverToBoxAdapter(child: WorkItems()),
+              const SliverToBoxAdapter(
+                child: WorkItems(),
+              ),
             ],
           ),
         ),

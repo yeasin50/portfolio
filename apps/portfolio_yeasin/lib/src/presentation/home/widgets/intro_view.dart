@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../_common/utils/lerp_text.dart';
+import '../../_common/widgets/navigation_buttons.dart';
 
 ///  basic info will be used for the user
 /// ```dart
@@ -71,37 +72,67 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
             Alignment.topLeft,
             t,
           )!,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                info.name,
-                style: nameTextStyle,
-                textAlign: TextAlign.left,
-              ),
-              CompositedTransformTarget(
-                link: layerLink,
-                child: DefaultSelectionStyle(
+          child: CompositedTransformTarget(
+            link: layerLink,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  info.name,
+                  style: nameTextStyle,
+                  textAlign: TextAlign.left,
+                ),
+                DefaultSelectionStyle(
                   child: Text(
                     lerpText(info.title, info.shortTitle, t),
                     textAlign: TextAlign.left,
                     style: titleTextStyle,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         CompositedTransformFollower(
           link: layerLink,
-          targetAnchor: Alignment.bottomCenter,
-          followerAnchor: Alignment.topCenter,
-          offset: const Offset(0, 28),
-          child: Text(
-            lerpText(info.description, "", t * 2),
-            textAlign: TextAlign.center,
-            style: textTheme.headlineLarge?.copyWith(color: textColor),
+          targetAnchor: Alignment.lerp(
+            Alignment.bottomCenter,
+            Alignment.bottomLeft,
+            t,
+          )!,
+          followerAnchor: Alignment.lerp(
+            Alignment.topCenter,
+            Alignment.topLeft,
+            t,
+          )!,
+          showWhenUnlinked: false,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              () {
+                final text = lerpText(info.description, "", t * 2);
+                return text.length < 5
+                    ? const SizedBox.shrink()
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 64),
+                        child: Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: textTheme.headlineLarge
+                              ?.copyWith(color: textColor),
+                        ),
+                      );
+              }(),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: NavigationButtons(scrollT: t),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -112,7 +143,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => maxHeight;
 
   @override
-  double get minExtent => minHeight;
+  double get minExtent => maxHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

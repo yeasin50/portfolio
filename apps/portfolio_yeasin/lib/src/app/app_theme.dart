@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'theme/card_theme_ext.dart';
+import 'theme/theme.dart';
 
 enum AppThemeMode {
   dark,
@@ -16,10 +16,12 @@ class AppThemeConfig {
         AppThemeMode.light => [
             AppTheme.dayTheme(),
             WorkCardTheme.dayCardTheme(),
+            NavigationTheme.dayTheme(),
           ],
         _ => [
             AppTheme.darkTheme(),
             WorkCardTheme.darkCardTheme(),
+            NavigationTheme.darkTheme(),
           ],
       },
     );

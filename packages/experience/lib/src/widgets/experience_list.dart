@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../experience_.dart';
-import 'experience_item_builder.dart';
+import '../../experience.dart';
+import 'experience_list_delegate.dart';
 
 ///  show `initialMaxPreview` [experiences]
 /// can be expand to show all. not so useful on web but plan for future
@@ -10,7 +10,7 @@ class ExperienceView extends StatefulWidget {
   const ExperienceView({
     super.key,
     required this.experiences,
-    this.initialMaxPreview = 5,
+    this.initialMaxPreview = 3,
   });
 
   final List<Experience> experiences;
@@ -29,38 +29,28 @@ class _ExperienceViewState extends State<ExperienceView> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final theme = Theme.of(context).extension<ExperienceTheme>()!;
+    return Flow(
+      delegate: const ExperienceListDelegate(),
       children: [
-        Text(
-          'Experience',
-          style: theme.textTheme.headlineSmall,
-        ),
-        const SizedBox(height: 8),
         ...previewItems.map(
-          (experience) => Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: ExperienceItemBuilder(experience: experience),
+          (experience) => ExperienceItemBuilder(
+            experience: experience,
           ),
         ),
-        if (widget.experiences.length > 5)
+        if (widget.experiences.length > widget.initialMaxPreview)
           TextButton(
             onPressed: () {
-              setState(() {
-                previewItems = previewItems.length == widget.experiences.length
-                    ? widget.experiences.sublist(0, 5)
-                    : widget.experiences;
-              });
+              previewItems = previewItems.length == widget.initialMaxPreview
+                  ? widget.experiences
+                  : widget.experiences.sublist(0, widget.initialMaxPreview);
+              setState(() {});
             },
             child: Text(
               previewItems.length == widget.experiences.length
                   ? 'Show less'
                   : 'Show more',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.blueAccent,
-                decoration: TextDecoration.underline,
-              ),
+              style: theme.descriptionStyle,
             ),
           ),
       ],

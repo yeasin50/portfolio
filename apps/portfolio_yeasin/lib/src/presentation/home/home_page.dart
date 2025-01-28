@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage>
     title: "Software Developer | Flutter specialist",
     shortTitle: "Software Developer | Flutter",
     description:
-        "A passionate lifespan love to solve problems and create values.",
+        "A limited lifespan who loves to solve problems and create values.",
   );
 
   final scrollController = ScrollController();
@@ -83,8 +83,11 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              const SliverToBoxAdapter(
-                child: WorkItems(),
+              const SliverPadding(
+                padding: EdgeInsets.all(24),
+                sliver: SliverToBoxAdapter(
+                  child: WorkItems(),
+                ),
               ),
             ],
           ),

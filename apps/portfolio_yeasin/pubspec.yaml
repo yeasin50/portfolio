@@ -18,6 +18,8 @@ dependencies:
 
   core:
     path: ../../packages/core
+  experience:
+    path: ../../packages/experience
 
 dev_dependencies:
   flutter_test:

@@ -18,6 +18,7 @@ class ExperienceItemBuilder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      spacing: 1,
       children: [
         Text(
           experience.title,
@@ -27,8 +28,8 @@ class ExperienceItemBuilder extends StatelessWidget {
           TextSpan(
             text: experience.company.name,
             style: theme.organizationTextStyle,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => _tryToLaunch(companyUrl),
+            // recognizer: TapGestureRecognizer()
+            //   ..onTap = () => _tryToLaunch(companyUrl),
           ),
         ),
         Text(

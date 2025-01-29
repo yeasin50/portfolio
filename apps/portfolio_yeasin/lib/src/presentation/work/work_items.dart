@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/app/app.dart';
 
 import 'widgets/project_tile.dart';
 
@@ -24,14 +25,13 @@ class _WorkItemsState extends State<WorkItems> {
 
   @override
   Widget build(BuildContext context) {
-    final itemPerRow = MediaQuery.sizeOf(context).width < 1200 ? 1 : 2;
+    final itemPerRow =
+        MediaQuery.sizeOf(context).width < Spacing.maxWidth ? 1 : 2;
 
     return Column(
       spacing: 32,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: itemPerRow > 1
-          ? CrossAxisAlignment.stretch
-          : CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (itemPerRow == 1)
           ...items
@@ -39,7 +39,7 @@ class _WorkItemsState extends State<WorkItems> {
           for (int i = 0; i < items.length + items.length % 2; i += 2)
             Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               spacing: 48,
               children: [
                 items[i],

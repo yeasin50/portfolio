@@ -1,3 +1,4 @@
+import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
 
 import 'theme/theme.dart';
@@ -17,11 +18,13 @@ class AppThemeConfig {
             AppTheme.dayTheme(),
             WorkCardTheme.dayCardTheme(),
             NavigationTheme.dayTheme(),
+            ExperienceTheme.dayTheme(),
           ],
         _ => [
             AppTheme.darkTheme(),
             WorkCardTheme.darkCardTheme(),
             NavigationTheme.darkTheme(),
+            ExperienceTheme.darkTheme(),
           ],
       },
     );

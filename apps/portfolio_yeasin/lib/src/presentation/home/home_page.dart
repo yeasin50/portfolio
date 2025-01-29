@@ -1,6 +1,9 @@
+import 'package:core/core.dart';
+import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/app.dart';
 import '../_common/widgets/navigation_buttons.dart';
 import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
@@ -22,6 +25,17 @@ class _HomePageState extends State<HomePage>
     shortTitle: "Software Developer | Flutter",
     description:
         "A limited lifespan who loves to solve problems and create values.",
+  );
+
+  final experiences = List.generate(
+    3,
+    (index) => Experience(
+      title: "Flutter Developer",
+      company: const Organization(name: "organization"),
+      start: DateTime(2020),
+      description:
+          "Created x with boost performance 20% which increased revenue \$12B",
+    ),
   );
 
   final scrollController = ScrollController();
@@ -83,12 +97,49 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              const SliverPadding(
-                padding: EdgeInsets.all(24),
-                sliver: SliverToBoxAdapter(
-                  child: WorkItems(),
+              SliverPadding(
+                padding: Spacing.group,
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    SliverAppBar.large(),
+                    SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
+                      ),
+                      itemCount: experiences.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: Spacing.maxWidth,
+                            ),
+                            child: ExperienceItemBuilder(
+                              experience: experiences[index],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
+              SliverPadding(
+                  padding: Spacing.group,
+                  sliver: SliverMainAxisGroup(
+                    slivers: [
+                      SliverAppBar.large(),
+                      SliverToBoxAdapter(
+                        child: Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxWidth: Spacing.maxWidth,
+                            ),
+                            child: const WorkItems(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/presentation/home/widgets/connect_view.dart';
 
 import '../../../app/app_theme.dart';
 import '../../_common/utils/lerp_text.dart';
@@ -68,7 +69,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
       children: [
         Align(
           alignment: Alignment.lerp(
-            const Alignment(0, -.35),
+            const Alignment(0, -.5),
             Alignment.topLeft,
             t,
           )!,
@@ -81,13 +82,24 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                 Text(
                   info.name,
                   style: nameTextStyle,
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                 ),
                 DefaultSelectionStyle(
                   child: Text(
                     lerpText(info.title, info.shortTitle, t),
                     textAlign: TextAlign.left,
                     style: titleTextStyle,
+                  ),
+                ),
+                //TODO:  left transition
+                CompositedTransformFollower(
+                  link: layerLink,
+                  targetAnchor: Alignment.bottomLeft,
+                  followerAnchor: Alignment.bottomLeft,
+                  offset: const Offset(0, 24),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.loose(const Size(56, 56)),
+                    child: const ConnectView(),
                   ),
                 ),
               ],

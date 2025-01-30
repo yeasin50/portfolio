@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/app.dart';
-import '../_common/widgets/navigation_buttons.dart';
 import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage>
   ///
 
   final IntroInfo info = const IntroInfo(
-    name: "Md.Yeasin Sheikh",
+    name: "Md. Yeasin Sheikh",
     title: "Software Developer | Flutter specialist",
     shortTitle: "Software Developer | Flutter",
     description:

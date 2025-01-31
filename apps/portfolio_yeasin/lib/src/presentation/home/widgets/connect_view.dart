@@ -1,67 +1,89 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/app.dart';
 import 'connects_flow_delegate.dart';
+
+/// when the animation will start or will stopped
+const _animationBreakPoint = .90;
 
 ///  some professional  profiles for portfolio
 /// *  returns a [CustomMultiChildLayout] need to make sure
 class ConnectView extends StatefulWidget {
-  const ConnectView({super.key});
+  const ConnectView({
+    super.key,
+    required this.animationValue,
+  });
+
+  final double animationValue;
 
   @override
   State<ConnectView> createState() => _ConnectViewState();
 }
 
 class _ConnectViewState extends State<ConnectView>
-    with TickerProviderStateMixin {
-  void init() {}
+    with SingleTickerProviderStateMixin {
+  //
+  late final AnimationController controller = AnimationController(
+    vsync: this,
+    duration: Durations.medium1,
+  );
+
+  @override
+  void didUpdateWidget(covariant ConnectView oldWidget) {
+    if (oldWidget.animationValue > _animationBreakPoint) {
+      controller.forward();
+    } else if (oldWidget.animationValue < _animationBreakPoint) {
+      controller.reverse();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CustomMultiChildLayout(
-      delegate: ConnectMultiChildDelegate(),
+    final ConnectThemeExt theme =
+        Theme.of(context).extension<ConnectThemeExt>()!;
+    //
+    return Flow(
+      delegate: ConnectFlowDelegate(controller),
       children: [
-        LayoutId(
-          id: 0,
-          child: _ConnectButton(
-            icon: const Icon(
-              Icons.abc,
-              color: Colors.grey,
-            ),
-            onHovered: (value) {},
-            onTap: () {},
+        _ConnectButton(
+          icon: Icon(
+            Icons.email_rounded,
+            color: theme.iconColor,
           ),
+          onHovered: (value) {},
+          onTap: () {},
         ),
-        LayoutId(
-            id: 1,
-            child: _ConnectButton(
-              icon: const Icon(
-                Icons.ac_unit_outlined,
-                color: Colors.grey,
-              ),
-              onHovered: (value) {},
-              onTap: () {},
-            )),
-        LayoutId(
-          id: 2,
-          child: _ConnectButton(
-            icon: const Icon(
-              Icons.access_alarms_sharp,
-              color: Colors.grey,
-            ),
-            onHovered: (value) {},
-            onTap: () {},
+        _ConnectButton(
+          icon: Icon(
+            Icons.ac_unit,
+            color: theme.iconColor,
           ),
+          onHovered: (value) {},
+          onTap: () {},
         ),
-        LayoutId(
-            id: 3,
-            child: _ConnectButton(
-              icon: const Icon(
-                Icons.account_tree_sharp,
-                color: Colors.grey,
-              ),
-              onHovered: (value) {},
-              onTap: () {},
-            )),
+        _ConnectButton(
+          icon: Icon(
+            Icons.access_alarms_sharp,
+            color: theme.iconColor,
+          ),
+          onHovered: (value) {},
+          onTap: () {},
+        ),
+        _ConnectButton(
+          icon: Icon(
+            Icons.account_tree_sharp,
+            color: theme.iconColor,
+          ),
+          onHovered: (value) {},
+          onTap: () {},
+        ),
       ],
     );
   }
@@ -84,12 +106,18 @@ class _ConnectButton extends StatefulWidget {
 class _ConnectButtonState extends State<_ConnectButton> {
   @override
   Widget build(BuildContext context) {
+    final ConnectThemeExt theme =
+        Theme.of(context).extension<ConnectThemeExt>()!;
     return Material(
-      shape: const CircleBorder(
-        side: BorderSide(color: Colors.white10, width: 1),
+      shape: CircleBorder(
+        side: BorderSide(
+          color: theme.borderColor,
+          width: 1,
+        ),
       ),
-      color: Colors.transparent,
+      color: theme.background,
       child: InkWell(
+        hoverColor: theme.hoverColor,
         onTap: widget.onTap,
         onHover: widget.onHovered,
         customBorder: const CircleBorder(),

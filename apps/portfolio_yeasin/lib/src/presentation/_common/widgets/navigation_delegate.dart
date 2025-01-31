@@ -19,8 +19,6 @@ class NavigationDelegate extends FlowDelegate {
 
     double totalWidth =
         itemSizes.fold(0.0, (sum, size) => sum + (size?.width ?? 0.0));
-    double totalHeight =
-        itemSizes.fold(0.0, (sum, size) => sum + (size?.height ?? 0));
 
     double x = center.dx - totalWidth / 2;
     double y = 120;

@@ -1,6 +1,7 @@
 import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
 
+import 'theme/connect_theme_ext.dart';
 import 'theme/theme.dart';
 
 enum AppThemeMode {
@@ -19,12 +20,14 @@ class AppThemeConfig {
             WorkCardTheme.dayCardTheme(),
             NavigationTheme.dayTheme(),
             ExperienceTheme.dayTheme(),
+            ConnectThemeExt.dayTheme(),
           ],
         _ => [
             AppTheme.darkTheme(),
             WorkCardTheme.darkCardTheme(),
             NavigationTheme.darkTheme(),
             ExperienceTheme.darkTheme(),
+            ConnectThemeExt.dayTheme()
           ],
       },
     );

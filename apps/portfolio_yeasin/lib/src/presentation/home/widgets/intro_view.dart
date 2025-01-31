@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/presentation/home/widgets/connect_view.dart';
 
@@ -50,6 +52,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
+    final width = MediaQuery.sizeOf(context).width;
 
     final t = shrinkOffset / maxExtent;
 
@@ -91,20 +94,16 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                     style: titleTextStyle,
                   ),
                 ),
-                //TODO:  left transition
-                CompositedTransformFollower(
-                  link: layerLink,
-                  targetAnchor: Alignment.bottomLeft,
-                  followerAnchor: Alignment.bottomLeft,
-                  offset: const Offset(0, 24),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.loose(const Size(56, 56)),
-                    child: const ConnectView(),
-                  ),
-                ),
               ],
             ),
           ),
+        ),
+        CompositedTransformFollower(
+          link: layerLink,
+          targetAnchor: Alignment.bottomLeft,
+          followerAnchor: Alignment.topLeft,
+          offset: const Offset(0, 24),
+          child: ConnectView(animationValue: t),
         ),
         CompositedTransformFollower(
           link: layerLink,

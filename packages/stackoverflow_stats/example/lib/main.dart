@@ -4,7 +4,15 @@ import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
 void main() {
   runApp(
-    const MaterialApp(home: MainApp()),
+    MaterialApp(
+      home: MainApp(),
+      theme: ThemeData.dark().copyWith(
+        extensions: [
+          StackOverflowTheme.darkTheme(),
+          // StackOverflowTheme.dayTheme(),
+        ],
+      ),
+    ),
   );
 }
 
@@ -24,6 +32,7 @@ class MainApp extends StatelessWidget {
             SizedBox(height: 32),
             BadgesCard(
               userId: userId,
+              maxPreview: (null, null, null),
             ),
           ],
         ),

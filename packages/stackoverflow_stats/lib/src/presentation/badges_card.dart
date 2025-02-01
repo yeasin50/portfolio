@@ -1,12 +1,12 @@
 import 'dart:developer';
+import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
 import 'dart:math' as math;
 
-import '../domain/badge.dart';
-import '../infrastructure/user_repo.dart';
+import 'badge_label_chip.dart';
 
 ///  show user [userId]  badges
 class BadgesCard extends StatefulWidget {
@@ -70,20 +70,22 @@ class _BadgesCardState extends State<BadgesCard> {
         }
 
         return Column(
-          children: [goldItems, silverItems, bronzeItems]
+          children: [
+            goldItems,
+            silverItems,
+            bronzeItems,
+          ]
               .map(
-                (e) => ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 250,
-                    minWidth: 100,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: e.map((e) => Text(e.name)).toList(),
-                    ),
+                (e) => Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: e
+                        .map(
+                          (e) => BadgeLabelChip(badge: e),
+                        )
+                        .toList(),
                   ),
                 ),
               )

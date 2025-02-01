@@ -28,6 +28,29 @@ class _ConnectViewState extends State<ConnectView>
     duration: Durations.medium1,
   );
 
+  late Animation animation = TweenSequence([
+    TweenSequenceItem(
+        tween: Tween(begin: 0.0, end: 1.3)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 50),
+    TweenSequenceItem(
+        tween: Tween(begin: 1.3, end: 0.85)
+            .chain(CurveTween(curve: Curves.easeInOut)),
+        weight: 30),
+    TweenSequenceItem(
+        tween: Tween(begin: 0.85, end: 1.15)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 25),
+    TweenSequenceItem(
+        tween: Tween(begin: 1.15, end: 0.95)
+            .chain(CurveTween(curve: Curves.easeInOut)),
+        weight: 20),
+    TweenSequenceItem(
+        tween: Tween(begin: 0.95, end: 1.0)
+            .chain(CurveTween(curve: Curves.easeIn)),
+        weight: 15),
+  ]).animate(controller);
+
   @override
   void didUpdateWidget(covariant ConnectView oldWidget) {
     if (oldWidget.animationValue > _animationBreakPoint) {
@@ -50,7 +73,8 @@ class _ConnectViewState extends State<ConnectView>
         Theme.of(context).extension<ConnectThemeExt>()!;
     //
     return Flow(
-      delegate: ConnectFlowDelegate(controller),
+      delegate: ConnectFlowDelegate(animation),
+      clipBehavior: Clip.none,
       children: [
         _ConnectButton(
           icon: Icon(

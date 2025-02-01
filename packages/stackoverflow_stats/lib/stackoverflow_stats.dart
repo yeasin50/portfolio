@@ -7,3 +7,4 @@ export 'src/infrastructure/user_repo.dart';
 export 'src/presentation/badge_counter_view.dart';
 export 'src/presentation/badges_card.dart';
 export 'src/presentation/so_profile_view.dart';
+export 'src/presentation/theme_ext.dart';

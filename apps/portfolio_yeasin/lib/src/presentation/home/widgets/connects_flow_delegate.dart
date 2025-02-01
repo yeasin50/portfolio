@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 double _degToRad(double deg) => deg * (math.pi / 180);
 
+///Will play later
 class ConnectFlowDelegate extends FlowDelegate {
   const ConnectFlowDelegate(this.animation) : super(repaint: animation);
 
@@ -33,12 +34,16 @@ class ConnectFlowDelegate extends FlowDelegate {
 
       double x = radius * math.cos(angle);
       double y = radius * math.sin(angle);
-      final m = Offset(x, y) + Offset(0, radius * (1 - animation.value));
+      final m = Offset(x, 0) + Offset(0, radius * (1 - animation.value));
+      // final m = Offset(x, 0);
 
+      final t = animation.value;
       context.paintChild(
         i,
-        transform: Matrix4.identity()..translate(m.dx, m.dy),
-        opacity: animation.value,
+        transform: Matrix4.identity()
+          ..translate(m.dx, m.dy)
+          ..scale(t),
+        opacity: t * 1.5,
       );
     }
   }

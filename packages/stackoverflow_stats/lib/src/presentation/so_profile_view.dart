@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:stackoverflow_stats/src/domain/so_profile.dart';
-import 'package:stackoverflow_stats/src/infrastructure/user_repo.dart';
-import 'package:stackoverflow_stats/src/presentation/badge_counter_view.dart';
+import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
 ///  show user [userId] profile
 ///! https://stackoverflow.com/users/10157127/
@@ -28,7 +26,7 @@ class _SoProfileViewState extends State<SoProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context).extension<StackOverflowTheme>()!;
 
     return FutureBuilder<SoProfile?>(
       future: future,
@@ -63,13 +61,12 @@ class _SoProfileViewState extends State<SoProfileView> {
                         Text(
                           e.value.toString(),
                           textAlign: TextAlign.center,
-                          style: textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: theme.titleStyle,
                         ),
                         Text(
                           e.key,
                           textAlign: TextAlign.center,
+                          style: theme.labelStyle,
                         ),
                       ],
                     );

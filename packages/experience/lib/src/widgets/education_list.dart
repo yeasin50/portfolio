@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../education_info.dart';
-import 'education_view.dart';
+import 'education_item_builder.dart';
 
 ///  preview [educations] with just header
 ///
@@ -16,14 +16,12 @@ class EducationItemsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: 16,
       children: [
-        Text(
-          'Education',
-          style: Theme.of(context).textTheme.headlineSmall,
+        ...educations.map(
+          (e) => EducationItemBuilder(education: e),
         ),
-        const SizedBox(height: 8),
-        ...educations.map((e) => EducationItemBuilder(education: e)),
       ],
     );
   }

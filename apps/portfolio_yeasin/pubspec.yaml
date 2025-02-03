@@ -21,6 +21,9 @@ dependencies:
   experience:
     path: ../../packages/experience
 
+  stackoverflow_stats:
+    path: ../../packages/stackoverflow_stats
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

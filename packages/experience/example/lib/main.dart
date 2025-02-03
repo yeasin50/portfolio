@@ -33,10 +33,42 @@ class _HomeState extends State<_Home> {
           "Created x with boost performance 20% which increased revenue \$12B",
     ),
   );
+
+  final educations = [
+    Education(
+      school: Organization(
+        name: "Daffodil International University",
+      ),
+      degree: "Bachelor",
+      field: "Computer Science and Engineering",
+      start: DateTime(2018, 01),
+      end: DateTime(2023, 09),
+      grade: "3.67 out of 4.0",
+      description: "this is a long description" * 23,
+    ),
+    Education(
+      school: Organization(
+        name: "Daffodil International University",
+      ),
+      degree: "Bachelor",
+      field: "Computer Science and Engineering",
+      start: DateTime(2018, 01),
+      end: DateTime(2023, 09),
+      grade: "3.67 out of 4.0",
+      description: "this is a long description" * 23,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ExperienceView(experiences: items),
+      body: Column(
+        spacing: 24,
+        children: [
+          ExperienceView(experiences: items),
+          EducationItemsView(educations: educations)
+        ],
+      ),
     );
   }
 }

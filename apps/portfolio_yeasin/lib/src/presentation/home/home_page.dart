@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
 import '../../app/app.dart';
 import '../work/work_items.dart';
@@ -36,6 +38,20 @@ class _HomePageState extends State<HomePage>
           "Created x with boost performance 20% which increased revenue \$12B",
     ),
   );
+
+  final educations = [
+    Education(
+      school: const Organization(
+        name: "Daffodil International University",
+      ),
+      degree: "Bachelor",
+      field: "Computer Science and Engineering",
+      start: DateTime(2018, 01),
+      end: DateTime(2023, 09),
+      grade: "3.67 out of 4.0",
+      description: "this is a long description" * 23,
+    ),
+  ];
 
   final scrollController = ScrollController();
 
@@ -97,7 +113,30 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
               SliverPadding(
-                padding: Spacing.group,
+                padding: Spacing.group.copyWith(top: 0, bottom: 0),
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    const SliverAppBar.large(
+                      title: Text("StackOverflow"),
+                    ),
+                    SliverToBoxAdapter(
+                        child: Align(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints.tightFor(
+                          width: Spacing.maxWidth,
+                        ),
+                        child: Center(
+                          child: so.SoProfileView(
+                            userId: 10157127,
+                          ),
+                        ),
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              SliverPadding(
+                padding: Spacing.group.copyWith(top: 0),
                 sliver: SliverMainAxisGroup(
                   slivers: [
                     SliverAppBar.large(),
@@ -114,6 +153,25 @@ class _HomePageState extends State<HomePage>
                             ),
                             child: ExperienceItemBuilder(
                               experience: experiences[index],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    const SliverAppBar.large(),
+                    SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
+                      ),
+                      itemCount: educations.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: Spacing.maxWidth,
+                            ),
+                            child: EducationItemBuilder(
+                              education: educations[index],
                             ),
                           ),
                         );

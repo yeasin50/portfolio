@@ -6,6 +6,10 @@ void main() {
   runApp(
     MaterialApp(
       home: MainApp(),
+
+      //     SoPageView(
+      //   userId: 10157127,
+      // ),
       theme: ThemeData.dark().copyWith(
         extensions: [
           StackOverflowTheme.darkTheme(),
@@ -24,18 +28,19 @@ class MainApp extends StatelessWidget {
     const int userId = 10157127;
 
     return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Center(child: SoProfileView(userId: userId)),
-            SizedBox(height: 32),
-            BadgesCard(
-              userId: userId,
-              maxPreview: (null, null, null),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SoProfileView(
+            userId: userId,
+          ),
+          SizedBox(height: 32),
+          // BadgesCard(
+          //   userId: userId,
+          //   maxPreview: (null, null, null),
+          // ),
+        ],
       ),
     );
   }

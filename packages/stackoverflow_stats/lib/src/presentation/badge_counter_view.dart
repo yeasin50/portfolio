@@ -4,9 +4,9 @@ import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 class BadgeCounterView extends StatelessWidget {
   const BadgeCounterView({
     super.key,
-    required this.user,
+    required this.badge,
   });
-  final SoProfile user;
+  final SOBadge badge;
 
   @override
   Widget build(BuildContext context) {
@@ -14,31 +14,22 @@ class BadgeCounterView extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: user.badges.entries
-          .map(
-            (e) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.gite_outlined,
-                    color: switch (e.key) {
-                      "gold" => theme.gold,
-                      "silver" => theme.silver,
-                      "bronze" => theme.bronze,
-                      _ => theme.labelStyle.color
-                    },
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    e.value.toString(),
-                    style: theme.badgeTextStyle,
-                  ),
-                ],
-              ),
-            ),
-          )
-          .toList(),
+      children: [
+        Icon(
+          Icons.emoji_events,
+          color: switch (badge.rank) {
+            "gold" => theme.gold,
+            "silver" => theme.silver,
+            "bronze" => theme.bronze,
+            _ => theme.labelStyle.color
+          },
+        ),
+        const SizedBox(width: 8),
+        Text(
+          badge.awardCount.toString(),
+          style: theme.labelStyle,
+        ),
+      ],
     );
   }
 }

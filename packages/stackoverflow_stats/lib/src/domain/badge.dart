@@ -18,6 +18,15 @@ class SOBadge {
   final String name;
   final String link;
 
+  static SOBadge empty = const SOBadge(
+    rank: "",
+    awardCount: 0,
+    badgeId: 1,
+    description: "",
+    name: "",
+    link: "",
+  );
+
   factory SOBadge.fromMap(Map<String, dynamic> map) {
     return SOBadge(
       rank: map['rank'] ?? '',
@@ -26,6 +35,24 @@ class SOBadge {
       badgeId: map['badge_id']?.toInt() ?? 0,
       description: map['description'] ?? '',
       name: map['name'] ?? '',
+    );
+  }
+
+  SOBadge copyWith({
+    String? rank,
+    int? awardCount,
+    int? badgeId,
+    String? description,
+    String? name,
+    String? link,
+  }) {
+    return SOBadge(
+      rank: rank ?? this.rank,
+      awardCount: awardCount ?? this.awardCount,
+      badgeId: badgeId ?? this.badgeId,
+      description: description ?? this.description,
+      name: name ?? this.name,
+      link: link ?? this.link,
     );
   }
 }

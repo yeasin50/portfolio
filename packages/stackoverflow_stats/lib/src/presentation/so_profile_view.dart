@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
@@ -43,40 +44,43 @@ class _SoProfileViewState extends State<SoProfileView> {
           );
         }
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Wrap(
-                runSpacing: 16,
-                spacing: 16,
-                alignment: WrapAlignment.center,
-                children: user.cardData.entries.map(
-                  (e) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          e.value.toString(),
-                          textAlign: TextAlign.center,
-                          style: theme.titleStyle,
-                        ),
-                        Text(
-                          e.key,
-                          textAlign: TextAlign.center,
-                          style: theme.labelStyle,
-                        ),
-                      ],
-                    );
-                  },
-                ).toList(),
-              ),
-              const SizedBox(height: 8),
-              BadgeCounterView(user: user),
-            ],
-          ),
+        return Row(
+          spacing: 16,
+          children: user.cardData.entries.mapIndexed(
+            (i, e) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    e.value.toString(),
+                    textAlign: TextAlign.center,
+                    style: theme.titleStyle,
+                  ),
+                  Text(
+                    e.key,
+                    textAlign: TextAlign.center,
+                    style: theme.labelStyle,
+                  ),
+                  const SizedBox(height: 8),
+                  BadgeCounterView(
+                    badge: SOBadge.empty.copyWith(
+                      rank: switch (i) {
+                        0 => "gold",
+                        1 => "silver",
+                        _ => "bronze"
+                      },
+                      awardCount: switch (i) {
+                        0 => user.goldBadgeCount,
+                        1 => user.silverBadgeCount,
+                        _ => user.bronzeBadgeCount
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ).toList(),
         );
       },
     );

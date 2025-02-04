@@ -10,16 +10,20 @@ class PortfolioDateFormat {
   }
 
   /// (e.g., 'Jan 2025')
-  static String certificate(DateTime start) {
-    final startString = DateFormat('MMM yyyy').format(start);
-    return 'Issued $startString';
+  static String certificate(DateTime start, DateTime? end) {
+    final formatter = DateFormat('DD MMM yyyy');
+    final startString = formatter.format(start);
+    if (end == null) {
+      return "Issued $startString";
+    }
+    final endString = formatter.format(end);
+    return 'Issued $startString" - Expire $endString';
   }
 
-   static String work(DateTime start) {
+  static String work(DateTime start) {
     final startString = DateFormat('MMM yyyy').format(start);
     return 'Issued $startString';
   }
 
   // ("MMM.yyyy")
-
 }

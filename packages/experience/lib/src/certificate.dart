@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../common/models/organization.dart';
+import 'package:core/core.dart';
 
 class Certificate {
   const Certificate({

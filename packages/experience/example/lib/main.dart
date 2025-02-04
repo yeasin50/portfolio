@@ -59,14 +59,41 @@ class _HomeState extends State<_Home> {
     ),
   ];
 
+  final certificates = [
+    Certificate(
+      name: "Certified in FlutterDevcamp State Management",
+      organization: Organization(
+        name: "Google Developer Group, London",
+      ),
+      issueDate: DateTime(2023),
+    ),
+    ...List.filled(
+      4,
+      Certificate(
+          name: "Foundation of User Experience(UX) Designed",
+          organization: Organization(
+            name: "Google",
+          ),
+          issueDate: DateTime(2023),
+          description: "desc " * 22),
+    ),
+    Certificate(
+      name:
+          "Completed the Microsoft Asia Virtual Experience Program in Engineering(Undergraduate & Masters)",
+      organization: Organization(name: "Microsoft"),
+      issueDate: DateTime(2021),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        spacing: 24,
+        spacing: 32,
         children: [
+          CertificateListView(certificates: certificates),
           ExperienceView(experiences: items),
-          EducationItemsView(educations: educations)
+          // EducationItemsView(educations: educations),
         ],
       ),
     );

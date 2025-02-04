@@ -2,11 +2,9 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
 import '../../app/app.dart';
-import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +17,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   ///
+  ///
+  int stackOverflowUserID = 10157127;
 
   final IntroInfo info = const IntroInfo(
     name: "Md. Yeasin Sheikh",
@@ -50,6 +50,29 @@ class _HomePageState extends State<HomePage>
       end: DateTime(2023, 09),
       grade: "3.67 out of 4.0",
       description: "this is a long description" * 23,
+    ),
+  ];
+
+  final certificates = [
+    Certificate(
+      name: "Certified in FlutterDevcamp State Management",
+      organization: Organization(
+        name: "Google Developer Group, London",
+      ),
+      issueDate: DateTime(2023),
+    ),
+    Certificate(
+        name: "Foundation of User Experience(UX) Designed",
+        organization: Organization(
+          name: "Google",
+        ),
+        issueDate: DateTime(2023),
+        description: "desc " * 22),
+    Certificate(
+      name:
+          "Completed the Microsoft Asia Virtual Experience Program in Engineering(Undergraduate & Masters)",
+      organization: Organization(name: "Microsoft"),
+      issueDate: DateTime(2021),
     ),
   ];
 
@@ -126,9 +149,7 @@ class _HomePageState extends State<HomePage>
                           width: Spacing.maxWidth,
                         ),
                         child: Center(
-                          child: so.SoProfileView(
-                            userId: 10157127,
-                          ),
+                          child: so.SoProfileView(userId: stackOverflowUserID),
                         ),
                       ),
                     )),
@@ -180,23 +201,46 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
+              //   SliverPadding(
+              //     padding: Spacing.group,
+              //     sliver: SliverMainAxisGroup(
+              //       slivers: [
+              //         SliverAppBar.large(),
+              //         SliverToBoxAdapter(
+              //           child: Center(
+              //             child: ConstrainedBox(
+              //               constraints: const BoxConstraints(
+              //                 maxWidth: Spacing.maxWidth,
+              //               ),
+              //               child: const WorkItems(),
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              //
+
               SliverPadding(
-                  padding: Spacing.group,
-                  sliver: SliverMainAxisGroup(
-                    slivers: [
-                      SliverAppBar.large(),
-                      SliverToBoxAdapter(
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxWidth: Spacing.maxWidth,
-                            ),
-                            child: const WorkItems(),
+                padding: Spacing.group,
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    SliverAppBar.large(),
+                    SliverToBoxAdapter(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: Spacing.maxWidth,
+                          ),
+                          child: CertificateListView(
+                            certificates: certificates,
                           ),
                         ),
                       ),
-                    ],
-                  )),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

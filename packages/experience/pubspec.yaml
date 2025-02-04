@@ -1,7 +1,12 @@
 name: experience
 description: >
   A package for preview experience in exchange of 
-  your lifespan exchange for different organization
+  your lifespan exchange for different organization.
+  - work experience
+  - academic records 
+  - certificates 
+  - 
+  All in one for consistency & shape you
 
 publish_to: none
 

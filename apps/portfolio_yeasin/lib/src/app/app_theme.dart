@@ -1,5 +1,6 @@
 import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
+import 'package:skill/skill.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
 import 'theme/connect_theme_ext.dart';
@@ -23,6 +24,7 @@ class AppThemeConfig {
             ExperienceTheme.dayTheme(),
             ConnectThemeExt.dayTheme(),
             StackOverflowTheme.dayTheme(),
+            SkillThemeExt.dayTheme(),
           ],
         _ => [
             AppTheme.darkTheme(),
@@ -31,6 +33,7 @@ class AppThemeConfig {
             ExperienceTheme.darkTheme(),
             ConnectThemeExt.dayTheme(),
             StackOverflowTheme.darkTheme(),
+            SkillThemeExt.darkTheme(),
           ],
       },
     );

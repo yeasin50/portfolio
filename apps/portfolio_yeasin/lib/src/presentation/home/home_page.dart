@@ -2,9 +2,11 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/presentation/home/widgets/skill_items.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
 import '../../app/app.dart';
+import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -201,25 +203,25 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
               ),
-              //   SliverPadding(
-              //     padding: Spacing.group,
-              //     sliver: SliverMainAxisGroup(
-              //       slivers: [
-              //         SliverAppBar.large(),
-              //         SliverToBoxAdapter(
-              //           child: Center(
-              //             child: ConstrainedBox(
-              //               constraints: const BoxConstraints(
-              //                 maxWidth: Spacing.maxWidth,
-              //               ),
-              //               child: const WorkItems(),
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              //
+
+              SliverPadding(
+                padding: Spacing.group,
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    SliverAppBar.large(),
+                    SliverToBoxAdapter(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: Spacing.maxWidth,
+                          ),
+                          child: const WorkItems(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
               SliverPadding(
                 padding: Spacing.group,
@@ -239,6 +241,21 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                   ],
+                ),
+              ),
+
+              //,
+              SliverPadding(
+                padding: Spacing.group,
+                sliver: SliverToBoxAdapter(
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: Spacing.maxWidth,
+                      ),
+                      child: const SkillItems(),
+                    ),
+                  ),
                 ),
               ),
             ],

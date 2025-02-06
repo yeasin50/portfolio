@@ -24,6 +24,9 @@ dependencies:
   stackoverflow_stats:
     path: ../../packages/stackoverflow_stats
 
+  skill:
+    path: ../../packages/skill
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

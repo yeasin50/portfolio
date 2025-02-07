@@ -1,6 +1,6 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/app/app.dart';
+import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 
 import 'widgets/project_tile.dart';
 
@@ -12,13 +12,14 @@ class WorkItems extends StatefulWidget {
 }
 
 class _WorkItemsState extends State<WorkItems> {
-  final items = List.filled(
-    7,
-    ConstrainedBox(
+  late final projects = context.provider.projects;
+  late final items = List.generate(
+    projects.length,
+    (i) => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 500),
       child: ProjectTile(
         tileType: ProjectTileType.grid,
-        project: Project.ui,
+        project: projects[i],
       ),
     ),
   );

@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
+import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
 import 'package:portfolio_yeasin/src/presentation/home/widgets/skill_items.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
@@ -18,23 +20,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  ///
-  ///
+   
   int stackOverflowUserID = 10157127;
 
-  final IntroInfo info = const IntroInfo(
-    name: "Md. Yeasin Sheikh",
-    title: "Software Developer | Flutter specialist",
-    shortTitle: "Software Developer | Flutter",
-    description:
-        "A limited lifespan who loves to solve problems and create values.",
-  );
-
+ 
   final experiences = List.generate(
     3,
     (index) => Experience(
       title: "Flutter Developer",
-      company: const Organization(name: "organization"),
+      organization: const Organization(name: "organization"),
       start: DateTime(2020),
       description:
           "Created x with boost performance 20% which increased revenue \$12B",
@@ -117,6 +111,11 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+        ///
+        final result = await UserRepository.create();
+        print(result.toString());
+      }),
       body: Listener(
         onPointerSignal: onPointerSignal,
         child: Padding(
@@ -132,7 +131,7 @@ class _HomePageState extends State<HomePage>
               SliverPersistentHeader(
                 pinned: true,
                 delegate: IntroPersistenceHeaderDelegate(
-                  info: info,
+                  info: provider.intro,
                   maxHeight: size.height,
                   minHeight: minIntroHeight,
                 ),
@@ -167,7 +166,7 @@ class _HomePageState extends State<HomePage>
                       separatorBuilder: (context, index) => const SizedBox(
                         height: 16,
                       ),
-                      itemCount: experiences.length,
+                      itemCount: provider.experiences.length,
                       itemBuilder: (context, index) {
                         return Center(
                           child: ConstrainedBox(
@@ -175,7 +174,7 @@ class _HomePageState extends State<HomePage>
                               width: Spacing.maxWidth,
                             ),
                             child: ExperienceItemBuilder(
-                              experience: experiences[index],
+                              experience: provider.experiences[index],
                             ),
                           ),
                         );
@@ -186,7 +185,7 @@ class _HomePageState extends State<HomePage>
                       separatorBuilder: (context, index) => const SizedBox(
                         height: 16,
                       ),
-                      itemCount: educations.length,
+                      itemCount: provider.educations.length,
                       itemBuilder: (context, index) {
                         return Center(
                           child: ConstrainedBox(
@@ -194,7 +193,7 @@ class _HomePageState extends State<HomePage>
                               width: Spacing.maxWidth,
                             ),
                             child: EducationItemBuilder(
-                              education: educations[index],
+                              education: provider.educations[index],
                             ),
                           ),
                         );

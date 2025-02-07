@@ -1,3 +1,27 @@
+class ProjectMediaGroup {
+  const ProjectMediaGroup({
+    required this.title,
+    required this.data,
+    this.description,
+  });
+
+  final String title;
+  final String? description;
+  final List<ProjectMedia> data;
+
+  static ProjectMediaGroup fromMap(Map<String, dynamic> map) {
+    return ProjectMediaGroup(
+      title: map["title"],
+      description: map["description"],
+      data: List.from(
+        map["data"].map(
+          (e) => ProjectMedia.fromMap(e),
+        ),
+      ),
+    );
+  }
+}
+
 class ProjectMedia {
   const ProjectMedia({
     required this.type,

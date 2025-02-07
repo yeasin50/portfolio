@@ -71,6 +71,7 @@ class _ProjectCardState extends State<ProjectCard>
                 child: Image.network(
                   project.thumbnail,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Placeholder(),
                 ),
               ),
             ),

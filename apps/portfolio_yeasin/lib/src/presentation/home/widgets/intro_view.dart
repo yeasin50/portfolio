@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/presentation/home/widgets/connect_view.dart';
 
@@ -7,27 +6,6 @@ import '../../../app/app_theme.dart';
 import '../../_common/utils/lerp_text.dart';
 import '../../_common/widgets/navigation_buttons.dart';
 
-///  basic info will be used for the user
-/// ```dart
-/// const IntroInfo(
-///     name: "Md. Yeasin Sheikh",
-///     title: "Software Developer | Flutter specialist",
-///     shortTitle: "SDE | Flutter",
-///   );
-///```
-class IntroInfo {
-  const IntroInfo({
-    required this.name,
-    required this.title,
-    required this.shortTitle,
-    required this.description,
-  });
-
-  final String name;
-  final String title;
-  final String shortTitle;
-  final String description;
-}
 
 /// show user [name] and [intro];
 /// but if user scroll down, only show the name in small case

@@ -12,7 +12,7 @@ class ExperienceItemBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final companyUrl = experience.company.websiteUrl;
+    // final companyUrl = experience.organization.websiteUrl;
     final theme = Theme.of(context).extension<ExperienceTheme>()!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,14 +23,15 @@ class ExperienceItemBuilder extends StatelessWidget {
           experience.title,
           style: theme.titleStyle,
         ),
-        Text.rich(
-          TextSpan(
-            text: experience.company.name,
-            style: theme.organizationTextStyle,
-            // recognizer: TapGestureRecognizer()
-            //   ..onTap = () => _tryToLaunch(companyUrl),
+        if (experience.organization != null)
+          Text.rich(
+            TextSpan(
+              text: experience.organization!.name,
+              style: theme.organizationTextStyle,
+              // recognizer: TapGestureRecognizer()
+              //   ..onTap = () => _tryToLaunch(companyUrl),
+            ),
           ),
-        ),
         Text(
           PortfolioDateFormat.experience(experience.start, experience.end),
           style: theme.dateTextStyle,

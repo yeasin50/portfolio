@@ -27,7 +27,7 @@ class _HomeState extends State<_Home> {
     5,
     (index) => Experience(
       title: "Flutter Developer",
-      company: Organization(name: "organization"),
+      organization: Organization(name: "organization"),
       start: DateTime(2020),
       description:
           "Created x with boost performance 20% which increased revenue \$12B",

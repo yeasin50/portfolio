@@ -22,50 +22,20 @@ class Certificate {
   final DateTime? issueDate;
   final DateTime? expirationDate;
 
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'name': name});
-    result.addAll({'organization': organization.toMap()});
-    if (credentialUrl != null) {
-      result.addAll({'credentialUrl': credentialUrl});
-    }
-    if (imageUrl != null) {
-      result.addAll({'imageUrl': imageUrl});
-    }
-    if (description != null) {
-      result.addAll({'description': description});
-    }
-    if (issueDate != null) {
-      result.addAll({'issueDate': issueDate!.millisecondsSinceEpoch});
-    }
-    if (expirationDate != null) {
-      result.addAll({'expirationDate': expirationDate!.millisecondsSinceEpoch});
-    }
-
-    return result;
-  }
-
   factory Certificate.fromMap(Map<String, dynamic> map) {
     return Certificate(
       name: map['name'] ?? '',
       organization: Organization.fromMap(map['organization']),
-      credentialUrl: map['credentialUrl'],
-      imageUrl: map['imageUrl'],
+      credentialUrl: map['credential_url'],
+      imageUrl: map['image_url'],
       description: map['description'],
-      issueDate: map['issueDate'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['issueDate'])
-          : null,
-      expirationDate: map['expirationDate'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['expirationDate'])
+      issueDate:
+          map['issue_date'] != null ? DateTime.parse(map['issue_date']) : null,
+      expirationDate: map['expiration_date'] != null
+          ? DateTime.parse(map['expiration_date'])
           : null,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Certificate.fromJson(String source) =>
-      Certificate.fromMap(json.decode(source));
 
   @override
   String toString() {

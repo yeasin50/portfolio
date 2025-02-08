@@ -1,11 +1,10 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/presentation/home/widgets/connect_view.dart';
 
 import '../../../app/app_theme.dart';
 import '../../_common/utils/lerp_text.dart';
 import '../../_common/widgets/navigation_buttons.dart';
-
+import 'connects_simple_view.dart';
 
 /// show user [name] and [intro];
 /// but if user scroll down, only show the name in small case
@@ -78,10 +77,21 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
         ),
         CompositedTransformFollower(
           link: layerLink,
-          targetAnchor: Alignment.bottomLeft,
-          followerAnchor: Alignment.topLeft,
-          offset: const Offset(0, 24),
-          child: ConnectView(animationValue: t),
+          targetAnchor: Alignment.lerp(
+            Alignment.bottomCenter,
+            Alignment.bottomLeft,
+            t,
+          )!,
+          followerAnchor: Alignment.lerp(
+            Alignment.topCenter,
+            Alignment.topLeft,
+            t,
+          )!,
+          offset: const Offset(0, 0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: ConnectsSimpleView(animation: t),
+          ),
         ),
         CompositedTransformFollower(
           link: layerLink,

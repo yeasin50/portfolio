@@ -5,6 +5,7 @@ import 'dart:math' as math;
 double _degToRad(double deg) => deg * (math.pi / 180);
 
 ///Will play later
+/// thought about circular , but does not good
 class ConnectFlowDelegate extends FlowDelegate {
   const ConnectFlowDelegate(this.animation) : super(repaint: animation);
 
@@ -54,6 +55,7 @@ class ConnectFlowDelegate extends FlowDelegate {
   }
 }
 
+@Deprecated("have dropped,  use [ConnectFlowDelegate], else work on it")
 class ConnectMultiChildDelegate extends MultiChildLayoutDelegate {
   ConnectMultiChildDelegate({required this.animation})
       : super(relayout: animation);

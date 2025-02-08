@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-import '../../../app/app.dart';
+import 'connect_item_view.dart';
 import 'connects_flow_delegate.dart';
 
 /// when the animation will start or will stopped
+///! but not needed for [SimpleConnectFlowDelete]
 const _animationBreakPoint = .90;
 
 ///  some professional  profiles for portfolio
-/// I wont recommend more than 4, use about section for more 
+/// I wont recommend more than 4, use about section for more
 /// *  returns a [CustomMultiChildLayout] need to make sure
+@Deprecated(
+  "Kinda messed up thinking what will looks good, "
+  "use [ConnectsSimpleView] for the time being",
+)
 class ConnectView extends StatefulWidget {
   const ConnectView({
     super.key,
@@ -29,7 +34,7 @@ class _ConnectViewState extends State<ConnectView>
   //
   late final AnimationController controller = AnimationController(
     vsync: this,
-    duration: Durations.medium1,
+    duration: Duration(seconds: 3),
   );
 
   late Animation animation = TweenSequence([
@@ -85,70 +90,18 @@ class _ConnectViewState extends State<ConnectView>
   @override
   Widget build(BuildContext context) {
     return Flow(
-      delegate: ConnectFlowDelegate(animation),
+      delegate: ConnectFlowDelegate(
+          Animation.fromValueListenable(ValueNotifier(widget.animationValue))),
       clipBehavior: Clip.none,
       children: data
           .map(
-            (e) => _ConnectButton(
+            (e) => ConnectButton(
               connect: e,
               onHovered: (v) {},
               onTap: () => navToSite(e.url),
             ),
           )
           .toList(),
-    );
-  }
-}
-
-class _ConnectButton extends StatefulWidget {
-  const _ConnectButton({
-    required this.connect,
-    required this.onHovered,
-    required this.onTap,
-  });
-  final Connect connect;
-  final ValueChanged<bool> onHovered;
-  final VoidCallback onTap;
-
-  @override
-  State<_ConnectButton> createState() => _ConnectButtonState();
-}
-
-class _ConnectButtonState extends State<_ConnectButton> {
-  late final message =
-      "${widget.connect.url} ${widget.connect.description ?? ""}";
-  @override
-  Widget build(BuildContext context) {
-    final ConnectThemeExt theme =
-        Theme.of(context).extension<ConnectThemeExt>()!;
-
-    return Material(
-      clipBehavior: Clip.hardEdge,
-      shape: CircleBorder(
-        side: BorderSide(
-          color: theme.borderColor,
-          width: 1,
-        ),
-      ),
-      color: theme.background,
-      child: Tooltip(
-        message: message,
-        child: InkWell(
-          hoverColor: theme.hoverColor,
-          onTap: widget.onTap,
-          onHover: widget.onHovered,
-          customBorder: const CircleBorder(),
-          child: Image.network(
-            widget.connect.logo,
-            height: 32,
-            width: 32,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) => const Icon(
-              Icons.error,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

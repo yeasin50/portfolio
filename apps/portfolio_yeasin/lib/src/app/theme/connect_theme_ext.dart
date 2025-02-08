@@ -6,7 +6,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
   final Color borderColor;
   final Color background;
   final Color hoverColor;
-  final Color hintTextStyle;
+  final TextStyle hintTextStyle;
   final Color hintBackgroundColor;
 
   const ConnectThemeExt({
@@ -23,7 +23,10 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
         borderColor: Color(0xFF90A4AE),
         background: Color(0xFF222437),
         hoverColor: Color(0xFF2E344B),
-        hintTextStyle: Color(0xFFB0BEC5),
+        hintTextStyle: TextStyle(
+          color: Color(0xFFB0BEC5),
+          fontSize: 12,
+        ),
         hintBackgroundColor: Color(0xFF2A2D48),
       );
 
@@ -33,7 +36,10 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
         borderColor: Color(0xFF039BE5),
         background: Color(0xFFBBDEFB),
         hoverColor: Color(0xFFFFF59D),
-        hintTextStyle: Color(0xFF78909C),
+        hintTextStyle: TextStyle(
+          color: Color(0xFF78909C),
+          fontSize: 12,
+        ),
         hintBackgroundColor: Color(0xFFAEDFF7),
       );
 
@@ -43,7 +49,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
     Color? borderColor,
     Color? background,
     Color? hoverColor,
-    Color? hintTextStyle,
+    TextStyle? hintTextStyle,
     Color? hintBackgroundColor,
   }) {
     return ConnectThemeExt(
@@ -64,7 +70,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
       background: Color.lerp(background, other.background, t)!,
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
-      hintTextStyle: Color.lerp(hintTextStyle, other.hintTextStyle, t)!,
+      hintTextStyle: TextStyle.lerp(hintTextStyle, other.hintTextStyle, t)!,
       hintBackgroundColor:
           Color.lerp(hintBackgroundColor, other.hintBackgroundColor, t)!,
     );

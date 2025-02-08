@@ -31,7 +31,7 @@ class AppThemeConfig {
             WorkCardTheme.darkCardTheme(),
             NavigationTheme.darkTheme(),
             ExperienceTheme.darkTheme(),
-            ConnectThemeExt.dayTheme(),
+            ConnectThemeExt.darkTheme(),
             StackOverflowTheme.darkTheme(),
             SkillThemeExt.darkTheme(),
           ],

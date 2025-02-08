@@ -8,6 +8,40 @@
     "description": "A limited lifespan who loves to solve problems and create values."
   },
 
+  "connects": [
+    {
+      "name": "github",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/github.png",
+      "url": "https://github.com/yeasin50"
+    },
+    {
+      "name": "stackOverflow",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/stackoverflow.png",
+      "url": "https://stackoverflow.com/users/10157127/md-yeasin-sheikh"
+    },
+    {
+      "name": "linkedin",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/Linkedin.png",
+      "url": "https://www.linkedin.com/in/mdyeasinsheikh/"
+    },
+    {
+      "name": "youtube",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
+      "url": "https://www.youtube.com/@FlutterforMe"
+    },
+    {
+      "name": "telegram",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/telegram.png",
+      "url": "https://t.me/yeasinsheikh",
+      "description": null
+    },
+    {
+      "name": "website",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/website.png",
+      "url": "https://sites.google.com/view/mdyeasinsheikh"
+    }
+  ],
+
   "experience": [
     {
       "title": "Software Engineer",

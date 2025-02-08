@@ -20,10 +20,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-   
   int stackOverflowUserID = 10157127;
 
- 
   final experiences = List.generate(
     3,
     (index) => Experience(
@@ -111,11 +109,6 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () async {
-        ///
-        final result = await UserRepository.create();
-        print(result.toString());
-      }),
       body: Listener(
         onPointerSignal: onPointerSignal,
         child: Padding(

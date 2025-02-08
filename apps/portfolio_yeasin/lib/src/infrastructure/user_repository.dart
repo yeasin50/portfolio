@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 class UserRepository {
   const UserRepository._({
     required this.intro,
+    required this.connects,
     required this.experiences,
     required this.educations,
     required this.certificates,
@@ -17,13 +18,23 @@ class UserRepository {
   });
 
   final IntroInfo intro;
+  // I wont recommend more than 4, use about section
+  final List<Connect> connects;
+
+  /// best 3
   final List<Experience> experiences;
+
+  /// 1/2
   final List<Education> educations;
+
+  /// top 3
   final List<Certificate> certificates;
+
+  /// bump everything, will add config on main page to control max item
   final List<Project> projects;
 
   ///  create new instance to pass down the widget tree
-  /// 
+  ///
   static Future<UserRepository> create() async {
     //todo: http
     final response = await rootBundle.loadString("assets/user_info.json");
@@ -33,6 +44,12 @@ class UserRepository {
     final experiences = List<Experience>.from(
       data['experience'].map(
         (e) => Experience.fromMap(e),
+      ),
+    );
+
+    final connects = List<Connect>.from(
+      data['connects'].map(
+        (e) => Connect.fromMap(e),
       ),
     );
 
@@ -56,6 +73,7 @@ class UserRepository {
 
     return UserRepository._(
       intro: intro,
+      connects: connects,
       experiences: experiences,
       educations: education,
       certificates: certificate,

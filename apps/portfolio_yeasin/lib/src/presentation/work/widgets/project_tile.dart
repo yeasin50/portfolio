@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import './project_card.dart';
+import 'project_card_3d.dart';
 
 enum ProjectTileType {
   //  date, title, roll and ...
@@ -11,6 +12,7 @@ enum ProjectTileType {
   titleLarge,
 
   grid,
+  grid3D,
 }
 
 class ProjectTile extends StatelessWidget {
@@ -39,6 +41,7 @@ class ProjectTile extends StatelessWidget {
     return switch (tileType) {
       ProjectTileType.titleLarge => _ProjectTileLargeTitle(project: project),
       ProjectTileType.grid => ProjectCard(project: project),
+      ProjectTileType.grid3D => ProjectCard3D(project: project),
       _ => Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [

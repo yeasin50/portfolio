@@ -86,9 +86,9 @@ class _SimpleConnectFlowDelete extends FlowDelegate {
         i,
         transform: Matrix4.identity()
           ..translate(dx)
-          ..scale(lerpDouble(.75, 1, animation.value)!),
+          ..scale(lerpDouble(1, .75, animation.value)!),
       );
-      dx += itemSize[i].width + lerpDouble(4, 12, animation.value)!;
+      dx += itemSize[i].width + lerpDouble(16, 0, animation.value)!;
     }
   }
 

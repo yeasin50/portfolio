@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +31,6 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
-    final width = MediaQuery.sizeOf(context).width;
 
     final t = shrinkOffset / maxExtent;
 
@@ -46,6 +47,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
     final LayerLink layerLink = LayerLink();
 
     return Stack(
+      clipBehavior: Clip.none,
       children: [
         Align(
           alignment: Alignment.lerp(
@@ -55,26 +57,31 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
           )!,
           child: CompositedTransformTarget(
             link: layerLink,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  info.name,
-                  style: nameTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-                DefaultSelectionStyle(
-                  child: Text(
-                    lerpText(info.title, info.shortTitle, t),
-                    textAlign: TextAlign.left,
-                    style: titleTextStyle,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: lerpDouble(48, 16, t)!),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    info.name,
+                    style: nameTextStyle,
+                    textAlign: TextAlign.center,
                   ),
-                ),
-              ],
+                  DefaultSelectionStyle(
+                    child: Text(
+                      lerpText(info.title, info.shortTitle, t),
+                      textAlign: TextAlign.left,
+                      style: titleTextStyle,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+
+        // better will be fixed Height*t ig
         CompositedTransformFollower(
           link: layerLink,
           targetAnchor: Alignment.lerp(
@@ -87,11 +94,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
             Alignment.topLeft,
             t,
           )!,
-          offset: const Offset(0, 0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: ConnectsSimpleView(animation: t),
-          ),
+          child: ConnectsSimpleView(animation: t),
         ),
         CompositedTransformFollower(
           link: layerLink,
@@ -114,7 +117,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                 return text.length < 5
                     ? const SizedBox.shrink()
                     : Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 64),
+                        padding: const EdgeInsets.symmetric(vertical: 100),
                         child: Text(
                           text,
                           textAlign: TextAlign.center,

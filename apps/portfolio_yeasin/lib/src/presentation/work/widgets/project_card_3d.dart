@@ -159,41 +159,25 @@ class _ProjectCard3DState extends State<ProjectCard3D>
                     child: Flow(
                       clipBehavior: Clip.none,
                       delegate: ProjectCard3dFLowDelegate(controller),
-                      children: const [
+                      children: [
                         //image
-                        SizedBox.expand(
-                          child: ColoredBox(
-                            color: Colors.blue,
-                            child: Text(
-                              "AF",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(fontSize: 44, color: Colors.white),
-                            ),
-                          ),
-                        ),
+                        SizedBox.expand(child: imageBox),
+
                         // middle
 
-                        ColoredBox(
-                          color: Colors.purple,
-                          child: Text(
-                            "Mid",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 44, color: Colors.white),
-                          ),
-                        ),
-
                         SizedBox.expand(
                           child: ColoredBox(
-                            color: Colors.red,
+                            color: Colors.purple,
                             child: Text(
-                              "BG",
+                              "Mid",
                               textAlign: TextAlign.center,
                               style:
                                   TextStyle(fontSize: 44, color: Colors.white),
                             ),
                           ),
                         ),
+
+                        SizedBox.expand(child: descriptionCard),
                       ],
                     ),
                   ),
@@ -239,23 +223,23 @@ class ProjectCard3dFLowDelegate extends FlowDelegate {
       ..translate(0.0, 0.0, -100.0);
 
     final midTransform = Matrix4.identity()
-      ..rotateZ(math.pi)
-      ..rotateY(math.pi / 2 + rotation * t)
-      ..translate(0.0, 0.0, fbSize.width);
+      ..translate(fbSize.width / 2, 0.0, 120.0)
+      // ..rotateY(( rotation * t))
+      ..rotateY(90 * math.pi / 180 + (math.pi / 2 * animation.value));
 
     if (animation.value < .5) {
-      context.paintChild(
-        2,
-        transform: bgTransform,
-      );
+//       context.paintChild(
+//         2,
+//         transform: bgTransform,
+//       );
+//
+//       context.paintChild(
+//         0,
+//         transform: fgTransform,
+//       );
       context.paintChild(
         1,
         transform: midTransform,
-      );
-
-      context.paintChild(
-        0,
-        transform: fgTransform,
       );
     } else {
       context.paintChild(

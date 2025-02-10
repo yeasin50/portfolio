@@ -18,7 +18,7 @@ class _WorkItemsState extends State<WorkItems> {
     (i) => ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 500),
       child: ProjectTile(
-        tileType: ProjectTileType.grid3D,
+        tileType: ProjectTileType.grid,
         project: projects[i],
       ),
     ),

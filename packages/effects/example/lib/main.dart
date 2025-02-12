@@ -33,10 +33,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ShaderLoader(
-        path: "shaders/sine_wave.frag",
-        child: Text("AA BB" * 233),
-      ),
+      body: SineWaveEffect(),
     );
   }
 }

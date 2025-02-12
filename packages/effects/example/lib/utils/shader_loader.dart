@@ -1,86 +1,68 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
-///todo sineWave
+typedef ShaderLoaderCallBack = FragmentShader Function(
+  FragmentProgram shader,
+  Rect bounds,
+);
+
+///  things I am trying to archive
+/// - this will load the fragment shader
+/// - will return  the shader to the parent for any  configuration
+/// - and it will update based on the config I pass into config
+///
+///! The issue is it is not updating the ui and
+///! I dont want to move FutureBuilder top of the parent
+///! or remove StateFullyWidget that will gonna recall the api
+/// At this point I can pass the animation Instance and use animation builder
+/// but what will be a good way to handle this case
+///
 class ShaderLoader extends StatefulWidget {
   const ShaderLoader({
     super.key,
     required this.path,
-    this.child,
+    required this.onLoaded,
+    this.child = const SizedBox.expand(),
+    this.blendMode = BlendMode.srcIn,
   });
 
   final String path;
-  final Widget? child;
+  final ShaderLoaderCallBack onLoaded;
+  final BlendMode blendMode;
+
+  /// default it will be using SizedBox.Expand
+  final Widget child;
 
   @override
   State<ShaderLoader> createState() => _ShaderLoaderState();
 }
 
-class _ShaderLoaderState extends State<ShaderLoader>
-    with SingleTickerProviderStateMixin {
+class _ShaderLoaderState extends State<ShaderLoader> {
   Future<FragmentProgram> loadMyShader() async =>
       await FragmentProgram.fromAsset(widget.path);
 
   late final Future<FragmentProgram> _program = loadMyShader();
 
-  late AnimationController controller = AnimationController(
-    vsync: this,
-    duration: Duration(minutes: 1),
-    upperBound: 100,
-  )..repeat();
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-    Offset focalPoint = Offset(size.width / 2, size.height / 2);
     return FutureBuilder(
       future: _program,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text("error loading shader: ${snapshot.error}");
-        }
-        if (snapshot.hasData == false) {
-          return const Text("loading shader...");
+          return widget.child;
         }
 
-        return AnimatedBuilder(
-          animation: controller,
-          builder: (context, child) {
-            return ShaderMask(
-              shaderCallback: (bounds) {
-                final shader = snapshot.data!.fragmentShader()
-                  ..setFloat(0, size.width)
-                  ..setFloat(1, size.height)
-                  ..setFloat(2, focalPoint.dx)
-                  ..setFloat(3, focalPoint.dy)
-                  ..setFloat(4, controller.value);
-                return shader;
-              },
-              blendMode: BlendMode.color,
-              child: child!,
-            );
+        if (!snapshot.hasData) {
+          return const Text("Loading shader...");
+        }
+
+        return ShaderMask(
+          shaderCallback: (bounds) {
+            final modifiedShader = widget.onLoaded(snapshot.data!, bounds);
+            return modifiedShader;
           },
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 100,
-              crossAxisSpacing: 4,
-              mainAxisSpacing: 4,
-            ),
-            padding: EdgeInsets.all(8),
-            // itemCount: 30,
-            itemBuilder: (context, index) {
-              return ColoredBox(
-                color: Colors.primaries[index % Colors.primaries.length],
-              );
-            },
-          ),
+          blendMode: widget.blendMode,
+          child: widget.child,
         );
       },
     );

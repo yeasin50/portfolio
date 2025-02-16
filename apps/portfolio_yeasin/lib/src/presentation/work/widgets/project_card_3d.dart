@@ -32,7 +32,13 @@ void main(List<String> args) {
   );
 }
 
-@Deprecated("Under construction, limitation of 2D canvas is bugging me")
+@Deprecated(
+  "Under construction, "
+  " limitation of 2D canvas is bugging me"
+  "Doesn't look cool to me, so yea gonna skip it"
+  "we can add blur and others stuffs on hovered state,"
+  "but still not what I wanted, I might shift to the glsl",
+)
 class ProjectCard3D extends StatefulWidget {
   const ProjectCard3D({
     super.key,
@@ -137,49 +143,28 @@ class _ProjectCard3DState extends State<ProjectCard3D>
             child: MouseRegion(
               onEnter: onHover,
               onExit: onHoverExit,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.red,
-                    width: 4,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      return Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()
-                          ..rotateY(math.pi * controller.value),
-                        child: child!,
-                      );
-                    },
-                    child: Flow(
-                      clipBehavior: Clip.none,
-                      delegate: ProjectCard3dFLowDelegate(controller),
-                      children: [
-                        //image
-                        SizedBox.expand(child: imageBox),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AnimatedBuilder(
+                  animation: controller,
+                  builder: (context, child) {
+                    return Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, .001)
+                        ..rotateY(math.pi * controller.value),
+                      child: child!,
+                    );
+                  },
+                  child: Flow(
+                    clipBehavior: Clip.none,
+                    delegate: ProjectCard3dFLowDelegate(controller),
+                    children: [
+                      //image
+                      SizedBox.expand(child: imageBox),
 
-                        // middle
-
-                        SizedBox.expand(
-                          child: ColoredBox(
-                            color: Colors.purple,
-                            child: Text(
-                              "Mid",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(fontSize: 44, color: Colors.white),
-                            ),
-                          ),
-                        ),
-
-                        SizedBox.expand(child: descriptionCard),
-                      ],
-                    ),
+                      SizedBox.expand(child: descriptionCard),
+                    ],
                   ),
                 ),
               ),
@@ -194,7 +179,7 @@ class _ProjectCard3DState extends State<ProjectCard3D>
 /// why we need it,
 /// like to control the render stack
 /// if animation>.5 we gonna switch BG and TOP
-/// * Children [TOP,MID,BG]
+/// * Children [TOP,BG]
 class ProjectCard3dFLowDelegate extends FlowDelegate {
   const ProjectCard3dFLowDelegate(this.animation) : super(repaint: animation);
 
@@ -202,57 +187,50 @@ class ProjectCard3dFLowDelegate extends FlowDelegate {
 
   @override
   void paintChildren(FlowPaintingContext context) {
-    assert(context.childCount == 3, "only 3 children is able to render now");
+    assert(context.childCount == 2, "only 2 children is able to render now");
 
     final fbSize = context.getChildSize(0)!;
-
-    final midGap = 100.0; //mid one
 
     final double rotation = math.pi;
 
     final t = 0;
 
     final bgTransform = Matrix4.identity()
+      ..setEntry(3, 2, .001)
       // ..rotateX(rotation * t)
       ..rotateY(rotation * t)
-      ..translate(0.0, 0.0, 100.0);
+      ..translate(0.0, 0.0, 00);
 
     final fgTransform = Matrix4.identity()
+      ..setEntry(3, 2, .001)
       // ..rotateX(rotation * t)
       ..rotateY(rotation * t)
-      ..translate(0.0, 0.0, -100.0);
+      ..translate(0.0, 0.0, 00.0);
 
-    final midTransform = Matrix4.identity()
-      ..translate(fbSize.width / 2, 0.0, 120.0)
-      // ..rotateY(( rotation * t))
-      ..rotateY(90 * math.pi / 180 + (math.pi / 2 * animation.value));
+    // final midTransform = Matrix4.identity()
+    //   ..translate(fbSize.width / 2, 0.0, 120.0)
+    //   // ..rotateY(( rotation * t))
+    //   ..rotateY(90 * math.pi / 180 + (math.pi / 2 * animation.value));
 
     if (animation.value < .5) {
-//       context.paintChild(
-//         2,
-//         transform: bgTransform,
-//       );
-//
-//       context.paintChild(
-//         0,
-//         transform: fgTransform,
-//       );
       context.paintChild(
         1,
-        transform: midTransform,
+        transform: bgTransform,
+      );
+
+      context.paintChild(
+        0,
+        transform: fgTransform,
       );
     } else {
       context.paintChild(
         0,
         transform: fgTransform,
       );
+      //can add a different layer
 
       context.paintChild(
         1,
-        transform: midTransform,
-      );
-      context.paintChild(
-        2,
         transform: bgTransform,
       );
     }

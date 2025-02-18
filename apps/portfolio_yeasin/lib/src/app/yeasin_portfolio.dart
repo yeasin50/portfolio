@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
@@ -19,7 +20,6 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
 
   @override
   Widget build(BuildContext context) {
-    
     return FutureBuilder<UserRepository>(
         future: future,
         builder: (context, snapshot) {
@@ -31,6 +31,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
           return AppProvider(
             repo: snapshot.requireData,
             child: MaterialApp(
+              showPerformanceOverlay: kDebugMode,
               theme: AppThemeConfig.data(AppThemeMode.dark),
               scrollBehavior: const ScrollBehavior().copyWith(
                 dragDevices: {

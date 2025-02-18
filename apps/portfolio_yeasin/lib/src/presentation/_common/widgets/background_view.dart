@@ -1,4 +1,9 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 
 import '../../../app/app_theme.dart';
 
@@ -18,39 +23,50 @@ class BackgroundView extends StatefulWidget {
 
 class _BackgroundViewState extends State<BackgroundView>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 12),
-    lowerBound: 0,
-    upperBound: 6,
-  )..repeat(reverse: true);
+  late Ticker _ticker;
+  Offset _focalPoint = const Offset(.5, .5);
+  Offset _smoothFocalPoint = const Offset(.5, .5);
+
+  @override
+  void initState() {
+    super.initState();
+
+    _ticker = Ticker(_tick)..start();
+  }
+
+  // it is not that bad;  fps is good
+  void _tick(Duration elapsed) {
+    _smoothFocalPoint = Offset(
+      lerpDouble(_smoothFocalPoint.dx, _focalPoint.dx, 0.1)!,
+      lerpDouble(_smoothFocalPoint.dy, _focalPoint.dy, 0.1)!,
+    );
+  }
+
+  void onHover(PointerHoverEvent event) {
+    setState(() {
+      _focalPoint = event.localPosition;
+    });
+  }
 
   @override
   void dispose() {
-    controller.dispose();
+    _ticker.dispose();
     super.dispose();
   }
 
-  List<Color> get bgColors =>
+  late final List<Color> bgColors =
       Theme.of(context).extension<AppTheme>()!.backgroundGradient;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onPanUpdate: (details) {
-        setState(() {});
-      },
+    return MouseRegion(
+      onHover: onHover,
       child: CustomPaint(
         painter: _BGPainter(
-          animation: controller,
+          focalPoint: _smoothFocalPoint,
           colors: bgColors,
         ),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            widget.child,
-          ],
-        ),
+        child: widget.child,
       ),
     );
   }
@@ -58,19 +74,22 @@ class _BackgroundViewState extends State<BackgroundView>
 
 class _BGPainter extends CustomPainter {
   const _BGPainter({
-    required this.animation,
+    required this.focalPoint,
     required this.colors,
-  }) : super(repaint: animation);
+  });
 
-  final Animation animation;
+  final Offset focalPoint;
   final List<Color> colors;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Gradient gradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: colors,
+    final Gradient gradient = RadialGradient(
+      focal: Alignment(
+        (focalPoint.dx / size.width) * 2 - 1,
+        (focalPoint.dy / size.height) * 2 - 1,
+      ),
+      colors: colors.reversed.toList(),
+      radius: 1.4,
     );
 
     final Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
@@ -82,5 +101,14 @@ class _BGPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
+  }
+}
+
+extension AlignmentRotation on Alignment {
+  Alignment rotate(double angle) {
+    final radians = angle; // already in radians
+    final x = cos(radians) * this.x - sin(radians) * this.y;
+    final y = sin(radians) * this.x + cos(radians) * this.y;
+    return Alignment(x, y);
   }
 }

@@ -1,12 +1,12 @@
-import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
+import 'package:portfolio_yeasin/src/presentation/home/widgets/home_item_sliver_builder.dart';
 import 'package:portfolio_yeasin/src/presentation/home/widgets/skill_items.dart';
-import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
-import '../../app/app.dart';
+import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
+import '../../infrastructure/utils/stack_overflow_user_mixin.dart';
 import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
 
@@ -18,57 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  int stackOverflowUserID = 10157127;
-
-  final experiences = List.generate(
-    3,
-    (index) => Experience(
-      title: "Flutter Developer",
-      organization: const Organization(name: "organization"),
-      start: DateTime(2020),
-      description:
-          "Created x with boost performance 20% which increased revenue \$12B",
-    ),
-  );
-
-  final educations = [
-    Education(
-      school: const Organization(
-        name: "Daffodil International University",
-      ),
-      degree: "Bachelor",
-      field: "Computer Science and Engineering",
-      start: DateTime(2018, 01),
-      end: DateTime(2023, 09),
-      grade: "3.67 out of 4.0",
-      description: "this is a long description" * 23,
-    ),
-  ];
-
-  final certificates = [
-    Certificate(
-      name: "Certified in FlutterDevcamp State Management",
-      organization: Organization(
-        name: "Google Developer Group, London",
-      ),
-      issueDate: DateTime(2023),
-    ),
-    Certificate(
-        name: "Foundation of User Experience(UX) Designed",
-        organization: Organization(
-          name: "Google",
-        ),
-        issueDate: DateTime(2023),
-        description: "desc " * 22),
-    Certificate(
-      name:
-          "Completed the Microsoft Asia Virtual Experience Program in Engineering(Undergraduate & Masters)",
-      organization: Organization(name: "Microsoft"),
-      issueDate: DateTime(2021),
-    ),
-  ];
-
+    with SingleTickerProviderStateMixin, StackOverflowMixin {
   final scrollController = ScrollController();
 
   double minIntroHeight = 150;
@@ -104,6 +54,7 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
+  late final userId = getSOId(context.provider.connects);
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -128,126 +79,50 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              SliverPadding(
-                padding: Spacing.group.copyWith(top: 0, bottom: 0),
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    const SliverAppBar.large(
-                      title: Text("StackOverflow"),
-                    ),
-                    SliverToBoxAdapter(
-                        child: Align(
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints.tightFor(
-                          width: Spacing.maxWidth,
-                        ),
-                        child: Center(
-                          child: so.SoProfileView(userId: stackOverflowUserID),
-                        ),
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-              SliverPadding(
-                padding: Spacing.group.copyWith(top: 0),
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    SliverAppBar.large(),
-                    SliverList.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 16,
-                      ),
-                      itemCount: provider.experiences.length,
-                      itemBuilder: (context, index) {
-                        return Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints.tightFor(
-                              width: Spacing.maxWidth,
-                            ),
-                            child: ExperienceItemBuilder(
-                              experience: provider.experiences[index],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    const SliverAppBar.large(),
-                    SliverList.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 16,
-                      ),
-                      itemCount: provider.educations.length,
-                      itemBuilder: (context, index) {
-                        return Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints.tightFor(
-                              width: Spacing.maxWidth,
-                            ),
-                            child: EducationItemBuilder(
-                              education: provider.educations[index],
-                            ),
-                          ),
-                        );
-                      },
+              if (userId != null)
+                HomeItemSliverBuilder(
+                  title: "StackOverflow",
+                  children: [
+                    so.SoProfileView(
+                      userId: userId!,
                     ),
                   ],
                 ),
-              ),
-
-              SliverPadding(
-                padding: Spacing.group,
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    SliverAppBar.large(),
-                    SliverToBoxAdapter(
-                      child: Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: Spacing.maxWidth,
-                          ),
-                          child: const WorkItems(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SliverPadding(
-                padding: Spacing.group,
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    SliverAppBar.large(),
-                    SliverToBoxAdapter(
-                      child: Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: Spacing.maxWidth,
-                          ),
-                          child: CertificateListView(
-                            certificates: certificates,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              //,
-              SliverPadding(
-                padding: Spacing.group,
-                sliver: SliverToBoxAdapter(
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: Spacing.maxWidth,
-                      ),
-                      child: const SkillItems(),
-                    ),
+              HomeItemSliverBuilder(
+                title: "Experience",
+                children: provider.experiences.map(
+                  (e) => ExperienceItemBuilder(
+                    experience: e,
                   ),
                 ),
+              ),
+              HomeItemSliverBuilder(
+                title: "Education",
+                children: provider.educations.map(
+                  (e) => EducationItemBuilder(
+                    education: e,
+                  ),
+                ),
+              ),
+              const HomeItemSliverBuilder(
+                title: "Work",
+                children: [
+                  WorkItems(),
+                ],
+              ),
+              HomeItemSliverBuilder(
+                title: "Certificate",
+                children: [
+                  CertificateListView(
+                    certificates: provider.certificates,
+                  )
+                ],
+              ),
+              const HomeItemSliverBuilder(
+                title: "Skills",
+                children: [
+                  SkillItems(),
+                ],
               ),
             ],
           ),

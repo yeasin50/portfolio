@@ -1,17 +1,19 @@
-name: example
-description: "A new Flutter project."
-publish_to: "none"
-version: 0.1.0
+name: effects
+description: >
+  - Background shader/effects
+  - button hover effects 
+  - text/widget shadows 
+  -
+version: 0.0.1
+homepage: none
 
 environment:
   sdk: ^3.6.0
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  contact:
-    path: ..
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +22,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+ 

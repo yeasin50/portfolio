@@ -3,7 +3,6 @@ import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
-import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
 import 'package:portfolio_yeasin/src/presentation/home/widgets/skill_items.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 
@@ -129,72 +128,72 @@ class _HomePageState extends State<HomePage>
                   minHeight: minIntroHeight,
                 ),
               ),
-              // SliverPadding(
-              //   padding: Spacing.group.copyWith(top: 0, bottom: 0),
-              //   sliver: SliverMainAxisGroup(
-              //     slivers: [
-              //       const SliverAppBar.large(
-              //         title: Text("StackOverflow"),
-              //       ),
-              //       SliverToBoxAdapter(
-              //           child: Align(
-              //         child: ConstrainedBox(
-              //           constraints: const BoxConstraints.tightFor(
-              //             width: Spacing.maxWidth,
-              //           ),
-              //           child: Center(
-              //             child: so.SoProfileView(userId: stackOverflowUserID),
-              //           ),
-              //         ),
-              //       )),
-              //     ],
-              //   ),
-              // ),
-              // SliverPadding(
-              //   padding: Spacing.group.copyWith(top: 0),
-              //   sliver: SliverMainAxisGroup(
-              //     slivers: [
-              //       SliverAppBar.large(),
-              //       SliverList.separated(
-              //         separatorBuilder: (context, index) => const SizedBox(
-              //           height: 16,
-              //         ),
-              //         itemCount: provider.experiences.length,
-              //         itemBuilder: (context, index) {
-              //           return Center(
-              //             child: ConstrainedBox(
-              //               constraints: const BoxConstraints.tightFor(
-              //                 width: Spacing.maxWidth,
-              //               ),
-              //               child: ExperienceItemBuilder(
-              //                 experience: provider.experiences[index],
-              //               ),
-              //             ),
-              //           );
-              //         },
-              //       ),
-              //       const SliverAppBar.large(),
-              //       SliverList.separated(
-              //         separatorBuilder: (context, index) => const SizedBox(
-              //           height: 16,
-              //         ),
-              //         itemCount: provider.educations.length,
-              //         itemBuilder: (context, index) {
-              //           return Center(
-              //             child: ConstrainedBox(
-              //               constraints: const BoxConstraints.tightFor(
-              //                 width: Spacing.maxWidth,
-              //               ),
-              //               child: EducationItemBuilder(
-              //                 education: provider.educations[index],
-              //               ),
-              //             ),
-              //           );
-              //         },
-              //       ),
-              //     ],
-              //   ),
-              // ),
+              SliverPadding(
+                padding: Spacing.group.copyWith(top: 0, bottom: 0),
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    const SliverAppBar.large(
+                      title: Text("StackOverflow"),
+                    ),
+                    SliverToBoxAdapter(
+                        child: Align(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints.tightFor(
+                          width: Spacing.maxWidth,
+                        ),
+                        child: Center(
+                          child: so.SoProfileView(userId: stackOverflowUserID),
+                        ),
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              SliverPadding(
+                padding: Spacing.group.copyWith(top: 0),
+                sliver: SliverMainAxisGroup(
+                  slivers: [
+                    SliverAppBar.large(),
+                    SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
+                      ),
+                      itemCount: provider.experiences.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: Spacing.maxWidth,
+                            ),
+                            child: ExperienceItemBuilder(
+                              experience: provider.experiences[index],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    const SliverAppBar.large(),
+                    SliverList.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
+                      ),
+                      itemCount: provider.educations.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: Spacing.maxWidth,
+                            ),
+                            child: EducationItemBuilder(
+                              education: provider.educations[index],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
 
               SliverPadding(
                 padding: Spacing.group,

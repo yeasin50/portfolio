@@ -26,6 +26,7 @@ class ProjectMedia {
   const ProjectMedia({
     required this.type,
     required this.value,
+    this.blurHash,
   });
 
   /// mediaType can be text, image or video link,
@@ -34,10 +35,15 @@ class ProjectMedia {
 
   final String value;
 
+  /// show on loading widgets
+  /// !https://pub.dev/packages/flutter_blurhash
+  final String? blurHash;
+
   static ProjectMedia fromMap(Map<String, dynamic> map) {
     return ProjectMedia(
       type: map["type"],
       value: map["value"],
+      blurHash: map["blur_hash"]
     );
   }
 }

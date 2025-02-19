@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/presentation/_common/widgets/image_loader.dart';
 
 import '../../../app/app.dart';
 
@@ -55,24 +59,20 @@ class _ProjectCardState extends State<ProjectCard>
             onExit: onHoverExit,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: cardTheme.bgColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: cardTheme.hoverColor,
-                      offset: const Offset(0, 0),
-                      blurRadius: controller.value,
-                      spreadRadius: controller.value,
-                      blurStyle: BlurStyle.normal,
-                    ),
-                  ]),
-              child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  project.thumbnail,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Placeholder(),
-                ),
+                color: cardTheme.bgColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: cardTheme.hoverColor,
+                    offset: const Offset(0, 0),
+                    blurRadius: controller.value,
+                    spreadRadius: controller.value,
+                    blurStyle: BlurStyle.normal,
+                  ),
+                ],
+              ),
+              child: ImageLoader(
+                media: project.thumbnail,
               ),
             ),
           ),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/presentation/_common/widgets/image_loader.dart';
 
 import 'dart:math' as math;
 
@@ -117,13 +118,8 @@ class _ProjectCard3DState extends State<ProjectCard3D>
           ),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Image.network(
-          project.thumbnail,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) => const Placeholder(),
-        ),
+      child: ImageLoader(
+        media: project.thumbnail,
       ),
     );
 

@@ -6,7 +6,7 @@ class Project {
     required this.title,
     required this.category,
     required this.createdAt,
-    required this.thumbnail,
+    this.thumbnail,
     required this.media,
     required this.description,
     required this.roll,
@@ -29,7 +29,7 @@ class Project {
   final DateTime createdAt;
 
   ///  an overview media will show on  tile
-  final String thumbnail;
+  final ProjectMedia? thumbnail;
 
   final List<ProjectMediaGroup> media;
 
@@ -46,7 +46,9 @@ class Project {
       roll: map["roll"],
       createdAt: DateTime.parse(map["created_at"]),
       tasks: List.from(map["tasks"]),
-      thumbnail: map["thumbnail"],
+      thumbnail: map["thumbnail"] != null
+          ? ProjectMedia.fromMap(map["thumbnail"])
+          : null,
       media: List<ProjectMediaGroup>.from(
         map["media"]?.map((e) => ProjectMediaGroup.fromMap(e)),
       ),
@@ -60,7 +62,6 @@ class Project {
         "In search of efficient grid rendering, found and create something beautiful  about life",
     category: "Flutter",
     createdAt: DateTime(2024),
-    thumbnail: "https://img.youtube.com/vi/lQwjJTCrwVg/hqdefault.jpg",
     media: [
       ProjectMediaGroup(
         title: "How to render thousands of widgets",

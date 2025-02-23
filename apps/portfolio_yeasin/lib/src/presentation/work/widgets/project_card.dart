@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:core/core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/presentation/_common/widgets/image_loader.dart';
+import '/src/presentation/_common/widgets/image_loader.dart';
 
 import '../../../app/app.dart';
 
@@ -76,25 +73,23 @@ class _ProjectCardState extends State<ProjectCard>
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 48),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  project.title,
-                  style: cardTheme.titleStyle,
-                ),
-                Text(
-                  project.category * 44,
-                  textAlign: TextAlign.start,
-                  softWrap: true,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: cardTheme.descriptionStyle,
-                ),
-              ],
-            ),
+          const SizedBox(height: 24),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                project.title,
+                style: cardTheme.titleStyle,
+              ),
+              Text(
+                project.description,
+                textAlign: TextAlign.start,
+                softWrap: true,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: cardTheme.descriptionStyle,
+              ),
+            ],
           )
         ],
       ),

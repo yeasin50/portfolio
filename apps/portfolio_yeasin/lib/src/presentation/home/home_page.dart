@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage>
               const HomeItemSliverBuilder(
                 title: "Work",
                 children: [
-                  WorkItems(),
+                  WorkItems(maxItem: 4),
                 ],
               ),
               HomeItemSliverBuilder(

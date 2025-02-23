@@ -5,6 +5,7 @@ import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 import 'package:effects/effects.dart' as eff;
 
 import 'widgets/project_tile.dart';
+import 'work_page.dart';
 
 class WorkItems extends StatefulWidget {
   const WorkItems({
@@ -73,7 +74,14 @@ class _WorkItemsState extends State<WorkItems> {
             alignment: Alignment.centerLeft,
             child: eff.NeonButton(
               label: "see more",
-              onTap: () {},
+              onTap: () {
+                final route = MaterialPageRoute(
+                  builder: (context) {
+                    return WorkPage();
+                  },
+                );
+                Navigator.of(context).push(route);
+              },
             ),
           ),
       ],

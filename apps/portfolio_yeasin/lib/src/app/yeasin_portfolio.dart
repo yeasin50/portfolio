@@ -32,7 +32,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
           return AppProvider(
             repo: snapshot.requireData,
             child: MaterialApp(
-              showPerformanceOverlay: kDebugMode,
+              // showPerformanceOverlay: kDebugMode,
               theme: AppThemeConfig.data(AppThemeMode.dark),
               scrollBehavior: const ScrollBehavior().copyWith(
                 dragDevices: {

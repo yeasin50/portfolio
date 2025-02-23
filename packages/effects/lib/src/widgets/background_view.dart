@@ -1,21 +1,18 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
-import '../../../app/app_theme.dart';
-
 class BackgroundView extends StatefulWidget {
   const BackgroundView({
     super.key,
     required this.child,
-    this.isDark = false,
+    required this.colors,
   });
 
   final Widget child;
-  final bool isDark;
+  final List<Color> colors;
 
   @override
   State<BackgroundView> createState() => _BackgroundViewState();
@@ -54,8 +51,7 @@ class _BackgroundViewState extends State<BackgroundView>
     super.dispose();
   }
 
-  late final List<Color> bgColors =
-      Theme.of(context).extension<AppTheme>()!.backgroundGradient;
+  late final List<Color> bgColors = widget.colors;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +97,5 @@ class _BGPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
-  }
-}
-
-extension AlignmentRotation on Alignment {
-  Alignment rotate(double angle) {
-    final radians = angle; // already in radians
-    final x = cos(radians) * this.x - sin(radians) * this.y;
-    final y = sin(radians) * this.x + cos(radians) * this.y;
-    return Alignment(x, y);
   }
 }

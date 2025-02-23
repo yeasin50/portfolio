@@ -20,6 +20,8 @@ dependencies:
     path: ../../packages/core
   experience:
     path: ../../packages/experience
+  effects:
+    path: ../../packages/effects
 
   stackoverflow_stats:
     path: ../../packages/stackoverflow_stats

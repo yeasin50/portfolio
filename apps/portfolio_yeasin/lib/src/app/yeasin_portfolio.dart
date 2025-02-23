@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
 import '../infrastructure/provider.dart';
 import '../presentation/home/home_page.dart';
-import '../presentation/_common/widgets/background_view.dart';
+
+import 'package:effects/effects.dart' as eff;
 
 import 'app_theme.dart';
 
@@ -41,9 +42,16 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: const BackgroundView(
-                child: HomePage(),
-              ),
+              home: const HomePage(),
+              builder: (context, child) {
+                final colors = Theme.of(context) //
+                    .extension<AppTheme>()!
+                    .backgroundGradient;
+                return eff.BackgroundView(
+                  colors: colors,
+                  child: child!,
+                );
+              },
             ),
           );
         });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'utils/shader_loader.dart';
+import 'src/utils/shader_loader.dart';
 
 class SineWaveEffect extends StatefulWidget {
   const SineWaveEffect({super.key});

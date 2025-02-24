@@ -21,15 +21,15 @@ import the package with a prefix
 
   ```dart
   eff.FilterChip(
-  label: "Tab $i",
-  isActive: selectedItem.contains(i),
-  activeColor: Colors.blue.withAlpha(100),
-  inActiveColor: Colors.grey.withAlpha(100),
-  onTap: () {
-    selectedItem.contains(i)
-        ? selectedItem.remove(i)
-        : selectedItem.add(i);
-    setState(() {});
-  },
+    label: "Tab $i",
+    isActive: selectedItem.contains(i),
+    activeColor: Colors.blue.withAlpha(100),
+    inActiveColor: Colors.grey.withAlpha(100),
+    onTap: () {
+        selectedItem.contains(i)
+            ? selectedItem.remove(i)
+            : selectedItem.add(i);
+        setState(() {});
+    },
   ),
   ```

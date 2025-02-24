@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../effects.dart';
 
+///  simple cool button with effects,
+/// [label] to show text
+///
+///  ```dart
+///   NeonButton(
+///       label: "See more",
+///       onTap: () {...},
+///   )
+/// ```
 class NeonButton extends StatefulWidget {
   const NeonButton({
     super.key,

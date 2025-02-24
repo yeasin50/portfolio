@@ -1,39 +1,35 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# effects
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A redesign basic widgets for solely for my usecase which will create conflict on naming.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## uses
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+import the package with a prefix
 
-## Features
+`import 'package:effects/effects.dart' as eff;`
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- `NeonButton` a simple button with some effects. use `EffectThemeExt` to update the styles
 
-## Getting started
+  ```dart
+    NeonButton(
+        label: "See more",
+        onTap: () {...},
+    )
+  ```
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- `FilterChip` a simple child with a check label
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+  ```dart
+  eff.FilterChip(
+  label: "Tab $i",
+  isActive: selectedItem.contains(i),
+  activeColor: Colors.blue.withAlpha(100),
+  inActiveColor: Colors.grey.withAlpha(100),
+  onTap: () {
+    selectedItem.contains(i)
+        ? selectedItem.remove(i)
+        : selectedItem.add(i);
+    setState(() {});
+  },
+  ),
+  ```

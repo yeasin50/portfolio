@@ -61,6 +61,12 @@ class _FilterChipState extends State<FilterChip>
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.isActive) controller.forward();
+  }
+
+  @override
   void dispose() {
     controller.dispose();
     super.dispose();
@@ -70,7 +76,8 @@ class _FilterChipState extends State<FilterChip>
   Widget build(BuildContext context) {
     return Material(
       color: widget.isActive ? widget.activeColor : widget.inActiveColor,
-      elevation: 4,
+      elevation: widget.isActive ? 8 : 0,
+      shadowColor: widget.isActive ? widget.activeColor : widget.inActiveColor,
       shape: StadiumBorder(
         side: BorderSide(
           color: !widget.isActive
@@ -100,6 +107,7 @@ class _FilterChipState extends State<FilterChip>
                   return Icon(
                     Icons.check,
                     size: 18 * controller.value,
+                    color: widget.labelStyle?.color,
                   );
                 },
               ),

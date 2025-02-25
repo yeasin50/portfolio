@@ -11,7 +11,7 @@ import the package with a prefix
 - `NeonButton` a simple button with some effects. use `EffectThemeExt` to update the styles
 
   ```dart
-    NeonButton(
+    eff.NeonButton(
         label: "See more",
         onTap: () {...},
     )

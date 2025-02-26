@@ -46,6 +46,9 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
 
     bool isLTR = Directionality.of(context) == TextDirection.ltr;
 
+    //TODO: use renderBox instead of center
+    ///  bounds = _textWidgetPosition & box!.size
+    ///
     _textWidgetPosition = Offset(
       _textWidgetPosition!.dx + (box!.size.width / 2 * (isLTR ? 1 : -1)),
       _textWidgetPosition!.dy + (box.size.height / 2 * (isLTR ? 1 : -1)),
@@ -105,7 +108,7 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
               lerpDouble(0, 150, lerpFactor)!.toInt(),
             ),
             offset: shadowOffset,
-            blurRadius: lerpDouble(10, 0, lerpFactor)!,
+            blurRadius: lerpDouble(120, 0, lerpFactor)!,
           )
         ],
       ),

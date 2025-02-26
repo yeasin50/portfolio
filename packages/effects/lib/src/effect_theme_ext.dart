@@ -11,17 +11,6 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
   });
 
   static final _shape = WidgetStateProperty.resolveWith((states) {
-    ///! not working
-    // if (states.contains(WidgetState.pressed)) {
-    //   return RoundedRectangleBorder();
-    // }
-    // if (states.contains(WidgetState.hovered)) {
-    //   final s = StadiumBorder()..scale(2);
-    //   return s;
-    // }
-    //  else if (states.contains(WidgetState.focused)) {
-    //   return Colors.cyanAccent.withAlpha(120);
-    // }
     return StadiumBorder();
   });
 

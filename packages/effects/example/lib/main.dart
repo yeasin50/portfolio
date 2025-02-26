@@ -1,4 +1,3 @@
-import 'package:example/shadow_effect_shader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -31,17 +30,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: ShadowEffectShader(
-        child: Text(
-          "Md Yeasin Sheikh",
-          style: TextStyle(
-            fontSize: 56,
+body: Center(
+  child: Stack(
+    children: [
+      for (double x = -1; x < 1; x += .4)
+        for (double y = -1; y < 1; y += .5)
+          Align(
+            key: ValueKey(" $x $y"),
+            alignment: Alignment(x, y),
+child: eff.SphereView(
+  child: Padding(
+    padding: const EdgeInsets.all(38.0),
+    child: Text(
+      "Hey",
+      style: TextStyle(
+        fontSize: 55,
+      ),
+    ),
+  ),
+            ),
           ),
-        ),
-      )
-
-          // Padding(
+    ],
+  ),
+),
+    );
+  }
+}
+ // Padding(
           //   padding: const EdgeInsets.all(32.0),
           //   child: ShadowTextEffect(
           //     text: "Md Yeasin Sheikh",
@@ -51,7 +66,3 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           //     ),
           //   ),
           // ),
-          ),
-    );
-  }
-}

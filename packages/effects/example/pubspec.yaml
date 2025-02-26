@@ -27,4 +27,3 @@ flutter:
 
   shaders:
     - shaders/sine_wave.frag
-    - shaders/shadow.frag

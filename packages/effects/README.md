@@ -33,3 +33,20 @@ import the package with a prefix
     },
   ),
   ```
+
+- `SphereView` radial gradient shadow based on mouse cursor
+
+  ```dart
+   eff.SphereView(
+    key:ValueKey("yourKey")
+    child: Padding(
+      padding: const EdgeInsets.all(38.0),
+      child: Text(
+        "Hey",
+        style: TextStyle(
+          fontSize: 55,
+        ),
+      ),
+    ),
+  )
+  ```

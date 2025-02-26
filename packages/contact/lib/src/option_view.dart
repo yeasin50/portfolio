@@ -1,12 +1,10 @@
+import 'package:contact/src/sphere_painter.dart';
 import 'package:flutter/material.dart';
 
 import '../contact.dart';
-import 'sphere_painter.dart';
 
-part 'option_alignment.dart';
-
-class OptionView extends StatefulWidget {
-  const OptionView({
+class OptionViewV1 extends StatefulWidget {
+  const OptionViewV1({
     super.key,
     required this.label,
     required this.onTap,
@@ -18,10 +16,10 @@ class OptionView extends StatefulWidget {
   final ValueNotifier<Alignment> lightAlign;
 
   @override
-  State<OptionView> createState() => _OptionViewState();
+  State<OptionViewV1> createState() => _OptionViewState();
 }
 
-class _OptionViewState extends State<OptionView>
+class _OptionViewState extends State<OptionViewV1>
     with SingleTickerProviderStateMixin {
   late AnimationController controller = AnimationController(
     vsync: this,
@@ -42,7 +40,7 @@ class _OptionViewState extends State<OptionView>
       animation: Listenable.merge([controller, widget.lightAlign]),
       builder: (context, child) {
         return CustomPaint(
-          painter: SpherePainter(
+          painter: SpherePainterV1(
             lightAlignment: widget.lightAlign,
             shades: [
               Colors.blue,

@@ -41,16 +41,44 @@ class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
           );
           // offset.value = event.position;
         },
-        child: Center(
-          child: SizedBox(
-            width: 200,
-            height: 200,
-            child: OptionView(
-              label: "label",
-              lightAlign: offset,
-              onTap: () {},
-            ),
+        child: OptionsPageBuilder(
+            title: "What brings you here",
+            description: "description gonna be here",
+            options: List.generate(
+              4,
+              (index) => OptionInfo(
+                label: "label $index",
+              ),
+            )),
+      ),
+    );
+  }
+}
+
+class WF extends StatelessWidget {
+  const WF({
+    super.key,
+    required this.offset,
+  });
+
+  final ValueNotifier<Alignment> offset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        width: 200,
+        height: 200,
+        child: OptionView(
+          option: OptionInfo(
+            label: "Label",
+            sphereColor: [
+              Colors.blue,
+              Colors.indigo,
+              Colors.black,
+            ],
           ),
+          onTap: () {},
         ),
       ),
     );

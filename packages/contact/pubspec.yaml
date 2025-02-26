@@ -5,6 +5,7 @@ description: >
 
 version: 0.0.1
 homepage: none
+publish_to: none
 
 environment:
   sdk: ^3.6.0
@@ -13,6 +14,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  effects:
+    path: ../effects
 
 dev_dependencies:
   flutter_test:

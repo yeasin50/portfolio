@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SpherePainterV1 extends CustomPainter {
-  final ValueNotifier<Alignment> lightAlignment;
+class SpherePainter extends CustomPainter {
+  final Alignment lightAlignment;
   final List<Color> shades;
 
-  const SpherePainterV1({
+  const SpherePainter({
     required this.lightAlignment,
     required this.shades,
-  }) : super(repaint: lightAlignment);
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -15,7 +15,7 @@ class SpherePainterV1 extends CustomPainter {
     final radius = size.width / 2;
 
     final sphereGradient = RadialGradient(
-      center: lightAlignment.value,
+      center: lightAlignment,
       radius: 1.0,
       colors: shades,
     );

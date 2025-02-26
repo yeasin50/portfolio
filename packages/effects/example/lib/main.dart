@@ -1,4 +1,4 @@
-import 'package:effects/effects.dart';
+import 'package:example/shadow_effect_shader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -32,17 +32,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: ShadowTextEffect(
-            text: "Md Yeasin Sheikh",
-            shadowColor: Colors.white,
-            style: TextStyle(
-              fontSize: 56,
-            ),
+          child: ShadowEffectShader(
+        child: Text(
+          "Md Yeasin Sheikh",
+          style: TextStyle(
+            fontSize: 56,
           ),
         ),
-      ),
+      )
+
+          // Padding(
+          //   padding: const EdgeInsets.all(32.0),
+          //   child: ShadowTextEffect(
+          //     text: "Md Yeasin Sheikh",
+          //     shadowColor: Colors.white,
+          //     style: TextStyle(
+          //       fontSize: 56,
+          //     ),
+          //   ),
+          // ),
+          ),
     );
   }
 }

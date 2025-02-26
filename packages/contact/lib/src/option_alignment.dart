@@ -1,4 +1,4 @@
-part of 'option_view.dart';
+import 'package:flutter/material.dart';
 
 Alignment optionAlign({
   required Size canvasSize,

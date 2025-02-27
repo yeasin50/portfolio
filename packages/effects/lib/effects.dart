@@ -7,3 +7,4 @@ export 'src/widgets/shadow_text_effect.dart';
 export 'src/widgets/parallax_effect.dart';
 export 'src/widgets/sphere_view.dart';
 export 'src/flow/sphere_flow.dart';
+export 'src/utils/ripple_page_route.dart';

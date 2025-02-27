@@ -50,3 +50,23 @@ import the package with a prefix
     ),
   )
   ```
+
+- Ripple page transition based [center], more like circle expanding
+
+  ```dart
+  final route = eff.RippleRoute(
+    allowSnapshotting: true,
+    center: FractionalOffset.center,
+    popPosition: FractionalOffset.center,
+    color: Colors.white,
+    builder: (context) => Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(),
+      body: Center(
+        child: BackButton(),
+      ),
+    ),
+  );
+
+  Navigator.of(context).push(route);
+  ```

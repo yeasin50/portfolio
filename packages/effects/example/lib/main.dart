@@ -31,31 +31,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(56.0),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              for (double x = -1; x <= 1; x += .5)
-                for (double y = -1; y <= 1; y += 1)
-                  Align(
-                    alignment: Alignment(x, y),
-                    child: eff.SphereView(
-                      key: ValueKey("sphere $x $y"),
-                      child: Padding(
-                        padding: const EdgeInsets.all(38.0),
-                        child: Text(
-                          "Hey",
-                          style: TextStyle(
-                            fontSize: 55,
-                          ),
-                        ),
-                      ),
-                    ),
+child: Padding(
+  padding: const EdgeInsets.all(56.0),
+  child: Stack(
+    clipBehavior: Clip.none,
+    children: [
+      for (double x = -1; x <= 1; x += .5)
+        for (double y = -1; y <= 1; y += 1)
+          Align(
+            alignment: Alignment(x, y),
+            child: eff.SphereView(
+              key: ValueKey("sphere $x $y"),
+              child: Padding(
+                padding: const EdgeInsets.all(38.0),
+                child: Text(
+                  "Hey",
+                  style: TextStyle(
+                    fontSize: 55,
                   ),
-            ],
+                ),
+              ),
+            ),
           ),
-        ),
+    ],
+  ),
+),
       ),
     );
   }

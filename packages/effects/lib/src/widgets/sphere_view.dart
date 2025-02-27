@@ -9,11 +9,13 @@ import '../utils/mouse_tracker_mixin.dart';
 ///  with  radial gradient from [colors]
 ///
 ///```dart
-/// body: Center(
+/// Padding(
+///   padding: const EdgeInsets.all(56.0),
 ///   child: Stack(
+///     clipBehavior: Clip.none,
 ///     children: [
-///       for (double x = -1; x < 1; x += .4)
-///         for (double y = -1; y < 1; y += .5)
+///       for (double x = -1; x <= 1; x += .5)
+///         for (double y = -1; y <= 1; y += 1)
 ///           Align(
 ///             alignment: Alignment(x, y),
 ///             child: eff.SphereView(
@@ -154,13 +156,10 @@ class _SphereViewState extends State<SphereView>
         },
         child: CustomPaint(
           key: _key,
-          painter: _HoverPainter(
-            animation: hoverController,
-            color: widget.hoverColor ?? widget.colors.first,
-          ),
-          foregroundPainter: _SpherePainter(
+          painter: _SpherePainter(
             lightAlignment: lightAlignment,
             shades: widget.colors,
+            hoverAnimation: hoverController,
           ),
           child: widget.child ??
               SizedBox.square(
@@ -173,19 +172,55 @@ class _SphereViewState extends State<SphereView>
 }
 
 class _SpherePainter extends CustomPainter {
+  _SpherePainter({
+    required this.lightAlignment,
+    required this.shades,
+    this.hoverAnimation,
+    this.hoverColor,
+  }) : super(repaint: hoverAnimation);
+
   final Alignment lightAlignment;
   final List<Color> shades;
 
-  const _SpherePainter({
-    required this.lightAlignment,
-    required this.shades,
-  });
+  /// if null,  then it uses from [shades].first
+  final Color? hoverColor;
+  final Animation<double>? hoverAnimation;
+
+  void buildHoverEffect(Canvas canvas, Size size) {
+    if (hoverAnimation == null) return;
+    final center = Offset(size.width / 2, size.height / 2);
+
+    ///hover glow
+    double hoverRadius = lerpDouble(
+      size.width * 0.5,
+      size.width * .75,
+      hoverAnimation!.value,
+    )!;
+
+    final glowColor = hoverColor ?? shades.first;
+    Paint paint = Paint()
+      ..shader = RadialGradient(
+        colors: [
+          glowColor.withAlpha(0),
+          glowColor,
+          glowColor.withValues(alpha: 0, green: 0, red: 0),
+        ],
+        radius: .5,
+        stops: [0.45, .5, 1],
+        center: Alignment.center,
+      ).createShader(
+        Rect.fromCircle(center: center, radius: hoverRadius),
+      );
+
+    canvas.drawCircle(center, hoverRadius, paint);
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
 
+    buildHoverEffect(canvas, size);
     final sphereGradient = RadialGradient(
       center: lightAlignment,
       radius: 1.0,
@@ -218,7 +253,7 @@ class _SpherePainter extends CustomPainter {
 }
 
 ///  radial gradient with [color] on [animation]
-///
+@Deprecated("Not needed anymore, directly implemented inside [_SpherePainter]")
 class _HoverPainter extends CustomPainter {
   const _HoverPainter({
     required this.animation,

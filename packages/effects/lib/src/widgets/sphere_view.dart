@@ -160,6 +160,7 @@ class _SphereViewState extends State<SphereView>
             lightAlignment: lightAlignment,
             shades: widget.colors,
             hoverAnimation: hoverController,
+            hoverColor: widget.hoverColor,
           ),
           child: widget.child ??
               SizedBox.square(

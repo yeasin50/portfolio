@@ -23,25 +23,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  List<int> selectedItem = [];
-
-  Offset shadowOffset = Offset.zero;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-child: Padding(
-  padding: const EdgeInsets.all(56.0),
-  child: Stack(
-    clipBehavior: Clip.none,
-    children: [
-      for (double x = -1; x <= 1; x += .5)
-        for (double y = -1; y <= 1; y += 1)
-          Align(
-            alignment: Alignment(x, y),
-            child: eff.SphereView(
-              key: ValueKey("sphere $x $y"),
+      body: eff.SphereFlow(
+        children: [
+          ...List.generate(
+            5,
+            (i) => eff.SphereView(
+              key: ValueKey("sphere $i"),
               child: Padding(
                 padding: const EdgeInsets.all(38.0),
                 child: Text(
@@ -52,10 +42,8 @@ child: Padding(
                 ),
               ),
             ),
-          ),
-    ],
-  ),
-),
+          )
+        ],
       ),
     );
   }

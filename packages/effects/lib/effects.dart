@@ -6,3 +6,4 @@ export 'src/utils/mouse_tracker_mixin.dart';
 export 'src/widgets/shadow_text_effect.dart';
 export 'src/widgets/parallax_effect.dart';
 export 'src/widgets/sphere_view.dart';
+export 'src/flow/sphere_flow.dart';

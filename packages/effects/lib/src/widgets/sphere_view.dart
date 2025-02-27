@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 
 import '../utils/mouse_tracker_mixin.dart';
 
@@ -12,9 +15,9 @@ import '../utils/mouse_tracker_mixin.dart';
 ///       for (double x = -1; x < 1; x += .4)
 ///         for (double y = -1; y < 1; y += .5)
 ///           Align(
-///             key: ValueKey(" $x $y"), // use keys if you get conflicts
 ///             alignment: Alignment(x, y),
 ///             child: eff.SphereView(
+///               key: ValueKey("sphere $x $y"),
 ///               child: Padding(
 ///                 padding: const EdgeInsets.all(38.0),
 ///                 child: Text(
@@ -40,29 +43,30 @@ class SphereView extends StatefulWidget {
       Colors.indigo,
       Colors.black,
     ],
+    this.hoverColor,
   });
 
   final Widget? child;
   final List<Color> colors;
 
+  /// if null  it gonna use [colors].first
+  final Color? hoverColor;
+
   @override
   State<SphereView> createState() => _SphereViewState();
 }
 
-class _SphereViewState extends State<SphereView> with MouseTrackerMixin {
-  @override
-  void initState() {
-    super.initState();
-    onMouseMove = onMouseUpdate;
-    WidgetsBinding.instance.addPostFrameCallback(findTextWidgetPosition);
-  }
+class _SphereViewState extends State<SphereView>
+    with MouseTrackerMixin, SingleTickerProviderStateMixin {
+  ///
 
   Alignment lightAlignment = Alignment.center;
   final GlobalKey _key = GlobalKey();
 
   Offset? _widgetPosition;
   late Size _boxSize;
-  void findTextWidgetPosition(_) {
+
+  void getSphereProperties(_) {
     final RenderBox? box =
         _key.currentContext?.findRenderObject() as RenderBox?;
 
@@ -72,6 +76,7 @@ class _SphereViewState extends State<SphereView> with MouseTrackerMixin {
     _boxSize = box!.size;
   }
 
+  //FIXME: little offset issue but i kinda like it
   void onMouseUpdate(Offset offset) {
     if (_widgetPosition == null) return;
 
@@ -90,18 +95,79 @@ class _SphereViewState extends State<SphereView> with MouseTrackerMixin {
     setState(() {});
   }
 
+  late Animation<double> scaleAnimation;
+  late AnimationController hoverController;
+
+  @override
+  void initState() {
+    super.initState();
+    onMouseMove = onMouseUpdate;
+    WidgetsBinding.instance.addPostFrameCallback(getSphereProperties);
+
+    assert(widget.colors.isNotEmpty, "colors can't be empty");
+
+    hoverController = AnimationController(
+      vsync: this,
+      duration: Durations.medium1,
+      lowerBound: 0,
+      upperBound: 1,
+    );
+
+    scaleAnimation = Tween(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(
+        parent: hoverController,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    hoverController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+
+    properties.add(DoubleProperty('hoverScale', scaleAnimation.value));
+    properties.add(FlagProperty(
+      'isHovering',
+      value: hoverController.isAnimating,
+    ));
+    properties.add(DoubleProperty('hoverProgress', hoverController.value));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      key: _key,
-      painter: _SpherePainter(
-        lightAlignment: lightAlignment,
-        shades: widget.colors,
-      ),
-      child: widget.child ??
-          SizedBox.square(
-            dimension: 100,
+    return MouseRegion(
+      onEnter: (_) => hoverController.forward(),
+      onExit: (event) => hoverController.reverse(),
+      child: AnimatedBuilder(
+        animation: hoverController,
+        builder: (context, child) {
+          return ScaleTransition(
+            scale: scaleAnimation,
+            child: child!,
+          );
+        },
+        child: CustomPaint(
+          key: _key,
+          painter: _HoverPainter(
+            animation: hoverController,
+            color: widget.hoverColor ?? widget.colors.first,
           ),
+          foregroundPainter: _SpherePainter(
+            lightAlignment: lightAlignment,
+            shades: widget.colors,
+          ),
+          child: widget.child ??
+              SizedBox.square(
+                dimension: 100,
+              ),
+        ),
+      ),
     );
   }
 }
@@ -149,4 +215,48 @@ class _SpherePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+///  radial gradient with [color] on [animation]
+///
+class _HoverPainter extends CustomPainter {
+  const _HoverPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
+
+  final Color color;
+  final Animation<double> animation;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Offset center = Offset(size.width / 2, size.height / 2);
+
+    double radius = lerpDouble(
+      size.width * 0.5,
+      size.width * .75,
+      animation.value,
+    )!;
+
+    Paint paint = Paint()
+      ..shader = RadialGradient(
+        colors: [
+          color.withAlpha(0),
+          color,
+          color.withValues(alpha: 0, green: 0, red: 0),
+        ],
+        radius: .5,
+        stops: [0.45, .5, 1],
+        center: Alignment.center,
+      ).createShader(
+        Rect.fromCircle(center: center, radius: radius),
+      );
+
+    canvas.drawCircle(center, radius, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
 }

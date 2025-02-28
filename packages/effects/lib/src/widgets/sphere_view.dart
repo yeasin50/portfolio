@@ -81,6 +81,7 @@ class _SphereViewState extends State<SphereView>
   //FIXME: little offset issue but i kinda like it
   void onMouseUpdate(Offset offset) {
     if (_widgetPosition == null) return;
+    getSphereProperties(0);
 
     // diff from center
     double dx = offset.dx - _widgetPosition!.dx;

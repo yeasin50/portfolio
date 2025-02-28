@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'sphere_delegate.dart';
-import 'sphere_scroll_flow.dart';
 
 class SphereFlow extends StatefulWidget {
   const SphereFlow({
@@ -31,7 +30,7 @@ class _SphereFlowState extends State<SphereFlow>
   @override
   Widget build(BuildContext context) {
     return Flow(
-      delegate: SphereScrollFlowDelegate(
+      delegate: SphereCircularFlowDelegate(
         animation: controller,
       ),
       children: widget.children,

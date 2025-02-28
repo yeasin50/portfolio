@@ -8,3 +8,4 @@ export 'src/widgets/parallax_effect.dart';
 export 'src/widgets/sphere_view.dart';
 export 'src/flow/sphere_flow.dart';
 export 'src/utils/ripple_page_route.dart';
+export 'src/flow/sphere_layout_delegate.dart';

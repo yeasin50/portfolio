@@ -7,7 +7,6 @@ import 'dart:math' as math;
 /// little opacity on animation
 ///
 /// ! but not good for mobile/small screen :)
-///
 class SphereCircularFlowDelegate extends FlowDelegate {
   const SphereCircularFlowDelegate({
     required this.animation,

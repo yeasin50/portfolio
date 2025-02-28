@@ -13,6 +13,8 @@ import 'widgets/intro_view.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  static String route = "/";
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -96,14 +98,6 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
               ),
-              HomeItemSliverBuilder(
-                title: "Education",
-                children: provider.educations.map(
-                  (e) => EducationItemBuilder(
-                    education: e,
-                  ),
-                ),
-              ),
               const HomeItemSliverBuilder(
                 title: "Work",
                 children: [
@@ -123,6 +117,14 @@ class _HomePageState extends State<HomePage>
                 children: [
                   SkillItems(),
                 ],
+              ),
+              HomeItemSliverBuilder(
+                title: "Education",
+                children: provider.educations.map(
+                  (e) => EducationItemBuilder(
+                    education: e,
+                  ),
+                ),
               ),
             ],
           ),

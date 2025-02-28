@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
+import 'package:portfolio_yeasin/src/presentation/connect/connect_page.dart';
 import '../infrastructure/provider.dart';
-import '../presentation/home/home_page.dart';
 
 import 'package:effects/effects.dart' as eff;
 
@@ -42,7 +41,8 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: const HomePage(),
+              home: ConnectPage(),
+
               builder: (context, child) {
                 final colors = Theme.of(context) //
                     .extension<AppTheme>()!

@@ -2,6 +2,46 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+class RipplePage<T> extends Page<T> {
+  const RipplePage({
+    required this.builder,
+    required this.color,
+    required this.center,
+    this.popPosition,
+    this.duration = Durations.medium4,
+    this.popDuration = Durations.medium1,
+  });
+
+  /// Page builder
+  final WidgetBuilder builder;
+
+  /// this use [barrierColor] and as well on radial circle
+  /// use the background color of your destination page
+  final Color color;
+
+  /// animation start point/push
+  final FractionalOffset center;
+
+  /// pop page position, default is [center]
+  final FractionalOffset? popPosition;
+
+  /// push duration
+  final Duration duration;
+
+  /// pop duration
+  final Duration popDuration;
+
+  @override
+  Route<T> createRoute(BuildContext context) {
+    return RippleRoute(
+      builder: builder,
+      color: color,
+      center: center,
+      popPosition: popPosition,
+    );
+  }
+}
+
 /// Ripple page transition based [center]
 /// More like circle expanding
 ///

@@ -6,6 +6,7 @@ import '../infrastructure/provider.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import '../presentation/connect/widgets/project_connect_page.dart';
 import 'app_theme.dart';
 
 class YeasinPortfolio extends StatefulWidget {
@@ -41,7 +42,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ConnectPage(),
+              home: ProjectConnectPage(),
 
               builder: (context, child) {
                 final colors = Theme.of(context) //

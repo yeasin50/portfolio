@@ -22,6 +22,7 @@ class _ConnectPageState extends State<ConnectPage> {
     final route = eff.RippleRoute(
       builder: (context) => const HrConnectPage(),
       center: pushPosition,
+      duration: Duration(seconds: 1),
       popPosition: pushPosition,
       color: Colors.blueAccent,
     );

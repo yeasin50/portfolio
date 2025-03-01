@@ -9,16 +9,19 @@ class TitleView extends StatefulWidget {
     super.key,
     required this.title,
     this.isExtraLarge = false,
+    this.isSliver = false,
   });
 
   factory TitleView.large({
     Key? key,
     required String title,
+    bool isSliver = false,
   }) =>
       TitleView(
         key: key,
         title: title,
         isExtraLarge: true,
+        isSliver: isSliver,
       );
 
   final String title;
@@ -26,6 +29,9 @@ class TitleView extends StatefulWidget {
   /// if [isExtraLarge] is true textTheme.headlineLarge
   /// else textTheme.headlineSmall
   final bool isExtraLarge;
+
+  ///whether it should return as Sliver
+  final bool isSliver;
 
   @override
   State<TitleView> createState() => _TitleViewState();
@@ -37,14 +43,30 @@ class _TitleViewState extends State<TitleView> {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
-    return Text(
+    final textWidget = Text(
       widget.title,
       style: (widget.isExtraLarge
-              ? textTheme.headlineLarge
+              ? textTheme.displayLarge
               : textTheme.headlineSmall)
           ?.copyWith(
         color: textColor,
       ),
     );
+
+    return widget.isSliver
+        ? SliverLayoutBuilder(
+            builder: (context, constraints) {
+              return SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints.tightFor(width: Spacing.maxWidth),
+                    child: textWidget,
+                  ),
+                ),
+              );
+            },
+          )
+        : textWidget;
   }
 }

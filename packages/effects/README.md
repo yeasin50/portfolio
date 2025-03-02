@@ -81,3 +81,15 @@ import the package with a prefix
     ),
   ),
   ```
+
+- simple bullet point on hover, dot to circle with radial gradient
+  TODO: add more effect type
+
+  ```dart
+  eff.BulletItemView(
+    child: Text(
+      "SomeText",
+      style: textTheme.bodyLarge?.copyWith(color: textColor),
+    ),
+  )
+  ```

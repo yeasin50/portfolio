@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/presentation/home/widgets/home_item_sliver_builder.dart';
+import "package:effects/effects.dart" as eff;
+import 'package:portfolio_yeasin/src/presentation/connect/widgets/list_item_builder.dart';
+import '../../home/widgets/home_item_sliver_builder.dart';
 
 import '../../../app/app.dart';
 import '../../home/widgets/title_view.dart';
@@ -87,16 +89,18 @@ class _ProjectConnectPageState extends State<ProjectConnectPage> {
             ],
           ),
           divider,
-          // HomeItemSliverBuilder(
-          //   title: "My Work Philosophy: Values and Limitations",
-          //   children: [
-          //     for (final d in thingsIDontWorkWith)
-          //       Text(
-          //         d,
-          //         style: textTheme.bodyLarge?.copyWith(color: textColor),
-          //       ),
-          //   ],
-          // ),
+          HomeItemSliverBuilder(
+            title: "My Work Philosophy: Values and Limitations",
+            children: [
+              for (final d in thingsIDontWorkWith)
+eff.BulletItemView(
+  child: Text(
+    d,
+    style: textTheme.bodyLarge?.copyWith(color: textColor),
+  ),
+)
+            ],
+          ),
           divider,
         ],
       ),

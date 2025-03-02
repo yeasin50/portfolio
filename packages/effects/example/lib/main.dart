@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import 'src/utils/shader_loader.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -23,50 +25,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  double anim = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: FloatingActionButton(
-          onPressed: () {
-            final route = eff.RippleRoute(
-              allowSnapshotting: true,
-              center: FractionalOffset.center,
-              popPosition: FractionalOffset.center,
-              color: Colors.white,
-              builder: (context) => Scaffold(
-                backgroundColor: Colors.black,
-                appBar: AppBar(),
-                body: Center(
-                  child: BackButton(),
-                ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(58.0),
+            child: eff.AnimatedExpansionTile(
+              title: SizedBox(
+                height: kToolbarHeight,
+                child: Text("Title"),
               ),
-            );
-
-            Navigator.of(context).push(route);
-          },
-        ),
+              children: [
+                ...List.generate(
+                  6,
+                  (index) => eff.FocusView(
+                    child: SizedBox(
+                      height: 64,
+                      child: Text("title $index"),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
-      //  eff.SphereFlow(
-      //   children: [
-      //     ...List.generate(
-      //       5,
-      //       (i) => eff.SphereView(
-      //         key: ValueKey("sphere $i"),
-      //         child: Padding(
-      //           padding: const EdgeInsets.all(38.0),
-      //           child: Text(
-      //             "Hey",
-      //             style: TextStyle(
-      //               fontSize: 55,
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
     );
   }
 }

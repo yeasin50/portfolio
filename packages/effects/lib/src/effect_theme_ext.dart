@@ -5,9 +5,13 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
   final ButtonStyle neonButtonStyle;
   final Color glowColor;
 
+  /// used for background decoration  on  ExpansionTile
+  final List<Color> cardColor;
+
   const EffectThemeExt({
     required this.neonButtonStyle,
     required this.glowColor,
+    required this.cardColor,
   });
 
   static final _shape = WidgetStateProperty.resolveWith((states) {
@@ -23,6 +27,7 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
 
   static EffectThemeExt dark = EffectThemeExt(
     glowColor: Colors.cyanAccent,
+    cardColor: [Colors.blueGrey, Colors.black87],
     neonButtonStyle: ButtonStyle(
       padding: _padding,
       backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -69,6 +74,7 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
 
   static EffectThemeExt day = EffectThemeExt(
     glowColor: Colors.blueAccent,
+    cardColor: [Colors.white, Colors.lightBlue.shade100],
     neonButtonStyle: ButtonStyle(
       padding: _padding,
       backgroundColor: WidgetStateProperty.resolveWith((states) {
@@ -117,8 +123,10 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
   EffectThemeExt copyWith({
     ButtonStyle? neonButtonStyle,
     Color? glowColor,
+    List<Color>? cardColor,
   }) {
     return EffectThemeExt(
+      cardColor: cardColor ?? this.cardColor,
       neonButtonStyle: neonButtonStyle ?? this.neonButtonStyle,
       glowColor: glowColor ?? this.glowColor,
     );
@@ -129,9 +137,18 @@ class EffectThemeExt extends ThemeExtension<EffectThemeExt> {
       ThemeExtension<EffectThemeExt>? other, double t) {
     if (other is! EffectThemeExt) return this;
     return EffectThemeExt(
+      cardColor: lerpColorList(cardColor, other.cardColor, t),
       neonButtonStyle:
           ButtonStyle.lerp(neonButtonStyle, other.neonButtonStyle, t)!,
       glowColor: Color.lerp(glowColor, other.glowColor, t)!,
     );
   }
+}
+
+List<Color> lerpColorList(List<Color> a, List<Color> b, double t) {
+  assert(a.length == b.length, 'lists must have the same length');
+
+  return List<Color>.generate(a.length, (index) {
+    return Color.lerp(a[index], b[index], t)!;
+  });
 }

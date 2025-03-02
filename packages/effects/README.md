@@ -70,3 +70,14 @@ import the package with a prefix
 
   Navigator.of(context).push(route);
   ```
+
+- increase scale on hover or tap
+
+  ```dart
+  eff.FocusView(
+    child: SizedBox(
+      height: 64,
+      child: Text("title $index"),
+    ),
+  ),
+  ```

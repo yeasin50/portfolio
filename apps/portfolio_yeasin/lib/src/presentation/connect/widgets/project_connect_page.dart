@@ -87,16 +87,16 @@ class _ProjectConnectPageState extends State<ProjectConnectPage> {
             ],
           ),
           divider,
-          HomeItemSliverBuilder(
-            title: "My Work Philosophy: Values and Limitations",
-            children: [
-              for (final d in thingsIDontWorkWith)
-                Text(
-                  d,
-                  style: textTheme.bodyLarge?.copyWith(color: textColor),
-                ),
-            ],
-          ),
+          // HomeItemSliverBuilder(
+          //   title: "My Work Philosophy: Values and Limitations",
+          //   children: [
+          //     for (final d in thingsIDontWorkWith)
+          //       Text(
+          //         d,
+          //         style: textTheme.bodyLarge?.copyWith(color: textColor),
+          //       ),
+          //   ],
+          // ),
           divider,
         ],
       ),

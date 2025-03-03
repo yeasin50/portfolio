@@ -8,6 +8,8 @@ enum BulletType {
   cross(Colors.redAccent),
   //  circle to check
   ok(Colors.greenAccent),
+
+  concern(Colors.amberAccent),
   ;
 
   const BulletType(this.color);
@@ -30,7 +32,7 @@ enum BulletType {
 class BulletItemView extends StatefulWidget {
   const BulletItemView({
     super.key,
-    this.type = BulletType.ok,
+    this.type = BulletType.concern,
     this.bulletColor,
     this.initialExpand = true,
     required this.child,
@@ -57,9 +59,11 @@ class _BulletItemViewState extends State<BulletItemView>
     vsync: this,
     duration: Durations.short2,
   );
+
   @override
   void initState() {
     super.initState();
+
     if (widget.initialExpand) forward(1);
   }
 
@@ -107,6 +111,8 @@ class _BulletItemViewState extends State<BulletItemView>
                           BulletType.cross =>
                             const StarBorder(points: 4, rotation: math.pi * 10),
                           BulletType.ok => _CheckShapeBorder(),
+                          BulletType.concern =>
+                            StarBorder(points: 4, valleyRounding: .8),
                         },
                         controller.value,
                       ),

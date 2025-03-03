@@ -4,6 +4,8 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/services.dart';
 
+import 'connect_repo.dart';
+
 ///
 /// handle all the info about user
 ///
@@ -15,6 +17,7 @@ class UserRepository {
     required this.educations,
     required this.certificates,
     required this.projects,
+    this.connectData,
   });
 
   final IntroInfo intro;
@@ -32,6 +35,9 @@ class UserRepository {
 
   /// bump everything, will add config on main page to control max item
   final List<Project> projects;
+
+  /// handles and limit,reason  of connecting with me
+  final ConnectData? connectData;
 
   ///  create new instance to pass down the widget tree
   ///
@@ -78,6 +84,7 @@ class UserRepository {
       educations: education,
       certificates: certificate,
       projects: projects,
+      connectData: ConnectData(),
     );
   }
 }

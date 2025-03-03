@@ -37,14 +37,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             padding: const EdgeInsets.all(58.0),
             child: Column(
               children: [
-                for (final t in eff.BulletType.values)
-                  eff.BulletItemView(
-                    type: t,
-                    child: SizedBox(
-                      height: 64,
-                      child: Text(" ${t.name} "),
-                    ),
-                  ),
+                eff.AnimatedExpansionTile(
+                  title: Text("Expansion title"),
+                  initialExpanded: true,
+                  lowerBound: .5,
+                  children: [
+                    for (final t in eff.BulletType.values)
+                      eff.BulletItemView(
+                        type: t,
+                        child: SizedBox(
+                          height: 64,
+                          child: Text(" ${t.name} "),
+                        ),
+                      ),
+                  ],
+                ),
+                Divider(),
               ],
             ),
           ),

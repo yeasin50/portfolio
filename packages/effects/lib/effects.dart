@@ -9,6 +9,6 @@ export 'src/widgets/sphere_view.dart';
 export 'src/flow/sphere_flow.dart';
 export 'src/utils/ripple_page_route.dart';
 export 'src/flow/sphere_layout_delegate.dart';
-export 'src/flow/animated_expansion_tile.dart';
+export 'src/widgets/animated_expansion_tile.dart';
 export 'src/widgets/focus_view.dart';
 export 'src/widgets/bullet_item_view.dart';

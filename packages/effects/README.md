@@ -93,3 +93,23 @@ import the package with a prefix
     ),
   )
   ```
+
+- Animation Expansion tile with drop shader(FIXME: default `lowerBound`)
+
+  ```dart
+  eff.AnimatedExpansionTile(
+    title: Text("Expansion title"),
+    initialExpanded: true,
+    lowerBound: .5,
+    children: [
+      for (final t in eff.BulletType.values)
+        eff.BulletItemView(
+          type: t,
+          child: SizedBox(
+            height: 64,
+            child: Text(" ${t.name} "),
+          ),
+        ),
+    ],
+  ),
+  ```

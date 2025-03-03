@@ -81,17 +81,6 @@ class _BulletItemViewState extends State<BulletItemView>
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(border: Border.all(color: Colors.greenAccent)),
-      child: Material(
-        shape: _CheckShapeBorder(),
-        color: Colors.red,
-        child: SizedBox(
-          width: 200,
-          height: 200,
-        ),
-      ),
-    );
     return MouseRegion(
       onEnter: forward,
       onExit: reverse,
@@ -153,6 +142,8 @@ class _BulletItemViewState extends State<BulletItemView>
 }
 
 class _CheckShapeBorder extends OutlinedBorder {
+  const _CheckShapeBorder({this.t = 1});
+  final double t;
   @override
   OutlinedBorder copyWith({BorderSide? side}) => this;
 
@@ -181,8 +172,9 @@ class _CheckShapeBorder extends OutlinedBorder {
       ..moveTo(rect.center.dx, rect.center.dy)
       ..addPolygon(points, true);
     final tr = Matrix4.identity()
-      ..translate(-width * 2, width)
+      ..translate(-width * 2, width * 1.25)
       ..rotateZ(-math.pi / 4);
+
     return path.transform(tr.storage);
   }
 

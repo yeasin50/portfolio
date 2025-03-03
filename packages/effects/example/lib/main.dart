@@ -35,15 +35,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         children: [
           Padding(
             padding: const EdgeInsets.all(58.0),
-            child: eff.AnimatedExpansionTile(
-              title: SizedBox(
-                height: kToolbarHeight,
-                child: Text("Title"),
-              ),
+            child: Column(
               children: [
                 ...List.generate(
-                  6,
-                  (index) => eff.FocusView(
+                  2,
+                  (index) => eff.BulletItemView(
                     child: SizedBox(
                       height: 64,
                       child: Text("title $index"),

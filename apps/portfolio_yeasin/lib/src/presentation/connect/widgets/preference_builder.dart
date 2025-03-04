@@ -21,9 +21,10 @@ class PreferenceBuilder extends StatelessWidget {
       children: [
         eff.AnimatedExpansionTile(
           title: Text(
-            item.title,
-            style: textTheme.headlineMedium?.copyWith(
+            item.title, //or titleLarge
+            style: textTheme.headlineLarge?.copyWith(
               color: textColor,
+              fontWeight: FontWeight.bold,
             ),
           ),
           // initialExpanded: true,
@@ -32,9 +33,19 @@ class PreferenceBuilder extends StatelessWidget {
           //     item.items.isEmpty && item.description.length < 300 ? 1 : .2,
           children: [
             if (item.description.isNotEmpty)
-              PreferenceDescriptionView(item.description),
-            for (final li in item.items)
-              PreferenceItemBuilder(text: li, type: item.type),
+              Flexible(
+                child: Text(
+                  item.description,
+                  style: item.items.entries.isEmpty
+                      ? textTheme.bodyLarge?.copyWith(color: textColor)
+                      : textTheme.bodyLarge?.copyWith(color: textColor),
+                ),
+              ),
+            for (final li in item.items.entries)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: PreferenceItemBuilder(data: li, type: item.type),
+              ),
           ],
         ),
       ],
@@ -46,11 +57,11 @@ class PreferenceItemBuilder extends StatelessWidget {
   ///
   const PreferenceItemBuilder({
     super.key,
-    required this.text,
+    required this.data,
     required this.type,
   });
 
-  final String text;
+  final MapEntry<String, List<String>> data;
   final eff.BulletType? type;
 
   @override
@@ -58,34 +69,33 @@ class PreferenceItemBuilder extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
-    return eff.BulletItemView(
-      type: type ?? eff.BulletType.unListed,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 48),
-        child: Text(
-          text,
-          style: textTheme.bodyLarge?.copyWith(color: textColor),
-        ),
-      ),
-    );
-  }
-}
-
-class PreferenceDescriptionView extends StatelessWidget {
-  const PreferenceDescriptionView(this.text, {super.key});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
-
-    return Flexible(
-      child: Text(
-        text,
-        style: textTheme.bodyLarge?.copyWith(color: textColor),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (data.key.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Text(
+              data.key,
+              style: textTheme.headlineSmall?.copyWith(
+                color: textColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        for (final li in data.value)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: eff.BulletItemView(
+              type: type ?? eff.BulletType.unListed,
+              child: Text(
+                li,
+                style: textTheme.bodyLarge?.copyWith(color: textColor),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

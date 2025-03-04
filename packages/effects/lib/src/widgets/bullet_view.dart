@@ -7,6 +7,9 @@ enum BulletType {
   ok(Colors.greenAccent),
 
   concern(Colors.amberAccent),
+
+  /// nothing special with just circle
+  unListed(Colors.cyanAccent),
   ;
 
   const BulletType(this.color);
@@ -52,6 +55,7 @@ class BulletView extends StatelessWidget {
                 const StarBorder(points: 4, rotation: math.pi * 10),
               BulletType.ok => _CheckShapeBorder(),
               BulletType.concern => StarBorder(points: 4, valleyRounding: .8),
+              BulletType.unListed => StarBorder(points: 7),
             },
             t,
           ),

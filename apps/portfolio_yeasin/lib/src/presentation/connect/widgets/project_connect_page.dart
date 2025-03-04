@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 
-import 'package:effects/effects.dart' as eff;
 import 'package:portfolio_yeasin/src/presentation/connect/widgets/preference_builder.dart';
 import '../../../app/app.dart';
 import '../../home/widgets/title_view.dart';
@@ -16,11 +15,6 @@ class ProjectConnectPage extends StatefulWidget {
 class _ProjectConnectPageState extends State<ProjectConnectPage> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
-
-    const divider = SliverToBoxAdapter(child: Divider(height: 56));
-
     final data = provider.connectData;
 
     return Scaffold(

@@ -1,3 +1,4 @@
+import 'package:effects/src/widgets/animated_expansion_icon.dart';
 import 'package:flutter/material.dart';
 
 /// animation Expansion tile with drop shader
@@ -82,6 +83,7 @@ class _AnimatedExpansionTileState extends State<AnimatedExpansionTile>
   void onTap() {
     isExpanded ? controller.reverse() : controller.forward();
     isExpanded = !isExpanded;
+    setState(() {});
   }
 
   void onLongPress() {
@@ -100,7 +102,8 @@ class _AnimatedExpansionTileState extends State<AnimatedExpansionTile>
             padding: const EdgeInsetsDirectional.symmetric(vertical: 24),
             child: Row(
               children: [
-                widget.title,
+                Expanded(child: widget.title),
+                AnimatedExpansionIcon(isExpanded: isExpanded),
               ],
             ),
           ),

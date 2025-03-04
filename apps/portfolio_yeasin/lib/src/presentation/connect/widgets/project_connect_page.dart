@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
-import '../../home/widgets/home_item_sliver_builder.dart';
 
+import 'package:effects/effects.dart' as eff;
+import 'package:portfolio_yeasin/src/presentation/connect/widgets/preference_builder.dart';
 import '../../../app/app.dart';
 import '../../home/widgets/title_view.dart';
 
@@ -35,20 +36,30 @@ class _ProjectConnectPageState extends State<ProjectConnectPage> {
                   title: data.title,
                   isSliver: true,
                 ),
-                for (final item in data.preferenceItems) ...[
-                  HomeItemSliverBuilder(
-                    title: item.title,
-                    children: [
-                      if (item.description.isNotEmpty)
-                        Text(
-                          item.description,
-                          style:
-                              textTheme.bodyLarge?.copyWith(color: textColor),
-                        ),
-                    ],
-                  ),
-                  divider,
-                ]
+                SliverLayoutBuilder(
+                  builder: (context, constraints) {
+                    return SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (final item in data.preferenceItems)
+                            Center(
+                              child: ConstrainedBox(
+                                constraints: const BoxConstraints.tightFor(
+                                  width: Spacing.maxWidth,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 48.0),
+                                  child: PreferenceBuilder(item: item),
+                                ),
+                              ),
+                            )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
     );

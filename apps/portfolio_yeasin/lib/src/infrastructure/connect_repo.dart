@@ -1,13 +1,18 @@
+import 'package:effects/effects.dart' as eff;
+
 class PreferenceData {
   const PreferenceData({
     required this.title,
     this.items = const [],
     this.description = "",
+    this.type,
   });
 
   final String title;
   final List<String> items;
   final String description;
+
+  final eff.BulletType? type;
 }
 
 ///handle reason , way  of connecting
@@ -17,11 +22,19 @@ class ConnectData {
   final String title = "Project connection";
 
   late List<PreferenceData> preferenceItems = [
-    PreferenceData(title: "Tl;dr", description: tldr),
-    PreferenceData(title: "This I work with", items: thingsIWorkWith),
+    PreferenceData(
+      title: "Tl;dr",
+      description: tldr,
+    ),
+    PreferenceData(
+      title: "This I work with",
+      items: thingsIWorkWith,
+      type: eff.BulletType.ok,
+    ),
     PreferenceData(
       title: "My Work Philosophy: Values and Limitations",
       items: thingsIDontWorkWith,
+      type: eff.BulletType.concern,
     ),
   ];
 

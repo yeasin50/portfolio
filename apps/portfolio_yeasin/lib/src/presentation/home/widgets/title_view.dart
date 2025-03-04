@@ -43,7 +43,7 @@ class _TitleViewState extends State<TitleView> {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
-    final textWidget = Text(
+    Widget textWidget = Text(
       widget.title,
       style: (widget.isExtraLarge
               ? textTheme.displayLarge
@@ -52,6 +52,8 @@ class _TitleViewState extends State<TitleView> {
         color: textColor,
       ),
     );
+
+    if (widget.isSliver) {}
 
     return widget.isSliver
         ? SliverLayoutBuilder(

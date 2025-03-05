@@ -18,12 +18,13 @@ class ConnectOption {
 
   factory ConnectOption.fromMap(Map<String, dynamic> map) {
     return ConnectOption(
-      name: map["name"],
+      name: map["type"],
       background: map["background"],
-      principles: map["principles"]?.map(
+      tldr: map["tldr"],
+      principles: List.from(map["principles"]?.map(
             (e) => ConnectionPrinciple.fromMap(e),
           ) ??
-          [],
+          []),
     );
   }
 }

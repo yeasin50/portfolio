@@ -2,6 +2,7 @@ import 'package:effects/effects.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
 import 'package:skill/skill.dart';
+import 'package:contact/contact.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 
 import 'theme/connect_theme_ext.dart';
@@ -23,7 +24,8 @@ class AppThemeConfig {
             WorkCardTheme.dayCardTheme(),
             NavigationTheme.dayTheme(),
             ExperienceTheme.dayTheme(),
-            ConnectThemeExt.dayTheme(),
+            ActionThemeExt.dayTheme(),
+            ContactThemeExt.dayTheme(),
             StackOverflowTheme.dayTheme(),
             SkillThemeExt.dayTheme(),
             EffectThemeExt.day,
@@ -33,7 +35,8 @@ class AppThemeConfig {
             WorkCardTheme.darkCardTheme(),
             NavigationTheme.darkTheme(),
             ExperienceTheme.darkTheme(),
-            ConnectThemeExt.darkTheme(),
+            ActionThemeExt.darkTheme(),
+            ContactThemeExt.darkTheme(),
             StackOverflowTheme.darkTheme(),
             SkillThemeExt.darkTheme(),
             EffectThemeExt.dark,

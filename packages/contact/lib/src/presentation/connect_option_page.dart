@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:core/core.dart' as c;
 
 import '../../contact.dart';
 
@@ -40,7 +41,7 @@ class ConnectOptionPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 56)),
+          const SliverToBoxAdapter(child: SizedBox(height: 56)), //handle it
           SliverToBoxAdapter(
             child: Text(
               option.name,
@@ -58,12 +59,13 @@ class ConnectOptionPage extends StatelessWidget {
                       Center(
                         child: ConstrainedBox(
                           constraints: const BoxConstraints.tightFor(
-                            // width: Spacing.maxWidth,
-                            width: 500, //TODO: Shift on core
+                            width: c.Spacing.maxWidth,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 48.0),
-                            child: TldrBuilder(text: option.tldr!),
+                            child: TldrBuilder(
+                              text: option.tldr!,
+                            ),
                           ),
                         ),
                       ),
@@ -71,8 +73,7 @@ class ConnectOptionPage extends StatelessWidget {
                       Center(
                         child: ConstrainedBox(
                           constraints: const BoxConstraints.tightFor(
-                            // width: Spacing.maxWidth,
-                            width: 500, //TODO: Shift on core
+                            width: c.Spacing.maxWidth,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 48.0),

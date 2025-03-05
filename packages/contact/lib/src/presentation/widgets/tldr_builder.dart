@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:effects/effects.dart' as eff;
-
 import '../../../contact.dart';
 
 ///TODO:  some animation
@@ -19,12 +17,14 @@ class TldrBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
-    return eff.AnimatedExpansionTile(
-      title: Text(title ?? "", style: theme.pageTitle),
-      initialExpanded: true,
-      lowerBound: .23,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(text),
+        Text(title ?? "", style: theme.pageTitle),
+        Text(
+          text,
+          style: theme.tldr,
+        ),
       ],
     );
   }

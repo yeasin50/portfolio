@@ -38,7 +38,7 @@ class _FilterBarState extends State<FilterBar> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<ConnectThemeExt>()!;
+    final theme = Theme.of(context).extension<ActionThemeExt>()!;
     //
     return Wrap(
       spacing: 8,

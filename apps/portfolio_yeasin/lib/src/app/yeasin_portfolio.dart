@@ -1,12 +1,11 @@
+import 'package:contact/contact.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
-import 'package:portfolio_yeasin/src/presentation/connect/connect_page.dart';
 import '../infrastructure/provider.dart';
 
 import 'package:effects/effects.dart' as eff;
 
-import '../presentation/connect/widgets/project_connect_page.dart';
 import 'app_theme.dart';
 
 class YeasinPortfolio extends StatefulWidget {
@@ -42,7 +41,9 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ProjectConnectPage(),
+              home: ConnectOptionPage(
+                option: snapshot.requireData.connectData!.items.first,
+              ),
 
               builder: (context, child) {
                 final colors = Theme.of(context) //

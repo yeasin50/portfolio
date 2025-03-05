@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
+class ActionThemeExt extends ThemeExtension<ActionThemeExt> {
   final Color iconColor;
   final Color borderColor;
   final Color background;
@@ -9,7 +9,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
   final TextStyle hintTextStyle;
   final Color hintBackgroundColor;
 
-  const ConnectThemeExt({
+  const ActionThemeExt({
     required this.iconColor,
     required this.borderColor,
     required this.background,
@@ -17,7 +17,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
     required this.hintTextStyle,
     required this.hintBackgroundColor,
   });
-  static ConnectThemeExt darkTheme() => const ConnectThemeExt(
+  static ActionThemeExt darkTheme() => const ActionThemeExt(
         iconColor: Color(0xFFE0F7FA),
         // iconFocusedColor: Color(0xFFB3E5FC),
         borderColor: Color(0xFF90A4AE),
@@ -30,7 +30,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
         hintBackgroundColor: Color(0xFF2A2D48),
       );
 
-  static ConnectThemeExt dayTheme() => const ConnectThemeExt(
+  static ActionThemeExt dayTheme() => const ActionThemeExt(
         iconColor: Color(0xFF455A64),
         // iconFocusedColor: Color(0xFF0277BD),
         borderColor: Color(0xFF039BE5),
@@ -44,7 +44,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
       );
 
   @override
-  ConnectThemeExt copyWith({
+  ActionThemeExt copyWith({
     Color? iconColor,
     Color? borderColor,
     Color? background,
@@ -52,7 +52,7 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
     TextStyle? hintTextStyle,
     Color? hintBackgroundColor,
   }) {
-    return ConnectThemeExt(
+    return ActionThemeExt(
       iconColor: iconColor ?? this.iconColor,
       borderColor: borderColor ?? this.borderColor,
       background: background ?? this.background,
@@ -63,9 +63,9 @@ class ConnectThemeExt extends ThemeExtension<ConnectThemeExt> {
   }
 
   @override
-  ConnectThemeExt lerp(ThemeExtension<ConnectThemeExt>? other, double t) {
-    if (other is! ConnectThemeExt) return this;
-    return ConnectThemeExt(
+  ActionThemeExt lerp(ThemeExtension<ActionThemeExt>? other, double t) {
+    if (other is! ActionThemeExt) return this;
+    return ActionThemeExt(
       iconColor: Color.lerp(iconColor, other.iconColor, t)!,
       borderColor: Color.lerp(borderColor, other.borderColor, t)!,
       background: Color.lerp(background, other.background, t)!,

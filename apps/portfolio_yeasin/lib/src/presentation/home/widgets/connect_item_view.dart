@@ -42,8 +42,8 @@ class _ConnectButtonState extends State<ConnectButton>
 
   @override
   Widget build(BuildContext context) {
-    final ConnectThemeExt theme =
-        Theme.of(context).extension<ConnectThemeExt>()!;
+    final ActionThemeExt theme =
+        Theme.of(context).extension<ActionThemeExt>()!;
 
     return AnimatedBuilder(
       animation: controller,

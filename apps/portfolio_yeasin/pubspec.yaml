@@ -22,6 +22,9 @@ dependencies:
     path: ../../packages/experience
   effects:
     path: ../../packages/effects
+    
+  contact:
+    path: ../../packages/contact
 
   stackoverflow_stats:
     path: ../../packages/stackoverflow_stats

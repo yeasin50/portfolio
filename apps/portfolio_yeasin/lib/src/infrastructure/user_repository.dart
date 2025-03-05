@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/services.dart';
-
-import 'connect_repo.dart';
+import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
 
 ///
 /// handle all the info about user
@@ -37,7 +37,7 @@ class UserRepository {
   final List<Project> projects;
 
   /// handles and limit,reason  of connecting with me
-  final ConnectData? connectData;
+  final IConnectRepo? connectData;
 
   ///  create new instance to pass down the widget tree
   ///
@@ -77,6 +77,8 @@ class UserRepository {
       ),
     );
 
+    final connectRepo = await UserConnectRepo.create();
+
     return UserRepository._(
       intro: intro,
       connects: connects,
@@ -84,7 +86,7 @@ class UserRepository {
       educations: education,
       certificates: certificate,
       projects: projects,
-      connectData: ConnectData(),
+      connectData: connectRepo,
     );
   }
 }

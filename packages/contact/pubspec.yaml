@@ -17,6 +17,8 @@ dependencies:
 
   effects:
     path: ../effects
+  core:
+    path: ../core
 
 dev_dependencies:
   flutter_test:

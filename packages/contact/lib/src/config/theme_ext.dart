@@ -20,21 +20,22 @@ class OptionTheme {
 }
 
 @immutable
-class ContactThemeExt extends ThemeExtension<ContactThemeExt> {
+@Deprecated("use [ContactThemeExt] instead")
+class ContactThemeExtOLD extends ThemeExtension<ContactThemeExtOLD> {
   final List<Color> background;
   final TextStyle titleTextStyle;
   final TextStyle descriptionTextStyle;
   final OptionTheme optionTheme;
 
-  const ContactThemeExt({
+  const ContactThemeExtOLD({
     required this.background,
     required this.titleTextStyle,
     required this.descriptionTextStyle,
     required this.optionTheme,
   });
 
-  static ContactThemeExt darkTheme() {
-    return ContactThemeExt(
+  static ContactThemeExtOLD darkTheme() {
+    return ContactThemeExtOLD(
       background: [
         Color(0xFF0A0E21),
         Color(0xFF1C1F33),
@@ -68,8 +69,8 @@ class ContactThemeExt extends ThemeExtension<ContactThemeExt> {
     );
   }
 
-  static ContactThemeExt dayTheme() {
-    return ContactThemeExt(
+  static ContactThemeExtOLD dayTheme() {
+    return ContactThemeExtOLD(
       background: [
         Color(0xFF87CEEB),
         Color(0xFFFFD700),
@@ -104,13 +105,13 @@ class ContactThemeExt extends ThemeExtension<ContactThemeExt> {
   }
 
   @override
-  ContactThemeExt copyWith({
+  ContactThemeExtOLD copyWith({
     List<Color>? background,
     TextStyle? titleTextStyle,
     TextStyle? descriptionTextStyle,
     OptionTheme? optionTheme,
   }) {
-    return ContactThemeExt(
+    return ContactThemeExtOLD(
       background: background ?? this.background,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       descriptionTextStyle: descriptionTextStyle ?? this.descriptionTextStyle,
@@ -119,10 +120,10 @@ class ContactThemeExt extends ThemeExtension<ContactThemeExt> {
   }
 
   @override
-  ContactThemeExt lerp(ContactThemeExt? other, double t) {
+  ContactThemeExtOLD lerp(ContactThemeExtOLD? other, double t) {
     if (other == null) return this;
 
-    return ContactThemeExt(
+    return ContactThemeExtOLD(
       background: [
         Color.lerp(background[0], other.background[0], t)!,
         Color.lerp(background[1], other.background[1], t)!,

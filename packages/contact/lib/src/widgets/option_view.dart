@@ -49,7 +49,7 @@ class _OptionViewState extends State<OptionView>
   void onMouseMovement(Offset offset) {
     if (_position == null) return;
     //
-    
+
     setState(() {});
   }
 
@@ -61,7 +61,8 @@ class _OptionViewState extends State<OptionView>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<ContactThemeExt>()!.optionTheme;
+    final theme =
+        Theme.of(context).extension<ContactThemeExtOLD>()!.optionTheme;
 
     return AnimatedBuilder(
       animation: Listenable.merge([controller]),

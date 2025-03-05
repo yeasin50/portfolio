@@ -34,7 +34,7 @@ class _OptionViewState extends State<OptionViewV1>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<ContactThemeExt>()!.optionTheme;
+    final theme = Theme.of(context).extension<ContactThemeExtOLD>()!.optionTheme;
 
     return AnimatedBuilder(
       animation: Listenable.merge([controller, widget.lightAlign]),

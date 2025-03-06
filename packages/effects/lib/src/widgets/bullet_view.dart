@@ -15,6 +15,15 @@ enum BulletType {
   const BulletType(this.color);
 
   final Color color;
+
+  static BulletType fromDomain(String str) {
+    return switch (str) {
+      "ok" => BulletType.ok,
+      "not-ok" => BulletType.cross,
+      "concern" => BulletType.concern,
+      _ => BulletType.unListed,
+    };
+  }
 }
 
 class BulletView extends StatelessWidget {

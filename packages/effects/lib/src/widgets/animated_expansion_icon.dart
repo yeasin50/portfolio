@@ -6,14 +6,20 @@ import 'dart:math' as math;
 
 ///  simple expansion animated icon to indicate expanded or not
 /// todo: ADD full tile effect
-
+///
 class AnimatedExpansionIcon extends StatefulWidget {
   const AnimatedExpansionIcon({
     super.key,
     required this.isExpanded,
+    required this.expandColor,
+    this.collapsedColor,
   });
 
   final bool isExpanded;
+  final Color expandColor;
+
+  ///  if null, it gonna use [expandColor]
+  final Color? collapsedColor;
 
   @override
   State<AnimatedExpansionIcon> createState() => _AnimatedExpansionIconState();
@@ -27,7 +33,9 @@ class _AnimatedExpansionIconState extends State<AnimatedExpansionIcon>
   ///
   void toggleAnimation({bool? value}) {
     isExpanded = value ?? !isExpanded;
-    isExpanded ? _expansionController.forward() : _expansionController.reverse();
+    isExpanded
+        ? _expansionController.forward()
+        : _expansionController.reverse();
   }
 
   @override
@@ -35,7 +43,8 @@ class _AnimatedExpansionIconState extends State<AnimatedExpansionIcon>
     super.initState();
     isExpanded = widget.isExpanded;
 
-    _expansionController = AnimationController(vsync: this, duration: Durations.medium1);
+    _expansionController =
+        AnimationController(vsync: this, duration: Durations.medium1);
 
     if (isExpanded) {
       _expansionController.forward();
@@ -64,13 +73,28 @@ class _AnimatedExpansionIconState extends State<AnimatedExpansionIcon>
         final tr = Matrix4.identity()
           ..rotateZ(math.pi * _expansionController.value)
           ..scale(lerpDouble(1.5, 1, _expansionController.value));
+
+        final colorFilter = ColorFilter.mode(
+          Color.lerp(
+            widget.collapsedColor ?? widget.expandColor,
+            widget.expandColor,
+            _expansionController.value,
+          )!,
+          BlendMode.srcIn,
+        );
         return Transform(
           transform: tr,
           alignment: FractionalOffset.center,
-          child: child!,
+          child: ColorFiltered(
+            colorFilter: colorFilter,
+            child: child!,
+          ),
         );
       },
-      child: Icon(Icons.expand_more, size: 24),
+      child: Icon(
+        Icons.expand_more,
+        size: 24,
+      ),
     );
   }
 }

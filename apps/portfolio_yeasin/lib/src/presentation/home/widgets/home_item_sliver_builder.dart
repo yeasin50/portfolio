@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:core/core.dart';
 
-import '../../../app/app.dart';
 import 'title_view.dart';
 
 ///  handle constraints , align and padding

@@ -23,6 +23,7 @@ class ConnectOptionPage extends StatelessWidget {
     FractionalOffset? animateFrom,
     Duration pushDuration = const Duration(seconds: 1),
     Duration? popDuration,
+    Color primaryColor = Colors.blueAccent,
   }) {
     final route = eff.RippleRoute(
       builder: (context) => ConnectOptionPage(option: option),
@@ -30,7 +31,7 @@ class ConnectOptionPage extends StatelessWidget {
       popPosition: animateFrom ?? animateTO,
       duration: pushDuration,
       popDuration: popDuration ?? pushDuration,
-      color: Colors.blueAccent,
+      color: primaryColor,
     );
     return route;
   }

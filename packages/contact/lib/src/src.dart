@@ -6,7 +6,6 @@ export 'option_alignment.dart';
 export 'option_view.dart';
 export 'presentation/connect_page.dart';
 export 'presentation/connect_option_page.dart';
-export 'presentation/widgets/list_item_builder.dart';
 export 'presentation/widgets/preference_builder.dart';
 export 'sphere_painter.dart';
 export 'utils/option_info.dart';

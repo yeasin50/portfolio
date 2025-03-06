@@ -24,6 +24,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/img.jpg
 
   shaders:
     - shaders/sine_wave.frag
+    - shaders/water_ripple.frag

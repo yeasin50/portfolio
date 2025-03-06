@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../app/app.dart';
+import 'package:core/core.dart';
 import '../home/widgets/title_view.dart';
 import 'work_items.dart';
 

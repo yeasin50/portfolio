@@ -25,7 +25,8 @@ class UserConnectRepo implements IConnectRepo {
       final data = jsonDecode(response)["data"] as List?;
 
       final List<ConnectOption> items = List<ConnectOption>.from(
-          data?.map((e) => ConnectOption.fromMap(e)) ?? []);
+        data?.map((e) => ConnectOption.fromMap(e)) ?? [],
+      );
 
       return UserConnectRepo._(items);
     } catch (e) {

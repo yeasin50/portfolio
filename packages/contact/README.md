@@ -49,3 +49,16 @@ Theses should be passed from parent from `IConnectRepo` implementation class for
    ```
 
 3. Also page required dataRepo, implement `IConnectRepo` class.
+
+## Domain of concern on DataModel
+
+```dart
+static BulletType fromDomain(String str) {
+    return switch (str) {
+      "ok" => BulletType.ok,
+      "not-ok" => BulletType.cross,
+      "concern" => BulletType.concern,
+      _ => BulletType.unListed,
+    };
+  }
+```

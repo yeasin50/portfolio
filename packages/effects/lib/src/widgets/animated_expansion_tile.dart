@@ -29,6 +29,8 @@ class AnimatedExpansionTile extends StatefulWidget {
     required this.children,
     this.duration = Durations.medium3,
     this.initialExpanded = false,
+    required this.expandIconColor,
+    this.collapsedIconColor,
   });
 
   final Widget title;
@@ -41,6 +43,10 @@ class AnimatedExpansionTile extends StatefulWidget {
   /// initial visible offset 0-1
   /// if null, it will use use approximate  1st 3 of [children]
   final double? lowerBound;
+
+  final Color expandIconColor;
+
+  final Color? collapsedIconColor;
 
   @override
   State<AnimatedExpansionTile> createState() => _AnimatedExpansionTileState();
@@ -103,7 +109,11 @@ class _AnimatedExpansionTileState extends State<AnimatedExpansionTile>
             child: Row(
               children: [
                 Expanded(child: widget.title),
-                AnimatedExpansionIcon(isExpanded: isExpanded),
+                AnimatedExpansionIcon(
+                  isExpanded: isExpanded,
+                  expandColor: widget.expandIconColor,
+                  collapsedColor: widget.collapsedIconColor,
+                ),
               ],
             ),
           ),

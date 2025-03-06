@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:core/core.dart';
 import '../../../app/app.dart';
 
 ///  the header/title of each  topic inside [HomePage]

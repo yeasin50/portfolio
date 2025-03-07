@@ -190,7 +190,8 @@
                 "Non-technical clients who refuse to listen to expert advice",
                 "Excessive NDA or contract restrictions limiting future work (while I’m open to reasonable NDAs for sensitive projects)",
                 "Spam, fake engagement, or deceptive marketing projects",
-                "Not interested in full-time work exceeding 35 hours per week"
+                "Not interested in full-time work exceeding 35 hours per week",
+                "Timely payment and clear communication are essential to me. If I have to chase payments or remind clients/org about the work I've already done, it goes against my professional values."
               ]
             }
           ]
@@ -199,8 +200,66 @@
     },
     {
       "type": "Scholarship",
-      "tldr": "",
-      "principles": []
+      "tldr": "Open for a postgraduate program in Computer Science, Software Engineering, AI, Data Science, or Machine Learning—where I'll interact more with computers than humans 😀 while benefiting humankind. I hold a Bachelor's in Computer Science and Engineering (GPA: 3.67/4) and work as a Software Developer (Flutter).",
+      "principles": [
+        {
+          "category": "general",
+          "title": "Philosophy of Studying Abroad for Postgraduate",
+          "items": [
+            {
+              "name": " ",
+              "description": "Do I think pursuing a Master's is the right path in life? Based on my experience and knowledge, my answer would be no. However, exposure to a foreign culture and education might change my perspective. As a software developer, I have collaborated with professionals from 8–10 countries, building global connections. While knowledge is widely accessible, pursuing a Master’s in my home country didn’t interest me, as I found it inefficient for my growth.",
+              "data": []
+            },
+            {
+              "name": "Perhaps I might gain",
+              "category": "ok",
+              "data": [
+                "Global career opportunities and networking",
+                "Exposure to advanced research and technology",
+                "Collaboration with international experts and diverse cultures",
+                "Improved adaptability, communication, and leadership skills",
+                "Opportunities for innovation, entrepreneurship, and problem-solving",
+                "A fresh perspective on global challenges and new experiences"
+              ]
+            },
+            {
+              "name": "And the Cost",
+              "category": "concern",
+              "data": [
+                "As Ludwig Wittgenstein said, 'The limits of my language mean the limits of my world.' Perhaps studying abroad will enrich my perspective and culture, rather than feeling like Kafka's prison.",
+                "Leaving behind my beloved workstation, which I have built over five years.",
+                "Family? Not really an issue. My physical presence is not required, and as the eldest, I have responsibilities to maintain. It’s more of my parents’ wish, which I am choosing to follow.",
+                "My job commitments—I'm handling two foreign projects, one for over a year. Without a powerful laptop like my PC, working might not be feasible, and I have no plans to bring my old laptop.",
+                "Financially, I can work for 1-2 months and live comfortably for the rest of the year in my home country. That won’t be as easy abroad.",
+                "Cultural differences can be challenging."
+              ]
+            }
+          ]
+        },
+
+        {
+          "category": "general",
+          "title": "I am looking for",
+          "items": [
+            {
+              "name": "",
+              "description": "Only spending my time on study isn't enough. I will only go only if I get chance to collaborate on meaningful project with my software development skills.",
+              "data": []
+            },
+            {
+              "name": "Preferable programs",
+              "category": "ok",
+              "data": []
+            },
+            {
+              "name": "work collaboration",
+              "category": "ok",
+              "data": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

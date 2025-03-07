@@ -42,7 +42,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                 },
               ),
               home: ConnectOptionPage(
-                option: snapshot.requireData.connectData!.items.first,
+                option: snapshot.requireData.connectData!.items[1],
               ),
 
               builder: (context, child) {

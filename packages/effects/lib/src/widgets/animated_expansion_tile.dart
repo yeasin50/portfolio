@@ -31,6 +31,7 @@ class AnimatedExpansionTile extends StatefulWidget {
     this.initialExpanded = false,
     required this.expandIconColor,
     this.collapsedIconColor,
+    this.titlePadding = const EdgeInsets.symmetric(vertical: 24),
   });
 
   final Widget title;
@@ -47,6 +48,8 @@ class AnimatedExpansionTile extends StatefulWidget {
   final Color expandIconColor;
 
   final Color? collapsedIconColor;
+
+  final EdgeInsetsGeometry titlePadding;
 
   @override
   State<AnimatedExpansionTile> createState() => _AnimatedExpansionTileState();
@@ -105,7 +108,7 @@ class _AnimatedExpansionTileState extends State<AnimatedExpansionTile>
         InkWell(
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(vertical: 24),
+            padding: widget.titlePadding,
             child: Row(
               children: [
                 Expanded(child: widget.title),

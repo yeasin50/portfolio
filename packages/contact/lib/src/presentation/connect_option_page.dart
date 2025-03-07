@@ -70,10 +70,9 @@ class ConnectOptionPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               spacing: 24,
                               children: [
-                                TldrBuilder(
-                                  text: option.tldr!,
-                                ),
-                                ScheduleView(schedules: option.schedules),
+                                TldrBuilder(text: option.tldr!),
+                                if (option.showSchedule)
+                                  ScheduleView(schedules: option.schedules),
                               ],
                             ),
                           ),

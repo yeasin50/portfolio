@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/widgets/tldr_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:effects/effects.dart' as eff;
 
@@ -23,7 +24,7 @@ class PreferenceBuilder extends StatelessWidget {
         item.title,
         style: theme.pageTitle,
       ),
-      // initialExpanded: true,
+      initialExpanded: item.items.isEmpty,
       lowerBound: item.items.isEmpty ? .80 : .23,
       //     item.items.isEmpty && item.description.length < 300 ? 1 : .2,
       expandIconColor: theme.expandIconColor,
@@ -33,7 +34,9 @@ class PreferenceBuilder extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 24),
             child: PrincipleItemBuilder(
               data: li,
-              type: eff.BulletType.fromDomain(item.category),
+              type: eff.BulletType.fromDomain(
+                li.category.isNotEmpty ? li.category : item.category,
+              ),
             ),
           ),
       ],
@@ -59,26 +62,28 @@ class PrincipleItemBuilder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      spacing: 12,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Text(
+        if (data.name.trim().isNotEmpty)
+          Text(
             data.name,
             style: theme.itemSubTitle,
           ),
-        ),
-        for (final li in data.data)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: eff.BulletItemView(
-              type: type,
-              bulletColor: type.color,
-              child: Text(
-                li,
-                style: theme.itemStyle,
+        if (data.description.trim().isNotEmpty)
+          TldrBuilder(text: data.description),
+        if (data.data.isNotEmpty)
+          for (final li in data.data)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: eff.BulletItemView(
+                type: type,
+                bulletColor: type.color,
+                child: Text(
+                  li,
+                  style: theme.itemStyle,
+                ),
               ),
             ),
-          ),
       ],
     );
   }

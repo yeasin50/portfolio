@@ -20,11 +20,12 @@ class TldrBuilder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(title ?? "", style: theme.pageTitle),
-        Text(
-          text,
-          style: theme.tldr,
-        ),
+        if ((title ?? "").isNotEmpty) Text(title ?? "", style: theme.pageTitle),
+        if (text.trim().isNotEmpty)
+          Text(
+            text,
+            style: theme.tldr,
+          ),
       ],
     );
   }

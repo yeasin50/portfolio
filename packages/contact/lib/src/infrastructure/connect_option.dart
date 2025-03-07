@@ -20,6 +20,10 @@ class ConnectOption {
   final List<ConnectionPrinciple> principles;
   final Schedules? schedules;
 
+  bool get showSchedule {
+    return schedules != null && schedules!.state != ScheduleState.hide;
+  }
+
   factory ConnectOption.fromMap(Map<String, dynamic> map) {
     return ConnectOption(
       name: map["type"],
@@ -65,18 +69,26 @@ class PrincipleInfo {
   const PrincipleInfo({
     required this.name,
     required this.data,
+    this.description = "",
+    this.category = "",
   });
 
   final String name;
   final List<String> data;
+  final String description;
+  final String category;
 
   factory PrincipleInfo.fromMap(Map<String, dynamic> map) {
     return PrincipleInfo(
       name: map["name"],
+      description: map["description"] ?? "",
+      category: map["category"] ?? "",
       data: List.from(map["data"]),
     );
   }
 
   @override
-  String toString() => 'PrincipleInfo(name: $name, data: $data)';
+  String toString() {
+    return 'PrincipleInfo(name: $name, data: $data, description: $description, category: $category)';
+  }
 }

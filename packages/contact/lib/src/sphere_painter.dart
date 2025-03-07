@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@Deprecated("Don't know where I am gonna use it,  remove later ")
 class SpherePainterV1 extends CustomPainter {
   final ValueNotifier<Alignment> lightAlignment;
   final List<Color> shades;

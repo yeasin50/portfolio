@@ -5,6 +5,7 @@ import '../../contact.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import 'widgets/schedule_view.dart';
 import 'widgets/tldr_builder.dart';
 
 ///  show the details of [ConnectOption] in a separate page
@@ -39,6 +40,7 @@ class ConnectOptionPage extends StatelessWidget {
   /// todo
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<ContactThemeExt>()!;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -46,7 +48,7 @@ class ConnectOptionPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: Text(
               option.name,
-              style: Theme.of(context).extension<ContactThemeExt>()!.pageTitle,
+              style: theme.pageTitle,
             ),
           ),
           SliverLayoutBuilder(
@@ -64,8 +66,18 @@ class ConnectOptionPage extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 48.0),
-                            child: TldrBuilder(
-                              text: option.tldr!,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              spacing: 24,
+                              children: [
+                                TldrBuilder(
+                                  text: option.tldr!,
+                                ),
+                                if (option.schedules != null)
+                                  ScheduleView(
+                                    schedules: option.schedules!,
+                                  ),
+                              ],
                             ),
                           ),
                         ),

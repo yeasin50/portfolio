@@ -1,6 +1,10 @@
 import 'package:intl/intl.dart';
 
 class PortfolioDateFormat {
+  static String basic(DateTime date) {
+    return DateFormat('dd MMMM yyyy').format(date);
+  }
+
   /// (e.g., 'Jan 2025')
   static String experience(DateTime start, DateTime? end) {
     final startString = DateFormat('MMM yyyy').format(start);

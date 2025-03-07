@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../contact.dart';
 
+@Deprecated("Don't know where I am gonna use it,  remove later ")
 class OptionViewV1 extends StatefulWidget {
   const OptionViewV1({
     super.key,
@@ -34,7 +35,8 @@ class _OptionViewState extends State<OptionViewV1>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<ContactThemeExtOLD>()!.optionTheme;
+    final theme =
+        Theme.of(context).extension<ContactThemeExtOLD>()!.optionTheme;
 
     return AnimatedBuilder(
       animation: Listenable.merge([controller, widget.lightAlign]),

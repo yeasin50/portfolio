@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@Deprecated("Don't know where I am gonna use it,  remove later ")
 Alignment optionAlign({
   required Size canvasSize,
   required Size globeSize,

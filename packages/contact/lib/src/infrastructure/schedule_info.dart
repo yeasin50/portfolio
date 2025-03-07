@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 enum ScheduleState {
   busy,
   available,
-  unlisted,
+  hide,
   ;
 
   static ScheduleState fromMap(String? str) {
     return switch (str) {
       "busy" => ScheduleState.busy,
       "available" => ScheduleState.available,
-      _ => ScheduleState.unlisted,
+      _ => ScheduleState.hide,
     };
   }
 }

@@ -12,32 +12,42 @@ import '../../infrastructure/schedule_info.dart';
 /// if timeSlot is empty, it gonna highLight available_from
 /// else a expandable list
 ///
+///TODO:  add timeSlot
 class ScheduleView extends StatelessWidget {
   const ScheduleView({
     super.key,
     required this.schedules,
   });
-  final Schedules schedules;
+  final Schedules? schedules;
 
   @override
   Widget build(BuildContext context) {
+    if (schedules == null || schedules!.state == ScheduleState.hide) {
+      return const SizedBox.shrink();
+    }
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
 
     final availableDate =
-        core.PortfolioDateFormat.basic(schedules.availableFrom);
+        core.PortfolioDateFormat.basic(schedules!.availableFrom);
 
     ///  todo:
-    if (schedules.timeSlots.isEmpty) {
-      return Text(
-        "Available from $availableDate",
-        style: theme.tldr,
-      );
-    }
-    return eff.FilterChip(
-      label: "${schedules.availableFrom}",
-      activeColor: theme.expandIconColor,
-      isActive: false,
-      inActiveColor: Colors.transparent,
+    final dateView = eff.AnimatedArrowView(
+      child: DefaultTextStyle(
+        style: theme.tldr.copyWith(color: Colors.black), //FIXME:
+        child: Text(
+          "Available from $availableDate",
+        ),
+      ),
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: dateView,
+        ),
+      ],
     );
   }
 }

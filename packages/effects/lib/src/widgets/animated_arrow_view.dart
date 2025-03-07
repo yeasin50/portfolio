@@ -3,6 +3,19 @@ import 'dart:ui';
 import 'package:effects/effects.dart';
 import 'package:flutter/material.dart';
 
+///  create simple animated Arrow bullet point and next to the
+/// [child] as text
+/// TODO:  need some work
+/// ```dart
+/// eff.AnimatedArrowView(
+///       child: DefaultTextStyle(
+///         style: theme.tldr.copyWith(color: Colors.black), //FIXME:
+///         child: Text(
+///           "Available from $availableDate",
+///         ),
+///       ),
+///     );
+/// ```
 class AnimatedArrowView extends StatefulWidget {
   const AnimatedArrowView({
     super.key,
@@ -77,7 +90,7 @@ class _AnimatedArrowViewState extends State<AnimatedArrowView>
         animation: Listenable.merge([controller, rippleController]),
         builder: (context, child) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(4),
             child: DecoratedBox(
               decoration: ShapeDecoration(
                 color: widget.backgroundColor ?? theme.cardColor.first,
@@ -130,6 +143,7 @@ class _ArrowShapeBuilder extends OutlinedBorder {
         ..style = PaintingStyle.stroke
         ..strokeWidth = lerpDouble(1, 8, rippleAnimation.value)!;
 
+      ///  expand height
       canvas.drawCircle(
         rect.centerLeft,
         lerpDouble(radius, rect.width, rippleAnimation.value * i)!,

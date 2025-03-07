@@ -73,10 +73,7 @@ class ConnectOptionPage extends StatelessWidget {
                                 TldrBuilder(
                                   text: option.tldr!,
                                 ),
-                                if (option.schedules != null)
-                                  ScheduleView(
-                                    schedules: option.schedules!,
-                                  ),
+                                ScheduleView(schedules: option.schedules),
                               ],
                             ),
                           ),

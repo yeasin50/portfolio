@@ -113,3 +113,17 @@ import the package with a prefix
     ],
   ),
   ```
+
+- animated Arrow create simple animated Arrow bullet point and next to the [child] as text
+  /// TODO: need some work
+
+  ```dart
+  eff.AnimatedArrowView(
+        child: DefaultTextStyle(
+          style: theme.tldr.copyWith(color: Colors.black), //FIXME: use MergeTextStyle based on BG
+          child: Text(
+            "Available from $availableDate",
+          ),
+        ),
+      );
+  ```

@@ -244,18 +244,54 @@
           "items": [
             {
               "name": "",
-              "description": "Only spending my time on study isn't enough. I will only go only if I get chance to collaborate on meaningful project with my software development skills.",
-              "data": []
+              "description": "Knowledge without implementation is a waste to me. Simply spending my time studying isn't enough. The reason I have chosen to study is that it gives me the time and resources to understand the new culture where I might stay long-term. I enjoy programming and building things that align with my principles."
             },
             {
               "name": "Preferable programs",
-              "category": "ok",
-              "data": []
+              "description": "Postgraduate programs in computer and software-related fields, such as Software Development, Artificial Intelligence, or Computer Science."
             },
             {
-              "name": "work collaboration",
-              "category": "ok",
-              "data": []
+              "name": "Project collaboration",
+              "description": "My expertise lies in Flutter (Android, iOS, web, and desktop applications), and I can work with backend solutions. I learning Go (Golang) for backend development but am also willing to invest time in learning Rust.",
+              "data": [
+                "Leading projects",
+                "Building production-level applications for organizations",
+                "Contributing to open-source projects",
+                "Developing scalable and maintainable software solutions",
+                "Collaborating with teams on UI/UX improvements",
+                "Exploring AI and machine learning integration in applications"
+              ]
+            },
+            {
+              "name": "Good Culture",
+              "description": "I value a culture that promotes inclusivity, learning, and innovation. Whether in academia or the workplace, I seek an environment that supports collaboration, ethical practices, and respect for diverse perspectives. I also appreciate societies that encourage knowledge-sharing, work-life balance, and opportunities for professional and personal growth.",
+              "data": [
+                "Inclusive and diverse environment",
+                "Support for international students and professionals",
+                "Opportunities for learning, mentorship, and collaboration",
+                "Ethical leadership and responsible innovation",
+                "Work-life balance and overall well-being",
+                "A strong sense of community and shared growth"
+              ]
+            }
+          ]
+        },
+
+        {
+          "category": "not-ok",
+          "title": "I am not looking for",
+          "items": [
+            {
+              "name": "Meaningless Opportunities Abroad",
+              "description": "I’ve been working as a remote developer for companies across different countries for the past few years. I’m not just looking for any place to go. I prefer connections with government or recognized organizations and always check if an opportunity aligns with my preferences (as mentioned in the 'Looking For' section)."
+            },
+            {
+              "name": "Title-Driven Leadership & Empty Recognition",
+              "description": "I’ve worked under professors who care more about boosting their profiles with photos and project names than actually supporting the project. They often skip important details to save money and don’t fully understand the project requirements. The toughest part was working with non-technical people who think they know better than professionals. I’m not interested in working with such groups."
+            },
+            {
+              "name": "Cannot Contribute to My Skills",
+              "description": "I’m looking for opportunities that allow me to grow and enhance my skills. If an environment doesn’t offer the chance to learn, improve, or build on my existing knowledge, it’s not a good fit for me."
             }
           ]
         }

@@ -83,7 +83,7 @@ class PrincipleInfo {
       name: map["name"],
       description: map["description"] ?? "",
       category: map["category"] ?? "",
-      data: List.from(map["data"]),
+      data: List.from(map["data"]??[]),
     );
   }
 

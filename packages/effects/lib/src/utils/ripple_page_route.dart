@@ -144,7 +144,10 @@ class RippleRoute<T> extends PageRoute<T> {
   Duration get reverseTransitionDuration => popDuration;
 
   @override
-  Color? get barrierColor => color;
+  Color? get barrierColor => null;
+
+  @override
+  bool get opaque => false;
 
   @override
   String? get barrierLabel => null;

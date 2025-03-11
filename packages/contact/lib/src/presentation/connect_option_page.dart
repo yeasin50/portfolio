@@ -24,7 +24,7 @@ class ConnectOptionPage extends StatelessWidget {
     FractionalOffset? animateFrom,
     Duration pushDuration = const Duration(seconds: 1),
     Duration? popDuration,
-    Color primaryColor = Colors.blueAccent,
+    Color primaryColor = Colors.white,
   }) {
     final route = eff.RippleRoute(
       builder: (context) => ConnectOptionPage(option: option),
@@ -41,61 +41,70 @@ class ConnectOptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
+
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 56)), //handle it
-          SliverToBoxAdapter(
-            child: Text(
-              option.name,
-              style: theme.pageTitle,
+      appBar: AppBar(),
+      backgroundColor: Colors.black,
+      body: eff.BackgroundView(
+        colors: [
+          Color(0xFF1E2036),
+          Color(0xFF343C59),
+        ],
+        child: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(child: SizedBox(height: 56)), //handle it
+            SliverToBoxAdapter(
+              child: Text(
+                option.name,
+                style: theme.pageTitle,
+              ),
             ),
-          ),
-          SliverLayoutBuilder(
-            builder: (context, constraints) {
-              return SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if ((option.tldr ?? "").isNotEmpty) //shift tldr builder
-                      Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints.tightFor(
-                            width: c.Spacing.maxWidth,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 48.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              spacing: 24,
-                              children: [
-                                TldrBuilder(text: option.tldr!),
-                                if (option.showSchedule)
-                                  ScheduleView(schedules: option.schedules),
-                              ],
+            SliverLayoutBuilder(
+              builder: (context, constraints) {
+                return SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if ((option.tldr ?? "").isNotEmpty) //shift tldr builder
+                        Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: c.Spacing.maxWidth,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 48.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                spacing: 24,
+                                children: [
+                                  TldrBuilder(text: option.tldr!),
+                                  if (option.showSchedule)
+                                    ScheduleView(schedules: option.schedules),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    for (final item in option.principles)
-                      Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints.tightFor(
-                            width: c.Spacing.maxWidth,
+                      for (final item in option.principles)
+                        Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: c.Spacing.maxWidth,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 48.0),
+                              child: PreferenceBuilder(item: item),
+                            ),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 48.0),
-                            child: PreferenceBuilder(item: item),
-                          ),
-                        ),
-                      )
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
+                        )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

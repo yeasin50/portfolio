@@ -26,45 +26,57 @@ class ConnectPage extends StatefulWidget {
 class _ConnectPageState extends State<ConnectPage> {
   //
 
-  Offset tapPosition = Offset.zero;
-
-  void onTap(ConnectOption item) {
-    final size = MediaQuery.sizeOf(context);
-    final pushPosition = FractionalOffset.fromOffsetAndSize(tapPosition, size);
+  void onTap(ConnectOption item, FractionalOffset pushPosition) {
     final route = ConnectOptionPage.route(
-      option: item,
-      animateTO: pushPosition,
-    );
+        option: item,
+        animateTO: pushPosition,
+        primaryColor: Colors.white,
+        pushDuration: Durations.extralong1);
     Navigator.of(context).push(route);
   }
 
+  List<Offset> childrenOffset = [];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: eff.SphereFlow(
-              children: [
-                ...widget.data.items.map(
-                  (e) => GestureDetector(
-                    onPanDown: (details) {
-                      tapPosition = details.globalPosition;
-                    },
-                    onTap: () => onTap(e),
-                    child: eff.SphereView(
-                      key: ValueKey("flowItem ${e.name}"),
-                      child: Padding(
-                        padding: const EdgeInsets.all(48.0),
-                        child: Text(e.name),
+    final size = MediaQuery.sizeOf(context);
+    return eff.BackgroundView(
+      colors: [
+        Color(0xFF1E2036),
+        Color(0xFF343C59),
+      ],
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Center(
+              child: eff.SphereFlow(
+                callback: (childPosition) {
+                  childrenOffset = childPosition;
+                },
+                children: [
+                  for (int i = 0; i < widget.data.items.length; i++)
+                    GestureDetector(
+                      onPanDown: (details) {},
+                      onTap: () {
+                        final pushPosition = FractionalOffset.fromOffsetAndSize(
+                            childrenOffset[i], size);
+
+                        onTap(widget.data.items[i], pushPosition);
+                      },
+                      child: eff.SphereView(
+                        key: ValueKey("flowItem ${widget.data.items[i].name}"),
+                        child: Padding(
+                          padding: const EdgeInsets.all(48.0),
+                          child: Text(widget.data.items[i].name),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

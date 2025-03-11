@@ -41,8 +41,8 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ConnectOptionPage(
-                option: snapshot.requireData.connectData!.items[1],
+              home: ConnectPage(
+                data: snapshot.requireData.connectData!,
               ),
 
               builder: (context, child) {

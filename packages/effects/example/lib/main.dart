@@ -26,40 +26,39 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   double anim = 0;
 
+  void testRoute(Offset offset) {
+    final size = MediaQuery.sizeOf(context);
+    final pushPosition = FractionalOffset.fromOffsetAndSize(offset, size);
+
+    Navigator.of(context).push(eff.RippleRoute(
+      builder: (context) {
+        return Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(),
+          body: ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              tileColor: Colors.primaries[index % Colors.primaries.length],
+              title: Text("data $index"),
+            ),
+          ),
+        );
+      },
+      color: Colors.white,
+      center: FractionalOffset.center,
+      popPosition: pushPosition,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SineWaveEffect(
-          child: 1 < 2
-              ? Image.asset("assets/img.jpg")
-              : Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(58.0),
-                    //   child: Column(
-                    //     children: [
-                    //       eff.AnimatedExpansionTile(
-                    //         title: Text("Expansion title"),
-                    //         initialExpanded: true,
-                    //         lowerBound: .5,
-                    //         children: [
-                    //           for (final t in eff.BulletType.values)
-                    //             eff.BulletItemView(
-                    //               type: t,
-                    //               child: SizedBox(
-                    //                 height: 64,
-                    //                 child: Text(" ${t.name} "),
-                    //               ),
-                    //             ),
-                    //         ],
-                    //       ),
-                    //       Divider(),
-                    //     ],
-                    //   ),
-                    // ),
-                  ],
-                )),
-    );
+        body: Center(
+      child: GestureDetector(
+        onPanDown: (details) {
+          testRoute(details.globalPosition);
+        },
+        child: Text("data"),
+      ),
+    ));
   }
 }

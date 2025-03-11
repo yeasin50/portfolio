@@ -1,7 +1,8 @@
-import 'package:contact/contact.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
+import 'package:portfolio_yeasin/src/presentation/home/home_page.dart';
 import '../infrastructure/provider.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -41,10 +42,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ConnectPage(
-                data: snapshot.requireData.connectData!,
-              ),
-
+              home: HomePage(),
               builder: (context, child) {
                 final colors = Theme.of(context) //
                     .extension<AppTheme>()!

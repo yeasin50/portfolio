@@ -15,7 +15,10 @@ class SkillThemeExt extends ThemeExtension<SkillThemeExt> {
 
   static SkillThemeExt darkTheme() {
     return SkillThemeExt(
-      labelTextStyle: const TextStyle(color: Color(0xFFFFFFFF)),
+      labelTextStyle: const TextStyle(
+        color: Color(0xFFFFFFFF),
+        fontSize: 16,
+      ),
       backgroundColor: const [
         Color(0xFF1E2036),
         Color(0xFF343C59),
@@ -30,7 +33,10 @@ class SkillThemeExt extends ThemeExtension<SkillThemeExt> {
 
   static SkillThemeExt dayTheme() {
     return SkillThemeExt(
-      labelTextStyle: const TextStyle(color: Color(0xFF212121)),
+      labelTextStyle: const TextStyle(
+        color: Color(0xFF212121),
+        fontSize: 16,
+      ),
       backgroundColor: const [
         Color(0xFFB3E5FC),
         Color(0xFFFFF9C4),

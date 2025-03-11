@@ -16,11 +16,13 @@ class ShadowTextEffect extends StatefulWidget {
     this.style,
     required this.shadowColor,
     this.maxShadowDistance,
+    this.textAlign, 
   });
 
   final String text;
   final TextStyle? style;
   final Color shadowColor;
+  final TextAlign? textAlign; 
 
   /// max blur distance from the actual  position
   /// if null then  it gonna use [style] fontSize->height
@@ -101,6 +103,7 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
     return Text(
       widget.text,
       key: _textKey,
+      textAlign: widget.textAlign,
       style: style?.copyWith(
         shadows: [
           Shadow(

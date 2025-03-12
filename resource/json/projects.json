@@ -98,6 +98,36 @@
         "export and share mark-sheet"
       ]
     },
+    {
+      "id": "6",
+      "title": "Read me when",
+      "description": "Quranic verses (ayah) based on mood, spreading Islamic Da'wah in a respectful way.",
+      "category": "Flutter|Web",
+      "roll": "Special",
+      "created_at": "2025-01-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "read_me_when.png",
+        "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
+      },
+      "media": [],
+      "tasks": []
+    },
+    {
+      "id": "7",
+      "title": "Moneybag Flutter SDK",
+      "description": "Build Moneybag Flutter package which is a leading payment gateway in Bangladesh, offering secure and seamless online transaction services. It supports multiple payment methods such as credit and debit cards, mobile financial services, and bank transfers.",
+      "category": "Flutter SDK",
+      "roll": "Flutter Developer",
+      "created_at": "2024-08-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "moneybag.png",
+        "blur_hash": "QBOEhdnl_NE00KNFTZxuof3^SdXkxun6xaX6RkWBUDs;4-xa~DW-rvWoof"
+      },
+      "media": [],
+      "tasks": []
+    },
 
     {
       "id": "1",

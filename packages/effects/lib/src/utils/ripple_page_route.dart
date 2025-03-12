@@ -71,7 +71,7 @@ class RippleRoute<T> extends PageRoute<T> {
     super.barrierDismissible = false,
     super.fullscreenDialog,
     super.allowSnapshotting = true,
-    required this.color,
+    this.color = Colors.white,
     required this.center,
     required this.popPosition,
     this.duration = Durations.medium4,

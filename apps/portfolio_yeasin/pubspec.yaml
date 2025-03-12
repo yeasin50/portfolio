@@ -22,7 +22,7 @@ dependencies:
     path: ../../packages/experience
   effects:
     path: ../../packages/effects
-    
+
   contact:
     path: ../../packages/contact
 
@@ -43,5 +43,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/user_info.json

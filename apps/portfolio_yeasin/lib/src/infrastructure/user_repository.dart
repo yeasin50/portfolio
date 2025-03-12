@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:experience/experience.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
+
+import 'dart:io' if (dart.library.html) 'dummy.dart' as io;
+
+import 'project_repository.dart';
 
 ///
 /// handle all the info about user
@@ -42,42 +46,37 @@ class UserRepository {
   ///  create new instance to pass down the widget tree
   ///
   static Future<UserRepository> create() async {
-    //todo: http
-    final response = await rootBundle.loadString("assets/user_info.json");
+    var response;
+    try {
+      if (kDebugMode) {
+        final currentDir = io.Directory.current.path;
+        final filePath = '$currentDir\\..\\..\\resource\\json\\user_info.json';
+        print("exits here ${await io.File(filePath).exists()}");
+        response = await io.File(filePath).readAsString();
+      } else {
+        throw UnimplementedError('Network fetch is not implemented.');
+      }
+    } catch (e) {
+      rethrow;
+    }
+
     final data = jsonDecode(response);
 
     final intro = IntroInfo.fromMap(data["intro"]);
     final experiences = List<Experience>.from(
-      data['experience'].map(
-        (e) => Experience.fromMap(e),
-      ),
-    );
+        data['experience'].map((e) => Experience.fromMap(e)));
 
-    final connects = List<Connect>.from(
-      data['connects'].map(
-        (e) => Connect.fromMap(e),
-      ),
-    );
+    final connects =
+        List<Connect>.from(data['connects'].map((e) => Connect.fromMap(e)));
 
     final education = List<Education>.from(
-      data['education'].map(
-        (e) => Education.fromMap(e),
-      ),
-    );
+        data['education'].map((e) => Education.fromMap(e)));
 
     final certificate = List<Certificate>.from(
-      data['certificate'].map(
-        (e) => Certificate.fromMap(e),
-      ),
-    );
-
-    final projects = List<Project>.from(
-      data['projects'].map(
-        (e) => Project.fromMap(e),
-      ),
-    );
+        data['certificate'].map((e) => Certificate.fromMap(e)));
 
     final connectRepo = await UserConnectRepo.create();
+    final projectRepo = await ProjectRepository.create();
 
     return UserRepository._(
       intro: intro,
@@ -85,7 +84,7 @@ class UserRepository {
       experiences: experiences,
       educations: education,
       certificates: certificate,
-      projects: projects,
+      projects: projectRepo.projects,
       connectData: connectRepo,
     );
   }

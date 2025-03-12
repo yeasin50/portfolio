@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/app/app.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -117,11 +116,7 @@ class _WorkItemsState extends State<WorkItems> {
             child: eff.NeonButton(
               label: "see more",
               onTap: () {
-                final route = MaterialPageRoute(
-                  builder: (context) {
-                    return WorkPage();
-                  },
-                );
+                final route = WorkPage.route();
                 Navigator.of(context).push(route);
               },
             ),

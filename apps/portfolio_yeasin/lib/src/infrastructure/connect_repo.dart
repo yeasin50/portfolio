@@ -1,9 +1,8 @@
 import 'package:contact/contact.dart';
 
 import 'dart:convert';
-import 'dart:io' if (dart.library.html) 'dummy.dart' as io;
 
-import 'package:flutter/foundation.dart';
+import 'utils/get_resource.dart';
 
 class UserConnectRepo implements IConnectRepo {
   const UserConnectRepo._(this._options);
@@ -11,16 +10,8 @@ class UserConnectRepo implements IConnectRepo {
 
   static Future<UserConnectRepo> create() async {
     try {
-      var response;
-      if (kDebugMode) {
-        final currentDir = io.Directory.current.path;
-        final filePath =
-            '$currentDir\\..\\..\\resource\\json\\connect_option.json';
-        print("exits here ${await io.File(filePath).exists()}");
-        response = await io.File(filePath).readAsString();
-      } else {
-        throw UnimplementedError('Network fetch is not implemented.');
-      }
+      var response =
+          await GetResource.fetchResponse("resource/json/connect_option.json");
 
       final data = jsonDecode(response)["data"] as List?;
 

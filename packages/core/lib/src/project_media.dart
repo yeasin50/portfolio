@@ -39,12 +39,10 @@ class ProjectMedia {
   /// !https://pub.dev/packages/flutter_blurhash
   final String? blurHash;
 
+  bool get isHoverItem => type == "hover_play";
   static ProjectMedia fromMap(Map<String, dynamic> map) {
     return ProjectMedia(
-      type: map["type"],
-      value: map["value"],
-      blurHash: map["blur_hash"]
-    );
+        type: map["type"], value: map["value"], blurHash: map["blur_hash"]);
   }
 }
 

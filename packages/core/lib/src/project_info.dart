@@ -1,4 +1,5 @@
 import 'project_media.dart';
+import 'package:collection/collection.dart';
 
 class Project {
   const Project({
@@ -32,6 +33,15 @@ class Project {
   final ProjectMedia? thumbnail;
 
   final List<ProjectMediaGroup> media;
+
+  ProjectMedia? get hoverItem {
+    for (final mg in media) {
+      for (final m in mg.data) {
+        if (m.isHoverItem) return m;
+      }
+    }
+    return null;
+  }
 
   ///  what you've done here
   /// what, why, how answers

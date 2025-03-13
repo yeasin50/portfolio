@@ -110,7 +110,18 @@
         "value": "read_me_when.png",
         "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
       },
-      "media": [],
+      "media": [
+        {
+          "title": "",
+          "data": [
+            {
+              "type": "hover_play",
+              "value": "read_me_when.gif",
+              "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
+            }
+          ]
+        }
+      ],
       "tasks": []
     },
     {

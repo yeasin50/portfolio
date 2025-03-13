@@ -68,8 +68,15 @@ class _ProjectCardState extends State<ProjectCard>
                   ),
                 ],
               ),
-              child: ImageLoader(
-                media: project.thumbnail,
+              child: AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  return widget.project.hoverItem == null ||
+                          controller.value == 0
+                      ? child!
+                      : ImageLoader(media: project.hoverItem);
+                },
+                child: ImageLoader(media: project.thumbnail),
               ),
             ),
           ),

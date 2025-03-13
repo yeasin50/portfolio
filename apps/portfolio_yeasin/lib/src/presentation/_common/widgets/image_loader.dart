@@ -23,7 +23,6 @@ class ImageLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(localPath);
     if (media == null) return const Placeholder();
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),

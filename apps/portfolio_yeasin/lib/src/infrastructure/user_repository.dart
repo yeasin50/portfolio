@@ -9,6 +9,7 @@ import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
 import 'dart:io' if (dart.library.html) 'dummy.dart' as io;
 
 import 'project_repository.dart';
+import 'utils/get_resource.dart';
 
 ///
 /// handle all the info about user
@@ -46,19 +47,8 @@ class UserRepository {
   ///  create new instance to pass down the widget tree
   ///
   static Future<UserRepository> create() async {
-    var response;
-    try {
-      if (kDebugMode) {
-        final currentDir = io.Directory.current.path;
-        final filePath = '$currentDir\\..\\..\\resource\\json\\user_info.json';
-        print("exits here ${await io.File(filePath).exists()}");
-        response = await io.File(filePath).readAsString();
-      } else {
-        throw UnimplementedError('Network fetch is not implemented.');
-      }
-    } catch (e) {
-      rethrow;
-    }
+    var response =
+        await GetResource.fetchResponse("resource/json/user_info.json");
 
     final data = jsonDecode(response);
 

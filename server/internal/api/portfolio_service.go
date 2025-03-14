@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -43,7 +44,17 @@ func (s *portfolioService) getJsonResponse(ctx *gin.Context, fileName string) {
 		models.WriteError(ctx.Writer, *err)
 		return
 	}
-	models.WriteOk(ctx.Writer, data)
+
+	var jsonData map[string]interface{}
+	if err := json.Unmarshal([]byte(data), &jsonData); err != nil {
+		models.WriteError(ctx.Writer, models.APIError{
+			Code:    strconv.Itoa(http.StatusInternalServerError),
+			Message: fmt.Sprintf("error unmarshalling JSON: %v", err),
+		})
+		return
+	}
+
+	models.WriteOk(ctx.Writer, jsonData)
 }
 
 // GetLocalJson reads a JSON file from /database/json/ and returns its content as a string.

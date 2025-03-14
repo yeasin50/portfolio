@@ -1,0 +1,39 @@
+# Binaries and executables
+*.exe
+*.out
+*.o
+*.so
+*.a
+
+# Compiled files
+/bin/
+/obj/
+/build/
+vendor/
+
+# Go-specific
+*.log
+*.test
+*.prof
+*.sum
+*.mod
+/go.sum
+/go.mod
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.cache
+*.bak
+
+# Gin-related (optional, if you use live-reloading tools)
+gin-bin

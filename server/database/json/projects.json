@@ -1,0 +1,187 @@
+{
+  "version": 0,
+  "updated_at": "2025-02-07T12:00:00Z",
+  "data": [
+    {
+      "id": "1",
+      "title": "Locato",
+      "description": "A real state application to solve rental solution for US-France",
+      "category": "Mobile Application",
+      "roll": "Flutter Developer",
+      "created_at": "2023-11-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "locato.png",
+        "blur_hash": "LNL6FC{qGRzE}xOk;BGRTbVuieV["
+      },
+      "media": [],
+      "tasks": [
+        "Fixed bugs",
+        "Refactored full-codebase for release",
+        "Improve performance and code-readability"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Lisa Fischer Portfolio Clone",
+      "description": "Web project using Flutter Navigator 2.0 to clone Lisa Fischer’s portfolio.",
+      "category": "Web Development",
+      "roll": "Flutter Developer",
+      "created_at": "2021-08-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "lisa_portfolio_clone.png",
+        "blur_hash": "|PRMb%?axtbbs;R*ofxuxa~qD*t7soNGoLe:WBbHs8%LIUR*xHWXW;a#M{x]M|t7f6WBoeoJWAt7V@ayRjf7ofoeofofo2R*t7aekBfkRjafj[bbt7M|xun+M{t6WBkCayWBxtM{WUxuRkofWBj[t7Rjt7f8R*s:WWa#o2"
+      },
+      "media": [],
+      "tasks": [
+        "Implemented navigation using Navigator 2.0",
+        "Designed UI to match original portfolio"
+      ]
+    },
+
+    {
+      "id": "3",
+      "title": "Grocery shop",
+      "description": "In search of efficient grid rendering, found and create something beautiful  about life",
+      "category": "Mobile Application",
+      "roll": "youtube",
+      "created_at": "2023-11-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "grocery_shop_app.png",
+        "blur_hash": "LVP$j+MzK0OF_,WAo#Tc54w4XSw4"
+      },
+      "media": [],
+      "tasks": [
+        "Functional app with for students",
+        "player with Inherited widget as state-management solution"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "DIU Result",
+      "description": "Automating the mark-sheet retrieval process and eliminating a 3-day delay and a 50 BDT fee.",
+      "category": "Mobile Application",
+      "roll": "youtube",
+      "created_at": "2023-11-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "diu_result.png",
+        "blur_hash": "LDDK_B%$vfTI?dVFabaLqDNEHrtQ"
+      },
+      "media": [],
+      "tasks": [
+        "Integrated offline access",
+        "grade analysis for peer comparison",
+        "course selection for retakes",
+        "export and share mark-sheet"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Ek Sheba",
+      "description": "Integrated Digital Services Delivery Platform (IDSDP), Planning Division & Planning Commission of Bangladesh.",
+      "category": "Mobile Application",
+      "roll": "Flutter Developer",
+      "created_at": "2023-07-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "ek_sheba.png",
+        "blur_hash": "QBOEhdnl_NE00KNFTZxuof3^SdXkxun6xaX6RkWBUDs;4-xa~DW-rvWoof"
+      },
+      "media": [],
+      "tasks": [
+        "Connected service so that user can work within the app",
+        "documents review process ",
+        "course selection for retakes",
+        "export and share mark-sheet"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Read me when",
+      "description": "Quranic verses (ayah) based on mood, spreading Islamic Da'wah in a respectful way.",
+      "category": "Flutter|Web",
+      "roll": "Special",
+      "created_at": "2025-01-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "read_me_when.png",
+        "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
+      },
+      "media": [
+        {
+          "title": "",
+          "data": [
+            {
+              "type": "hover_play",
+              "value": "read_me_when.gif",
+              "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
+            }
+          ]
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "7",
+      "title": "Moneybag Flutter SDK",
+      "description": "Build Moneybag Flutter package which is a leading payment gateway in Bangladesh, offering secure and seamless online transaction services. It supports multiple payment methods such as credit and debit cards, mobile financial services, and bank transfers.",
+      "category": "Flutter SDK",
+      "roll": "Flutter Developer",
+      "created_at": "2024-08-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "value": "moneybag.png",
+        "blur_hash": "QBOEhdnl_NE00KNFTZxuof3^SdXkxun6xaX6RkWBUDs;4-xa~DW-rvWoof"
+      },
+      "media": [],
+      "tasks": []
+    },
+
+    {
+      "id": "1",
+      "title": "Game of Life",
+      "description": "In search of efficient grid rendering, found and create something beautiful  about life",
+      "category": "Windows Application",
+      "roll": "Special",
+      "created_at": "2023-11-01T00:00:00Z",
+      "thumbnail": null,
+      "media": [],
+      "tasks": [
+        "Efficient way  of rendering thousands of grid inside fragment shader",
+        "player with Inherited widget as state-management solution"
+      ]
+    },
+
+    {
+      "id": "2",
+      "title": "Personal Formula Assistant",
+      "description": "Helps students access mathematical formulas offline and search by title.",
+      "category": "Mobile Application",
+      "roll": "Flutter Developer",
+      "created_at": "2023-06-01T00:00:00Z",
+      "thumbnail": null,
+      "media": [],
+      "tasks": [
+        "Designed UI for offline access",
+        "Implemented search functionality"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Flutter 2D Space Craft Game",
+      "description": "A fun 2D game built with Flutter using CustomPaint and custom logic.",
+      "category": "Game Development",
+      "roll": "Game Developer",
+      "created_at": "2021-01-01T00:00:00Z",
+      "thumbnail": null,
+      "media": [],
+      "tasks": [
+        "Developed game mechanics",
+        "Created custom UI without asset images"
+      ]
+    }
+  ]
+}

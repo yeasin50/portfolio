@@ -7,17 +7,23 @@ import '../infrastructure/provider.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import 'app_config.dart';
 import 'app_theme.dart';
 
 class YeasinPortfolio extends StatefulWidget {
-  const YeasinPortfolio({super.key});
+  const YeasinPortfolio({
+    super.key,
+    required this.config,
+  });
+  final AppConfig config;
 
   @override
   State<YeasinPortfolio> createState() => _YeasinPortfolioState();
 }
 
 class _YeasinPortfolioState extends State<YeasinPortfolio> {
-  late final Future<UserRepository> future = UserRepository.create();
+  late final Future<UserRepository> future =
+      UserRepository.create(widget.config);
 
   @override
   Widget build(BuildContext context) {

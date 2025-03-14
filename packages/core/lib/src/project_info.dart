@@ -1,5 +1,4 @@
 import 'project_media.dart';
-import 'package:collection/collection.dart';
 
 class Project {
   const Project({

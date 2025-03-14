@@ -1,15 +1,12 @@
-import 'dart:convert';
-
 import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:experience/experience.dart';
-import 'package:flutter/foundation.dart';
+import 'package:portfolio_yeasin/src/infrastructure/api_service.dart';
 import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
+import 'package:portfolio_yeasin/src/infrastructure/models/user_info_response.dart';
 
-import 'dart:io' if (dart.library.html) 'dummy.dart' as io;
-
+import '../app/app_config.dart';
 import 'project_repository.dart';
-import 'utils/get_resource.dart';
 
 ///
 /// handle all the info about user
@@ -46,34 +43,25 @@ class UserRepository {
 
   ///  create new instance to pass down the widget tree
   ///
-  static Future<UserRepository> create() async {
-    var response =
-        await GetResource.fetchResponse("resource/json/user_info.json");
+  static Future<UserRepository> create(AppConfig config) async {
+    final apiService = ApiService(config.baseUrl);
 
-    final data = jsonDecode(response);
+    final response = await Future.wait([
+      apiService.getUserInfo(),
+      UserConnectRepo.create(apiService),
+      ProjectRepository.create(apiService)
+    ]);
+    final userInfo = response.first as UserInfoResponse;
 
-    final intro = IntroInfo.fromMap(data["intro"]);
-    final experiences = List<Experience>.from(
-        data['experience'].map((e) => Experience.fromMap(e)));
-
-    final connects =
-        List<Connect>.from(data['connects'].map((e) => Connect.fromMap(e)));
-
-    final education = List<Education>.from(
-        data['education'].map((e) => Education.fromMap(e)));
-
-    final certificate = List<Certificate>.from(
-        data['certificate'].map((e) => Certificate.fromMap(e)));
-
-    final connectRepo = await UserConnectRepo.create();
-    final projectRepo = await ProjectRepository.create();
+    final connectRepo = response[1] as UserConnectRepo;
+    final projectRepo = response.last as ProjectRepository;
 
     return UserRepository._(
-      intro: intro,
-      connects: connects,
-      experiences: experiences,
-      educations: education,
-      certificates: certificate,
+      intro: userInfo.into,
+      connects: userInfo.connects,
+      experiences: userInfo.experience,
+      educations: userInfo.education,
+      certificates: userInfo.certificates,
       projects: projectRepo.projects,
       connectData: connectRepo,
     );

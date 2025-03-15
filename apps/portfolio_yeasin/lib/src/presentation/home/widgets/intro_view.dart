@@ -29,9 +29,6 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final hasExceedMaxWidth =
-        MediaQuery.sizeOf(context).width < Spacing.maxWidth;
-
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
@@ -130,7 +127,8 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                       );
               }(),
               Expanded(
-                child: Center(
+                child: Align(
+                  alignment: Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24),
                     child: NavigationButtons(scrollT: t),

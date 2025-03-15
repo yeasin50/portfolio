@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/theme.dart';
@@ -35,18 +36,22 @@ class _NavigationBarState extends State<NavigationButtons>
 
   @override
   Widget build(BuildContext context) {
-    return Flow(
-      delegate: NavigationDelegate(widget.scrollT),
-      children: Page.values
-          .map(
-            (e) => NavigationItem(
+    final hasExceedMaxWidth =
+        MediaQuery.sizeOf(context).width < Spacing.maxWidth;
+
+    final children = Page.values
+        .map((e) => NavigationItem(
               label: e.label,
               isActive: e == selectedPage,
               onTap: () {},
-            ),
-          )
-          .toList(),
-    );
+            ))
+        .toList();
+    return hasExceedMaxWidth
+        ? Wrap(children: children)
+        : Flow(
+            delegate: NavigationDelegate(widget.scrollT),
+            children: children,
+          );
   }
 }
 

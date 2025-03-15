@@ -29,6 +29,9 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final hasExceedMaxWidth =
+        MediaQuery.sizeOf(context).width < Spacing.maxWidth;
+
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 

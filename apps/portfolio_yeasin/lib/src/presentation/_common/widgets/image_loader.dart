@@ -18,7 +18,7 @@ class ImageLoader extends StatelessWidget {
 
   String get localPath {
     final fileName = media?.value.split('/').last;
-    return '../../resource/images/$fileName';
+    return '../../server/database/images/$fileName';
   }
 
   @override

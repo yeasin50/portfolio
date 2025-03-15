@@ -68,7 +68,7 @@ class _WorkItemsState extends State<WorkItems> {
   @override
   Widget build(BuildContext context) {
     final itemPerRow =
-        MediaQuery.sizeOf(context).width < Spacing.maxWidth ? 1 : 2;
+        MediaQuery.sizeOf(context).width < Spacing.mobileBreakpoint ? 1 : 2;
 
     return Column(
       spacing: 16,
@@ -102,9 +102,11 @@ class _WorkItemsState extends State<WorkItems> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: 48,
                   children: [
-                    buildProject(filteredProjects[i]),
+                    Expanded(child: buildProject(filteredProjects[i])),
                     if (i + 1 < filteredProjects.length)
-                      buildProject(filteredProjects[i + 1]),
+                      Expanded(
+                        child: buildProject(filteredProjects[i + 1]),
+                      )
                   ],
                 ),
             ]

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final hasExceedMaxWidth =
+        MediaQuery.sizeOf(context).width < Spacing.maxWidth;
     return Scaffold(
       body: Listener(
         onPointerSignal: onPointerSignal,
@@ -74,7 +77,7 @@ class _HomePageState extends State<HomePage>
 
             slivers: [
               SliverPersistentHeader(
-                pinned: true,
+                pinned: !hasExceedMaxWidth,
                 delegate: IntroPersistenceHeaderDelegate(
                   info: provider.intro,
                   maxHeight: size.height,
@@ -93,9 +96,7 @@ class _HomePageState extends State<HomePage>
               HomeItemSliverBuilder(
                 title: "Experience",
                 children: provider.experiences.map(
-                  (e) => ExperienceItemBuilder(
-                    experience: e,
-                  ),
+                  (e) => ExperienceItemBuilder(experience: e),
                 ),
               ),
               const HomeItemSliverBuilder(

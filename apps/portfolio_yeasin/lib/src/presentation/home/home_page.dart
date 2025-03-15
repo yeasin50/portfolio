@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
-  late final userId = getSOId(context.provider.connects);
+  late final soInfo = getSOId(context.provider.connects);
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -82,12 +82,13 @@ class _HomePageState extends State<HomePage>
                 minHeight: minIntroHeight,
               ),
             ),
-            if (userId != null)
+            if (soInfo.$1 != null)
               HomeItemSliverBuilder(
                 title: "StackOverflow",
                 children: [
                   so.SoProfileView(
-                    userId: userId!,
+                    userId: soInfo.$1!,
+                    description: soInfo.$2,
                   ),
                 ],
               ),

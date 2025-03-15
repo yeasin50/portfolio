@@ -4,12 +4,18 @@ import '../home/widgets/title_view.dart';
 import 'work_items.dart';
 
 class WorkPage extends StatefulWidget {
-  const WorkPage({super.key});
+  const WorkPage({
+    super.key,
+    this.showFilter = false,
+  });
+  final bool showFilter;
 
   static PageRouteBuilder route() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const WorkPage();
+        return const WorkPage(
+          showFilter: true,
+        );
       },
       maintainState: true,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -36,7 +42,7 @@ class _WorkPageState extends State<WorkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 56),
+        padding: const EdgeInsets.symmetric(vertical: 56, horizontal: 24),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints.tightFor(
@@ -55,7 +61,7 @@ class _WorkPageState extends State<WorkPage> {
                     title: "Work",
                   ),
                 ),
-                const WorkItems(),
+                WorkItems(showFilter: widget.showFilter),
               ],
             ),
           ),

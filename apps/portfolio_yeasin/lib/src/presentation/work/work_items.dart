@@ -74,15 +74,15 @@ class _WorkItemsState extends State<WorkItems> {
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // if (widget.showFilter)
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: FilterBar(
-            items: filters,
-            onChanged: onFilterChanged,
-            initialSelected: selectedFilter,
+        if (widget.showFilter)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: FilterBar(
+              items: filters,
+              onChanged: onFilterChanged,
+              initialSelected: selectedFilter,
+            ),
           ),
-        ),
         // nested for padding, lazy 😀
         Column(
           spacing: 48,

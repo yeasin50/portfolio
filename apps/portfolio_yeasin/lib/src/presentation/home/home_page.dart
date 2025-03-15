@@ -66,69 +66,74 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       body: Listener(
         onPointerSignal: onPointerSignal,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          child: CustomScrollView(
-            controller: scrollController,
-            //! DOES not work,
-            // physics: animationController.isAnimating
-            //     ? null
-            //     : IntroSnapScrollPhysics(snapHeight: size.height),
+        child: CustomScrollView(
+          controller: scrollController,
+          //! DOES not work,
+          // physics: animationController.isAnimating
+          //     ? null
+          //     : IntroSnapScrollPhysics(snapHeight: size.height),
 
-            slivers: [
-              SliverPersistentHeader(
-                pinned: !hasExceedMaxWidth,
-                delegate: IntroPersistenceHeaderDelegate(
-                  info: provider.intro,
-                  maxHeight: size.height,
-                  minHeight: minIntroHeight,
-                ),
+          slivers: [
+            SliverPersistentHeader(
+              pinned: !hasExceedMaxWidth,
+              delegate: IntroPersistenceHeaderDelegate(
+                info: provider.intro,
+                maxHeight: size.height,
+                minHeight: minIntroHeight,
               ),
-              if (userId != null)
-                HomeItemSliverBuilder(
-                  title: "StackOverflow",
-                  children: [
-                    so.SoProfileView(
-                      userId: userId!,
-                    ),
-                  ],
-                ),
+            ),
+            if (userId != null)
               HomeItemSliverBuilder(
-                title: "Experience",
-                children: provider.experiences.map(
-                  (e) => ExperienceItemBuilder(experience: e),
-                ),
-              ),
-              const HomeItemSliverBuilder(
-                title: "Work",
+                title: "StackOverflow",
                 children: [
-                  WorkItems(maxItem: 4),
-                ],
-              ),
-              HomeItemSliverBuilder(
-                title: "Certificate",
-                children: [
-                  CertificateListView(
-                    certificates: provider.certificates,
-                  )
-                ],
-              ),
-              const HomeItemSliverBuilder(
-                title: "Skills",
-                children: [
-                  SkillItems(),
-                ],
-              ),
-              HomeItemSliverBuilder(
-                title: "Education",
-                children: provider.educations.map(
-                  (e) => EducationItemBuilder(
-                    education: e,
+                  so.SoProfileView(
+                    userId: userId!,
                   ),
+                ],
+              ),
+            HomeItemSliverBuilder(
+              title: "Experience",
+              children: provider.experiences.map(
+                (e) => ExperienceItemBuilder(experience: e),
+              ),
+            ),
+            const HomeItemSliverBuilder(
+              title: "Work",
+              children: [
+                WorkItems(maxItem: 4),
+              ],
+            ),
+            HomeItemSliverBuilder(
+              title: "Certificate",
+              children: [
+                CertificateListView(
+                  certificates: provider.certificates,
+                )
+              ],
+            ),
+            const HomeItemSliverBuilder(
+              title: "Skills",
+              children: [
+                SkillItems(),
+              ],
+            ),
+            HomeItemSliverBuilder(
+              title: "Education",
+              children: provider.educations.map(
+                (e) => EducationItemBuilder(
+                  education: e,
                 ),
               ),
-            ],
-          ),
+            ),
+          ]
+              .map(
+                (e) => SliverPadding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                  sliver: e,
+                ),
+              )
+              .toList(),
         ),
       ),
     );

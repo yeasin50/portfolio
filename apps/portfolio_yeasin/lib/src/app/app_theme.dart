@@ -1,6 +1,7 @@
 import 'package:effects/effects.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:skill/skill.dart';
 import 'package:contact/contact.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart';
@@ -18,6 +19,7 @@ class AppThemeConfig {
   static ThemeData data(AppThemeMode mode) {
     return ThemeData(
       scaffoldBackgroundColor: Colors.transparent,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
       extensions: switch (mode) {
         AppThemeMode.light => [
             AppTheme.dayTheme(),

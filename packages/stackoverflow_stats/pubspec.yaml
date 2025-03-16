@@ -17,6 +17,7 @@ dependencies:
   collection: ^1.18.0
   flutter:
     sdk: flutter
+  html: ^0.15.5
   http: ^1.2.2
 
 dev_dependencies:

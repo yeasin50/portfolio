@@ -1,9 +1,10 @@
 ///
 extension SOProfileEXT on SoProfile {
-  Map<String, int> get cardData => {
-        "Reputation": reputation,
-        "answers": totalAnswer,
-        "questions": totalQuestion,
+  Map<String, String> get cardData => {
+        if (reached != null) "people reached": reached!,
+        "Reputation": reputation.toString(),
+        "answers": totalAnswer.toString(),
+        "questions": totalQuestion.toString(),
       };
 
   Map<String, int> get badges => {
@@ -27,6 +28,7 @@ class SoProfile {
     required this.goldBadgeCount,
     required this.silverBadgeCount,
     required this.bronzeBadgeCount,
+    this.reached,
   });
 
   final int accountId;
@@ -42,6 +44,7 @@ class SoProfile {
   final int goldBadgeCount;
   final int silverBadgeCount;
   final int bronzeBadgeCount;
+  final String? reached;
 
   factory SoProfile.fromMap(Map<String, dynamic> data) {
     final map = data["items"][0];
@@ -61,6 +64,36 @@ class SoProfile {
       goldBadgeCount: map['badge_counts']["gold"]?.toInt() ?? 0,
       silverBadgeCount: map['badge_counts']["silver"]?.toInt() ?? 0,
       bronzeBadgeCount: map['badge_counts']["bronze"]?.toInt() ?? 0,
+    );
+  }
+
+  SoProfile copyWith({
+    int? accountId,
+    int? reputation,
+    int? totalAnswer,
+    int? totalQuestion,
+    DateTime? createdAt,
+    String? name,
+    String? avatarUrl,
+    String? profileUrl,
+    int? goldBadgeCount,
+    int? silverBadgeCount,
+    int? bronzeBadgeCount,
+    String? reached,
+  }) {
+    return SoProfile(
+      accountId: accountId ?? this.accountId,
+      reputation: reputation ?? this.reputation,
+      totalAnswer: totalAnswer ?? this.totalAnswer,
+      totalQuestion: totalQuestion ?? this.totalQuestion,
+      createdAt: createdAt ?? this.createdAt,
+      name: name ?? this.name,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      profileUrl: profileUrl ?? this.profileUrl,
+      goldBadgeCount: goldBadgeCount ?? this.goldBadgeCount,
+      silverBadgeCount: silverBadgeCount ?? this.silverBadgeCount,
+      bronzeBadgeCount: bronzeBadgeCount ?? this.bronzeBadgeCount,
+      reached: reached ?? this.reached,
     );
   }
 }

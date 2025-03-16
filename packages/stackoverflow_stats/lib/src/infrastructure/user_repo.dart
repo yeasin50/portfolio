@@ -6,6 +6,7 @@ import '../domain/so_profile.dart';
 import '../domain/user_repo.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
 
 ///  fetch  StackOverflow user's profile  stats
 ///
@@ -72,7 +73,10 @@ class SOUserRepo implements IUserRepo {
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
-        return SoProfile.fromMap(jsonDecode(response.body));
+        final reached = await fetchReached(userId);
+        return SoProfile.fromMap(jsonDecode(response.body)).copyWith(
+          reached: reached,
+        );
       }
 
       log("failed to fetch user $userId ${response.body}");
@@ -80,5 +84,29 @@ class SOUserRepo implements IUserRepo {
       log("${e.toString()}  ${st.toString()}");
     }
     return null;
+  }
+
+  Future<String?> fetchReached(int userId) async {
+    try {
+      final url = 'https://stackoverflow.com/users/$userId';
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode != 200) return null;
+      var document = parser.parse(response.body);
+
+      var statsElements = document.querySelectorAll('.fs-body3.fc-black-600');
+
+      return statsElements.length > 1 ? statsElements[1].text.trim() : null;
+      String reputation =
+          statsElements.isNotEmpty ? statsElements[0].text.trim() : "N/A";
+
+      String answers =
+          statsElements.length > 2 ? statsElements[2].text.trim() : "N/A";
+      String questions =
+          statsElements.length > 3 ? statsElements[3].text.trim() : "N/A";
+    } catch (e, st) {
+      log("failed to fetchReached $e  \n $st  ");
+      return null;
+    }
   }
 }

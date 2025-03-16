@@ -80,12 +80,14 @@ class _SoProfileViewState extends State<SoProfileView> {
                           rank: switch (i) {
                             0 => "gold",
                             1 => "silver",
-                            _ => "bronze"
+                            2 => "bronze",
+                            _ => ""
                           },
                           awardCount: switch (i) {
                             0 => user.goldBadgeCount,
                             1 => user.silverBadgeCount,
-                            _ => user.bronzeBadgeCount
+                            2 => user.bronzeBadgeCount,
+                            _ => 0,
                           },
                         ),
                       ),

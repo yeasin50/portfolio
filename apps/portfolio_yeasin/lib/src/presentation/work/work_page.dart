@@ -3,6 +3,8 @@ import 'package:core/core.dart';
 import '../home/widgets/title_view.dart';
 import 'work_items.dart';
 
+import 'package:effects/effects.dart' as eff;
+
 class WorkPage extends StatefulWidget {
   const WorkPage({
     super.key,
@@ -50,16 +52,19 @@ class _WorkPageState extends State<WorkPage> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: 24,
               children: [
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
-                  child: BackButton(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 48.0),
-                  child: TitleView.large(
-                    title: "Work",
+                  child: eff.AnimatedBackButton(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Icon(Icons.arrow_back_ios, size: 12),
                   ),
+                ),
+                TitleView.large(
+                  title: "Work",
                 ),
                 WorkItems(showFilter: widget.showFilter),
               ],

@@ -58,7 +58,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
           child: CompositedTransformTarget(
             link: layerLink,
             child: Padding(
-              padding: EdgeInsets.only(bottom: lerpDouble(48, 16, t)!),
+              padding: EdgeInsets.only(top: 24, bottom: lerpDouble(48, 16, t)!),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,

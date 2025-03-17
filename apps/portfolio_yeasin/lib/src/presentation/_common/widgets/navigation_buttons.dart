@@ -1,5 +1,7 @@
+import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_yeasin/src/infrastructure/infrastructure.dart';
 
 import '../../../app/theme/theme.dart';
 import 'navigation_delegate.dart';
@@ -40,11 +42,19 @@ class _NavigationBarState extends State<NavigationButtons>
         MediaQuery.sizeOf(context).width < Spacing.maxWidth;
 
     final children = Page.values
-        .map((e) => NavigationItem(
-              label: e.label,
-              isActive: e == selectedPage,
-              onTap: () {},
-            ))
+        .map(
+          (e) => NavigationItem(
+            label: e.label,
+            isActive: e == selectedPage,
+            onTap: () {
+              if (e == Page.contact) {
+                Navigator.of(context).push(
+                  ConnectPage.route(data: provider.connectData!),
+                );
+              }
+            },
+          ),
+        )
         .toList();
     return hasExceedMaxWidth
         ? Wrap(children: children)

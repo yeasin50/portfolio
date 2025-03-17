@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -15,9 +16,16 @@ class ConnectPage extends StatefulWidget {
     super.key,
     required this.data,
   });
-  static String route = "/connect/hr";
 
   final IConnectRepo data;
+  static route({
+    required IConnectRepo data,
+  }) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          ConnectPage(data: data),
+    );
+  }
 
   @override
   State<ConnectPage> createState() => _ConnectPageState();
@@ -75,6 +83,11 @@ class _ConnectPageState extends State<ConnectPage> {
                 ],
               ),
             ),
+            Positioned(
+              top: 48,
+              left: 24,
+              child: BackHomeButton(),
+            )
           ],
         ),
       ),

@@ -1,4 +1,3 @@
-import 'package:example/sine_wave_effect.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -11,7 +10,10 @@ void main() {
           eff.EffectThemeExt.dark,
         ],
       ),
-      home: Home(),
+      home: eff.BackgroundView(
+        colors: [Colors.blueGrey, Colors.black45],
+        child: Home(),
+      ),
     ),
   );
 }
@@ -35,12 +37,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         return Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(),
-          body: ListView.builder(
-            itemBuilder: (context, index) => ListTile(
-              tileColor: Colors.primaries[index % Colors.primaries.length],
-              title: Text("data $index"),
-            ),
-          ),
+          body: Center(),
         );
       },
       color: Colors.white,
@@ -52,13 +49,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: GestureDetector(
-        onPanDown: (details) {
-          testRoute(details.globalPosition);
-        },
-        child: Text("data"),
+      body: Center(
+        child: GestureDetector(
+          onPanDown: (details) {},
+          child: Center(
+            child: eff.AnimatedBackButton(
+              onTap: () {},
+              child: Text("data"),
+            ),
+          ),
+        ),
       ),
-    ));
+    );
   }
 }

@@ -20,7 +20,7 @@ class _SphereFlowState extends State<SphereFlow>
   ///
   late AnimationController controller = AnimationController(
     vsync: this,
-    duration: Duration(seconds: 5),
+    duration: Duration(seconds: 1),
   )..forward();
 
   @override

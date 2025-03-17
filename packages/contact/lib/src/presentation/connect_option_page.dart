@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:core/core.dart' as c;
 
@@ -43,8 +44,6 @@ class ConnectOptionPage extends StatelessWidget {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
 
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.black,
       body: eff.BackgroundView(
         colors: [
           Color(0xFF1E2036),
@@ -52,12 +51,40 @@ class ConnectOptionPage extends StatelessWidget {
         ],
         child: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 56)), //handle it
-            SliverToBoxAdapter(
-              child: Text(
-                option.name,
-                style: theme.pageTitle,
-              ),
+            SliverLayoutBuilder(
+              builder: (context, constraints) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints.tightFor(
+                        width: c.Spacing.maxWidth,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 48),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          spacing: 24,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: eff.AnimatedBackButton(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Icon(Icons.arrow_back_ios, size: 12),
+                              ),
+                            ),
+                            Text(
+                              option.name,
+                              style: theme.pageTitle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
             SliverLayoutBuilder(
               builder: (context, constraints) {

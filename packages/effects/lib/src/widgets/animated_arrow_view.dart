@@ -23,9 +23,12 @@ class AnimatedArrowView extends StatefulWidget {
     required this.child,
     this.backgroundColor,
     this.bulletColor,
+    this.initialAnimationValue = 0,
   });
 
   final Duration duration;
+
+  final double initialAnimationValue;
 
   /// if null it will use [EffectThemeExt]' s card color
   ///
@@ -52,16 +55,29 @@ class _AnimatedArrowViewState extends State<AnimatedArrowView>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
-    controller.value = .5;
+    assert(
+        widget.initialAnimationValue >= 0 &&
+            widget.initialAnimationValue <= 1.0,
+        "initialAnimationValue should be withing 0-1");
 
     rippleController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 3),
     )..repeat();
+
+    controller = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+    )..addListener(
+        () {
+          if (controller.isCompleted) {
+            rippleController.animateBack(1);
+          } else {
+            rippleController.repeat();
+          }
+        },
+      );
+    controller.value = widget.initialAnimationValue;
   }
 
   void onForward(_) {
@@ -97,22 +113,22 @@ class _AnimatedArrowViewState extends State<AnimatedArrowView>
                 shape: _ArrowShapeBuilder(
                   animation: controller,
                   rippleAnimation: rippleController,
-                  color: theme.glowColor,
+                  color: widget.bulletColor ?? theme.glowColor,
                 ),
               ),
-              child: child!,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: lerpDouble(42, 16, controller.value)!,
+                  top: 6,
+                  bottom: 6,
+                  right: 16,
+                ),
+                child: child!,
+              ),
             ),
           );
         },
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 42,
-            top: 6,
-            bottom: 6,
-            right: 16,
-          ),
-          child: widget.child,
-        ),
+        child: widget.child,
       ),
     );
   }

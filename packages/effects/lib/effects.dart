@@ -13,3 +13,4 @@ export 'src/widgets/animated_expansion_tile.dart';
 export 'src/widgets/focus_view.dart';
 export 'src/widgets/bullet_item_view.dart';
 export 'src/widgets/animated_arrow_view.dart';
+export 'src/widgets/back_button.dart';

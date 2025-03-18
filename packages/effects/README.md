@@ -127,3 +127,14 @@ import the package with a prefix
         ),
       );
   ```
+
+- GoldenSpiralRecursive, simple way of creating spiral. use InteractiveView if needed
+
+  ```dart
+  eff.GoldenSpiralRecursive(
+    children: List.generate(
+      12,
+      (index) => Text(index.toString()),
+    ),
+  );
+  ```

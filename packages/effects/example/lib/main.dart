@@ -50,12 +50,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: GestureDetector(
-          onPanDown: (details) {},
-          child: Center(
-            child: eff.AnimatedBackButton(
-              onTap: () {},
-              child: Text("data"),
+        child: InteractiveViewer(
+          maxScale: 200,
+          child: eff.GoldenSpiralRecursive(
+            children: List.generate(
+              12,
+              (index) => Text(index.toString()),
             ),
           ),
         ),

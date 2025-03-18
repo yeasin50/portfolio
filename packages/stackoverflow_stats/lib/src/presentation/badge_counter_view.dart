@@ -14,6 +14,7 @@ class BadgeCounterView extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
+      spacing: 4,
       children: [
         Icon(
           Icons.emoji_events,
@@ -24,7 +25,6 @@ class BadgeCounterView extends StatelessWidget {
             _ => theme.labelStyle.color
           },
         ),
-        const SizedBox(width: 8),
         Text(
           badge.awardCount.toString(),
           style: theme.labelStyle,

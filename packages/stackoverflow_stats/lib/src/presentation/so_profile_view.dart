@@ -91,6 +91,7 @@ class _UserStats extends StatelessWidget {
         awardCount: profile.bronzeBadgeCount,
       ),
     ];
+
     if (profile.reached != null) {
       children.add(
         Column(
@@ -104,7 +105,9 @@ class _UserStats extends StatelessWidget {
             ),
             Text(
               "people reached",
-              style: theme.titleStyle,
+              style: theme.titleStyle.copyWith(
+                fontWeight: FontWeight.normal,
+              ),
             ),
             const SizedBox(height: 24),
             _BadgeView(badges: badges),
@@ -125,7 +128,9 @@ class _UserStats extends StatelessWidget {
           ),
           Text(
             "Reputation",
-            style: theme.titleStyle,
+            style: theme.titleStyle.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ],
       ),
@@ -143,7 +148,9 @@ class _UserStats extends StatelessWidget {
           ),
           Text(
             "answers",
-            style: theme.titleStyle,
+            style: theme.titleStyle.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ],
       ),
@@ -160,23 +167,22 @@ class _UserStats extends StatelessWidget {
           ),
           Text(
             "questions",
-            style: theme.titleStyle,
+            style: theme.titleStyle.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ],
       ),
     );
 
     return eff.GoldenSpiralRecursive(
-      size: const Size(400, 400),
+      size: const Size(300, 300),
       children: children
           .map(
-            (e) => ColoredBox(
-              color: Colors.cyan.withAlpha(100),
-              child: eff.SphereView(
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: e,
-                ),
+            (e) => eff.SphereView(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: e,
               ),
             ),
           )
@@ -186,10 +192,7 @@ class _UserStats extends StatelessWidget {
 }
 
 class _BadgeView extends StatelessWidget {
-  const _BadgeView({
-    super.key,
-    required this.badges,
-  });
+  const _BadgeView({required this.badges});
 
   final List<SOBadge> badges;
 

@@ -20,6 +20,9 @@ dependencies:
   html: ^0.15.5
   http: ^1.2.2
 
+  effects:
+    path: ../effects
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

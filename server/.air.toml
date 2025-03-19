@@ -1,0 +1,4 @@
+[build]
+cmd = "go build -o tmp/main.exe ./cmd/main.go && tmp/main.exe"
+bin = "tmp/main.exe"
+exclude_dir = ["tmp", "vendor"]

@@ -10,4 +10,5 @@ type Project struct {
 	CreatedAt time.Time    `json:"created_at"`
 	Thumbnail *Media       `json:"thumbnail"`
 	Media     []MediaGroup `json:"media"`
+	Tasks     []string     `json:"task"`
 }

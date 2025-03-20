@@ -120,6 +120,7 @@ class _ProjectCard3DState extends State<ProjectCard3D>
       ),
       child: ImageLoader(
         media: project.thumbnail,
+        hash: project.thumbnail?.blurHash,
       ),
     );
 

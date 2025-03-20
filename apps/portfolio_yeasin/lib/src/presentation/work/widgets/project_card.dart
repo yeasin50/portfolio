@@ -74,9 +74,15 @@ class _ProjectCardState extends State<ProjectCard>
                   return widget.project.hoverItem == null ||
                           controller.value == 0
                       ? child!
-                      : ImageLoader(media: project.hoverItem);
+                      : ImageLoader(
+                          media: project.hoverItem,
+                          hash: project.hoverItem?.blurHash,
+                        );
                 },
-                child: ImageLoader(media: project.thumbnail),
+                child: ImageLoader(
+                  media: project.thumbnail,
+                  hash: project.thumbnail?.blurHash,
+                ),
               ),
             ),
           ),

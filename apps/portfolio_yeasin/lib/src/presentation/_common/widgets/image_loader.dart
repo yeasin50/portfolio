@@ -35,7 +35,7 @@ class ImageLoader extends StatelessWidget {
           imgPath,
           fit: BoxFit.cover,
           loadingBuilder: (context, child, loadingProgress) =>
-              loadingProgress != null
+              loadingProgress == null
                   ? BlurHash(
                       hash: hash ?? "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ",
                     )

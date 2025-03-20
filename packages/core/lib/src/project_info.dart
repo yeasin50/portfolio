@@ -48,19 +48,20 @@ class Project {
 
   static Project fromMap(Map<String, dynamic> map) {
     return Project(
-      id: map["id"] ?? DateTime.now().toString(),
-      title: map["title"],
+      id: map["id"]?.toString() ?? DateTime.now().toString(),
+      title: map["title"] ?? "Untitled",
       description: map["description"] ?? "",
-      category: map["category"],
-      roll: map["roll"],
-      createdAt: DateTime.parse(map["created_at"]),
-      tasks: List.from(map["tasks"]),
+      category: map["category"] ?? "Unknown",
+      roll: map["roll"] ?? "Unknown",
+      createdAt: DateTime.tryParse(map["created_at"] ?? "") ?? DateTime.now(),
+      tasks: List.from(map["tasks"] ?? []),
       thumbnail: map["thumbnail"] != null
           ? ProjectMedia.fromMap(map["thumbnail"])
           : null,
-      media: List<ProjectMediaGroup>.from(
-        map["media"]?.map((e) => ProjectMediaGroup.fromMap(e)),
-      ),
+      media: (map["media"] as List?)
+              ?.map((e) => ProjectMediaGroup.fromMap(e))
+              .toList() ??
+          [],
     );
   }
 

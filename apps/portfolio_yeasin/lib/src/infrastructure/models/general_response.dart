@@ -13,11 +13,11 @@ class GeneralResponse<T> {
     Map<String, dynamic> data,
     T Function(Map<String, dynamic>) fromMapT,
   ) {
-    final map = data["data"];
+    final map = data["data"] as List;
     return GeneralResponse<T>(
-      version: map["version"] as int,
-      updatedAt: DateTime.parse(map["updated_at"]),
-      data: (map["data"] as List<dynamic>).map((e) => fromMapT(e)).toList(),
+      version: data["version"],
+      updatedAt: DateTime.parse(data["updated_at"]),
+      data: map.map((e) => fromMapT(e)).toList(),
     );
   }
 }

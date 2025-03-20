@@ -50,7 +50,7 @@ func (s *portfolioService) getJsonResponse(ctx *gin.Context, fileName string) {
 		return
 	}
 
-	models.WriteJson(ctx.Writer, http.StatusAccepted, jsonData)
+	models.WriteJson(ctx.Writer, http.StatusOK, jsonData)
 }
 
 // GetLocalJson reads a JSON file from /database/json/ and returns its content as a string.

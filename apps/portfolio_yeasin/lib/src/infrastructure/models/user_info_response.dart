@@ -20,8 +20,7 @@ class UserInfoResponse {
   final List<Education> education;
   final List<Certificate> certificates;
 
-  static UserInfoResponse fromMap(Map<String, dynamic> data) {
-    final map = data["data"];
+  static UserInfoResponse fromMap(Map<String, dynamic> map) {
     return UserInfoResponse(
       version: map["version"],
       updatedAt: DateTime.tryParse(map["updated_at"]) ?? DateTime.now(),
@@ -35,5 +34,10 @@ class UserInfoResponse {
       certificates: List.from(
           map["certificate"]?.map((e) => Certificate.fromMap(e)) ?? []),
     );
+  }
+
+  @override
+  String toString() {
+    return 'UserInfoResponse(version: $version, updatedAt: $updatedAt, into: $into, connects: $connects, experience: $experience, education: $education, certificates: $certificates)';
   }
 }

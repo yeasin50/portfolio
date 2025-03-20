@@ -1,6 +1,7 @@
 import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:experience/experience.dart';
+import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/api_service.dart';
 import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
 import 'package:portfolio_yeasin/src/infrastructure/models/user_info_response.dart';
@@ -46,24 +47,29 @@ class UserRepository {
   static Future<UserRepository> create(AppConfig config) async {
     final apiService = ApiService(config.baseUrl);
 
-    final response = await Future.wait([
-      apiService.getUserInfo(),
-      UserConnectRepo.create(apiService),
-      ProjectRepository.create(apiService)
-    ]);
-    final userInfo = response.first as UserInfoResponse;
+    try {
+      final response = await Future.wait([
+        apiService.getUserInfo(),
+        UserConnectRepo.create(apiService),
+        ProjectRepository.create(apiService)
+      ]);
+      final userInfo = response.first as UserInfoResponse;
 
-    final connectRepo = response[1] as UserConnectRepo;
-    final projectRepo = response.last as ProjectRepository;
+      final connectRepo = response[1] as UserConnectRepo;
+      final projectRepo = response.last as ProjectRepository;
 
-    return UserRepository._(
-      intro: userInfo.into,
-      connects: userInfo.connects,
-      experiences: userInfo.experience,
-      educations: userInfo.education,
-      certificates: userInfo.certificates,
-      projects: projectRepo.projects,
-      connectData: connectRepo,
-    );
+      return UserRepository._(
+        intro: userInfo.into,
+        connects: userInfo.connects,
+        experiences: userInfo.experience,
+        educations: userInfo.education,
+        certificates: userInfo.certificates,
+        projects: projectRepo.projects,
+        connectData: connectRepo,
+      );
+    } catch (e, st) {
+      debugPrint("error ${e}\n st $st");
+      rethrow;
+    }
   }
 }

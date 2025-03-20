@@ -3,9 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
-	"os"
 	"path/filepath"
 	"strconv"
 
@@ -78,7 +76,7 @@ func (s *portfolioService) GetProject(ctx *gin.Context) {
 	}
 
 	models.WriteJson(ctx.Writer,
-		http.StatusAccepted,
+		http.StatusOK,
 		map[string]any{
 			"version":    jsonData["version"],
 			"updated_at": jsonData["updated_at"],
@@ -87,18 +85,8 @@ func (s *portfolioService) GetProject(ctx *gin.Context) {
 	)
 }
 
-var basDir *string
-
 func fullPath(m models.Media) models.Media {
-	if basDir == nil {
-		dir, err := os.Getwd()
-		if err != nil {
-			log.Fatalf("failed to get OS path %v", err)
-			return m
-		}
 
-		basDir = &dir
-	}
-	m.Url = filepath.Join(*basDir, "database", "images", m.Url)
+	m.Url = filepath.Join("server", "database", "images", m.Url)
 	return m
 }

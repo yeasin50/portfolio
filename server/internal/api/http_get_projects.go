@@ -87,6 +87,27 @@ func (s *portfolioService) GetProject(ctx *gin.Context) {
 
 func fullPath(m models.Media) models.Media {
 
-	m.Url = filepath.Join("server", "database", "images", m.Url)
+	fileName := m.Url
+	m.Url = filepath.Join("server", "database", "images", "high_res", fileName)
+
+	lowResFile := filepath.Join("server", "database", "images", "low_res", fileName)
+
+	// if fileExists(lowResFile) {
+	m.UrlLowRes = &lowResFile
+	// }
+
 	return m
 }
+
+// fileExists checks if a file or directory exists at the given path
+// func fileExists(filePath string) bool {
+// 	_, err := os.Stat(filePath)
+// 	if err == nil {
+// 		return true
+// 	}
+// 	if os.IsNotExist(err) {
+// 		return false
+// 	}
+// 	fmt.Println("Error checking file:", err)
+// 	return false
+// }

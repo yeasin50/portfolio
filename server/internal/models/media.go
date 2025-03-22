@@ -11,7 +11,7 @@ type MediaGroup struct {
 type Media struct {
 	Type      string     `json:"type"`
 	Url       string     `json:"value"`
+	UrlLowRes *string    `json:"low_res"`
 	BlurHash  *string    `json:"blur_hash"`
 	CreatedAt *time.Time `json:"created_at"`
 }
-

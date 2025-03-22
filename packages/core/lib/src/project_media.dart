@@ -27,6 +27,7 @@ class ProjectMedia {
     required this.type,
     required this.value,
     this.blurHash,
+    this.lowRes,
   });
 
   /// mediaType can be text, image or video link,
@@ -35,6 +36,9 @@ class ProjectMedia {
 
   final String value;
 
+  ///  to show low resolution  image
+  final String? lowRes;
+
   /// show on loading widgets
   /// !https://pub.dev/packages/flutter_blurhash
   final String? blurHash;
@@ -42,7 +46,11 @@ class ProjectMedia {
   bool get isHoverItem => type == "hover_play";
   static ProjectMedia fromMap(Map<String, dynamic> map) {
     return ProjectMedia(
-        type: map["type"], value: map["value"], blurHash: map["blur_hash"]);
+      type: map["type"],
+      value: map["value"],
+      blurHash: map["blur_hash"],
+      lowRes: map["low_res"],
+    );
   }
 }
 

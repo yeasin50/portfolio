@@ -86,6 +86,7 @@ class _BGPainter extends CustomPainter {
       ),
       colors: colors.reversed.toList(),
       radius: 1.4,
+      tileMode: TileMode.clamp,
     );
 
     final Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);

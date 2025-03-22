@@ -77,11 +77,13 @@ class _ProjectCardState extends State<ProjectCard>
                       : ImageLoader(
                           media: project.hoverItem,
                           hash: project.hoverItem?.blurHash,
+                          isThumbnail: true,
                         );
                 },
                 child: ImageLoader(
                   media: project.thumbnail,
                   hash: project.thumbnail?.blurHash,
+                  isThumbnail: true,
                 ),
               ),
             ),

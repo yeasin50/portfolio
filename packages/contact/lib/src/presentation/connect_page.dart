@@ -58,29 +58,40 @@ class _ConnectPageState extends State<ConnectPage> {
         body: Stack(
           children: [
             Center(
-              child: eff.SphereFlow(
-                callback: (childPosition) {
-                  childrenOffset = childPosition;
-                },
-                children: [
-                  for (int i = 0; i < widget.data.items.length; i++)
-                    GestureDetector(
-                      onPanDown: (details) {},
-                      onTap: () {
-                        final pushPosition = FractionalOffset.fromOffsetAndSize(
-                            childrenOffset[i], size);
+              child: Container(
+                child: eff.SphereFlow(
+                  callback: (childPosition) {
+                    childrenOffset = childPosition;
+                  },
+                  children: [
+                    for (int i = 0; i < widget.data.items.length; i++)
+                      GestureDetector(
+                        onPanDown: (details) {},
+                        onTap: () {
+                          final pushPosition =
+                              FractionalOffset.fromOffsetAndSize(
+                                  childrenOffset[i], size);
 
-                        onTap(widget.data.items[i], pushPosition);
-                      },
-                      child: eff.SphereView(
-                        key: ValueKey("flowItem ${widget.data.items[i].name}"),
-                        child: Padding(
-                          padding: const EdgeInsets.all(48.0),
-                          child: Text(widget.data.items[i].name),
+                          onTap(widget.data.items[i], pushPosition);
+                        },
+                        child: eff.SphereView(
+                          key:
+                              ValueKey("flowItem ${widget.data.items[i].name}"),
+                          child: Padding(
+                            padding: const EdgeInsets.all(48.0),
+                            child: Text(
+                              widget.data.items[i].name,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
             Positioned(

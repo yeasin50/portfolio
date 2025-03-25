@@ -17,15 +17,11 @@ class SphereCircularFlowDelegate extends FlowDelegate {
 
   final Animation animation;
 
-  //TODO: instead we can pass destination from parent and lerp
   final SphereCircularFlowCallback callback;
 
   @override
   void paintChildren(FlowPaintingContext context) {
-    final center = Offset(
-      context.size.width / 2,
-      context.size.height / 2,
-    );
+    final center = Offset(context.size.width / 2, context.size.height / 2);
 
     List<Size> childSizes = [];
     for (int i = 0; i < context.childCount; i++) {
@@ -37,11 +33,14 @@ class SphereCircularFlowDelegate extends FlowDelegate {
         .map((s) => math.max(s.width, s.height)) //
         .reduce(math.max);
 
-    maxDimension *= 1.5;
-
     final radius = (math.min(context.size.width, context.size.height) / 2) -
         (maxDimension);
 
+    //TODO:  find ratio to break into Column
+    if (radius > context.size.width) {
+      // just Column
+      return;
+    }
     final totalChildren = context.childCount;
 
     List<Offset> positions = [];

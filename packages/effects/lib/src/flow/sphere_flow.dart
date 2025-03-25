@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'sphere_delegate.dart';
 
 class SphereFlow extends StatefulWidget {

@@ -58,7 +58,8 @@ class _ConnectPageState extends State<ConnectPage> {
         body: Stack(
           children: [
             Center(
-              child: Container(
+              child: Padding(
+                padding: EdgeInsets.all(24),
                 child: eff.SphereFlow(
                   callback: (childPosition) {
                     childrenOffset = childPosition;

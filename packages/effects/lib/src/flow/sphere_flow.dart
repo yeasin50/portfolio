@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'sphere_delegate.dart';
 
@@ -30,12 +32,54 @@ class _SphereFlowState extends State<SphereFlow>
 
   @override
   Widget build(BuildContext context) {
-    return Flow(
-      delegate: SphereCircularFlowDelegate(
-        animation: controller,
-        callback: widget.callback,
+    return CustomPaint(
+      painter: CirclePainter(widget.children.length),
+      child: Flow(
+        delegate: SphereCircularFlowDelegate(
+          animation: controller,
+          callback: widget.callback,
+        ),
+        children: widget.children,
       ),
-      children: widget.children,
     );
+  }
+}
+
+class CirclePainter extends CustomPainter {
+  const CirclePainter(this.numberOfItems);
+
+  final int numberOfItems;
+  @override
+  void paint(Canvas canvas, Size size) {
+    final radius = min(size.height, size.width) / 2;
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset(size.width, size.height) / 2,
+        height: radius * 2,
+        width: radius * 2,
+      ),
+      Paint()..color = Colors.red.withAlpha(40),
+    );
+
+    final linePaint = Paint()
+      ..color = Colors.white.withAlpha(100)
+      ..strokeWidth = 2;
+
+    final center = Offset(size.width / 2, size.height / 2);
+
+    for (int i = 0; i < numberOfItems; i++) {
+      double angle = (2 * pi / numberOfItems) * i;
+      angle = angle + pi / 2;
+      final endPoint = Offset(
+        center.dx + radius * cos(angle),
+        center.dy + radius * sin(angle),
+      );
+      canvas.drawLine(center, endPoint, linePaint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }

@@ -11,7 +11,8 @@ class BackHomeButton extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: Spacing.maxWidth,
       ),
-      child: Center(
+      child: Align(
+        alignment: Alignment.topLeft,
         child: eff.AnimatedBackButton(
           onTap: () => Navigator.of(context).pop(),
           child: Icon(Icons.home),

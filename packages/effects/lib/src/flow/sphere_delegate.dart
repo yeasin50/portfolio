@@ -8,7 +8,6 @@ typedef SphereCircularFlowCallback = Function(List<Offset> childPosition);
 /// circular flow from bottom-center to circle
 /// little opacity on animation
 ///
-/// ! but not good for mobile/small screen :)
 class SphereCircularFlowDelegate extends FlowDelegate {
   const SphereCircularFlowDelegate({
     required this.animation,
@@ -33,14 +32,13 @@ class SphereCircularFlowDelegate extends FlowDelegate {
         .map((s) => math.max(s.width, s.height)) //
         .reduce(math.max);
 
-    final radius = (math.min(context.size.width, context.size.height) / 2) -
-        (maxDimension);
+    final radius =
+        (math.min(context.size.width, context.size.height) - maxDimension) / 2;
 
-    //TODO:  find ratio to break into Column
-    if (radius > context.size.width) {
-      // just Column
-      return;
-    }
+    double scale = 1.0;
+
+    scale = (radius / maxDimension).clamp(0.25, 1.0);
+
     final totalChildren = context.childCount;
 
     List<Offset> positions = [];
@@ -51,18 +49,22 @@ class SphereCircularFlowDelegate extends FlowDelegate {
       double dx = center.dx + radius * math.cos(angle);
       double dy = center.dy + radius * math.sin(angle);
 
+      final childSize = childSizes[i];
+
+      final adjustedWidth = childSize.width * scale;
+      final adjustedHeight = childSize.height * scale;
+
       final opacity = lerpDouble(
-        1 - ((context.childCount - i) * .2),
-        1.0,
-        animation.value,
-      )!;
+          1 - ((context.childCount - i) * .2), 1.0, animation.value)!;
+
       context.paintChild(
         i,
         transform: Matrix4.identity()
-          ..translate(dx - childSizes[i].width / 2, dy),
+          ..translate(dx - adjustedWidth / 2, dy - adjustedHeight / 2)
+          ..scale(scale),
         opacity: opacity,
       );
-      positions.add(Offset(dx, dy + childSizes[i].height / 2));
+      positions.add(Offset(dx, dy));
     }
     callback.call(positions);
   }

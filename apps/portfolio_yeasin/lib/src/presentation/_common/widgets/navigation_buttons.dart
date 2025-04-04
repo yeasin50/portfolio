@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/infrastructure.dart';
 
 import '../../../app/theme/theme.dart';
+import '../../home/home_page.dart';
 import 'navigation_delegate.dart';
 
 enum Page {
-  home("Home"),
-  work("Work"),
-  about("About"),
-  contact("Contact"),
+  home("Anchor"),
+  work("The Forge"),
+  about("The Story"),
+  contact("Bridges"),
   ;
 
   const Page(this.label);
@@ -36,6 +37,37 @@ class _NavigationBarState extends State<NavigationButtons>
     with SingleTickerProviderStateMixin {
   Page selectedPage = Page.home;
 
+  late final scrollController = PrimaryScrollController.of(context);
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void onTap(Page p) {
+    final currentOffset = scrollController.offset;
+
+    if (p == Page.home && currentOffset > 2) {
+      const speedFactor = .2;
+      final duration = (currentOffset / speedFactor) //
+          .clamp(
+            Durations.short1.inMilliseconds,
+            Durations.extralong4.inMilliseconds,
+          )
+          .toInt();
+      scrollController.animateTo(0,
+          duration: Duration(milliseconds: duration),
+          curve: Curves.easeOutBack);
+    }
+
+    if (p == Page.contact) {
+      Navigator.of(context).push(
+        ConnectPage.route(data: provider.connectData!),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final hasExceedMaxWidth =
@@ -46,13 +78,7 @@ class _NavigationBarState extends State<NavigationButtons>
           (e) => NavigationItem(
             label: e.label,
             isActive: e == selectedPage,
-            onTap: () {
-              if (e == Page.contact) {
-                Navigator.of(context).push(
-                  ConnectPage.route(data: provider.connectData!),
-                );
-              }
-            },
+            onTap: () => onTap(e),
           ),
         )
         .toList();

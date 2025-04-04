@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin, StackOverflowMixin {
-  final scrollController = ScrollController();
+  late final scrollController = PrimaryScrollController.of(context);
 
   double minIntroHeight = 150;
 

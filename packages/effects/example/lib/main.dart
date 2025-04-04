@@ -6,12 +6,19 @@ void main() {
   runApp(
     MaterialApp(
       theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.transparent,
         extensions: [
           eff.EffectThemeExt.dark,
         ],
       ),
       home: eff.BackgroundView(
-        colors: [Colors.blueGrey, Colors.black45],
+        shaderPath: "shaders/bg_shader.frag",
+        colors: [
+          const Color(0xFF343C59),
+          const Color(0xFF1E2036),
+          // Colors.black,
+          // Colors.white,
+        ],
         child: Home(),
       ),
     ),
@@ -50,15 +57,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: InteractiveViewer(
-          maxScale: 200,
-          child: eff.GoldenSpiralRecursive(
-            children: List.generate(
-              12,
-              (index) => Text(index.toString()),
-            ),
-          ),
-        ),
+        child: Placeholder(),
+        // child: InteractiveViewer(
+        // maxScale: 200,
+        // child: eff.GoldenSpiralRecursive(
+        //   children: List.generate(
+        //     12,
+        //     (index) => Text(index.toString()),
+        //   ),
+        // ),
+        // ),
       ),
     );
   }

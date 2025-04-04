@@ -1,4 +1,3 @@
-import 'package:contact/contact.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
@@ -48,14 +47,13 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ConnectPage(
-                data: snapshot.requireData.connectData!,
-              ),
+              home: const HomePage(),
               builder: (context, child) {
                 final colors = Theme.of(context) //
                     .extension<AppTheme>()!
                     .backgroundGradient;
                 return eff.BackgroundView(
+                  key: const ValueKey("BG painter"),
                   colors: colors,
                   child: child!,
                 );

@@ -45,9 +45,8 @@ class _BackgroundViewState extends State<BackgroundView>
   }
 
   void onHover(PointerHoverEvent event) {
-    setState(() {
-      _focalPoint = event.localPosition;
-    });
+    _focalPoint = event.localPosition;
+    setState(() {});
   }
 
   @override
@@ -75,6 +74,17 @@ class _BackgroundViewState extends State<BackgroundView>
 
   @override
   Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: onHover,
+      child: CustomPaint(
+        painter: _BGPainter(
+          focalPoint: _smoothFocalPoint,
+          colors: bgColors,
+        ),
+        child: widget.child,
+      ),
+    );
+    //TODO: FIX shader
     if (widget.shaderPath == null) {
       return painterChild();
     }
@@ -83,8 +93,7 @@ class _BackgroundViewState extends State<BackgroundView>
       child: FutureBuilder(
         future: _program,
         builder: (context, snapshot) {
-          print(snapshot.hasData);
-          print("err ${snapshot.error.toString()}");
+          debugPrint("err ${snapshot.error.toString()}");
           if (!snapshot.hasData) {
             return painterChild();
           }
@@ -95,7 +104,7 @@ class _BackgroundViewState extends State<BackgroundView>
               focalPoint: _smoothFocalPoint,
             ),
             child: widget.child,
-          ); 
+          );
         },
       ),
     );

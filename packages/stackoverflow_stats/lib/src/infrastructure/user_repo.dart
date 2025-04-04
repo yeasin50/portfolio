@@ -88,7 +88,7 @@ class SOUserRepo implements IUserRepo {
 
   Future<String?> fetchReached(int userId) async {
     try {
-      final url = 'https://stackoverflow.com/users/$userId';
+      final url = 'https://api.allorigins.win/raw?url=https://stackoverflow.com/users/$userId';
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode != 200) return null;
@@ -97,13 +97,6 @@ class SOUserRepo implements IUserRepo {
       var statsElements = document.querySelectorAll('.fs-body3.fc-black-600');
 
       return statsElements.length > 1 ? statsElements[1].text.trim() : null;
-      String reputation =
-          statsElements.isNotEmpty ? statsElements[0].text.trim() : "N/A";
-
-      String answers =
-          statsElements.length > 2 ? statsElements[2].text.trim() : "N/A";
-      String questions =
-          statsElements.length > 3 ? statsElements[3].text.trim() : "N/A";
     } catch (e, st) {
       log("failed to fetchReached $e  \n $st  ");
       return null;

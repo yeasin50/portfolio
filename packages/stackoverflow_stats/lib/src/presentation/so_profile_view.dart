@@ -191,6 +191,30 @@ class _UserStats extends StatelessWidget {
   }
 }
 
+Widget build(BuildContext context) {
+  return Row(
+    children: [
+      Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    color: Colors.brown,
+                    child: Text("Hii"),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
 class _BadgeView extends StatelessWidget {
   const _BadgeView({required this.badges});
 

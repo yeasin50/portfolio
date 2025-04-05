@@ -1,6 +1,7 @@
 import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:portfolio_yeasin/src/infrastructure/infrastructure.dart';
 
 import '../../../app/theme/theme.dart';
@@ -13,6 +14,9 @@ enum Page {
   about("The Story"),
   contact("Bridges"),
   ;
+
+  bool get isHome => this == Page.home;
+  bool get isWork => this == Page.work;
 
   const Page(this.label);
 
@@ -38,6 +42,31 @@ class _NavigationBarState extends State<NavigationButtons>
   Page selectedPage = Page.home;
 
   late final scrollController = PrimaryScrollController.of(context);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.addListener(scrollListener);
+    });
+  }
+
+  void scrollListener() {
+    final height = MediaQuery.sizeOf(context).height;
+
+    if (scrollController.position.userScrollDirection == //should I 🤔
+        ScrollDirection.forward) {
+      if (scrollController.offset < height * .4 && !selectedPage.isHome) {
+        selectedPage = Page.home;
+        setState(() {});
+      }
+    } else {
+      if (scrollController.offset > height * .8 && !selectedPage.isWork) {
+        selectedPage = Page.work;
+        setState(() {});
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -87,6 +116,8 @@ class _NavigationBarState extends State<NavigationButtons>
         curve: Curves.easeIn,
       );
     }
+    selectedPage = p;
+    setState(() {});
   }
 
   @override

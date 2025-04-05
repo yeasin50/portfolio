@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage>
               .map(
                 (e) => SliverPadding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
                   sliver: e,
                 ),
               )

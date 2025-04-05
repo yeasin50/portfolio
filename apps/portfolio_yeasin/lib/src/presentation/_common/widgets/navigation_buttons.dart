@@ -46,24 +46,45 @@ class _NavigationBarState extends State<NavigationButtons>
   }
 
   void onTap(Page p) {
-    final currentOffset = scrollController.offset;
-
-    if (p == Page.home && currentOffset > 2) {
-      const speedFactor = .2;
-      final duration = (currentOffset / speedFactor) //
-          .clamp(
-            Durations.short1.inMilliseconds,
-            Durations.extralong4.inMilliseconds,
-          )
-          .toInt();
-      scrollController.animateTo(0,
-          duration: Duration(milliseconds: duration),
-          curve: Curves.easeOutBack);
-    }
-
     if (p == Page.contact) {
       Navigator.of(context).push(
         ConnectPage.route(data: provider.connectData!),
+      );
+      return;
+    }
+    const speedFactor = 1;
+    final currentOffset = scrollController.offset;
+
+    final pageHeight = MediaQuery.sizeOf(context).height;
+
+    final distanceToScroll = (switch (p) {
+              Page.home => 0,
+              Page.work => pageHeight,
+              _ => 0,
+            } -
+            currentOffset)
+        .abs();
+
+    final duration = (distanceToScroll / speedFactor)
+        .clamp(
+          Durations.short1.inMilliseconds,
+          Durations.extralong1.inMilliseconds,
+        )
+        .toInt();
+
+    if (p == Page.home && currentOffset > 2) {
+      scrollController.animateTo(
+        0,
+        duration: Duration(milliseconds: duration),
+        curve: Curves.easeOutBack,
+      );
+    }
+
+    if (p == Page.work && (currentOffset - pageHeight).abs() > 10) {
+      scrollController.animateTo(
+        pageHeight,
+        duration: Duration(milliseconds: duration),
+        curve: Curves.easeIn,
       );
     }
   }

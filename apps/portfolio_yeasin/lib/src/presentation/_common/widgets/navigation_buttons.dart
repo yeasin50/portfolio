@@ -54,13 +54,19 @@ class _NavigationBarState extends State<NavigationButtons>
   void scrollListener() {
     final height = MediaQuery.sizeOf(context).height;
 
-    if (scrollController.position.userScrollDirection == //should I 🤔
-        ScrollDirection.forward) {
+    final bool isScrollUp =
+        scrollController.position.userScrollDirection == //should I 🤔
+            ScrollDirection.forward;
+    if (isScrollUp) {
       if (scrollController.offset < height * .4 && !selectedPage.isHome) {
         selectedPage = Page.home;
         setState(() {});
       }
     } else {
+      if (scrollController.offset < height * .4 && !selectedPage.isHome) {
+        selectedPage = Page.home;
+        setState(() {});
+      }
       if (scrollController.offset > height * .8 && !selectedPage.isWork) {
         selectedPage = Page.work;
         setState(() {});

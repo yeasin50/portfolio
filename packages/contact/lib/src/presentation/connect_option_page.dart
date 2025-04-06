@@ -1,6 +1,5 @@
-import 'package:contact/src/presentation/widgets/back_button.dart';
 import 'package:flutter/material.dart';
-import 'package:core/core.dart' as c;
+import 'package:core/core.dart' as core;
 
 import '../../contact.dart';
 
@@ -57,7 +56,7 @@ class ConnectOptionPage extends StatelessWidget {
                   child: Center(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints.tightFor(
-                        width: c.Spacing.maxWidth,
+                        width: core.Spacing.maxWidth,
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 48),
@@ -97,7 +96,7 @@ class ConnectOptionPage extends StatelessWidget {
                         Center(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints.tightFor(
-                              width: c.Spacing.maxWidth,
+                              width: core.Spacing.maxWidth,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 48.0),
@@ -117,7 +116,7 @@ class ConnectOptionPage extends StatelessWidget {
                         Center(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints.tightFor(
-                              width: c.Spacing.maxWidth,
+                              width: core.Spacing.maxWidth,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 48.0),

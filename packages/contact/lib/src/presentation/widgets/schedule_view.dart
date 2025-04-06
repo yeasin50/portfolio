@@ -27,16 +27,15 @@ class ScheduleView extends StatelessWidget {
     }
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
 
-    final availableDate =
-        core.PortfolioDateFormat.basic(schedules!.availableFrom);
+    final availableStr = schedules?.availableFrom == null
+        ? "Available..."
+        : "Available from ${core.PortfolioDateFormat.basic(schedules!.availableFrom!)}";
 
     ///  todo:
     final dateView = eff.AnimatedArrowView(
       child: DefaultTextStyle(
         style: theme.tldr.copyWith(color: Colors.black), //FIXME:
-        child: Text(
-          "Available from $availableDate",
-        ),
+        child: Text(availableStr),
       ),
     );
 

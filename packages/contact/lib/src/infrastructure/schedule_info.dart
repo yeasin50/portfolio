@@ -30,7 +30,7 @@ class Schedules {
     this.appointmentURL,
   });
 
-  final DateTime availableFrom;
+  final DateTime? availableFrom;
 
   final ScheduleState state;
 
@@ -55,7 +55,7 @@ class Schedules {
   /// ```
   static Schedules fromMap(Map<String, dynamic> map) {
     return Schedules(
-      availableFrom: DateTime.parse(map["available_from"] ?? ""),
+      availableFrom: DateTime.tryParse(map["available_from"] ?? ""),
       state: ScheduleState.fromMap(map["state"]),
       appointmentURL: map["appointment_url"],
       message: map["message"],

@@ -44,6 +44,18 @@ class PreferenceBuilder extends StatelessWidget {
   }
 }
 
+///  create simple listTile for[data] with bullet point.
+///
+/// handles [PrincipleInfo]'s description, strings,
+///
+/// ```dart
+/// PrincipleItemBuilder(
+///   data: li,
+///   type: eff.BulletType.fromDomain(
+///     li.category.isNotEmpty ? li.category : item.category,
+/// ),
+/// ```
+///
 class PrincipleItemBuilder extends StatelessWidget {
   ///
   const PrincipleItemBuilder({

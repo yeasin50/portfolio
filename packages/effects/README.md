@@ -96,6 +96,8 @@ import the package with a prefix
 
 - Animation Expansion tile with drop shader(FIXME: default `lowerBound`)
 
+  - [ ] use px instead of fractional height for blur
+
   ```dart
   eff.AnimatedExpansionTile(
     title: Text("Expansion title"),

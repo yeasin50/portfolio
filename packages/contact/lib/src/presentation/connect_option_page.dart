@@ -10,6 +10,7 @@ import 'widgets/tldr_builder.dart';
 
 ///  show the details of [ConnectOption] in a separate page
 ///  use ripple route on parent
+/// 
 class ConnectOptionPage extends StatelessWidget {
   const ConnectOptionPage({
     super.key,

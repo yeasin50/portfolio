@@ -72,8 +72,14 @@ class _SoLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width;
+    double scale = 1;
+    if (width < 300 * 2) {
+      scale = width / 600;
+    }
+
     return eff.GoldenSpiralRecursive(
-      size: const Size(300, 300),
+      size: const Size(300, 300) * scale,
       children: List.generate(
         4,
         (i) => eff.SphereView(

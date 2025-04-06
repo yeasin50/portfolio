@@ -4,7 +4,7 @@ import 'package:effects/effects.dart' as eff;
 import '../../stackoverflow_stats.dart';
 
 ///  show StackOverflow user stats(reached,reputation,answers,question..)
-/// 
+///
 class SOUserStats extends StatelessWidget {
   const SOUserStats({
     super.key,
@@ -116,8 +116,12 @@ class SOUserStats extends StatelessWidget {
       ),
     );
 
+    final width = MediaQuery.sizeOf(context).width;
+    double scale = 1;
+    if (width < 300 * 2) scale = width / 600;
+
     return eff.GoldenSpiralRecursive(
-      size: const Size(300, 300),
+      size: const Size(300, 300) * scale,
       children: children
           .map(
             (e) => eff.SphereView(

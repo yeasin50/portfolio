@@ -22,6 +22,7 @@ class GoldenSpiralRecursive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (children.isEmpty) return const SizedBox();
+
     final mainItem = SizedBox(
       width: size.width,
       height: size.height,

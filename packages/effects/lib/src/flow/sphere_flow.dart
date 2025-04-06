@@ -32,15 +32,12 @@ class _SphereFlowState extends State<SphereFlow>
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: CirclePainter(widget.children.length),
-      child: Flow(
-        delegate: SphereCircularFlowDelegate(
-          animation: controller,
-          callback: widget.callback,
-        ),
-        children: widget.children,
+    return Flow(
+      delegate: SphereCircularFlowDelegate(
+        animation: controller,
+        callback: widget.callback,
       ),
+      children: widget.children,
     );
   }
 }
@@ -51,15 +48,7 @@ class CirclePainter extends CustomPainter {
   final int numberOfItems;
   @override
   void paint(Canvas canvas, Size size) {
-    final radius = min(size.height, size.width) / 2;
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: Offset(size.width, size.height) / 2,
-        height: radius * 2,
-        width: radius * 2,
-      ),
-      Paint()..color = Colors.red.withAlpha(40),
-    );
+    final radius = min(size.height, size.width) / 2 - (size.width * .02);
 
     final linePaint = Paint()
       ..color = Colors.white.withAlpha(100)

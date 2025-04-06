@@ -5,13 +5,12 @@ import 'package:flutter/rendering.dart';
 import 'package:portfolio_yeasin/src/infrastructure/infrastructure.dart';
 
 import '../../../app/theme/theme.dart';
-import '../../home/home_page.dart';
 import 'navigation_delegate.dart';
 
 enum Page {
   home("Anchor"),
   work("The Forge"),
-  about("The Story"),
+  // about("The Story"),
   contact("Bridges"),
   ;
 

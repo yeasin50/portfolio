@@ -43,7 +43,7 @@ class SphereCircularFlowDelegate extends FlowDelegate {
 
     List<Offset> positions = [];
     for (int i = 0; i < totalChildren; i++) {
-      double angle = math.pi / 2;
+      double angle = math.pi;
       angle += (i * (2 * math.pi) / totalChildren) * animation.value;
 
       double dx = center.dx + radius * math.cos(angle);

@@ -1,4 +1,3 @@
-import 'package:contact/src/presentation/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -50,8 +49,8 @@ class _ConnectPageState extends State<ConnectPage> {
     final size = MediaQuery.sizeOf(context);
     return eff.BackgroundView(
       colors: [
-        Color(0xFF1E2036),
-        Color(0xFF343C59),
+        Color.fromARGB(255, 30, 32, 54),
+        Color.fromARGB(255, 52, 60, 89),
       ],
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -82,6 +81,7 @@ class _ConnectPageState extends State<ConnectPage> {
                             padding: const EdgeInsets.all(48.0),
                             child: Text(
                               widget.data.items[i].name,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -95,10 +95,21 @@ class _ConnectPageState extends State<ConnectPage> {
                 ),
               ),
             ),
-            Positioned(
-              top: 48,
-              left: 24,
-              child: BackHomeButton(),
+            Center(
+              child: InkWell(
+                customBorder: CircleBorder(),
+                onTap: () => Navigator.of(context).pop(),
+                child: eff.SphereView(
+                  colors: [Colors.white, Colors.transparent],
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Icon(
+                      Icons.home,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),

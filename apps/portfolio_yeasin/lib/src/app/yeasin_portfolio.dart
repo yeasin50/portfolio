@@ -30,8 +30,13 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
         future: future,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const eff.BackgroundView(
+              key: ValueKey("BG painter"),
+              colors: [
+                Color(0xFF1E2036), // Deep Blue-Gray
+                Color(0xFF343C59), // Muted Slate Blue
+              ],
+              child: Center(),
             );
           }
           return AppProvider(

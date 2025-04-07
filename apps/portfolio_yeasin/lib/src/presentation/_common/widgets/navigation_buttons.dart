@@ -1,8 +1,6 @@
-import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:portfolio_yeasin/src/infrastructure/infrastructure.dart';
 
 import '../../../app/theme/theme.dart';
 import 'navigation_delegate.dart';
@@ -80,12 +78,6 @@ class _NavigationBarState extends State<NavigationButtons>
   }
 
   void onTap(Page p) {
-    if (p == Page.contact) {
-      Navigator.of(context).push(
-        ConnectPage.route(data: provider.connectData!),
-      );
-      return;
-    }
     const speedFactor = 1;
     final currentOffset = scrollController.offset;
 
@@ -94,7 +86,7 @@ class _NavigationBarState extends State<NavigationButtons>
     final distanceToScroll = (switch (p) {
               Page.home => 0,
               Page.work => pageHeight,
-              _ => 0,
+              Page.contact => scrollController.position.maxScrollExtent,
             } -
             currentOffset)
         .abs();
@@ -102,27 +94,33 @@ class _NavigationBarState extends State<NavigationButtons>
     final duration = (distanceToScroll / speedFactor)
         .clamp(
           Durations.short1.inMilliseconds,
-          Durations.extralong1.inMilliseconds,
+          Durations.extralong4.inMilliseconds,
         )
         .toInt();
 
-    if (p == Page.home && currentOffset > 2) {
+    selectedPage = p;
+    setState(() {});
+    
+    if (p == Page.contact &&
+        currentOffset != scrollController.position.maxScrollExtent) {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: duration),
+        curve: Curves.easeIn,
+      );
+    } else if (p == Page.home && currentOffset > 2) {
       scrollController.animateTo(
         0,
         duration: Duration(milliseconds: duration),
         curve: Curves.easeOutBack,
       );
-    }
-
-    if (p == Page.work && (currentOffset - pageHeight).abs() > 10) {
+    } else if (p == Page.work && (currentOffset - pageHeight).abs() > 10) {
       scrollController.animateTo(
         pageHeight,
         duration: Duration(milliseconds: duration),
         curve: Curves.easeIn,
       );
     }
-    selectedPage = p;
-    setState(() {});
   }
 
   @override

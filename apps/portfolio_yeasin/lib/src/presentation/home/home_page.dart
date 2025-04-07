@@ -1,3 +1,4 @@
+import 'package:contact/contact.dart';
 import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
@@ -50,6 +51,10 @@ class _HomePageState extends State<HomePage>
     }
   }
 
+  /// when user tap on home icon from [ConnectPageBody]
+  /// just scroll at top
+  void onHomeIconTap() async {}
+
   @override
   void dispose() {
     animationController.dispose();
@@ -58,6 +63,7 @@ class _HomePageState extends State<HomePage>
   }
 
   late final soInfo = getSOId(context.provider.connects);
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -126,6 +132,23 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
             ),
+
+            /// Does it looks good?
+            /// FIXME:  Remove constaints or new widget for this
+            if (context.provider.connectData != null)
+              HomeItemSliverBuilder(
+                title: "Get in touch for..",
+                children: [
+                  SizedBox(
+                    height: size.height - 200,
+                    width: size.width,
+                    child: ConnectPageBody(
+                      data: context.provider.connectData!,
+                      onHomeIconTap: onHomeIconTap,
+                    ),
+                  ),
+                ],
+              ),
           ]
               .map(
                 (e) => SliverPadding(

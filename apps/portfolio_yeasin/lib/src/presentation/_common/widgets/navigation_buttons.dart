@@ -100,7 +100,7 @@ class _NavigationBarState extends State<NavigationButtons>
 
     selectedPage = p;
     setState(() {});
-    
+
     if (p == Page.contact &&
         currentOffset != scrollController.position.maxScrollExtent) {
       scrollController.animateTo(
@@ -140,6 +140,7 @@ class _NavigationBarState extends State<NavigationButtons>
     return hasExceedMaxWidth
         ? Wrap(children: children)
         : Flow(
+            clipBehavior: Clip.none,
             delegate: NavigationDelegate(widget.scrollT),
             children: children,
           );

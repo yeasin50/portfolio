@@ -11,6 +11,7 @@ import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 import '../../infrastructure/utils/stack_overflow_user_mixin.dart';
 import '../work/work_items.dart';
 import 'widgets/intro_view.dart';
+import 'widgets/title_view.dart' show TitleView;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,10 +51,6 @@ class _HomePageState extends State<HomePage>
       }
     }
   }
-
-  /// when user tap on home icon from [ConnectPageBody]
-  /// just scroll at top
-  void onHomeIconTap() async {}
 
   @override
   void dispose() {
@@ -132,23 +129,17 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
             ),
-
-            /// Does it looks good?
-            /// FIXME:  Remove constaints or new widget for this
             if (context.provider.connectData != null)
-              HomeItemSliverBuilder(
-                title: "Get in touch for..",
-                children: [
-                  SizedBox(
-                    height: size.height - 200,
-                    width: size.width,
-                    child: ConnectPageBody(
-                      data: context.provider.connectData!,
-                      onHomeIconTap: onHomeIconTap,
+              SliverLayoutBuilder(
+                builder: (context, constraints) {
+                  return SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: constraints.viewportMainAxisExtent,
+                      child: const _ConnectInHomePage(),
                     ),
-                  ),
-                ],
-              ),
+                  );
+                },
+              )
           ]
               .map(
                 (e) => SliverPadding(
@@ -160,6 +151,44 @@ class _HomePageState extends State<HomePage>
               .toList(),
         ),
       ),
+    );
+  }
+}
+
+/// Just simple view so that it looks good inside [HomePage]
+class _ConnectInHomePage extends StatelessWidget {
+  const _ConnectInHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 72, bottom: 8.0),
+          child: Center(
+            child: ConstrainedBox(
+              constraints:
+                  const BoxConstraints.tightFor(width: Spacing.maxWidth),
+              child: const TitleView(title: "Get in touch for.."),
+            ),
+          ),
+        ),
+        if (context.provider.connectData != null)
+          Expanded(
+            child: ConnectPageBody(
+              data: context.provider.connectData!,
+              onHomeIconTap: () {
+                final controller = PrimaryScrollController.maybeOf(context);
+                controller?.animateTo(
+                  controller!.position.maxScrollExtent,
+                  duration: Durations.extralong1,
+                  curve: Curves.bounceIn,
+                );
+              },
+            ),
+          ),
+      ],
     );
   }
 }

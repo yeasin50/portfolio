@@ -33,6 +33,7 @@ class _SphereFlowState extends State<SphereFlow>
   @override
   Widget build(BuildContext context) {
     return Flow(
+      clipBehavior: Clip.none,
       delegate: SphereCircularFlowDelegate(
         animation: controller,
         callback: widget.callback,

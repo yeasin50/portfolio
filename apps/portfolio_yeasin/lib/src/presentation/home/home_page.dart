@@ -4,14 +4,11 @@ import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
-import 'package:portfolio_yeasin/src/presentation/home/widgets/home_item_sliver_builder.dart';
-import 'package:portfolio_yeasin/src/presentation/home/widgets/skill_items.dart';
 
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 import '../../infrastructure/utils/stack_overflow_user_mixin.dart';
 import '../work/work_items.dart';
-import 'widgets/intro_view.dart';
-import 'widgets/title_view.dart' show TitleView;
+import 'widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -181,9 +178,9 @@ class _ConnectInHomePage extends StatelessWidget {
               onHomeIconTap: () {
                 final controller = PrimaryScrollController.maybeOf(context);
                 controller?.animateTo(
-                  controller!.position.maxScrollExtent,
-                  duration: Durations.extralong1,
-                  curve: Curves.bounceIn,
+                  0,
+                  duration: Durations.extralong4,
+                  curve: Curves.easeOutBack,
                 );
               },
             ),

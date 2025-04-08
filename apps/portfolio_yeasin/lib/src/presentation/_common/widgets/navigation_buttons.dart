@@ -14,6 +14,7 @@ enum Page {
 
   bool get isHome => this == Page.home;
   bool get isWork => this == Page.work;
+  bool get isConnect => this == Page.contact;
 
   const Page(this.label);
 
@@ -28,6 +29,7 @@ class NavigationButtons extends StatefulWidget {
     required this.scrollT,
   });
 
+  /// scrollOffset from sliver delegant
   final double scrollT;
 
   @override
@@ -51,23 +53,23 @@ class _NavigationBarState extends State<NavigationButtons>
   void scrollListener() {
     final height = MediaQuery.sizeOf(context).height;
 
-    final bool isScrollUp =
-        scrollController.position.userScrollDirection == //should I 🤔
-            ScrollDirection.forward;
-    if (isScrollUp) {
-      if (scrollController.offset < height * .4 && !selectedPage.isHome) {
-        selectedPage = Page.home;
-        setState(() {});
-      }
-    } else {
-      if (scrollController.offset < height * .4 && !selectedPage.isHome) {
-        selectedPage = Page.home;
-        setState(() {});
-      }
-      if (scrollController.offset > height * .8 && !selectedPage.isWork) {
-        selectedPage = Page.work;
-        setState(() {});
-      }
+    if (!selectedPage.isHome && scrollController.offset < height * .4) {
+      selectedPage = Page.home;
+      setState(() {});
+    }
+
+    if (!selectedPage.isWork && scrollController.offset > height * .8) {
+      selectedPage = Page.work;
+      setState(() {});
+    }
+
+    final bool isInConnectPageSection =
+        (scrollController.position.maxScrollExtent - scrollController.offset)
+                .abs() <
+            height / 3;
+    if (!selectedPage.isConnect && isInConnectPageSection) {
+      selectedPage = Page.contact;
+      setState(() {});
     }
   }
 

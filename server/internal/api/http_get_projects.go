@@ -67,10 +67,10 @@ func (s *portfolioService) GetProject(ctx *gin.Context) {
 			return
 		}
 
-		if project.Thumbnail != nil {
-			m := fullPath(*project.Thumbnail)
-			project.Thumbnail = &m
-		}
+		// if project.Thumbnail != nil {
+		//  m := fullPath(*project.Thumbnail)
+		// 	project.Thumbnail = &m
+		// }
 
 		projects = append(projects, project)
 	}

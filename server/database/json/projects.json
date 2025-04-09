@@ -28,6 +28,8 @@
       "category": "Web Development",
       "roll": "Flutter Developer",
       "created_at": "2021-08-01T00:00:00Z",
+      "source": "https://github.com/yeasin50/lisa_fischer",
+      "deployed": "https://yeasin50.github.io/lisa_fischer/",
       "thumbnail": {
         "type": "image",
         "value": "lisa_portfolio_clone.png",
@@ -65,6 +67,7 @@
       "category": "Mobile Application",
       "roll": "youtube",
       "created_at": "2023-11-01T00:00:00Z",
+      "deployed": "https://sites.google.com/view/diuresult",
       "thumbnail": {
         "type": "image",
         "value": "diu_result.png",
@@ -85,6 +88,7 @@
       "category": "Mobile Application",
       "roll": "Flutter Developer",
       "created_at": "2023-07-01T00:00:00Z",
+      "source": "https://github.com/yeasin50/ek_sheba",
       "thumbnail": {
         "type": "image",
         "value": "ek_sheba.png",
@@ -110,18 +114,9 @@
         "value": "read_me_when.png",
         "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
       },
-      "media": [
-        {
-          "title": "",
-          "data": [
-            {
-              "type": "hover_play",
-              "value": "read_me_when.gif",
-              "blur_hash": "LXMt?gS#?w,o%Lj=IpWGT}xDrVSh"
-            }
-          ]
-        }
-      ],
+      "deployed": "https://yeasin50.github.io/read_me_when/",
+      "source": "https://github.com/yeasin50/read_me_when",
+      "media": [],
       "tasks": []
     },
     {
@@ -131,6 +126,7 @@
       "category": "Flutter SDK",
       "roll": "Flutter Developer",
       "created_at": "2024-08-01T00:00:00Z",
+      "source": "https://github.com/fitl-com-bd/moneybag_flutter",
       "thumbnail": {
         "type": "image",
         "value": "moneybag.png",
@@ -147,6 +143,7 @@
       "category": "Windows Application",
       "roll": "Special",
       "created_at": "2023-11-01T00:00:00Z",
+      "source": "https://github.com/yeasin50/game_of_life",
       "thumbnail": null,
       "media": [],
       "tasks": [
@@ -177,6 +174,7 @@
       "roll": "Game Developer",
       "created_at": "2021-01-01T00:00:00Z",
       "thumbnail": null,
+      "source": "https://github.com/yeasin50/space_craft",
       "media": [],
       "tasks": [
         "Developed game mechanics",

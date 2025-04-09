@@ -31,10 +31,15 @@ class ImageLoader extends StatelessWidget {
     imgPath = imgPath.replaceAll("\\", "/");
 
     String? lowResImg, highResImage;
+    //yea little logic here
     if (context.appConfig.isGitProd) {
-      //yea little logic here
-      lowResImg = "${context.appConfig.imageDir!}low_res/$imgPath";
-      highResImage = "${context.appConfig.imageDir!}high_res/$imgPath";
+      lowResImg = "${context.appConfig.imageDir}low_res/$imgPath";
+      highResImage = "${context.appConfig.imageDir}high_res/$imgPath";
+    } else if (context.appConfig.isDev) {
+      lowResImg = "${context.appConfig.imageDir}low_res/$imgPath";
+      highResImage = "${context.appConfig.imageDir}high_res/$imgPath";
+    } else {
+      throw UnimplementedError("Huh... handle $this for image render");
     }
 
     ///  handle low_res/high_res image load failure
@@ -60,10 +65,10 @@ class ImageLoader extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 4 / 3,
         child: buildImage(
-          (isThumbnail ? lowResImg : highResImage) ?? "",
+          (isThumbnail ? lowResImg : highResImage),
           hash,
           errorWidget: buildImage(
-            (isThumbnail ? highResImage : lowResImg) ?? "",
+            (isThumbnail ? highResImage : lowResImg),
             hash,
           ),
         ),

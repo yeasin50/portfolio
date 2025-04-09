@@ -1,7 +1,7 @@
 class AppConfig {
   const AppConfig._({
     required this.baseUrl,
-    this.imageDir,
+    required this.imageDir,
   });
 
   /// the base uri;
@@ -11,9 +11,13 @@ class AppConfig {
 
   ///  the place it contains media files,
   /// it has `low_res` and `high_res` folder
-  final String? imageDir;
+  final String imageDir;
 
-  static const AppConfig dev = AppConfig._(baseUrl: "http://localhost:8080");
+  static const AppConfig dev = AppConfig._(
+    baseUrl: "http://localhost:8080",
+    imageDir:
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/dev/server/database/images/",
+  );
 
   static const AppConfig gitProd = AppConfig._(
     baseUrl:

@@ -11,6 +11,8 @@ class Project {
     required this.description,
     required this.roll,
     required this.tasks,
+    this.deployed,
+    this.source,
   });
 
   final String id;
@@ -46,6 +48,12 @@ class Project {
   /// what, why, how answers
   final List<String> tasks;
 
+  ///  usual place we put the source e.g github
+  final String? source;
+
+  /// live site/store url
+  final String? deployed;
+
   static Project fromMap(Map<String, dynamic> map) {
     return Project(
       id: map["id"]?.toString() ?? DateTime.now().toString(),
@@ -55,6 +63,8 @@ class Project {
       roll: map["roll"] ?? "Unknown",
       createdAt: DateTime.tryParse(map["created_at"] ?? "") ?? DateTime.now(),
       tasks: List.from(map["tasks"] ?? []),
+      deployed: map["deployed"],
+      source: map["source"],
       thumbnail: map["thumbnail"] != null
           ? ProjectMedia.fromMap(map["thumbnail"])
           : null,

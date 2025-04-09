@@ -8,6 +8,9 @@ import 'package:http/http.dart' as http;
 import 'models/general_response.dart';
 import 'models/user_info_response.dart';
 
+///  Get data from  [baseUri] endPoint.
+///* If it contains `githubusercontent` then it has been handled accordingly ;xD
+///
 class ApiService {
   ApiService(String baseAPIUrl) {
     baseUri = Uri.parse(baseAPIUrl);
@@ -19,7 +22,14 @@ class ApiService {
     String path, {
     T Function(Map<String, dynamic> body)? fromJson,
   }) async {
-    final response = await http.get(baseUri.replace(path: path));
+    late Uri uri;
+    if (baseUri.host.contains("githubusercontent")) {
+      uri = Uri.parse("${baseUri.toString()}$path.json");
+    } else {
+      uri = baseUri.replace(path: path);
+    }
+
+    final response = await http.get(uri);
 
     if (response.statusCode != 200) {
       throw Exception(

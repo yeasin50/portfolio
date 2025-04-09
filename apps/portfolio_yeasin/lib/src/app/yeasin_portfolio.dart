@@ -40,6 +40,7 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
             );
           }
           return AppProvider(
+            config: widget.config,
             repo: snapshot.requireData,
             child: MaterialApp(
               // showPerformanceOverlay: kDebugMode,

@@ -1,0 +1,24 @@
+{
+    "data": {
+        "viewer": {
+            "name": "Md. Yeasin Sheikh",
+            "email": "yeasinsheikh50@gmail.com",
+            "url": "https://github.com/yeasin50",
+            "bio": "",
+            "avatarUrl": "https://avatars.githubusercontent.com/u/46500228?u=c2d34bf57d4fa21e2976ee9ceea5fc3153cef231&v=4",
+            "followers": {
+                "totalCount": 74
+            },
+            "following": {
+                "totalCount": 7
+            },
+            "location": "Dhaka,Bangladesh",
+            "status": {
+                "message": "Smile...It's Sunnah",
+                "emoji": ":relaxed:"
+            },
+            "isHireable": true,
+            "createdAt": "2019-01-08T19:14:16Z"
+        }
+    }
+}

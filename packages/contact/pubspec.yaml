@@ -1,0 +1,26 @@
+name: contact
+description: >
+  - A story to connect with me
+  - gonna automate sending email
+
+version: 0.0.1
+homepage: none
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  effects:
+    path: ../effects
+  core:
+    path: ../core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

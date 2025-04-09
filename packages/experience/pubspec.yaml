@@ -1,0 +1,30 @@
+name: experience
+description: >
+  A package for preview experience in exchange of 
+  your lifespan exchange for different organization.
+  - work experience
+  - academic records 
+  - certificates 
+  - 
+  All in one for consistency & shape you
+
+publish_to: none
+
+version: 0.0.1
+homepage: https://github.com/yeasin50/portfolio
+
+environment:
+  sdk: ^3.5.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  core:
+    path: ../core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0

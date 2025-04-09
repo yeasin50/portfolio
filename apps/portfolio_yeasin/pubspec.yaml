@@ -1,0 +1,48 @@
+name: portfolio_yeasin
+description: >
+  A new Flutter to create portfolio for 
+  Me 🤭
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  core:
+    path: ../../packages/core
+  experience:
+    path: ../../packages/experience
+  effects:
+    path: ../../packages/effects
+
+  contact:
+    path: ../../packages/contact
+
+  stackoverflow_stats:
+    path: ../../packages/stackoverflow_stats
+
+  skill:
+    path: ../../packages/skill
+  url_launcher: ^6.3.1
+  collection: ^1.19.0
+  go_router: ^14.8.0
+  http: ^1.3.0
+  google_fonts: ^6.2.1
+  flutter_blurhash: ^0.8.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

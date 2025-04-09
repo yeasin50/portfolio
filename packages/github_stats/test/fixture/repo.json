@@ -1,0 +1,20 @@
+{
+  "name": "read_me_when",
+  "description": "Quranic verses (ayah) based on mood, spreading Islamic Da'wah in a respectful way.",
+  "forkCount": 0,
+  "isPrivate": false,
+  "createdAt": "2024-11-05T17:13:16Z",
+  "updatedAt": "2025-01-14T11:00:15Z",
+  "stargazerCount": 2,
+  "url": "https://github.com/yeasin50/read_me_when",
+  "languages": {
+    "totalCount": 11,
+    "nodes": [
+      { "name": "Kotlin", "color": "#A97BFF" },
+      { "name": "Swift", "color": "#F05138" },
+      { "name": "Objective-C", "color": "#438eff" },
+      { "name": "Dart", "color": "#00B4AB" },
+      { "name": "CMake", "color": "#DA3434" }
+    ]
+  }
+}

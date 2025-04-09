@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "updated_at": "2025-02-17T12:00:00Z",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Welcome! I’m Md. Yeasin Sheikh, a passionate Flutter Developer. I’d love to connect and explore how we can collaborate. How would you like to begin?",
+      "options": [2, 3, 4, 5]
+    },
+    {
+      "id": 2,
+      "question": "Explore my journey and background.",
+      "options": [6, 7, 8]
+    },
+    {
+      "id": 3,
+      "question": "Discuss Flutter development and coding challenges.",
+      "options": [9, 10, 11]
+    },
+    {
+      "id": 4,
+      "question": "Dive into problem-solving and bug fixes.",
+      "options": [12, 13, 14]
+    },
+    {
+      "id": 5,
+      "question": "Learn about my vision for potential collaborations.",
+      "options": [15, 16, 17]
+    },
+    {
+      "id": 6,
+      "question": "I’ve been working in the tech space for 4+ years, mainly focusing on Flutter development, coding, and solving real-world problems. Would you like to hear more about my experience?",
+      "options": [18, 19, 20]
+    },
+    {
+      "id": 7,
+      "question": "Yes, tell me more about your career.",
+      "options": []
+    },
+    {
+      "id": 8,
+      "question": "What are some key projects you've worked on?",
+      "options": []
+    },
+    {
+      "id": 9,
+      "question": "I’m a huge fan of Flutter because of its cross-platform capabilities. Are you interested in learning more about my work in Flutter?",
+      "options": [21, 22, 23]
+    },
+    {
+      "id": 10,
+      "question": "Yes, let’s talk about Flutter development!",
+      "options": []
+    },
+    {
+      "id": 11,
+      "question": "What kind of projects have you worked on using Flutter?",
+      "options": []
+    },
+    {
+      "id": 12,
+      "question": "I’m always exploring new ways to solve coding problems. Are you facing any specific coding challenges that I could help with?",
+      "options": [24, 25, 26]
+    },
+    {
+      "id": 13,
+      "question": "Yes, I have a bug I need help with.",
+      "options": []
+    },
+    {
+      "id": 14,
+      "question": "I need guidance on a coding project.",
+      "options": []
+    },
+    {
+      "id": 15,
+      "question": "I’m open to new opportunities and collaborations. What would you like to explore together?",
+      "options": [27, 28, 29]
+    },
+    {
+      "id": 16,
+      "question": "I’m looking for a Flutter developer for a project.",
+      "options": []
+    },
+    {
+      "id": 17,
+      "question": "I’m exploring potential roles for you.",
+      "options": []
+    },
+    {
+      "id": 18,
+      "question": "Yes, tell me more about your career.",
+      "options": []
+    },
+    {
+      "id": 19,
+      "question": "What are some key projects you've worked on?",
+      "options": []
+    },
+    {
+      "id": 20,
+      "question": "How did you get into Flutter development?",
+      "options": []
+    },
+    {
+      "id": 21,
+      "question": "Yes, let’s talk about Flutter development!",
+      "options": []
+    },
+    {
+      "id": 22,
+      "question": "What kind of projects have you worked on using Flutter?",
+      "options": []
+    },
+    {
+      "id": 23,
+      "question": "Tell me about the challenges you’ve faced in Flutter.",
+      "options": []
+    },
+    {
+      "id": 24,
+      "question": "Yes, I have a bug I need help with.",
+      "options": []
+    },
+    {
+      "id": 25,
+      "question": "I need guidance on a coding project.",
+      "options": []
+    },
+    {
+      "id": 26,
+      "question": "Can you help me with debugging Flutter code?",
+      "options": []
+    },
+    {
+      "id": 27,
+      "question": "I’m looking for a Flutter developer for a project.",
+      "options": []
+    },
+    {
+      "id": 28,
+      "question": "I’m exploring potential roles for you.",
+      "options": []
+    },
+    {
+      "id": 29,
+      "question": "Let’s talk about your vision for a project.",
+      "options": []
+    },
+    {
+      "id": 30,
+      "question": "It sounds like we might have some exciting possibilities ahead! Would you like to schedule a 30-minute session to discuss further?",
+      "options": [31, 32, 33]
+    },
+    {
+      "id": 31,
+      "question": "Yes, let’s schedule a meeting.",
+      "options": [34]
+    },
+    {
+      "id": 32,
+      "question": "Tell me more about how the session will work.",
+      "options": []
+    },
+    {
+      "id": 33,
+      "question": "I’m still thinking about the next steps.",
+      "options": []
+    },
+    {
+      "id": 34,
+      "question": "Please share your details below so we can set up the session. First name, last name, email address?",
+      "options": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;400;700&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e2036;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.loading_view {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.loading-text {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fadeInText 2s ease-in-out forwards;
+}
+
+.loading-text1 {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInText 2s ease-in-out forwards;
+  animation-delay: 1.5s;
+}
+
+.built-text {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: #f1c40f;
+  opacity: 0;
+  animation: fadeInText 2s ease-in-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Animation for each text to fade in sequentially */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Infinite Linear Progress Bar Styles */
+.progress-bar {
+  width: 175px;
+  height: 8px;
+  background-color: #2c3e50;
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar:before {
+  content: "";
+  position: absolute;
+  left: -100px; /* Start from outside the container */
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background-color: #f1c40f;
+  animation: progressLoop 2s linear infinite;
+}
+
+@keyframes progressLoop {
+  0% {
+    left: -100px;
+  }
+  100% {
+    left: 100%;
+  }
+}

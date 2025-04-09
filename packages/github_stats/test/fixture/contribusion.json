@@ -1,0 +1,25 @@
+{
+  "data": {
+    "viewer": {
+      "contributionsCollection": {
+        "endedAt": "2025-01-16T17:59:59Z",
+        "hasActivityInThePast": true,
+        "hasAnyContributions": true,
+        "hasAnyRestrictedContributions": false,
+        "isSingleDay": false,
+        "latestRestrictedContributionDate": null,
+        "restrictedContributionsCount": 0,
+        "startedAt": "2024-01-13T18:00:00Z",
+        "totalCommitContributions": 2266,
+        "totalIssueContributions": 35,
+        "totalPullRequestContributions": 141,
+        "totalPullRequestReviewContributions": 3,
+        "totalRepositoriesWithContributedCommits": 40,
+        "totalRepositoriesWithContributedIssues": 13,
+        "totalRepositoriesWithContributedPullRequestReviews": 3,
+        "totalRepositoriesWithContributedPullRequests": 23,
+        "totalRepositoryContributions": 29
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:effects/effects.dart' as eff;
+import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 import '../../../app/app.dart';
 
 /// simple Circle IconBUttons of [Connect]
@@ -42,8 +43,10 @@ class _ConnectButtonState extends State<ConnectButton>
 
   @override
   Widget build(BuildContext context) {
-    final ActionThemeExt theme =
-        Theme.of(context).extension<ActionThemeExt>()!;
+    final ActionThemeExt theme = Theme.of(context).extension<ActionThemeExt>()!;
+
+    final String logoPath =
+        "${context.appConfig.iconDir}${widget.connect.logo}";
 
     return AnimatedBuilder(
       animation: controller,
@@ -57,30 +60,27 @@ class _ConnectButtonState extends State<ConnectButton>
         clipBehavior: Clip.hardEdge,
         shape: const CircleBorder(),
         color: theme.background,
-        child: Tooltip(
-          message: message,
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(top: 16),
-          textStyle: theme.hintTextStyle,
-          decoration: BoxDecoration(
-            color: theme.hintBackgroundColor,
-          ),
-          child: InkWell(
-            hoverColor: theme.hoverColor,
-            onTap: widget.onTap,
-            onHover: (v) {
-              v ? controller.forward() : controller.reverse();
-              widget.onHovered;
-            },
-            customBorder: const CircleBorder(),
-            child: Image.network(
-              widget.connect.logo,
-              height: 48,
-              width: 48,
-              fit: BoxFit.cover,
-              opacity: controller,
-              errorBuilder: (context, error, stackTrace) => const Icon(
-                Icons.error,
+        child: InkWell(
+          hoverColor: theme.hoverColor,
+          onTap: widget.onTap,
+          onHover: (v) {
+            v ? controller.forward() : controller.reverse();
+            widget.onHovered;
+          },
+          customBorder: const CircleBorder(),
+          child: eff.SphereView(
+            colors: [Colors.white.withAlpha(40), Colors.black12],
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Image.network(
+                logoPath,
+                height: 48,
+                width: 48,
+                fit: BoxFit.cover,
+                opacity: controller,
+                errorBuilder: (context, error, stackTrace) => const Icon(
+                  Icons.error,
+                ),
               ),
             ),
           ),

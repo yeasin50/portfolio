@@ -50,17 +50,28 @@
     {
       "title": "Flutter Developer",
       "organization": {
+        "name": "NDA (Part-time)"
+      },
+      "start": "2025-02-01T00:00:00Z",
+      "end": null,
+      "description": "Refactoring legacy Flutter codebase to improve performance and maintainability, while contributing new features to the production app at a London-based company.",
+      "show": true
+    },
+
+    {
+      "title": "Flutter Developer",
+      "organization": {
         "name": "Tincleo"
       },
       "start": "2023-12-01T00:00:00Z",
       "end": "2024-11-30T00:00:00Z",
-      "description": "Flutter development on various projects.",
+      "description": "Refactored and built a US–France based real estate app with new features, advanced search, and user verification.",
       "show": true
     },
     {
       "title": "Flutter Developer",
       "organization": {
-        "name": "Oxford International School"
+        "name": "Oxford International School (Contract)"
       },
       "start": "2024-08-01T00:00:00Z",
       "end": "2024-09-30T00:00:00Z",
@@ -74,7 +85,7 @@
       },
       "start": "2021-06-01T00:00:00Z",
       "end": "2021-09-30T00:00:00Z",
-      "description": "Contributed to Travellers App, improving UI and integrating API data.",
+      "description": "Contributed to Travelers App, improving UI and integrating API data.",
       "show": true
     },
     {
@@ -85,7 +96,7 @@
       "start": "2021-03-01T00:00:00Z",
       "end": "2021-05-31T00:00:00Z",
       "description": "Built a basic banking system focusing on interactive UI.",
-      "show": true
+      "show": false
     }
   ],
   "education": [

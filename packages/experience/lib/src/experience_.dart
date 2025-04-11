@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:core/core.dart';
 
-///
+/// work, internship or slavery
 class Experience {
   const Experience({
     required this.title,
@@ -10,6 +10,7 @@ class Experience {
     required this.start,
     this.end,
     this.description,
+    this.show = true,
   });
 
   final String title;
@@ -18,6 +19,8 @@ class Experience {
   final DateTime start;
   final DateTime? end;
   final String? description;
+
+  final bool show;
 
   factory Experience.fromMap(Map<String, dynamic> map) {
     return Experience(
@@ -28,6 +31,7 @@ class Experience {
       start: DateTime.parse(map['start']),
       end: map['end'] != null ? DateTime.parse(map['end']) : null,
       description: map['description'],
+      show: map["show"] ?? true,
     );
   }
 
@@ -36,6 +40,6 @@ class Experience {
 
   @override
   String toString() {
-    return 'Experience(title: $title, company: $organization, start: $start, end: $end, description: $description)';
+    return 'Experience(title: $title, organization: $organization, start: $start, end: $end, description: $description, show: $show)';
   }
 }

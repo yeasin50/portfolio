@@ -15,10 +15,14 @@ jobs:
       my_secret: ${{secrets.commit_secret}}
 
     steps:
+      - name: nav to working directory
+        run: cd apps/portfolio_yeasin
+
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
           version: 3.29.2
+
       - run: flutter clean
       - run: flutter pub get
       - run: flutter build web --target lib/main_prod.dart --release  --base-href /portfolio/

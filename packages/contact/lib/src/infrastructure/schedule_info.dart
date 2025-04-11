@@ -28,6 +28,7 @@ class Schedules {
     required this.state,
     this.message,
     this.appointmentURL,
+    this.show = true,
   });
 
   final DateTime? availableFrom;
@@ -42,6 +43,8 @@ class Schedules {
   /// key represents the day of the week (0 = Sunday, 6 = Saturday),
   /// and the value is a list of available time slots.
   final Map<int, List<TimeOfDay>> timeSlots;
+
+  final bool show;
 
   /// parse from  map
   /// ```json
@@ -59,6 +62,7 @@ class Schedules {
       state: ScheduleState.fromMap(map["state"]),
       appointmentURL: map["appointment_url"],
       message: map["message"],
+      show: map["show"] ?? true,
       timeSlots: (map["time_slots"] as Map?)?.map<int, List<TimeOfDay>>(
             (key, value) => MapEntry(
                 int.parse(key),
@@ -79,6 +83,6 @@ class Schedules {
 
   @override
   String toString() {
-    return 'Schedules(availableFrom: $availableFrom, state: $state, message: $message, appointmentURL: $appointmentURL, timeSlots: $timeSlots)';
+    return 'Schedules(availableFrom: $availableFrom, state: $state, message: $message, appointmentURL: $appointmentURL, timeSlots: $timeSlots, show: $show)';
   }
 }

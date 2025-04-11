@@ -19,7 +19,8 @@
         "Fixed bugs",
         "Refactored full-codebase for release",
         "Improve performance and code-readability"
-      ]
+      ],
+      "show": true
     },
     {
       "id": "2",
@@ -39,7 +40,8 @@
       "tasks": [
         "Implemented navigation using Navigator 2.0",
         "Designed UI to match original portfolio"
-      ]
+      ],
+      "show": true
     },
 
     {
@@ -58,7 +60,8 @@
       "tasks": [
         "Functional app with for students",
         "player with Inherited widget as state-management solution"
-      ]
+      ],
+      "show": true
     },
     {
       "id": "4",
@@ -79,7 +82,8 @@
         "grade analysis for peer comparison",
         "course selection for retakes",
         "export and share mark-sheet"
-      ]
+      ],
+      "show": true
     },
     {
       "id": "5",
@@ -100,7 +104,8 @@
         "documents review process ",
         "course selection for retakes",
         "export and share mark-sheet"
-      ]
+      ],
+      "show": true
     },
     {
       "id": "6",
@@ -117,7 +122,8 @@
       "deployed": "https://yeasin50.github.io/read_me_when/",
       "source": "https://github.com/yeasin50/read_me_when",
       "media": [],
-      "tasks": []
+      "tasks": [],
+      "show": true
     },
     {
       "id": "7",
@@ -133,7 +139,8 @@
         "blur_hash": "QBOEhdnl_NE00KNFTZxuof3^SdXkxun6xaX6RkWBUDs;4-xa~DW-rvWoof"
       },
       "media": [],
-      "tasks": []
+      "tasks": [],
+      "show": true
     },
 
     {
@@ -149,7 +156,8 @@
       "tasks": [
         "Efficient way  of rendering thousands of grid inside fragment shader",
         "player with Inherited widget as state-management solution"
-      ]
+      ],
+      "show": true
     },
 
     {
@@ -164,7 +172,8 @@
       "tasks": [
         "Designed UI for offline access",
         "Implemented search functionality"
-      ]
+      ],
+      "show": true
     },
     {
       "id": "3",
@@ -179,7 +188,8 @@
       "tasks": [
         "Developed game mechanics",
         "Created custom UI without asset images"
-      ]
+      ],
+      "show": true
     }
   ]
 }

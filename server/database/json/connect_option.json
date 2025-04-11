@@ -195,7 +195,8 @@
             }
           ]
         }
-      ]
+      ],
+      "show": true
     },
     {
       "type": "Scholarship",
@@ -294,11 +295,13 @@
             }
           ]
         }
-      ]
+      ],
+      "show": true
     },
     {
       "type": "Bug hunting",
-      "tldr": ""
+      "tldr": "",
+      "show": true
     }
   ]
 }

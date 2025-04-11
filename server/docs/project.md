@@ -157,3 +157,7 @@
       }
     ]
     ```
+
+- `show`
+  - **Type**: bool
+  - **Description**: default is true, if false item will hide on app/client side

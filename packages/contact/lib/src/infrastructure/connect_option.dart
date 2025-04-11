@@ -12,6 +12,7 @@ class ConnectOption {
     this.background,
     required this.principles,
     this.schedules,
+    this.show = true,
   });
 
   final String name;
@@ -19,6 +20,7 @@ class ConnectOption {
   final Color? background;
   final List<ConnectionPrinciple> principles;
   final Schedules? schedules;
+  final bool show;
 
   bool get showSchedule {
     return schedules != null && schedules!.state != ScheduleState.hide;
@@ -35,6 +37,7 @@ class ConnectOption {
             (e) => ConnectionPrinciple.fromMap(e),
           ) ??
           []),
+      show: map["show"] ?? true,
     );
   }
 }
@@ -44,11 +47,13 @@ class ConnectionPrinciple {
     required this.title,
     required this.category,
     this.items = const [],
+    this.show = true,
   });
 
   final String category;
   final String title;
   final List<PrincipleInfo> items;
+  final bool show;
 
   factory ConnectionPrinciple.fromMap(Map<String, dynamic> map) {
     return ConnectionPrinciple(
@@ -57,12 +62,14 @@ class ConnectionPrinciple {
       items: map["items"] == null
           ? []
           : List.from(map["items"].map((e) => PrincipleInfo.fromMap(e))),
+      show: map["show"] ?? true,
     );
   }
 
   @override
-  String toString() =>
-      'ConnectionPrinciple(category: $category, title: $title, items: $items)';
+  String toString() {
+    return 'ConnectionPrinciple(category: $category, title: $title, items: $items, show: $show)';
+  }
 }
 
 class PrincipleInfo {
@@ -71,6 +78,7 @@ class PrincipleInfo {
     required this.data,
     this.description = "",
     this.category = "",
+    this.show = true,
   });
 
   final String name;
@@ -78,17 +86,20 @@ class PrincipleInfo {
   final String description;
   final String category;
 
+  final bool show;
+
   factory PrincipleInfo.fromMap(Map<String, dynamic> map) {
     return PrincipleInfo(
       name: map["name"],
       description: map["description"] ?? "",
       category: map["category"] ?? "",
-      data: List.from(map["data"]??[]),
+      data: List.from(map["data"] ?? []),
+      show: map["show"] ?? true,
     );
   }
 
   @override
   String toString() {
-    return 'PrincipleInfo(name: $name, data: $data, description: $description, category: $category)';
+    return 'PrincipleInfo(name: $name, data: $data, description: $description, category: $category, show: $show)';
   }
 }

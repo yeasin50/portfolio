@@ -44,6 +44,9 @@
     - `logo`: URL to the platform's logo.
     - `url`: URL to the individual's profile on that platform.
     - `description` (Optional): Additional information about the connection.
+    - `show`
+      - **Type**: bool
+      - **Description**: default is true, if false item will hide on app/client side
   - **Example**:
     ```json
     [
@@ -71,6 +74,9 @@
     - `start`: Start date of the role.
     - `end`: End date of the role (if applicable).
     - `description`: A brief description of the role and responsibilities.
+    - `show`
+      - **Type**: bool
+      - **Description**: default is true, if false item will hide on app/client side
   - **Example**:
     ```json
     [
@@ -123,6 +129,9 @@
     - `image_url`: The URL to an image of the certificate (optional).
     - `issue_date`: The issue date of the certificate.
     - `expiration_date`: The expiration date of the certificate (if applicable).
+    - `show`
+      - **Type**: bool
+      - **Description**: default is true, if false item will hide on app/client side
   - **Example**:
     ```json
     [

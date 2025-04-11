@@ -60,11 +60,11 @@ class UserRepository {
 
       return UserRepository._(
         intro: userInfo.into,
-        connects: userInfo.connects,
-        experiences: userInfo.experience,
-        educations: userInfo.education,
-        certificates: userInfo.certificates,
-        projects: projectRepo.projects,
+        connects: userInfo.connects.where((e) => e.show).toList(),
+        experiences: userInfo.experience.where((e) => e.show).toList(),
+        educations: userInfo.education.where((e) => e.show).toList(),
+        certificates: userInfo.certificates.where((e) => e.show).toList(),
+        projects: projectRepo.projects.where((e) => e.show).toList(),
         connectData: connectRepo,
       );
     } catch (e, st) {

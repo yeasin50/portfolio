@@ -5,6 +5,7 @@ class Connect {
     required this.logo,
     required this.url,
     this.description,
+    this.show = false,
   });
 
   // site name, not so useful
@@ -17,12 +18,15 @@ class Connect {
   /// availability  ratio, but we can always put the first one at top
   final String? description;
 
+  final bool show;
+
   static Connect fromMap(Map<String, dynamic> map) {
     return Connect(
       name: map["name"],
       logo: map["logo"],
       url: map["url"],
       description: map["description"],
+      show: map["show"] ?? true,
     );
   }
 }

@@ -94,6 +94,10 @@ example json
   - **Type**: Array of Objects `principle_item`
   - **Description**: A list of items or subcategories that provide more detailed information about the principle. Each item consists of a `name` which is string and `data` which is list of string.
 
+- `show`
+  - **Type**: bool
+  - **Description**: default is true, if false item will hide on app/client side
+
 <details><summary> Example:</summary>
 
 ```json

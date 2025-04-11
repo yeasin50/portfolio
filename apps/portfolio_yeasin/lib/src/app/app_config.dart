@@ -2,6 +2,7 @@ class AppConfig {
   const AppConfig._({
     required this.baseUrl,
     required this.imageDir,
+    required this.iconDir,
   });
 
   /// the base uri;
@@ -13,17 +14,23 @@ class AppConfig {
   /// it has `low_res` and `high_res` folder
   final String imageDir;
 
+  final String iconDir;
+
   static const AppConfig dev = AppConfig._(
     baseUrl: "http://localhost:8080",
     imageDir:
         "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/dev/server/database/images/",
+    iconDir:
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/dev/server/database/logo/",
   );
 
   static const AppConfig gitProd = AppConfig._(
     baseUrl:
-        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/dev/server/database/json/",
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/json/",
     imageDir:
-        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/dev/server/database/images/",
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/images/",
+    iconDir:
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/logo/",
   );
 
   bool get isDev => baseUrl.contains("localhost");

@@ -4,7 +4,7 @@ import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
-
+import 'package:portfolio_yeasin/src/presentation/home/widgets/fab_button.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
 import '../../infrastructure/utils/stack_overflow_user_mixin.dart';
 import '../work/work_items.dart';
@@ -50,6 +50,25 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.addListener(scrollLister);
+    });
+  }
+
+  bool showFab = false;
+  void scrollLister() {
+    final currentPosition = scrollController.offset;
+    final maxExtent = scrollController.position.maxScrollExtent;
+    final viewPortHeight = scrollController.positions.first.viewportDimension;
+
+    showFab = currentPosition > viewPortHeight / 2 &&
+        currentPosition < maxExtent - viewPortHeight / 2;
+    setState(() {});
+  }
+
+  @override
   void dispose() {
     animationController.dispose();
     scrollController.dispose();
@@ -61,9 +80,19 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final hasExceedMaxWidth =
-        MediaQuery.sizeOf(context).width < Spacing.maxWidth;
+    final hasExceedMaxWidth = MediaQuery.sizeOf(context).width <
+        Spacing.maxWidth + Spacing.navBarPreserve * 2;
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      floatingActionButton: AnimatedBuilder(
+        animation: scrollController,
+        builder: (context, child) {
+          if (!hasExceedMaxWidth || !showFab) return const SizedBox();
+          return child!;
+        },
+        child: const FabButton(),
+      ),
       body: Listener(
         onPointerSignal: onPointerSignal,
         child: CustomScrollView(

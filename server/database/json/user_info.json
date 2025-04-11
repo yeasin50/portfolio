@@ -11,24 +11,28 @@
   "connects": [
     {
       "name": "github",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/github.png",
-      "url": "https://github.com/yeasin50"
+      "logo": "github_96.png",
+      "url": "https://github.com/yeasin50",
+      "show": true
     },
     {
       "name": "stackOverflow",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/stackoverflow.png",
+      "logo": "stack_overflow_96.png",
       "url": "https://stackoverflow.com/users/10157127/md-yeasin-sheikh",
-      "description": "Ranked #2 in August 2022 • Earned 7 gold badges for outstanding contributions, including Flutter & Dart. "
+      "description": "Ranked #2 in August 2022 • Earned 7 gold badges for outstanding contributions, including Flutter & Dart.",
+      "show": true
     },
     {
       "name": "linkedin",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/Linkedin.png",
-      "url": "https://www.linkedin.com/in/mdyeasinsheikh/"
+      "logo": "linkedin_150.png",
+      "url": "https://www.linkedin.com/in/mdyeasinsheikh/",
+      "show": true
     },
     {
       "name": "youtube",
       "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
-      "url": "https://www.youtube.com/@FlutterforMe"
+      "url": "https://www.youtube.com/@FlutterforMe",
+      "show": false
     }
   ],
 
@@ -40,8 +44,20 @@
       },
       "start": "2021-07-01T00:00:00Z",
       "end": null,
-      "description": "Freelance hybrid developer with extensive experience in bringing creative ideas to life. Led multiple projects, including DataHub for Daffodil Health Department, and worked on a variety of Flutter-based applications."
+      "description": "Freelance hybrid developer with extensive experience in bringing creative ideas to life. Led multiple projects, including DataHub for Daffodil Health Department, and worked on a variety of Flutter-based applications.",
+      "show": true
     },
+    {
+      "title": "Flutter Developer",
+      "organization": {
+        "name": "NDA (Part-time)"
+      },
+      "start": "2025-02-01T00:00:00Z",
+      "end": null,
+      "description": "Refactoring legacy Flutter codebase to improve performance and maintainability, while contributing new features to the production app at a London-based company.",
+      "show": true
+    },
+
     {
       "title": "Flutter Developer",
       "organization": {
@@ -49,16 +65,18 @@
       },
       "start": "2023-12-01T00:00:00Z",
       "end": "2024-11-30T00:00:00Z",
-      "description": "Flutter development on various projects."
+      "description": "Refactored and built a US–France based real estate app with new features, advanced search, and user verification.",
+      "show": true
     },
     {
       "title": "Flutter Developer",
       "organization": {
-        "name": "Oxford International School"
+        "name": "Oxford International School (Contract)"
       },
       "start": "2024-08-01T00:00:00Z",
       "end": "2024-09-30T00:00:00Z",
-      "description": "Built Moneybag Flutter package, a leading payment gateway in Bangladesh."
+      "description": "Built Moneybag Flutter package, a leading payment gateway in Bangladesh.",
+      "show": true
     },
     {
       "title": "Flutter Developer Intern",
@@ -67,7 +85,8 @@
       },
       "start": "2021-06-01T00:00:00Z",
       "end": "2021-09-30T00:00:00Z",
-      "description": "Contributed to Travellers App, improving UI and integrating API data."
+      "description": "Contributed to Travelers App, improving UI and integrating API data.",
+      "show": true
     },
     {
       "title": "Mobile Application Developer Intern",
@@ -76,7 +95,8 @@
       },
       "start": "2021-03-01T00:00:00Z",
       "end": "2021-05-31T00:00:00Z",
-      "description": "Built a basic banking system focusing on interactive UI."
+      "description": "Built a basic banking system focusing on interactive UI.",
+      "show": false
     }
   ],
   "education": [
@@ -90,7 +110,8 @@
       "end": "2023-09-01T00:00:00Z",
       "grade": "3.67 out of 4.0",
       "description": "Not that efficient for my limited lifespan",
-      "images": []
+      "images": [],
+      "show": true
     }
   ],
   "certificate": [
@@ -102,7 +123,8 @@
       "credential_url": null,
       "image_url": null,
       "issue_date": "2023-09-01T00:00:00Z",
-      "expiration_date": null
+      "expiration_date": null,
+      "show": true
     },
     {
       "name": "Engineering: Undergraduate & Masters Asia Virtual Experience Program",
@@ -112,7 +134,8 @@
       "credential_url": null,
       "image_url": null,
       "issue_date": "2021-06-01T00:00:00Z",
-      "expiration_date": null
+      "expiration_date": null,
+      "show": true
     },
     {
       "name": "Foundations of User Experience (UX) Design",
@@ -122,7 +145,8 @@
       "credential_url": null,
       "image_url": null,
       "issue_date": "2021-05-01T00:00:00Z",
-      "expiration_date": null
+      "expiration_date": null,
+      "show": true
     }
   ]
 }

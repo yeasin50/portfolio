@@ -11,20 +11,20 @@
   "connects": [
     {
       "name": "github",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/github.png",
+      "logo": "github_96.png",
       "url": "https://github.com/yeasin50",
       "show": true
     },
     {
       "name": "stackOverflow",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/stackoverflow.png",
+      "logo": "stackover_flow_96.png",
       "url": "https://stackoverflow.com/users/10157127/md-yeasin-sheikh",
       "description": "Ranked #2 in August 2022 • Earned 7 gold badges for outstanding contributions, including Flutter & Dart.",
       "show": true
     },
     {
       "name": "linkedin",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/Linkedin.png",
+      "logo": "linkedin_150.png",
       "url": "https://www.linkedin.com/in/mdyeasinsheikh/",
       "show": true
     },

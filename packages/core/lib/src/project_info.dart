@@ -13,6 +13,7 @@ class Project {
     required this.tasks,
     this.deployed,
     this.source,
+    this.show = true,
   });
 
   final String id;
@@ -54,6 +55,8 @@ class Project {
   /// live site/store url
   final String? deployed;
 
+  final bool show;
+
   static Project fromMap(Map<String, dynamic> map) {
     return Project(
       id: map["id"]?.toString() ?? DateTime.now().toString(),
@@ -72,6 +75,7 @@ class Project {
               ?.map((e) => ProjectMediaGroup.fromMap(e))
               .toList() ??
           [],
+      show: map["show"] ?? true,
     );
   }
 

@@ -17,6 +17,7 @@ class Education {
     this.grade,
     this.description,
     this.images = const [],
+    this.show = true,
   });
 
   final Organization school;
@@ -27,6 +28,7 @@ class Education {
   final String? grade;
   final String? description;
   final List<String> images;
+  final bool show;
 
   @override
   String toString() {
@@ -44,6 +46,7 @@ class Education {
         grade: map['grade'],
         description: map['description'],
         images: List<String>.from(map['images'] ?? []),
+        show: map["show"] ?? true,
       );
     } catch (e) {
       log(e.toString());

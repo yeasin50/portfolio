@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:core/core.dart';
 
 class Certificate {
@@ -11,6 +9,7 @@ class Certificate {
     this.description,
     this.issueDate,
     this.expirationDate,
+    this.show = true,
   });
 
   final String name;
@@ -21,6 +20,7 @@ class Certificate {
 
   final DateTime? issueDate;
   final DateTime? expirationDate;
+  final bool show;
 
   factory Certificate.fromMap(Map<String, dynamic> map) {
     return Certificate(
@@ -34,11 +34,12 @@ class Certificate {
       expirationDate: map['expiration_date'] != null
           ? DateTime.parse(map['expiration_date'])
           : null,
+      show: map["show"] ?? true,
     );
   }
 
   @override
   String toString() {
-    return 'Certificate(name: $name, organization: $organization, credentialUrl: $credentialUrl, imageUrl: $imageUrl, description: $description, issueDate: $issueDate, expirationDate: $expirationDate)';
+    return 'Certificate(name: $name, organization: $organization, credentialUrl: $credentialUrl, imageUrl: $imageUrl, description: $description, issueDate: $issueDate, expirationDate: $expirationDate, show: $show)';
   }
 }

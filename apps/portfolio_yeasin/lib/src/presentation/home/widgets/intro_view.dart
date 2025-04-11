@@ -45,7 +45,6 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
     ).lerp(t).copyWith(color: textColor);
 
     final LayerLink layerLink = LayerLink();
-
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -59,23 +58,21 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
             link: layerLink,
             child: Padding(
               padding: EdgeInsets.only(top: 24, bottom: lerpDouble(48, 16, t)!),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    info.name,
-                    style: nameTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                  DefaultSelectionStyle(
-                    child: Text(
-                      lerpText(info.title, info.shortTitle, t),
-                      textAlign: TextAlign.left,
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: info.name,
+                      style: nameTextStyle,
+                    ),
+                    const TextSpan(text: "\n"),
+                    TextSpan(
+                      text: lerpText(info.title, info.shortTitle, t),
                       style: titleTextStyle,
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                textAlign: t > .75 ? TextAlign.start : TextAlign.center,
               ),
             ),
           ),

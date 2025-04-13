@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:effects/effects.dart' as eff;
 
 ///  animate to top/ open  menu for [HomePage]  by replacing navigation button
 ///
@@ -25,16 +24,6 @@ class _FabButtonState extends State<FabButton> {
             curve: Curves.easeOutBack,
           );
         },
-        child: const eff.SphereView(
-          colors: [Colors.white, Colors.transparent],
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Icon(
-              Icons.home,
-              color: Colors.white,
-            ),
-          ),
-        ),
       ),
     );
   }

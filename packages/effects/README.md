@@ -140,3 +140,5 @@ import the package with a prefix
     ),
   );
   ```
+
+- HomeIcon, simple circle button with home icon, use [SphereView]

@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage>
 
 /// Just simple view so that it looks good inside [HomePage]
 class _ConnectInHomePage extends StatelessWidget {
-  const _ConnectInHomePage({super.key});
+  const _ConnectInHomePage();
 
   @override
   Widget build(BuildContext context) {

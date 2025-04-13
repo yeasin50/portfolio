@@ -122,19 +122,8 @@ class _ConnectPageBodyState extends State<ConnectPageBody> {
         ),
         if (widget.onHomeIconTap != null)
           Center(
-            child: InkWell(
-              customBorder: CircleBorder(),
+            child: eff.HomeIcon(
               onTap: widget.onHomeIconTap,
-              child: eff.SphereView(
-                colors: [Colors.white, Colors.transparent],
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Icon(
-                    Icons.home,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
             ),
           )
       ],

@@ -39,6 +39,11 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
               child: Center(),
             );
           }
+
+          if (snapshot.hasError) {
+            return _ErrorView(msg: snapshot.error.toString());
+          }
+
           return AppProvider(
             config: widget.config,
             repo: snapshot.requireData,
@@ -67,5 +72,30 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
             ),
           );
         });
+  }
+}
+
+class _ErrorView extends StatelessWidget {
+  const _ErrorView({
+    super.key,
+    required this.msg,
+  });
+  final String msg;
+
+  @override
+  Widget build(BuildContext context) {
+    return eff.BackgroundView(
+      key: ValueKey("BG  "),
+      colors: [
+        Color(0xFF1E2036), // Deep Blue-Gray
+        Color(0xFF343C59), // Muted Slate Blue
+      ],
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Center(
+          child: Text(msg),
+        ),
+      ),
+    );
   }
 }

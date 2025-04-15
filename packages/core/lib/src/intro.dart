@@ -28,6 +28,13 @@ class IntroInfo {
     );
   }
 
+  static IntroInfo none({String? msg}) => IntroInfo(
+        name: "404",
+        title: "failed to fetch",
+        shortTitle: "",
+        description: msg ?? "Check  api end points or perse",
+      );
+
   @override
   String toString() {
     return 'IntroInfo(name: $name, title: $title, shortTitle: $shortTitle, description: $description)';

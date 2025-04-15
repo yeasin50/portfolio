@@ -26,11 +26,11 @@ class AppConfig {
 
   static const AppConfig gitProd = AppConfig._(
     baseUrl:
-        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/json/",
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/master/server/database/json/",
     imageDir:
-        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/images/",
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/master/server/database/images/",
     iconDir:
-        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/release/server/database/logo/",
+        "https://raw.githubusercontent.com/yeasin50/portfolio/refs/heads/master/server/database/logo/",
   );
 
   bool get isDev => baseUrl.contains("localhost");

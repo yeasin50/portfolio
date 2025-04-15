@@ -27,15 +27,15 @@ class _HomeIconState extends State<HomeIcon> {
       customBorder: CircleBorder(),
       onTap: widget.onTap,
       child: Stack(
-        alignment: FractionalOffset.center,
+        alignment: Alignment.center,
         children: [
-          Align(
-            alignment: FractionalOffset.center,
-            child: CircularProgressIndicator(
-              value: widget.scrollProgress,
-              color: Colors.white,
+          if (widget.scrollProgress != null)
+            Center(
+              child: CircularProgressIndicator(
+                value: widget.scrollProgress,
+                color: Colors.white,
+              ),
             ),
-          ),
           SphereView(
             colors: [Colors.lightBlueAccent.shade100, Colors.transparent],
             child: Padding(

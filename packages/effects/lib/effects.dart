@@ -14,6 +14,7 @@ export 'src/widgets/focus_view.dart';
 export 'src/widgets/bullet_item_view.dart';
 export 'src/widgets/animated_arrow_view.dart';
 export 'src/widgets/back_button.dart';
+export 'src/widgets/home_icon.dart';
 
 export 'src/flow/golden_spiral.dart';
 export 'src/widgets/golden_spiral_recursive.dart';

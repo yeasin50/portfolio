@@ -4,7 +4,7 @@
   "data": [
     {
       "type": "Software\nDevelopment",
-      "tldr": "I have worked on various types of projects for personal clients, companies, and government organizations throughout my development journey. Recents are under NDA, I will be happy if yours is not, but good ones are often lies here. I often work as a part-time developer (20h/W) and take on additional contractual projects that require a few hours of maintenance each week. The rest of the time, I enjoy learning new things and contributing on different platforms. I also enjoy bug hunting and refactoring Flutter projects.  You will find me efficient in Flutter application development. I prioritize working on ethical projects that align with my values and avoid anything that conflicts with my principles.",
+      "tldr": "I have worked on various types of projects for personal clients, companies, and government organizations throughout my development journey. Recent are under NDA, I will be happy if yours is not, but good ones are often lies here. I often work as a part-time developer (20h/W) and take on additional contractual projects that require a few hours of maintenance each week. The rest of the time, I enjoy learning new things and contributing on different platforms. I also enjoy bug hunting and refactoring Flutter projects.  You will find me efficient in Flutter application development. I prioritize working on ethical projects that align with my values and avoid anything that conflicts with my principles.",
       "schedules": {
         "state": "available",
         "message": "I will be available from this date.",
@@ -13,7 +13,7 @@
       "principles": [
         {
           "category": "concern",
-          "title": "Workstyle & Preferences",
+          "title": "Work style & Preferences",
           "items": [
             {
               "name": "Flutter & Application Development",
@@ -58,20 +58,22 @@
             {
               "name": "Documentation",
               "data": [
-                "For documentation generation, I prefer using dartdoc. This has become my coding style. Notion doesn't feel like home yet."
+                "For documentation generation, I prefer using dart-doc and markdown. This has become my coding style. Notion can be used for planning."
               ]
             },
             {
               "name": "Development Environment",
               "data": [
-                "I use Windows as my primary workstation and Debian on my laptop. VS Code is my primary editor, and nowadays, I try NeoVim outside my workspace."
+                "I use Debian as my primary workstation my laptop. DistroBox and separate drive for others stuffs. VS Code is my primary editor, and nowadays, I try NeoVim outside my workspace. Tmux is my favorite terminal multiplexer."
               ]
             },
             {
               "name": "Communication",
               "data": [
-                "For casual communication, Telegram is okay. For team collaboration, Slack feels better. Microsoft Teams? A very confusing experience.",
-                "For task management, GitHub Issues/Projects, Jira, and Trello work fine, but I’m still not comfortable using Notion for task tracking. Don't tell me you still use Excel sheets for task management."
+                "For casual communication, Telegram is fine. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? Honestly, a very confusing experience.",
+                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please — don’t tell me you're still using Excel sheets for managing tasks.",
+                "No phone calls without a pre-scheduled meeting or clear heads-up. No sudden calls or surprise meetings.",
+                "I only stay active during common scheduled check-ins — like 30 minutes — to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
               ]
             },
             {
@@ -134,20 +136,7 @@
             {
               "name": "Documentation",
               "data": [
-                "For documentation generation, I prefer using dartdoc. This has become my coding style. Notion doesn't feel like home yet."
-              ]
-            },
-            {
-              "name": "Development Environment",
-              "data": [
-                "I use Windows as my primary workstation and Debian on my laptop. VS Code is my primary editor, and nowadays, I try NeoVim outside my workspace."
-              ]
-            },
-            {
-              "name": "Communication",
-              "data": [
-                "For casual communication, Telegram is okay. For team collaboration, Slack feels better. Microsoft Teams? A very confusing experience.",
-                "For task management, GitHub Issues/Projects, Jira, and Trello work fine, but I’m still not comfortable using Notion for task tracking. Don't tell me you still use Excel sheets for task management."
+                "For documentation generation, I prefer using dart-doc. This has become my coding style. Notion doesn't feel like home yet."
               ]
             },
             {

@@ -14,14 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(),
       home: Scaffold(
-        body: Column(
-          children: [
-            CounterNumberEffect(
-              value: 10,
-              startValue: 0,
-              duration: Duration(seconds: 10),
-            ),
-          ],
+        backgroundColor: Colors.blueGrey,
+        body: Center(
+          child: CounterNumberEffect(
+            value: 10,
+            duration: Duration(seconds: 2),
+          ),
         ),
       ),
     );

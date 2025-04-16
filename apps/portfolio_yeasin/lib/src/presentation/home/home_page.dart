@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     animationController.dispose();
-    scrollController.dispose();
+    scrollController.removeListener(scrollLister);
     super.dispose();
   }
 

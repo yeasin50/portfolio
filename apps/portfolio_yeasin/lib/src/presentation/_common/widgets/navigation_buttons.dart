@@ -74,7 +74,7 @@ class _NavigationBarState extends State<NavigationButtons>
 
   @override
   void dispose() {
-    scrollController.dispose();
+    scrollController.removeListener(scrollListener);
     super.dispose();
   }
 

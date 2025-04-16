@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:effects/effects.dart' as eff;
 
 ///  animate to top/ open  menu for [HomePage]  by replacing navigation button
 ///
@@ -16,14 +17,16 @@ class _FabButtonState extends State<FabButton> {
       padding: const EdgeInsets.only(left: 24.0, top: 24),
       child: InkWell(
         customBorder: const CircleBorder(),
-        onTap: () {
-          final controller = PrimaryScrollController.maybeOf(context);
-          controller?.animateTo(
-            0,
-            duration: Durations.extralong4,
-            curve: Curves.easeOutBack,
-          );
-        },
+        child: eff.HomeIcon(
+          onTap: () {
+            final controller = PrimaryScrollController.maybeOf(context);
+            controller?.animateTo(
+              0,
+              duration: Durations.extralong4,
+              curve: Curves.easeOutBack,
+            );
+          },
+        ),
       ),
     );
   }

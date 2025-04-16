@@ -53,8 +53,8 @@ class UserRepository {
         UserConnectRepo.create(apiService),
         ProjectRepository.create(apiService)
       ]);
-      final userInfo = response.first as UserInfoResponse;
 
+      final userInfo = response.first as UserInfoResponse;
       final connectRepo = response[1] as UserConnectRepo;
       final projectRepo = response.last as ProjectRepository;
 

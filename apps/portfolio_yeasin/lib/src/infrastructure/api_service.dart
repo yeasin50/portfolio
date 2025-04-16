@@ -24,6 +24,7 @@ class ApiService {
   }) async {
     late Uri uri;
     if (baseUri.host.contains("githubusercontent")) {
+      path = path.replaceFirst("/", ""); //already handled  in  baseUri
       uri = Uri.parse("${baseUri.toString()}$path.json");
     } else {
       uri = baseUri.replace(path: path);

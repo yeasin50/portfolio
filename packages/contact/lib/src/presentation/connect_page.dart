@@ -75,6 +75,16 @@ class _ConnectPageBodyState extends State<ConnectPageBody> {
 
   List<Offset> childrenOffset = [];
 
+  ScrollController? scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController = PrimaryScrollController.maybeOf(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(

@@ -15,18 +15,15 @@ class _FabButtonState extends State<FabButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24.0, top: 24),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        child: eff.HomeIcon(
-          onTap: () {
-            final controller = PrimaryScrollController.maybeOf(context);
-            controller?.animateTo(
-              0,
-              duration: Durations.extralong4,
-              curve: Curves.easeOutBack,
-            );
-          },
-        ),
+      child: eff.HomeIcon(
+        onTap: () {
+          final controller = PrimaryScrollController.maybeOf(context);
+          controller?.animateTo(
+            0,
+            duration: Durations.extralong4,
+            curve: Curves.easeOutBack,
+          );
+        },
       ),
     );
   }

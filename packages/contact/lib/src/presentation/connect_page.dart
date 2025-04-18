@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/connect_body_mobile_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -87,6 +88,11 @@ class _ConnectPageBodyState extends State<ConnectPageBody> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.sizeOf(context).width < 550) {
+      return ConnectBodyMobileView(
+        data: widget.data,
+      );
+    }
     return Stack(
       clipBehavior: Clip.none,
       children: [

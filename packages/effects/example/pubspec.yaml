@@ -31,3 +31,4 @@ flutter:
     - shaders/sine_wave.frag
     - shaders/water_ripple.frag
     - shaders/bg_shader.frag
+    - shaders/plasma_ball.frag

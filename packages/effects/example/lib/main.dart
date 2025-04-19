@@ -14,8 +14,8 @@ void main() {
       home: eff.BackgroundView(
         shaderPath: "shaders/bg_shader.frag",
         colors: [
-          const Color(0xFF343C59),
           const Color(0xFF1E2036),
+          const Color(0xFF343C59),
           // Colors.black,
           // Colors.white,
         ],
@@ -35,38 +35,33 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   double anim = 0;
 
-  void testRoute(Offset offset) {
-    final size = MediaQuery.sizeOf(context);
-    final pushPosition = FractionalOffset.fromOffsetAndSize(offset, size);
-
-    Navigator.of(context).push(eff.RippleRoute(
-      builder: (context) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(),
-          body: Center(),
-        );
-      },
-      color: Colors.white,
-      center: FractionalOffset.center,
-      popPosition: pushPosition,
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
-        child: Placeholder(),
-        // child: InteractiveViewer(
-        // maxScale: 200,
-        // child: eff.GoldenSpiralRecursive(
-        //   children: List.generate(
-        //     12,
-        //     (index) => Text(index.toString()),
-        //   ),
-        // ),
-        // ),
+        child: Container(
+          width: 300,
+          height: 300,
+          decoration: BoxDecoration(
+              border: Border.all(
+            color: Colors.white,
+            width: 3,
+          )),
+          child: eff.PlasmaBallSphere(
+            plasmaColor: Colors.cyanAccent,
+            outerColor: const Color.fromARGB(90, 0, 0, 0),
+            child: Center(
+              child: Text(
+                "1231 asd",
+                style: TextStyle(
+                  fontSize: 33,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

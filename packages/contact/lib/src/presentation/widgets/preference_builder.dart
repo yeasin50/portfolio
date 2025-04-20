@@ -5,7 +5,6 @@ import 'package:effects/effects.dart' as eff;
 import '../../../contact.dart';
 
 ///  Build list of Preference with hover effect
-/// TODO: Make sure user has expand all
 ///
 class PreferenceBuilder extends StatelessWidget {
   const PreferenceBuilder({
@@ -24,7 +23,7 @@ class PreferenceBuilder extends StatelessWidget {
         item.title,
         style: theme.pageTitle,
       ),
-      initialExpanded: item.items.isEmpty,
+      initialExpanded: true, // item.items.isEmpty,
       lowerBound: item.items.isEmpty ? .80 : .23,
       //     item.items.isEmpty && item.description.length < 300 ? 1 : .2,
       expandIconColor: theme.expandIconColor,

@@ -6,10 +6,18 @@ uniform vec2 uSize;
 uniform float utime;
 uniform vec3 uPlasmaColor;
 uniform vec3 uBorderColor;
+uniform vec3 uCoreColor;
+
+// animate inner core
+uniform float uDense;
+uniform float uSpreed; 
+
 
 out vec4 fragColor;
 
 void main() {
+ 
+
     vec2 uv = (FlutterFragCoord().xy / uSize - 0.5);
     uv.x *= uSize.x / uSize.y;
 
@@ -24,8 +32,8 @@ void main() {
 
     float fireR = length(fireUV);
     ///  can tweak smoothstep(dense, spread, fireR);
-    float inner = 1.0 - smoothstep(0.0, 0.15, fireR);
-    vec3 fireColor = mix(uPlasmaColor, vec3(1.0, 1.0, 1.0), pow(1.0 - fireR / 0.15, 2.0));
+    float inner = 1.0 - smoothstep(uDense, uSpreed,  fireR);
+    vec3 fireColor = mix(uPlasmaColor, uCoreColor, pow(1.0 - fireR / 0.15, 2.0));
     vec3 innerColor = fireColor * inner;
 
     // Outer ring

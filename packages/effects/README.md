@@ -144,12 +144,13 @@ import the package with a prefix
 - HomeIcon, simple circle button with home icon, use [SphereView]
 
 - A cool ball animate inside a [outerColor] ring and
-  inner have [plasmaColor] ball white inside, animate like life. Alpha channel will be ignored.
+  inner have [plasmaColor] ball with inside, animate like life. Alpha channel will be ignored.
 
   ```dart
   eff.PlasmaBallSphere(
-    plasmaColor: Colors.cyanAccent,
-    outerColor: const Color.fromARGB(90, 0, 0, 0),
+    coreColor: coreColor: Color(0xFF8E24AA),
+    plasmaColor: Color(0xFF311B92),
+    outerColor: Color(0xFF1E2036),
     child: Center(
       child: Text(
         "1231 asd",

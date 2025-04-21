@@ -15,7 +15,7 @@ class RipplePage<T> extends Page<T> {
   /// Page builder
   final WidgetBuilder builder;
 
-  /// this use [barrierColor] and as well on radial circle
+  /// this use `barrierColor` and as well on radial circle
   /// use the background color of your destination page
   final Color color;
 

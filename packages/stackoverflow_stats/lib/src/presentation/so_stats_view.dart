@@ -125,6 +125,7 @@ class SOUserStats extends StatelessWidget {
       children: children
           .map(
             (e) => eff.SphereView(
+              disableHover: true,
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: e,

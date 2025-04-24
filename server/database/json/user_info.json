@@ -76,7 +76,7 @@
       "start": "2024-08-01T00:00:00Z",
       "end": "2024-09-30T00:00:00Z",
       "description": "Built Moneybag Flutter package, a leading payment gateway in Bangladesh.",
-      "show": true
+      "show": false
     },
     {
       "title": "Flutter Developer Intern",
@@ -86,7 +86,7 @@
       "start": "2021-06-01T00:00:00Z",
       "end": "2021-09-30T00:00:00Z",
       "description": "Contributed to Travelers App, improving UI and integrating API data.",
-      "show": true
+      "show": false
     },
     {
       "title": "Mobile Application Developer Intern",

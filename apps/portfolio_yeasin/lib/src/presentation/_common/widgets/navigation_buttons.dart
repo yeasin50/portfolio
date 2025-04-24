@@ -95,7 +95,7 @@ class _NavigationBarState extends State<NavigationButtons>
     final duration = (distanceToScroll / speedFactor)
         .clamp(
           Durations.short1.inMilliseconds,
-          Durations.extralong4.inMilliseconds,
+          Durations.long3.inMilliseconds,
         )
         .toInt();
 

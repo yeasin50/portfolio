@@ -57,14 +57,19 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  bool showFab = false;
+  FloatingActionButtonLocation? fabLoc;
+  final fabCenter = FabCenterLocation();
   void scrollLister() {
     final currentPosition = scrollController.offset;
     final maxExtent = scrollController.position.maxScrollExtent;
     final viewPortHeight = scrollController.positions.first.viewportDimension;
 
-    showFab = currentPosition > viewPortHeight / 2 &&
-        currentPosition < maxExtent - viewPortHeight / 2;
+    fabLoc = currentPosition < viewPortHeight
+        ? null
+        : currentPosition < maxExtent - 100
+            ? FloatingActionButtonLocation.miniEndDocked
+            : fabCenter;
+
     setState(() {});
   }
 
@@ -84,11 +89,11 @@ class _HomePageState extends State<HomePage>
         Spacing.maxWidth + Spacing.navBarPreserve * 2;
 
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      floatingActionButtonLocation: fabLoc,
       floatingActionButton: AnimatedBuilder(
         animation: scrollController,
         builder: (context, child) {
-          if (!hasExceedMaxWidth || !showFab) return const SizedBox();
+          if (fabLoc == null) return const SizedBox();
           return child!;
         },
         child: const FabButton(),
@@ -204,14 +209,6 @@ class _ConnectInHomePage extends StatelessWidget {
           Expanded(
             child: ConnectPageBody(
               data: context.provider.connectData!,
-              onHomeIconTap: () {
-                final controller = PrimaryScrollController.maybeOf(context);
-                controller?.animateTo(
-                  0,
-                  duration: Durations.extralong4,
-                  curve: Curves.easeOutBack,
-                );
-              },
             ),
           ),
       ],

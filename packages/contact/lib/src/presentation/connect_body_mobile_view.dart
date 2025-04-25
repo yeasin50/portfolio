@@ -33,12 +33,18 @@ class ConnectBodyMobileView extends StatefulWidget {
 }
 
 class _ConnectBodyMobileViewState extends State<ConnectBodyMobileView> {
-  void onTap(ConnectOption item, FractionalOffset pushPosition) {
+  void onTap(
+    ConnectOption item,
+    FractionalOffset pushPosition,
+    eff.SpherePlasmaData plasmaData,
+  ) {
     final route = ConnectOptionPage.route(
-        option: item,
-        animateTO: pushPosition,
-        primaryColor: Colors.white,
-        pushDuration: Durations.extralong1);
+      option: item,
+      animateTO: pushPosition,
+      primaryColor: Colors.white,
+      pushDuration: Durations.extralong1,
+      plasmaData: plasmaData,
+    );
     Navigator.of(context).push(route);
   }
 

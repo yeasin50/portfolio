@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 /// {@tool snippet}
 ///
-/// a cool ball animate inside a [outerColor] ring and
-/// inner have [plasmaColor] ball [coreColor] inside,
+/// a cool ball animate  with [SpherePlasmaData] inside,
 /// - Always animate like fish-life animated orb.
 /// -  onHover spreed the core
 ///
@@ -31,23 +30,11 @@ import 'package:flutter/material.dart';
 class PlasmaBallSphere extends StatefulWidget {
   const PlasmaBallSphere({
     super.key,
-    required this.coreColor,
-    required this.plasmaColor,
-    required this.outerColor,
+    required this.data,
     this.child,
   });
 
-  /// inner plasma core color
-  /// !Alpha channel will be ignored
-  final Color coreColor;
-
-  /// around the the core color,
-  /// !Alpha channel will be ignored
-  final Color plasmaColor;
-
-  /// ring color,
-  /// !Alpha channel will be ignored
-  final Color outerColor;
+  final SpherePlasmaData data;
 
   ///  default child is 200x200 box
   final Widget? child;
@@ -134,9 +121,9 @@ class _PlasmaBallSphereState extends State<PlasmaBallSphere>
               return snapshot.hasData
                   ? CustomPaint(
                       painter: _PlasmaBallPainter(
-                        coreColor: widget.coreColor,
-                        plasmaColor: widget.plasmaColor,
-                        outerRingColor: widget.outerColor,
+                        coreColor: widget.data.coreColor,
+                        plasmaColor: widget.data.plasmaColor,
+                        outerRingColor: widget.data.outerColor,
                         program: snapshot.data!,
                         animation: animation,
                         coreSpreed: coreSpreedAnimation.value,
@@ -152,6 +139,75 @@ class _PlasmaBallSphereState extends State<PlasmaBallSphere>
       ),
     );
   }
+}
+
+///  Data for  [PlasmaBallSphere]
+///
+class SpherePlasmaData {
+  const SpherePlasmaData({
+    required this.coreColor,
+    required this.plasmaColor,
+    required this.outerColor,
+  });
+
+  /// inner plasma core color
+  /// !Alpha channel will be ignored
+  final Color coreColor;
+
+  /// around the the core color,
+  /// !Alpha channel will be ignored
+  final Color plasmaColor;
+
+  /// ring color,
+  /// !Alpha channel will be ignored
+  final Color outerColor;
+
+  static List<SpherePlasmaData> defaults = [RDM, SDB, IDM, HRS, BJF];
+
+  // Rich Purple
+  // Dark Violet-Blue
+  // Matches background
+  static SpherePlasmaData RDM = SpherePlasmaData(
+    coreColor: Color(0xFF8E24AA),
+    plasmaColor: Color(0xFF311B92),
+    outerColor: Color(0xFF1E2036),
+  );
+
+  // Soft Teal Core
+  // Dark Teal Plasma
+  // Background-blended
+  static SpherePlasmaData SDB = SpherePlasmaData(
+    coreColor: Color(0xFF00BFA5),
+    plasmaColor: Color(0xFF00695C),
+    outerColor: Color(0xFF1E2036),
+  );
+
+  // Indigo
+  // Deep Indigo
+  // Muted Blue-Grey
+  static SpherePlasmaData IDM = SpherePlasmaData(
+    coreColor: Color(0xFF3949AB),
+    plasmaColor: Color(0xFF1A237E),
+    outerColor: Color(0xFF2A2F4F),
+  );
+
+  // Hot Pink Core
+  // Raspberry Glow
+  // Soft blend with background
+  static SpherePlasmaData HRS = SpherePlasmaData(
+    coreColor: Color(0xFFFF4081),
+    plasmaColor: Color(0xFFAD1457),
+    outerColor: Color(0xFF343C59),
+  );
+
+  // Bright Teal Core
+  // Jungle Green Plasma
+  // Faded Charcoal Blue
+  static SpherePlasmaData BJF = SpherePlasmaData(
+    coreColor: Color(0xFF00ACC1),
+    plasmaColor: Color(0xFF00796B),
+    outerColor: Color(0xFF2B2F44),
+  );
 }
 
 class _PlasmaBallPainter extends CustomPainter {

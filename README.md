@@ -2,6 +2,19 @@
 
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
+## RUN
+
+**Local server**
+
+- you can run on local from [main_dev.dart](./apps/portfolio_yeasin/lib/main_dev.dart) but
+  - make sure to run the server `make server` will do the job.
+  - then run web-app with `make dev`, it will give you localhost url to see the output.
+
+**Production**
+
+- you can run on local from [main_prod.dart](./apps/portfolio_yeasin/lib/main_prod.dart).
+  - It fetch data from github resources.
+
 ## To build your portfolio
 
 - fork the repo

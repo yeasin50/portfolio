@@ -46,7 +46,7 @@ class _ProjectCardState extends State<ProjectCard>
     final cardTheme = Theme.of(context).extension<WorkCardTheme>()!;
 
     return InkWell(
-      onTap: () {},
+      onTap: null,
       hoverColor: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

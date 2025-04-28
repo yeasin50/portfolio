@@ -45,6 +45,13 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
     ).lerp(t).copyWith(color: textColor);
 
     final LayerLink layerLink = LayerLink();
+
+    final targetAnchor =
+        Alignment.lerp(Alignment.bottomCenter, Alignment.bottomLeft, t)!;
+
+    final followerAnchor =
+        Alignment.lerp(Alignment.topCenter, Alignment.topLeft, t)!;
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -81,30 +88,14 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
         // better will be fixed Height*t ig
         CompositedTransformFollower(
           link: layerLink,
-          targetAnchor: Alignment.lerp(
-            Alignment.bottomCenter,
-            Alignment.bottomLeft,
-            t,
-          )!,
-          followerAnchor: Alignment.lerp(
-            Alignment.topCenter,
-            Alignment.topLeft,
-            t,
-          )!,
+          targetAnchor: targetAnchor,
+          followerAnchor: followerAnchor,
           child: ConnectsSimpleView(animation: t),
         ),
         CompositedTransformFollower(
           link: layerLink,
-          targetAnchor: Alignment.lerp(
-            Alignment.bottomCenter,
-            Alignment.bottomLeft,
-            t,
-          )!,
-          followerAnchor: Alignment.lerp(
-            Alignment.topCenter,
-            Alignment.topLeft,
-            t,
-          )!,
+          targetAnchor: targetAnchor,
+          followerAnchor: followerAnchor,
           showWhenUnlinked: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

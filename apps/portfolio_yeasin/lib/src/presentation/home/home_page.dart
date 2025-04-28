@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final hasExceedMaxWidth = MediaQuery.sizeOf(context).width <
-        Spacing.maxWidth + Spacing.navBarPreserve * 2;
+        Spacing.maxWidth + Spacing.navBarPreserve * 3;
 
     return Scaffold(
       floatingActionButtonLocation: fabLoc,

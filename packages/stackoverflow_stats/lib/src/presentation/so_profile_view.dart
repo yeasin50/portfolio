@@ -83,6 +83,7 @@ class _SoLoadingView extends StatelessWidget {
       children: List.generate(
         4,
         (i) => eff.SphereView(
+          disableHover: true,
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: CircularProgressIndicator(

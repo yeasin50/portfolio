@@ -6,6 +6,7 @@ class Connect {
     required this.url,
     this.description,
     this.show = false,
+    this.blurhash,
   });
 
   // site name, not so useful
@@ -20,6 +21,8 @@ class Connect {
 
   final bool show;
 
+  final String? blurhash;
+
   static Connect fromMap(Map<String, dynamic> map) {
     return Connect(
       name: map["name"],
@@ -27,6 +30,7 @@ class Connect {
       url: map["url"],
       description: map["description"],
       show: map["show"] ?? true,
+      blurhash: map["blur_hash"],
     );
   }
 }

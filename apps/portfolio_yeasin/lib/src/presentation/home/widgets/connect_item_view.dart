@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:effects/effects.dart' as eff;
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
 import '../../../app/app.dart';
 
@@ -57,7 +58,7 @@ class _ConnectButtonState extends State<ConnectButton>
         );
       },
       child: Material(
-        clipBehavior: Clip.hardEdge,
+        clipBehavior: Clip.none,
         shape: const CircleBorder(),
         color: theme.background,
         child: InkWell(
@@ -78,6 +79,13 @@ class _ConnectButtonState extends State<ConnectButton>
                 width: 48,
                 fit: BoxFit.cover,
                 opacity: controller,
+                loadingBuilder: (context, child, loadingProgress) =>
+                    loadingProgress != null
+                        ? BlurHash(
+                            hash: widget.connect.blurhash ??
+                                "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ",
+                          )
+                        : child,
                 errorBuilder: (context, error, stackTrace) => const Icon(
                   Icons.error,
                 ),

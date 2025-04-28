@@ -13,26 +13,30 @@
       "name": "github",
       "logo": "github_96.png",
       "url": "https://github.com/yeasin50",
-      "show": true
+      "show": true,
+      "blur_hash": "U3SPU:_300t7IA%M%g%N00x]9FWB_3xutRRj"
     },
     {
       "name": "stackOverflow",
       "logo": "stack_overflow_96.png",
       "url": "https://stackoverflow.com/users/10157127/md-yeasin-sheikh",
       "description": "Ranked #2 in August 2022 • Earned 7 gold badges for outstanding contributions, including Flutter & Dart.",
-      "show": true
+      "show": true,
+      "blur_hash": "U3SY]h?b00.8IT%M%M%M00xv9Fj[_Nt7xujs"
     },
     {
       "name": "linkedin",
       "logo": "linkedin_150.png",
       "url": "https://www.linkedin.com/in/mdyeasinsheikh/",
-      "show": true
+      "show": true,
+      "blur_hash": "U6Rp5w_4V[RPIT%MRj-;00tQ%MRk?bof%NIT"
     },
     {
       "name": "youtube",
       "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
       "url": "https://www.youtube.com/@FlutterforMe",
-      "show": false
+      "show": false,
+      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
     }
   ],
 

@@ -42,3 +42,6 @@ scripts:
   pub_get:
     run: melos exec -- flutter pub  get
     description: get packages
+
+  clean:
+    run: melos exec -- flutter clean

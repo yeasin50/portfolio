@@ -3,23 +3,31 @@
 
 const loaderContainer = document.getElementsByClassName("loading_view")[0];
 
+// Total animation + delay time (in ms)
+const ANIMATION_DURATION = 4500; // Adjust if you change CSS timings
+
 _flutter.loader.load({
   onEntrypointLoaded: async function(engineInitializer) {
     const appRunner = await engineInitializer.initializeEngine();
 
-    // Remove the loading spinner when the app runner is ready
-    if (document.body.contains(loaderContainer)) {
-      loaderContainer.style.transition = 'opacity 0.5s ease-out'; // Set transition effect
-      loaderContainer.style.opacity = '0'; // Start fading out
+    // Wait for full animation to complete before fading out
+    setTimeout(async () => {
+      if (document.body.contains(loaderContainer)) {
+        loaderContainer.style.transition = 'opacity 0.5s ease-out';
+        loaderContainer.style.opacity = '0';
 
-      // Wait for the transition to complete before removing the element
-      setTimeout(() => {
-        if (document.body.contains(loaderContainer)) {
-          document.body.removeChild(loaderContainer);
-        }
-      }, 3000);
-    }
+        // Wait for fade out to complete
+        setTimeout(() => {
+          if (document.body.contains(loaderContainer)) {
+            document.body.removeChild(loaderContainer);
+          }
+        }, 500); // matches transition
 
-    await appRunner.runApp();
+      }
+
+      // Now run the Flutter app AFTER all visual loading is done
+      await appRunner.runApp();
+
+    }, ANIMATION_DURATION); // wait before doing anything
   }
 });

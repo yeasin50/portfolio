@@ -85,8 +85,8 @@ class _ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return eff.BackgroundView(
-      key: ValueKey("BG  "),
-      colors: [
+      key: const ValueKey("BG  "),
+      colors: const [
         Color(0xFF1E2036), // Deep Blue-Gray
         Color(0xFF343C59), // Muted Slate Blue
       ],

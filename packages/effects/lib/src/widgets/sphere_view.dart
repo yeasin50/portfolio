@@ -46,6 +46,7 @@ class SphereView extends StatefulWidget {
       Colors.black,
     ],
     this.hoverColor,
+    this.disableHover = false,
   });
 
   final Widget? child;
@@ -53,6 +54,9 @@ class SphereView extends StatefulWidget {
 
   /// if null  it gonna use [colors].first
   final Color? hoverColor;
+
+  /// default is false
+  final bool disableHover;
 
   @override
   State<SphereView> createState() => _SphereViewState();
@@ -145,7 +149,7 @@ class _SphereViewState extends State<SphereView>
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => hoverController.forward(),
+      onEnter: (_) => widget.disableHover ? null : hoverController.forward(),
       onExit: (event) => hoverController.reverse(),
       child: AnimatedBuilder(
         animation: hoverController,

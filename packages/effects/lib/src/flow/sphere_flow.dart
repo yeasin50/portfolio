@@ -22,7 +22,31 @@ class _SphereFlowState extends State<SphereFlow>
   late AnimationController controller = AnimationController(
     vsync: this,
     duration: Duration(seconds: 1),
-  )..forward();
+  );
+
+  ScrollController? scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController = PrimaryScrollController.maybeOf(context);
+      scrollController?.addListener(listener);
+
+      if (scrollController == null) {
+        controller.forward();
+      }
+    });
+  }
+
+  void listener() async {
+    if (!controller.isCompleted &&
+        scrollController!.offset >
+            scrollController!.position.maxScrollExtent -
+                scrollController!.position.viewportDimension * .25) {
+      controller.forward();
+    }
+  }
 
   @override
   void dispose() {

@@ -13,12 +13,15 @@ import 'widgets/tldr_builder.dart';
 ///  use ripple route on parent
 ///
 class ConnectOptionPage extends StatefulWidget {
-  const ConnectOptionPage({
-    super.key,
+  const ConnectOptionPage._({
     required this.option,
+    required this.plasmaData,
   });
 
   final ConnectOption option;
+
+  ///TODO:  In future, gonna test of this plasma if it is cool to add on BG
+  final eff.SpherePlasmaData plasmaData;
 
   static eff.RippleRoute route({
     required ConnectOption option,
@@ -27,9 +30,13 @@ class ConnectOptionPage extends StatefulWidget {
     Duration pushDuration = const Duration(seconds: 1),
     Duration? popDuration,
     Color primaryColor = Colors.white,
+    required eff.SpherePlasmaData plasmaData,
   }) {
     final route = eff.RippleRoute(
-      builder: (context) => ConnectOptionPage(option: option),
+      builder: (context) => ConnectOptionPage._(
+        option: option,
+        plasmaData: plasmaData,
+      ),
       center: animateTO,
       popPosition: animateFrom ?? animateTO,
       duration: pushDuration,
@@ -44,22 +51,27 @@ class ConnectOptionPage extends StatefulWidget {
 }
 
 class _ConnectOptionPageState extends State<ConnectOptionPage> {
-  final ScrollController _scrollController = ScrollController();
+  late final ScrollController _scrollController =
+      PrimaryScrollController.of(context);
 
   double scrollProgress = 0;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() {
-      scrollProgress =
-          _scrollController.offset / _scrollController.position.maxScrollExtent;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.addListener(listener);
     });
+  }
+
+  void listener() {
+    scrollProgress =
+        _scrollController.offset / _scrollController.position.maxScrollExtent;
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    _scrollController.removeListener(listener);
     super.dispose();
   }
 
@@ -74,14 +86,10 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
         child: CustomScrollView(
           controller: _scrollController,
           slivers: [
-            AnimatedBuilder(
-              animation: _scrollController,
-              builder: (context, child) => SliverPersistentHeader(
-                pinned: true,
-                delegate: ConnectOptionHeaderDelegate(
-                  title: widget.option.name,
-                  scrolledRatio: scrollProgress,
-                ),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ConnectOptionHeaderDelegate(
+                title: widget.option.name,
               ),
             ),
             SliverLayoutBuilder(
@@ -131,7 +139,12 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                 );
               },
             ),
-          ],
+          ]
+              .map((e) => SliverPadding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    sliver: e,
+                  ))
+              .toList(),
         ),
       ),
     );

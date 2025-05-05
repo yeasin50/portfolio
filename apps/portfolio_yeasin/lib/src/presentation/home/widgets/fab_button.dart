@@ -15,62 +15,28 @@ class _FabButtonState extends State<FabButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24.0, top: 24),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        child: eff.HomeIcon(
-          onTap: () {
-            final controller = PrimaryScrollController.maybeOf(context);
-            controller?.animateTo(
-              0,
-              duration: Durations.extralong4,
-              curve: Curves.easeOutBack,
-            );
-          },
-        ),
+      child: eff.HomeIcon(
+        onTap: () {
+          final controller = PrimaryScrollController.maybeOf(context);
+          controller?.animateTo(
+            0,
+            duration: Durations.extralong4,
+            curve: Curves.easeOutBack,
+          );
+        },
       ),
     );
   }
 }
 
-@Deprecated("DONT use it ; need work")
-class HomeFabLocation extends FloatingActionButtonLocation {
-  const HomeFabLocation(this.controller);
-
-  final ScrollController controller;
+class FabCenterLocation extends FloatingActionButtonLocation {
   @override
   Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
-    final currentPosition = controller.offset;
-    final maxExtent = controller.position.maxScrollExtent;
-    final viewPortHeight = controller.positions.first.viewportDimension;
+    final fabSize = scaffoldGeometry.floatingActionButtonSize;
 
-    if (currentPosition < maxExtent - viewPortHeight) {
-      return Offset(scaffoldGeometry.scaffoldSize.width / 2,
-          scaffoldGeometry.scaffoldSize.height / 2);
-    }
-    if (currentPosition < 100)
-      return Offset.zero;
-    else
-      return Offset(124, 124);
-  }
-}
+    final dx = scaffoldGeometry.scaffoldSize.width / 2 - fabSize.width / 2;
+    final dy = scaffoldGeometry.scaffoldSize.height / 2 - fabSize.height / 2;
 
-class HomeFabAnimation extends FloatingActionButtonAnimator {
-  @override
-  Offset getOffset(
-      {required Offset begin, required Offset end, required double progress}) {
-    // TODO: implement getOffset
-    throw UnimplementedError();
-  }
-
-  @override
-  Animation<double> getRotationAnimation({required Animation<double> parent}) {
-    // TODO: implement getRotationAnimation
-    throw UnimplementedError();
-  }
-
-  @override
-  Animation<double> getScaleAnimation({required Animation<double> parent}) {
-    // TODO: implement getScaleAnimation
-    throw UnimplementedError();
+    return Offset(dx, dy);
   }
 }

@@ -44,6 +44,7 @@
     - `logo`: URL to the platform's logo.
     - `url`: URL to the individual's profile on that platform.
     - `description` (Optional): Additional information about the connection.
+    - `blur_hash`(Optional): Blur hash code .`U6Rp5w_4V[RPIT%MRj-;00tQ%MRk?bof%NIT`
     - `show`
       - **Type**: bool
       - **Description**: default is true, if false item will hide on app/client side
@@ -53,7 +54,8 @@
       {
         "name": "github",
         "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/github.png",
-        "url": "https://github.com/yeasin50"
+        "url": "https://github.com/yeasin50",
+        "blur_hash": ":5Rfh2kA00xu-=xu%gxu-;ax%Nt7M{oft7WB00t7WVRj9ERj8_of%ft7ofRjxuWBMxozx]Rj9Foft7t7_4Rj?bofIURjofj[kCofa}fQD%of_4ay%MWB?bWARjozM{ofxuWB"
       },
       {
         "name": "stackOverflow",

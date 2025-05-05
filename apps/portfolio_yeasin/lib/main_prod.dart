@@ -5,6 +5,8 @@ import 'src/app/yeasin_portfolio.dart';
 
 void main() {
   runApp(
-    const YeasinPortfolio(config: AppConfig.gitProd),
+    const YeasinPortfolio(
+      config: AppConfig.gitProd,
+    ),
   );
 }

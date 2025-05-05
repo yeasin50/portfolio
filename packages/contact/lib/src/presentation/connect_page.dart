@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/connect_body_mobile_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:effects/effects.dart' as eff;
@@ -64,19 +65,40 @@ class ConnectPageBody extends StatefulWidget {
 }
 
 class _ConnectPageBodyState extends State<ConnectPageBody> {
-  void onTap(ConnectOption item, FractionalOffset pushPosition) {
+  void onTap(
+    ConnectOption item,
+    FractionalOffset pushPosition,
+    eff.SpherePlasmaData plasmData,
+  ) {
     final route = ConnectOptionPage.route(
-        option: item,
-        animateTO: pushPosition,
-        primaryColor: Colors.white,
-        pushDuration: Durations.extralong1);
+      option: item,
+      animateTO: pushPosition,
+      primaryColor: Colors.white,
+      pushDuration: Durations.extralong1,
+      plasmaData: plasmData,
+    );
     Navigator.of(context).push(route);
   }
 
   List<Offset> childrenOffset = [];
 
+  ScrollController? scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController = PrimaryScrollController.maybeOf(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.sizeOf(context).width < 550) {
+      return ConnectBodyMobileView(
+        data: widget.data,
+      );
+    }
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -89,33 +111,44 @@ class _ConnectPageBodyState extends State<ConnectPageBody> {
               },
               children: [
                 for (int i = 0; i < widget.data.items.length; i++)
-                  GestureDetector(
-                    onPanDown: (details) {},
-                    onTap: () {
-                      final size = MediaQuery.sizeOf(context);
-                      final pushPosition = FractionalOffset.fromOffsetAndSize(
-                        childrenOffset[i],
-                        size,
-                      );
+                  () {
+                    final plasmaData = eff.SpherePlasmaData
+                        .defaults[i % eff.SpherePlasmaData.defaults.length];
+                    return GestureDetector(
+                      onPanDown: (details) {},
+                      onTap: () {
+                        final size = MediaQuery.sizeOf(context);
+                        final pushPosition = FractionalOffset.fromOffsetAndSize(
+                          childrenOffset[i],
+                          size,
+                        );
 
-                      onTap(widget.data.items[i], pushPosition);
-                    },
-                    child: eff.SphereView(
-                      key: ValueKey("flowItem ${widget.data.items[i].name}"),
-                      child: Padding(
-                        padding: const EdgeInsets.all(48.0),
-                        child: Text(
-                          widget.data.items[i].name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        onTap(widget.data.items[i], pushPosition, plasmaData);
+                      },
+                      child: eff.PlasmaBallSphere(
+                        key: ValueKey("flowItem ${widget.data.items[i].name}"),
+                        data: plasmaData,
+                        child: SizedBox(
+                          width: 300,
+                          height: 300,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(48.0),
+                              child: Text(
+                                widget.data.items[i].name,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  }()
               ],
             ),
           ),

@@ -16,5 +16,6 @@ export 'src/widgets/animated_arrow_view.dart';
 export 'src/widgets/back_button.dart';
 export 'src/widgets/home_icon.dart';
 
+export 'src/widgets/sphere_plasma_ball.dart';
 export 'src/flow/golden_spiral.dart';
 export 'src/widgets/golden_spiral_recursive.dart';

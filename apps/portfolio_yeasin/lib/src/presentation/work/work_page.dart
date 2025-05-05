@@ -12,11 +12,11 @@ class WorkPage extends StatefulWidget {
   });
   final bool showFilter;
 
-  static PageRouteBuilder route() {
+  static PageRouteBuilder route({bool showFilter = false}) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
-        return const WorkPage(
-          showFilter: true,
+        return WorkPage(
+          showFilter: showFilter,
         );
       },
       maintainState: true,

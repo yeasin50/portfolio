@@ -10,6 +10,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  collection: ^1.19.1
   flutter:
     sdk: flutter
   url_launcher: ^6.3.1

@@ -61,6 +61,8 @@ class _AdvanceRichTextState extends State<AdvanceRichText> {
           (i, e) {
             if (e.url != null) {
               return WidgetSpan(
+                alignment: PlaceholderAlignment.baseline,
+                baseline: TextBaseline.alphabetic,
                 child: HoverAnimatedUnderline(
                   text: e.text,
                   textStyle: widget.style,

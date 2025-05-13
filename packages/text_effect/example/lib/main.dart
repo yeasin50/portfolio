@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      TextSpanData(text: "Enjoy solving bugs and helping others."),
-      TextSpanData(text: " Ranked #2 in August 2022", url: "asd"),
-      TextSpanData(text: "  Mostly contribute to Flutter and Dart, with "),
-      TextSpanData(text: "gold badges as recognition.", url: "asd", bold: true),
+      ParagraphData(text: "Enjoy solving bugs and helping others."),
+      ParagraphData(text: " Ranked #2 in August 2022", url: "asd"),
+      ParagraphData(text: "  Mostly contribute to Flutter and Dart, with "),
+      ParagraphData(text: "gold badges as recognition.", url: "asd", bold: true),
     ];
 
     final style = TextStyle(

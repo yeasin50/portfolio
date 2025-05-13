@@ -2,7 +2,7 @@
 
 Need some animation stuffs for my portfolio
 
-`TextSpanData` to provide TextSpanData for render.
+`ParagraphData` to provide ParagraphData for render.
 used to render textSpan for [AdvanceRichText] and [ParagraphPainter] text-effects.
 
 - [`ParagraphPainter`](lib/src/paragraph_painter.dart) to have link hover line animation effect on richText/paragraph.
@@ -27,11 +27,11 @@ used to render textSpan for [AdvanceRichText] and [ParagraphPainter] text-effect
         fontSize: 32,
       ),
       data: [
-        TextSpanData(text: "Normal text"),
-        TextSpanData(text: " hover effect for link", url: "asd"),
-        TextSpanData(
+        ParagraphData(text: "Normal text"),
+        ParagraphData(text: " hover effect for link", url: "asd"),
+        ParagraphData(
             text: "  extra something.... "),
-        TextSpanData(
+        ParagraphData(
             text: "I am bold with url",
             url: "asd",
             bold: true),

@@ -30,11 +30,11 @@ import '../text_effect.dart';
 ///     fontSize: 32,
 ///   ),
 ///   data: [
-///     TextSpanData(text: "Normal text"),
-///     TextSpanData(text: " hover effect for link", url: "asd"),
-///     TextSpanData(
+///     ParagraphData(text: "Normal text"),
+///     ParagraphData(text: " hover effect for link", url: "asd"),
+///     ParagraphData(
 ///         text: "  extra something.... "),
-///     TextSpanData(
+///     ParagraphData(
 ///         text: "I am bold with url",
 ///         url: "asd",
 ///         bold: true),
@@ -56,7 +56,7 @@ class ParagraphPainter extends StatefulWidget {
   /// text to shows with specific styles
   /// any style in it override the [style] or [hoverTextStyle] for
   /// -  bold, italic,
-  final List<TextSpanData> data;
+  final List<ParagraphData> data;
 
   /// base textStyle,  including the link text.
   /// If you want specific bold/italic,  use [data]
@@ -136,6 +136,7 @@ class _ParagraphPainterState extends State<ParagraphPainter>
   }
 }
 
+/// FIXME:  something is wrong with font size, like I need to increase 2.5 to match
 ///  base painter class for the [ParagraphPainter]
 ///
 class ParagraphTextPainter extends CustomPainter {
@@ -147,7 +148,7 @@ class ParagraphTextPainter extends CustomPainter {
     required this.animation,
   }) : super(repaint: animation);
 
-  final List<TextSpanData> data;
+  final List<ParagraphData> data;
   final TextStyle baseStyle;
   final TextStyle hoverStyle;
 

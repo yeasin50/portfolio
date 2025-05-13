@@ -2,8 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'text_span_data.dart';
-export 'text_span_data.dart';
+import '../text_effect.dart';
 
 class AdvanceRichText extends StatefulWidget {
   const AdvanceRichText({
@@ -15,7 +14,7 @@ class AdvanceRichText extends StatefulWidget {
     ),
   });
 
-  final List<TextSpanData> data;
+  final List<ParagraphData> data;
   final TextStyle style;
   final TextStyle hoverTextStyle;
 

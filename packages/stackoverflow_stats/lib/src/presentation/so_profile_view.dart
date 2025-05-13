@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:core/core.dart';
 import 'package:effects/effects.dart' as eff;
 
 import 'package:flutter/material.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart';
+import 'package:text_effect/text_effect.dart';
 
 import 'so_stats_view.dart';
 
@@ -16,10 +18,12 @@ class SoProfileView extends StatefulWidget {
     super.key,
     required this.userId,
     this.description,
+    this.textSpans = const [],
   });
 
   final int userId;
   final String? description;
+  final List<TextSpanData> textSpans;
 
   @override
   State<SoProfileView> createState() => _SoProfileViewState();
@@ -54,7 +58,22 @@ class _SoProfileViewState extends State<SoProfileView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: 16,
           children: [
-            if ((widget.description ?? "").isNotEmpty)
+            if (widget.textSpans.isNotEmpty)
+              ParagraphPainter(
+                  style: theme.labelStyle.copyWith(
+                      // fontSize: theme.labelStyle.fontSize! +
+                      //     2.5, //! something is wrong with font size
+                      ),
+                  hoverTextStyle: theme.labelStyle.copyWith(
+                    color: theme.gold,
+                    // fontSize: theme.labelStyle.fontSize! + 2.5,
+                  ),
+                  data: widget.textSpans.map(
+                    (e) {
+                      return ParagraphData.fromSpan(e);
+                    },
+                  ).toList())
+            else if ((widget.description ?? "").isNotEmpty)
               Text(
                 widget.description!,
                 style: theme.labelStyle,

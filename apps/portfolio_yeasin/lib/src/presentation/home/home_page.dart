@@ -116,13 +116,14 @@ class _HomePageState extends State<HomePage>
                 minHeight: minIntroHeight,
               ),
             ),
-            if (soInfo.$1 != null)
+            if (soInfo.id != null)
               HomeItemSliverBuilder(
                 title: "StackOverflow",
                 children: [
                   so.SoProfileView(
-                    userId: soInfo.$1!,
-                    description: soInfo.$2,
+                    userId: soInfo.id!,
+                    description: soInfo.profile!.description,
+                    textSpans: soInfo.profile!.textSpans,
                   ),
                 ],
               ),

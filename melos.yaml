@@ -2,12 +2,10 @@ name: portfolio
 
 packages:
   - apps/**
-  - packages/core
-  - packages/education
-  - packages/experience
-  - packages/link_text
-  - packages/project
-  - packages/effects
+  - packages/**
+
+ignore:
+  - packages/**/example
 
 scripts:
   test:selective_unit_test:

@@ -1,38 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// used to render textSpan
-///
-class TextSpanData {
-  TextSpanData({
-    required this.text,
-    this.url,
-    this.bold,
-    this.italic,
-  });
-
-  ///  base text
-  final String text;
-
-  /// when  we like to navigate on click,
-  /// will  have underline text
-  final String? url;
-
-  /// whether make it bold
-  final bool? bold;
-  final bool? italic;
-
-  factory TextSpanData.fromMap(Map<String, dynamic> map) {
-    return TextSpanData(
-      text: map['text'] ?? '',
-      url: map['url'],
-      bold: map['bold'],
-      italic: map['italic'],
-    );
-  }
-}
+import 'text_span_data.dart';
+export 'text_span_data.dart';
 
 class AdvanceRichText extends StatefulWidget {
   const AdvanceRichText({
@@ -53,6 +24,18 @@ class AdvanceRichText extends StatefulWidget {
 }
 
 class _AdvanceRichTextState extends State<AdvanceRichText> {
+  /// launch [url] and on failure show snackbar
+  void handleUrlLaunch(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else if (context.mounted) {
+      debugPrint("failed to launch url");
+      final snackBar = SnackBar(content: Text("failed to launch $url"));
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(snackBar);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return RichText(
@@ -63,10 +46,13 @@ class _AdvanceRichTextState extends State<AdvanceRichText> {
               return WidgetSpan(
                 alignment: PlaceholderAlignment.baseline,
                 baseline: TextBaseline.alphabetic,
-                child: HoverAnimatedUnderline(
-                  text: e.text,
-                  textStyle: widget.style,
-                  hoverStyle: widget.hoverTextStyle,
+                child: GestureDetector(
+                  onTap: () => handleUrlLaunch(e.url!),
+                  child: HoverAnimatedUnderline(
+                    text: e.text,
+                    textStyle: widget.style,
+                    hoverStyle: widget.hoverTextStyle,
+                  ),
                 ),
               );
             }

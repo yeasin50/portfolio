@@ -3,7 +3,7 @@
 Need some animation stuffs for my portfolio
 
 `ParagraphData` to provide ParagraphData for render.
-used to render textSpan for [AdvanceRichText] and [ParagraphPainter] text-effects.
+used to render textSpan for [AdvanceRichText](/lib/src/paragraph.dart) and [ParagraphPainter](/lib/src/paragraph_painter.dart) text-effects.
 
 - [`ParagraphPainter`](lib/src/paragraph_painter.dart) to have link hover line animation effect on richText/paragraph.
   Renders text as a paragraph, avoiding issues caused by WidgetSpan.
@@ -39,7 +39,29 @@ used to render textSpan for [AdvanceRichText] and [ParagraphPainter] text-effect
   )
   ```
 
-  ***
+- `AdvanceRichText` link text hover effect. Link string doesn't get wrapped, use ParagraphPainter instead.
+  ```dart
+  AdvanceRichText(
+      style: style,
+      hoverTextStyle: hoverStyle,
+      data: data,
+    ),
+  ```
+
+---
+
+- `TextSwitcher` scale and fade out primaryText and scale, fade and slide secondaryText.
+
+  ```dart
+    TextSwitcher(
+      primaryText: "primaryText will be little long huhahaha",
+      secondaryText: "secondaryText",
+      primaryTextStyle: style,
+      onInit: (ctrl) {
+        ctrl.forward();
+      },
+    ),
+  ```
 
 - `CounterNumberEffect` , simple text counter scroll up animation
 

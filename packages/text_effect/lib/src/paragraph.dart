@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../text_effect.dart';
 
+@Deprecated("use ParagraphPainter instead.")
 class AdvanceRichText extends StatefulWidget {
   const AdvanceRichText({
     super.key,

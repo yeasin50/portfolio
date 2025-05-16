@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:text_effect/text_effect.dart' as teff;
 
 import '../../../app/app_theme.dart';
 import '../../_common/utils/lerp_text.dart';
@@ -66,20 +67,27 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Padding(
               padding: EdgeInsets.only(top: 24, bottom: lerpDouble(48, 16, t)!),
               child: RichText(
+                textAlign: t > .5 ? TextAlign.start : TextAlign.center,
                 text: TextSpan(
                   children: [
                     TextSpan(
                       text: info.name,
                       style: nameTextStyle,
                     ),
-                    const TextSpan(text: "\n"),
-                    TextSpan(
-                      text: lerpText(info.title, info.shortTitle, t),
-                      style: titleTextStyle,
+                    const TextSpan(text: "\n"), //someday  gonna remove this
+                    // text: lerpText(info.title, info.shortTitle, t),
+                    //   style: titleTextStyle,
+                    WidgetSpan(
+                      child: teff.TextSwitcher(
+                        key: const ValueKey("intr-title"),
+                        primaryText: info.title,
+                        secondaryText: info.shortTitle,
+                        primaryTextStyle: titleTextStyle,
+                        animationValue: t < .5 ? 0 : 1,
+                      ),
                     ),
                   ],
                 ),
-                textAlign: t > .75 ? TextAlign.start : TextAlign.center,
               ),
             ),
           ),

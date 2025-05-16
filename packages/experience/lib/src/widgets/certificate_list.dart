@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../experience.dart';
-import '../certificate.dart';
-import 'certificate_builder.dart';
 
 class CertificateListView extends StatefulWidget {
   const CertificateListView({

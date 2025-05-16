@@ -4,7 +4,7 @@
   "intro": {
     "name": "Md.Yeasin Sheikh",
     "title": "Flutter Developer | Golang Enthusiast",
-    "short_title": "Software Developer | Flutter",
+    "short_title": "Software Engineer | Flutter",
     "description": "A limited lifespan with a passion for solving problems and creating value."
   },
   "connects": [
@@ -87,7 +87,7 @@
       },
       "start": "2023-12-01T00:00:00Z",
       "end": "2024-11-30T00:00:00Z",
-      "description": "Refactored and built a US–France based real estate app with new features, advanced search, and user verification.",
+      "description": "Refactored and built a US-France based real estate app with new features, advanced search, and user verification.",
       "show": true
     },
     {
@@ -138,7 +138,7 @@
   ],
   "certificate": [
     {
-      "name": "FlutterDevcamp State Management Special",
+      "name": "FlutterDevCamp State Management Special",
       "organization": {
         "name": "GDG London"
       },

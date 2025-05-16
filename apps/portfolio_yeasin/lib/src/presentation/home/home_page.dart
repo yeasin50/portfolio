@@ -102,11 +102,6 @@ class _HomePageState extends State<HomePage>
         onPointerSignal: onPointerSignal,
         child: CustomScrollView(
           controller: scrollController,
-          //! DOES not work,
-          // physics: animationController.isAnimating
-          //     ? null
-          //     : IntroSnapScrollPhysics(snapHeight: size.height),
-
           slivers: [
             SliverPersistentHeader(
               pinned: !hasExceedMaxWidth,

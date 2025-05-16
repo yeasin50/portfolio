@@ -15,7 +15,7 @@ class PortfolioDateFormat {
 
   /// (e.g., 'Jan 2025')
   static String certificate(DateTime start, DateTime? end) {
-    final formatter = DateFormat('DD MMM yyyy');
+    final formatter = DateFormat('MMM yyyy');
     final startString = formatter.format(start);
     if (end == null) {
       return "Issued $startString";
@@ -28,6 +28,4 @@ class PortfolioDateFormat {
     final startString = DateFormat('MMM yyyy').format(start);
     return 'Issued $startString';
   }
-
-  // ("MMM.yyyy")
 }

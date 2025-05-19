@@ -3,8 +3,72 @@
   "updated_at": "2025-03-05T12:00:00Z",
   "data": [
     {
-      "type": "Software\nDevelopment",
+      "type": "Software Development",
       "tldr": "I have worked on various types of projects for personal clients, companies, and government organizations throughout my development journey. Recent are under NDA, I will be happy if yours is not, but good ones are often lies here. I often work as a part-time developer (20h/W) and take on additional contractual projects that require a few hours of maintenance each week. The rest of the time, I enjoy learning new things and contributing on different platforms. I also enjoy bug hunting and refactoring Flutter projects.  You will find me efficient in Flutter application development. I prioritize working on ethical projects that align with my values and avoid anything that conflicts with my principles.",
+      "description": [
+        {
+          "text": "I've been working since 2021 wide range of projects for personal clients, companies, and government organizations-most under "
+        },
+        {
+          "text": "NDA",
+          "dialog": {
+            "title": "NDA (Non-Disclosure Agreement)",
+            "description": "A legal agreement that restricts one or more parties from disclosing confidential or proprietary information shared during a project or partnership. It's commonly used to protect sensitive business or technical details."
+          }
+        },
+        {
+          "text": " While I'd be glad if your project isn't under "
+        },
+        {
+          "text": "NDA",
+          "dialog": {
+            "title": "NDA (Non-Disclosure Agreement)",
+            "description": "A legal agreement that restricts one or more parties from disclosing confidential or proprietary information shared during a project or partnership. It's commonly used to protect sensitive business or technical details."
+          }
+        },
+        {
+          "text": " the best ones often are."
+        },
+        {
+          "text": "I typically work part-time (20h/week) and take on smaller contracts that require a few hours of weekly maintenance. My standard availability is around 35 hours per week."
+        },
+        {
+          "text": " If your backend is built with Golang and the project is focused on creating "
+        },
+        {
+          "text": "real value for people",
+          "dialog": {
+            "title": "Value-Focused",
+            "description": "Projects aimed at meaningful, positive impact aligned with ethical and community values.",
+            "items": [
+              "Education",
+              "Public Awareness",
+              "Health & Well-being",
+              "Humanitarian Efforts",
+              "Personal Productivity",
+              "Environmental Sustainability",
+              "Faith-Inspired Ethics (Islam)",
+              "Prioritizing genuine value over profit"
+            ]
+          }
+        },
+        {
+          "text": "rather than being purely ",
+          "dialog": {
+            "text": "business-driven",
+            "description": "business-driven or subscription-based"
+          }
+        },
+        {
+          "text": "I'm open to committing full-time (35h/week)"
+        },
+        {
+          "text": "I prioritize ethical projects that align with my values and avoid those that conflict with my principles."
+        },
+        {
+          "text": "I'm particularly efficient in Flutter application development and enjoy bug hunting and learning new technologies in my spare time."
+        }
+      ],
       "schedules": {
         "state": "available",
         "message": "I will be available from this date.",
@@ -36,7 +100,7 @@
             {
               "name": "State Management",
               "data": [
-                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don’t invite me to a project using GetX.",
+                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don't invite me to a project using GetX.",
                 "For SDK or concern separation, I use InheritedWidget or just Stream—yes, Stream works well as a state management solution for mid-level projects."
               ]
             },
@@ -71,7 +135,7 @@
               "name": "Communication",
               "data": [
                 "For casual communication, Telegram is fine. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? Honestly, a very confusing experience.",
-                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please — don’t tell me you're still using Excel sheets for managing tasks.",
+                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please — don't tell me you're still using Excel sheets for managing tasks.",
                 "No phone calls without a pre-scheduled meeting or clear heads-up. No sudden calls or surprise meetings.",
                 "I only stay active during common scheduled check-ins — like 30 minutes — to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
               ]
@@ -81,7 +145,7 @@
               "data": [
                 "My philosophy on writing code is to make it understandable by humans—including non-programmers.",
                 "I prefer tasks to be clearly prioritized based on business impact and like to break large tasks into smaller, manageable pieces.",
-                "I’m always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
+                "I'm always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
                 "I love programming over drag-and-drop development.",
                 "I prefer an effective coding style and material design (Currently investing time in UX as well)."
               ]
@@ -114,7 +178,7 @@
             {
               "name": "State Management",
               "data": [
-                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don’t invite me to a project using GetX.",
+                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don't invite me to a project using GetX.",
                 "For SDK or concern separation, I use InheritedWidget or just Stream—yes, Stream works well as a state management solution for mid-level projects."
               ]
             },
@@ -169,7 +233,7 @@
                 "Toxic company culture or excessive workplace politics",
                 "Clients looking for low-budget developers",
                 "Companies that demand unrealistic deadlines with unfair compensation",
-                "Micromanaging clients who don’t trust developers",
+                "Micromanaging clients who don't trust developers",
                 "Projects that lack clear vision, proper documentation, or realistic expectations",
                 "Projects with a poorly defined or constantly changing scope",
                 "Unpaid trial work or 'test tasks' before hiring",
@@ -276,7 +340,7 @@
             },
             {
               "name": "Title-Driven Leadership & Empty Recognition",
-              "description": "I’ve worked under professors who care more about boosting their profiles with photos and project names than actually supporting the project. They often skip important details to save money and don’t fully understand the project requirements. The toughest part was working with non-technical people who think they know better than professionals. I’m not interested in working with such groups."
+              "description": "I’ve worked under professors who care more about boosting their profiles with photos and project names than actually supporting the project. They often skip important details to save money and don't fully understand the project requirements. The toughest part was working with non-technical people who think they know better than professionals. I’m not interested in working with such groups."
             },
             {
               "name": "Cannot Contribute to My Skills",

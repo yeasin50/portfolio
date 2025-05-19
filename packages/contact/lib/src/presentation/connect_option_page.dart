@@ -1,11 +1,12 @@
-import 'package:contact/src/presentation/widgets/connect_option_header_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:core/core.dart' as core;
+import 'package:text_effect/text_effect.dart';
 
 import '../../contact.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import 'widgets/connect_option_header_delegate.dart';
 import 'widgets/schedule_view.dart';
 import 'widgets/tldr_builder.dart';
 
@@ -14,6 +15,13 @@ import 'widgets/tldr_builder.dart';
 ///
 class ConnectOptionPage extends StatefulWidget {
   const ConnectOptionPage._({
+    required this.option,
+    required this.plasmaData,
+  });
+
+  @Deprecated("use [ConnectOptionPage.route] instead")
+  const ConnectOptionPage({
+    super.key,
     required this.option,
     required this.plasmaData,
   });
@@ -77,6 +85,9 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<ContactThemeExt>()!;
+    debugPrint(
+        "widget.option.description ${widget.option.description.first.dialog}");
     return Scaffold(
       body: eff.BackgroundView(
         colors: [
@@ -88,9 +99,7 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
           slivers: [
             SliverPersistentHeader(
               pinned: true,
-              delegate: ConnectOptionHeaderDelegate(
-                title: widget.option.name,
-              ),
+              delegate: ConnectOptionHeaderDelegate(title: widget.option.name),
             ),
             SliverLayoutBuilder(
               builder: (context, constraints) {
@@ -117,6 +126,31 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                                     ScheduleView(
                                       schedules: widget.option.schedules,
                                     ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      if (widget.option.description.isNotEmpty)
+                        Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints.tightFor(
+                              width: core.Spacing.maxWidth,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 48.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                spacing: 24,
+                                children: [
+                                  ParagraphPainter(
+                                    data: widget.option.description
+                                        .map((e) => ParagraphData.fromSpan(e))
+                                        .toList(),
+                                    style: theme.tldr.copyWith(
+                                      fontSize: theme.tldr.fontSize! + 2.5,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

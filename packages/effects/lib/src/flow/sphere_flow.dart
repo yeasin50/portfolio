@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'sphere_delegate.dart';
 
+/// create   circular [children] animation.
+///
 class SphereFlow extends StatefulWidget {
   const SphereFlow({
     super.key,
@@ -33,9 +35,7 @@ class _SphereFlowState extends State<SphereFlow>
       scrollController = PrimaryScrollController.maybeOf(context);
       scrollController?.addListener(listener);
 
-      if (scrollController == null) {
-        controller.forward();
-      }
+      controller.forward();
     });
   }
 

@@ -162,8 +162,9 @@ class ParagraphTextPainter extends CustomPainter {
     return TextSpan(
       children: data.map((spanData) {
         final length = spanData.text.length;
+        debugPrint("spanData.dialog ${spanData.dialog}");
 
-        final isHovered = spanData.url != null &&
+        final isHovered = (spanData.url != null || spanData.dialog != null) &&
             hoveredOffset != null &&
             hoveredOffset! >= offsetCounter &&
             hoveredOffset! < offsetCounter + length;
@@ -198,7 +199,7 @@ class ParagraphTextPainter extends CustomPainter {
     for (final spanData in data) {
       final length = spanData.text.length;
 
-      if (spanData.url != null &&
+      if ((spanData.url != null || spanData.dialog != null) &&
           hoveredOffset != null &&
           hoveredOffset! >= offsetCounter &&
           hoveredOffset! < offsetCounter + length) {

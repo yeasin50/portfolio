@@ -17,6 +17,10 @@ dependencies:
 
   effects:
     path: ../effects
+
+  text_effect:
+    path: ../text_effect
+
   core:
     path: ../core
 

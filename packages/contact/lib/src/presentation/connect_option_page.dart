@@ -108,29 +108,6 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if ((widget.option.tldr ?? "")
-                          .isNotEmpty) //shift tldr builder
-                        Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints.tightFor(
-                              width: core.Spacing.maxWidth,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 48.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                spacing: 24,
-                                children: [
-                                  TldrBuilder(text: widget.option.tldr!),
-                                  if (widget.option.showSchedule)
-                                    ScheduleView(
-                                      schedules: widget.option.schedules,
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
                       if (widget.option.description.isNotEmpty)
                         Center(
                           child: ConstrainedBox(
@@ -144,13 +121,35 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                                 spacing: 24,
                                 children: [
                                   ParagraphPainter(
-                                    data: widget.option.description
-                                        .map((e) => ParagraphData.fromSpan(e))
-                                        .toList(),
+                                    data: widget.option.description.map((e) {
+                                      debugPrint(
+                                          "spans ${widget.option.description.where((e) => e.dialog != null).length}");
+
+                                      var p = ParagraphData.fromSpan(e);
+
+                                      if (e.dialog != null || e.url != null) {
+                                        debugPrint("got link or dialog");
+                                        p = p.copyWith(
+                                          onTap: () {
+                                            if (p.dialog != null) {
+                                              //todo: dialog desing
+                                            }
+                                            if (p.url != null) {
+                                              // todo: url nave
+                                            }
+                                          },
+                                        );
+                                      }
+                                      return p;
+                                    }).toList(),
                                     style: theme.tldr.copyWith(
                                       fontSize: theme.tldr.fontSize! + 2.5,
                                     ),
-                                  )
+                                  ),
+                                  if (widget.option.showSchedule)
+                                    ScheduleView(
+                                      schedules: widget.option.schedules,
+                                    ),
                                 ],
                               ),
                             ),

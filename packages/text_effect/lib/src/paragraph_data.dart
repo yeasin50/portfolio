@@ -42,6 +42,26 @@ class ParagraphData extends TextSpanData {
       url: span.url,
       isHovered: isHovered ?? false,
       onTap: onTap,
+      dialog: span.dialog,
+    );
+  }
+
+  @override
+  ParagraphData copyWith({
+    VoidCallback? onTap,
+    String? text,
+    String? url,
+    TextSpanDialogData? dialog,
+    bool? bold,
+    bool? italic,
+  }) {
+    return ParagraphData(
+      onTap: onTap ?? this.onTap,
+      text: text ?? this.text,
+      url: url ?? this.url,
+      dialog: dialog ?? this.dialog,
+      bold: bold ?? this.bold,
+      italic: italic ?? this.italic,
     );
   }
 }

@@ -1,8 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../text_effect.dart';
 
 /// {@template paragraph_painter}
+/// Hover line draw animation.
+///
 /// Renders text as a paragraph, avoiding issues caused by [WidgetSpan].
 /// [WidgetSpan] treats content as a separate chunk, which breaks word wrapping
 /// and forces words to move to the next line — an effect I want to avoid.
@@ -31,7 +34,7 @@ import '../text_effect.dart';
 ///   ),
 ///   data: [
 ///     ParagraphData(text: "Normal text"),
-///     ParagraphData(text: " hover effect for link", url: "asd"),
+///     ParagraphData(text: " hover effect for link", url: "asd", onTap:(){}),
 ///     ParagraphData(
 ///         text: "  extra something.... "),
 ///     ParagraphData(
@@ -110,25 +113,53 @@ class _ParagraphPainterState extends State<ParagraphPainter>
         textPainter.layout(maxWidth: maxWidth);
         final height = textPainter.height;
 
-        return MouseRegion(
-          onHover: (event) {
-            final localPosition = event.localPosition;
-            textPainter.layout(maxWidth: maxWidth);
-            final pos = textPainter.getPositionForOffset(localPosition).offset;
+        return GestureDetector(
+          onTapUp: (details) {
+            final localPosition = details.localPosition;
 
-            if (_hoveredOffset != pos) {
-              setState(() => _hoveredOffset = pos);
-              controller.reset();
-              controller.forward();
+            int offset = 0;
+            for (final spanData in widget.data) {
+              final length = spanData.text.length;
+
+              if ((spanData.url != null || spanData.dialog != null)) {
+                final boxes = textPainter.getBoxesForSelection(
+                  TextSelection(
+                      baseOffset: offset, extentOffset: offset + length),
+                );
+
+                for (final box in boxes) {
+                  final rect = box.toRect();
+                  if (rect.contains(localPosition)) {
+                    spanData.onTap?.call();
+                    break;
+                  }
+                }
+              }
+
+              offset += length;
             }
           },
-          onExit: (_) {
-            setState(() => _hoveredOffset = null);
-            controller.reverse();
-          },
-          child: CustomPaint(
-            painter: painter,
-            size: Size(maxWidth, height),
+          child: MouseRegion(
+            onHover: (event) {
+              final localPosition = event.localPosition;
+              textPainter.layout(maxWidth: maxWidth);
+              final pos =
+                  textPainter.getPositionForOffset(localPosition).offset;
+
+              if (_hoveredOffset != pos) {
+                setState(() => _hoveredOffset = pos);
+                controller.reset();
+                controller.forward();
+              }
+            },
+            onExit: (_) {
+              setState(() => _hoveredOffset = null);
+              controller.reverse();
+            },
+            child: CustomPaint(
+              painter: painter,
+              size: Size(maxWidth, height),
+            ),
           ),
         );
       },
@@ -146,6 +177,7 @@ class ParagraphTextPainter extends CustomPainter {
     required this.hoverStyle,
     this.hoveredOffset,
     required this.animation,
+    this.onTapSpan,
   }) : super(repaint: animation);
 
   final List<ParagraphData> data;
@@ -153,8 +185,11 @@ class ParagraphTextPainter extends CustomPainter {
   final TextStyle hoverStyle;
 
   final int? hoveredOffset;
-
   final Animation animation;
+
+  final void Function(ParagraphData spanData)? onTapSpan;
+  final Map<ParagraphData, List<Rect>> _tapBoxes = {}; // Save span bounds
+  Map<ParagraphData, List<Rect>> getTapBoxes() => _tapBoxes;
 
   TextSpan toTextSpan() {
     int offsetCounter = 0;
@@ -162,7 +197,6 @@ class ParagraphTextPainter extends CustomPainter {
     return TextSpan(
       children: data.map((spanData) {
         final length = spanData.text.length;
-        debugPrint("spanData.dialog ${spanData.dialog}");
 
         final isHovered = (spanData.url != null || spanData.dialog != null) &&
             hoveredOffset != null &&
@@ -180,6 +214,11 @@ class ParagraphTextPainter extends CustomPainter {
             fontWeight: spanData.bold == true ? FontWeight.bold : null,
             fontStyle: spanData.italic == true ? FontStyle.italic : null,
           ),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () {
+              debugPrint("tapped ");
+              print("print ");
+            },
         );
       }).toList(),
     );
@@ -196,6 +235,8 @@ class ParagraphTextPainter extends CustomPainter {
     tp.paint(canvas, Offset.zero);
 
     int offsetCounter = 0;
+    _tapBoxes.clear();
+
     for (final spanData in data) {
       final length = spanData.text.length;
 
@@ -209,6 +250,9 @@ class ParagraphTextPainter extends CustomPainter {
             extentOffset: offsetCounter + length,
           ),
         );
+
+        final rects = boxes.map((box) => box.toRect()).toList();
+        _tapBoxes[spanData] = rects;
 
         for (final box in boxes) {
           final underlineY = box.bottom;

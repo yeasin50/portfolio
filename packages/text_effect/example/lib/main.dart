@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:core/core.dart';
 
 import 'package:text_effect/text_effect.dart';
 
@@ -22,9 +23,25 @@ class _MyAppState extends State<MyApp> {
   ///
   final data = [
     ParagraphData(text: "Enjoy solving bugs and helping others."),
-    ParagraphData(text: " Ranked #2 in August 2022", url: "asd"),
+    ParagraphData(
+      text: " Ranked #2 in August 2022",
+      url: "asd",
+      onTap: () {
+        debugPrint("tapped asd");
+      },
+    ),
     ParagraphData(text: "  Mostly contribute to Flutter and Dart, with "),
-    ParagraphData(text: "gold badges as recognition.", url: "asd", bold: true),
+    ParagraphData(
+      text: "gold badges as recognition.",
+      onTap: () {
+        debugPrint("tapped gold badges as recognition");
+      },
+      dialog: TextSpanDialogData(
+        title: "dialog title",
+        description: "descr",
+        items: [],
+      ),
+    ),
   ];
 
   final style = TextStyle(
@@ -44,20 +61,20 @@ class _MyAppState extends State<MyApp> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextSwitcher(
-              primaryText: "primaryText will be little long huhahaha",
-              secondaryText: "secondaryText",
-              primaryTextStyle: style,
-              onInit: (ctrl) {
-                ctrl.forward();
-              },
-            ),
-            const SizedBox(height: 32),
-            AdvanceRichText(
-              style: style,
-              hoverTextStyle: hoverStyle,
-              data: data,
-            ),
+            // TextSwitcher(
+            //   primaryText: "primaryText will be little long huhahaha",
+            //   secondaryText: "secondaryText",
+            //   primaryTextStyle: style,
+            //   onInit: (ctrl) {
+            //     ctrl.forward();
+            //   },
+            // ),
+            // const SizedBox(height: 32),
+            // AdvanceRichText(
+            //   style: style,
+            //   hoverTextStyle: hoverStyle,
+            //   data: data,
+            // ),
             const SizedBox(height: 32),
             ParagraphPainter(
               style: style,

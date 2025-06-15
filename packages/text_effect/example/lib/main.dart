@@ -4,12 +4,7 @@ import 'package:core/core.dart';
 import 'package:text_effect/text_effect.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      theme: ThemeData(),
-      home: const MyApp(),
-    ),
-  );
+  runApp(MaterialApp(theme: ThemeData(), home: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -21,7 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ///
-  final data = [
+  late final data = [
     ParagraphData(text: "Enjoy solving bugs and helping others."),
     ParagraphData(
       text: " Ranked #2 in August 2022",
@@ -35,28 +30,47 @@ class _MyAppState extends State<MyApp> {
       text: "gold badges as recognition.",
       onTap: () {
         debugPrint("tapped gold badges as recognition");
+        final offset = Offset(12, 12);
+        ParagraphDialog.show(
+          context: context,
+          offset: offset,
+          data: TextSpanDialogData(
+            title: "title",
+            description: "description",
+            items: ["adasd", "other text"],
+          ),
+        );
       },
       dialog: TextSpanDialogData(
         title: "dialog title",
-        description: "descr",
+        description: "description",
         items: [],
       ),
     ),
   ];
 
-  final style = TextStyle(
-    color: Colors.black,
-    fontSize: 32,
-  );
+  final style = TextStyle(color: Colors.black, fontSize: 32);
 
-  final hoverStyle = TextStyle(
-    color: Colors.greenAccent,
-    fontSize: 32,
-  );
+  final hoverStyle = TextStyle(color: Colors.greenAccent, fontSize: 32);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final offset = Offset(12, 12);
+          // ParagraphDialog.show(
+          //   context: context,
+          //   offset: offset,
+          //   data: TextSpanDialogData(
+          //     title: "title",
+          //     description: "description",
+          //     items: ["adasd", "other text"],
+          //   ),
+          // );
+        },
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -80,7 +94,7 @@ class _MyAppState extends State<MyApp> {
               style: style,
               hoverTextStyle: hoverStyle,
               data: data,
-            )
+            ),
           ],
         ),
       ),

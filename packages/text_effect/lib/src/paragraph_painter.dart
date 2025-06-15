@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../text_effect.dart';
 
+typedef ParagraphHoverNotifier = Function(ParagraphData data);
+
 /// {@template paragraph_painter}
 /// Hover line draw animation.
 ///
@@ -54,6 +56,7 @@ class ParagraphPainter extends StatefulWidget {
     this.style = const TextStyle(),
     this.hoverTextStyle = const TextStyle(color: Colors.blue),
     this.hoverDuration = Durations.medium1,
+    this.hoverNotifier,
   });
 
   /// text to shows with specific styles
@@ -71,6 +74,7 @@ class ParagraphPainter extends StatefulWidget {
 
   /// hover effect on link, default is [Durations.medium1]
   final Duration hoverDuration;
+  final ParagraphHoverNotifier? hoverNotifier;
 
   @override
   State<ParagraphPainter> createState() => _ParagraphPainterState();
@@ -126,7 +130,9 @@ class _ParagraphPainterState extends State<ParagraphPainter>
               if ((spanData.url != null || spanData.dialog != null)) {
                 final boxes = textPainter.getBoxesForSelection(
                   TextSelection(
-                      baseOffset: offset, extentOffset: offset + length),
+                    baseOffset: offset,
+                    extentOffset: offset + length,
+                  ),
                 );
 
                 for (final box in boxes) {
@@ -148,20 +154,18 @@ class _ParagraphPainterState extends State<ParagraphPainter>
               final pos =
                   textPainter.getPositionForOffset(localPosition).offset;
 
-              if (_hoveredOffset != pos) {
+              if (_hoveredOffset != pos) { //FIXME: this occurs duplicate animation on same span  if hovered 
                 setState(() => _hoveredOffset = pos);
                 controller.reset();
                 controller.forward();
+                debugPrint("hover item $_hoveredOffset");
               }
             },
             onExit: (_) {
               setState(() => _hoveredOffset = null);
               controller.reverse();
             },
-            child: CustomPaint(
-              painter: painter,
-              size: Size(maxWidth, height),
-            ),
+            child: CustomPaint(painter: painter, size: Size(maxWidth, height)),
           ),
         );
       },
@@ -197,27 +201,30 @@ class ParagraphTextPainter extends CustomPainter {
     int offsetCounter = 0;
 
     return TextSpan(
-      children: data.map((spanData) {
-        final length = spanData.text.length;
+      children:
+          data.map((spanData) {
+            final length = spanData.text.length;
 
-        final isHovered = (spanData.url != null || spanData.dialog != null) &&
-            hoveredOffset != null &&
-            hoveredOffset! >= offsetCounter &&
-            hoveredOffset! < offsetCounter + length;
+            final isHovered =
+                (spanData.url != null || spanData.dialog != null) &&
+                hoveredOffset != null &&
+                hoveredOffset! >= offsetCounter &&
+                hoveredOffset! < offsetCounter + length;
 
-        offsetCounter += length;
+            offsetCounter += length;
 
-        return TextSpan(
-          text: spanData.text,
-          style: (isHovered
-                  ? TextStyle.lerp(baseStyle, hoverStyle, animation.value)
-                  : baseStyle)!
-              .copyWith(
-            fontWeight: spanData.bold == true ? FontWeight.bold : null,
-            fontStyle: spanData.italic == true ? FontStyle.italic : null,
-          ),
-        );
-      }).toList(),
+            return TextSpan(
+              text: spanData.text,
+              style: (isHovered
+                      ? TextStyle.lerp(baseStyle, hoverStyle, animation.value)
+                      : baseStyle)!
+                  .copyWith(
+                    fontWeight: spanData.bold == true ? FontWeight.bold : null,
+                    fontStyle:
+                        spanData.italic == true ? FontStyle.italic : null,
+                  ),
+            );
+          }).toList(),
     );
   }
 
@@ -255,8 +262,10 @@ class ParagraphTextPainter extends CustomPainter {
           final underlineY = box.bottom;
           canvas.drawLine(
             Offset(box.left, underlineY),
-            Offset(box.left + ((box.right - box.left) * animation.value),
-                underlineY),
+            Offset(
+              box.left + ((box.right - box.left) * animation.value),
+              underlineY,
+            ),
             Paint()
               ..color = hoverStyle.color ?? Colors.blue
               ..strokeWidth = 1.5,

@@ -8,7 +8,6 @@ import 'package:effects/effects.dart' as eff;
 
 import 'widgets/connect_option_header_delegate.dart';
 import 'widgets/schedule_view.dart';
-import 'widgets/tldr_builder.dart';
 
 ///  show the details of [ConnectOption] in a separate page
 ///  use ripple route on parent
@@ -86,8 +85,14 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
-    debugPrint(
-        "widget.option.description ${widget.option.description.first.dialog}");
+    final dfstyle = Theme.of(context).textTheme;
+    final tldrStyle = dfstyle.bodyMedium!.copyWith(
+      fontWeight: theme.tldr.fontWeight,
+      color: theme.tldr.color,
+      fontSize: theme.tldr.fontSize,
+      leadingDistribution: TextLeadingDistribution.even,
+    );
+
     return Scaffold(
       body: eff.BackgroundView(
         colors: [
@@ -108,7 +113,7 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (widget.option.description.isNotEmpty)
+                      if (widget.option.tldr.isNotEmpty)
                         Center(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints.tightFor(
@@ -121,18 +126,19 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                                 spacing: 24,
                                 children: [
                                   ParagraphPainter(
-                                    data: widget.option.description.map((e) {
-                                      debugPrint(
-                                          "spans ${widget.option.description.where((e) => e.dialog != null).length}");
-
+                                    style: tldrStyle,
+                                    hoverTextStyle:
+                                        tldrStyle.copyWith(color: Colors.cyan),
+                                    data: widget.option.tldr.map((e) {
                                       var p = ParagraphData.fromSpan(e);
 
                                       if (e.dialog != null || e.url != null) {
-                                        debugPrint("got link or dialog");
                                         p = p.copyWith(
                                           onTap: () {
                                             if (p.dialog != null) {
                                               //todo: dialog desing
+                                              debugPrint(
+                                                  "dialog ${p.dialog.toString()}");
                                             }
                                             if (p.url != null) {
                                               // todo: url nave
@@ -142,9 +148,6 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                                       }
                                       return p;
                                     }).toList(),
-                                    style: theme.tldr.copyWith(
-                                      fontSize: theme.tldr.fontSize! + 2.5,
-                                    ),
                                   ),
                                   if (widget.option.showSchedule)
                                     ScheduleView(

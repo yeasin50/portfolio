@@ -9,8 +9,7 @@ import 'schedule_info.dart';
 class ConnectOption {
   const ConnectOption({
     required this.name,
-    this.tldr,
-    this.description = const [],
+    this.tldr = const [],
     this.background,
     required this.principles,
     this.schedules,
@@ -18,12 +17,9 @@ class ConnectOption {
   });
 
   final String name;
-  @Deprecated(
-      "use [description] instead.This is deprecated and will be removed")
-  final String? tldr;
 
   /// same as tldr but little long description can have link, dialogs etc
-  final List<TextSpanData> description;
+  final List<TextSpanData> tldr;
 
   final Color? background;
   final List<ConnectionPrinciple> principles;
@@ -36,17 +32,16 @@ class ConnectOption {
 
   factory ConnectOption.fromMap(Map<String, dynamic> map) {
     List<TextSpanData> spans = [];
-    if (map["description"] != null) {
+    if (map["tldr"] != null) {
       spans = List.from(
-        map["description"].map((e) => TextSpanData.fromMap(e)),
+        map["tldr"].map((e) => TextSpanData.fromMap(e)),
       );
     }
 
     return ConnectOption(
       name: map["type"],
       background: map["background"],
-      tldr: map["tldr"],
-      description: spans,
+      tldr: spans,
       schedules:
           map["schedules"] != null ? Schedules.fromMap(map["schedules"]) : null,
       principles: List.from(map["principles"]?.map(

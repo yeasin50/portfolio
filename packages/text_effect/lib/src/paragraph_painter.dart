@@ -115,6 +115,8 @@ class _ParagraphPainterState extends State<ParagraphPainter>
 
         return GestureDetector(
           onTapUp: (details) {
+            /// if you are thinking why  go though all this trouble instead of using TapRecognizer,
+            /// well  canvas api doesn't work for me.
             final localPosition = details.localPosition;
 
             int offset = 0;
@@ -214,11 +216,6 @@ class ParagraphTextPainter extends CustomPainter {
             fontWeight: spanData.bold == true ? FontWeight.bold : null,
             fontStyle: spanData.italic == true ? FontStyle.italic : null,
           ),
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              debugPrint("tapped ");
-              print("print ");
-            },
         );
       }).toList(),
     );

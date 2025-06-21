@@ -62,10 +62,10 @@
           }
         },
         {
-          "text": " I'm open to committing full-time (35h/week)"
+          "text": " I'm open to committing full-time (35h/week). "
         },
         {
-          "text": "I prioritize ethical projects that align with my values and avoid those that conflict with my principles."
+          "text": "I prioritize ethical projects that align with my values and avoid those that conflict with my principles. "
         },
         {
           "text": "I'm particularly efficient in Flutter application development and enjoy bug hunting and learning new technologies in my spare time."
@@ -94,7 +94,7 @@
             {
               "name": "Backend Development",
               "data": [
-                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine—whether it's REST, GraphQL, or WebSocket.",
+                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine-whether it's REST, GraphQL, or WebSocket.",
                 "I have been using Golang with PostgreSQL as a database since last year, but I am still in the learning phase for backend development.",
                 "I use FVM Flutter SDK and Docker for backend development consistency."
               ]
@@ -130,26 +130,26 @@
             {
               "name": "Development Environment",
               "data": [
-                "I use Debian as my primary workstation my laptop. DistroBox and separate drive for others stuffs. VS Code is my primary editor, and nowadays, I try NeoVim outside my workspace. Tmux is my favorite terminal multiplexer."
+                "I use Debian as my primary workstation and laptop. NeoVim is my primary editor, and in past I am used to VS Code. Tmux is my favorite terminal multiplexer with kitty terminal. Yes night theme for less bug attraction."
               ]
             },
             {
               "name": "Communication",
               "data": [
-                "For casual communication, Telegram is fine. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? Honestly, a very confusing experience.",
-                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please — don't tell me you're still using Excel sheets for managing tasks.",
+                "For casual communication, Telegram is fine for solo. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? A very confusing experience.",
+                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please, don't tell me you're still using Excel sheets for managing tasks. Btw I love obsidian.",
                 "No phone calls without a pre-scheduled meeting or clear heads-up. No sudden calls or surprise meetings.",
-                "I only stay active during common scheduled check-ins — like 30 minutes — to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
+                "I only stay active during common scheduled check-ins,  like 30 minutes to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
               ]
             },
             {
               "name": "Philosophy & Learning",
               "data": [
-                "My philosophy on writing code is to make it understandable by humans—including non-programmers.",
+                "My philosophy on writing code is to make it understandable by humans-including non-programmers.",
                 "I prefer tasks to be clearly prioritized based on business impact and like to break large tasks into smaller, manageable pieces.",
                 "I'm always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
                 "I love programming over drag-and-drop development.",
-                "I prefer an effective coding style and material design (Currently investing time in UX as well)."
+                "I prefer an effective coding style and material design (Currently investing time in UX and Human as well)."
               ]
             }
           ]
@@ -162,7 +162,7 @@
             {
               "name": "Flutter & Application Development",
               "data": [
-                "My expertise shines in the Flutter framework, as I spend most of my time working with it.",
+                "My expertise shines in the Flutter framework, as I spend most of my time working with it. Currently Golang.",
                 "GoRouter is my go-to choice for routing.",
                 "I prefer ThemeExtension over a static theme class.",
                 "I like code generation but prefer writing small cases manually (e.g., JSON, ThemeExtension).",
@@ -172,7 +172,7 @@
             {
               "name": "Backend Development",
               "data": [
-                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine—whether it's REST, GraphQL, or WebSocket.",
+                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine-whether it's REST, GraphQL, or WebSocket.",
                 "I have been using Golang with PostgreSQL as a database since last year, but I am still in the learning phase for backend development.",
                 "I use FVM Flutter SDK and Docker for backend development consistency."
               ]
@@ -195,14 +195,14 @@
               "name": "Version Control & CI/CD",
               "data": [
                 "Git for version, task, issue control, and code reviews.",
-                "I prefer CI/CD tools like Git, Bristi-CLI, Code-Magic for building or deployment. Otherwise, I use a makefile to make life easier.",
+                "I prefer CI/CD tools like Git, Bristi-CLI, Code-Magic for building or deployment. Otherwise, I use a makefile/bash to make life easier.",
                 "I like writing only unit tests but often face issues with rapid changes that break things. Usually, organizations/clients don't provide enough time/requirements to write unit/widget tests often for rapid development and feature changes."
               ]
             },
             {
               "name": "Documentation",
               "data": [
-                "For documentation generation, I prefer using dart-doc. This has become my coding style. Notion doesn't feel like home yet."
+                "For documentation generation, I prefer using dart-doc. This has become my coding style. Notion doesn't feel like home yet but love obsidiain. I like md file."
               ]
             },
             {
@@ -255,7 +255,7 @@
     },
     {
       "type": "Scholarship",
-      "tldr-old": "Open for a postgraduate program in Computer Science, Software Engineering, —",
+      "tldr-old": "Open for a postgraduate program in Computer Science, Software Engineering, -",
       "tldr": [
         {
           "text": "Open for a postgraduate program in "
@@ -268,11 +268,12 @@
           }
         },
         {
-          "text": "where I'll interact more with computers than humans 😀 while benefiting humankind."
+          "text": " where I'll interact more with computers than humans while benefiting humankind."
         },
         {
-          "text": "I hold a Bachelor's in Computer Science and Engineering (GPA: 3.67/4) and work as a Software Developer (Flutter)."
-        }
+          "text": " I hold a Bachelor's in Computer Science and Engineering (GPA: 3.67/4) and work experience as a Software Developer (Flutter)."
+        },
+        {"text": "~2026"}
       ],
       "principles": [
         {
@@ -281,7 +282,7 @@
           "items": [
             {
               "name": " ",
-              "description": "Do I think pursuing a Master's is the right path in life? Based on my experience and knowledge, my answer would be no. However, exposure to a foreign culture and education might change my perspective. As a software developer, I have collaborated with professionals from 8–10 countries, building global connections. While knowledge is widely accessible, pursuing a Master's in my home country didn't interest me, as I found it inefficient for my growth.",
+              "description": "Do I think pursuing a Master's is the right path in life? Based on my experience and knowledge, my answer would be no. However, exposure to a foreign culture and education might change my perspective. As a software developer, I have collaborated with professionals from 8-10 countries, building global connections. While knowledge is widely accessible, pursuing a Master's in my home country didn't interest me, as I found it inefficient for my growth.",
               "data": []
             },
             {

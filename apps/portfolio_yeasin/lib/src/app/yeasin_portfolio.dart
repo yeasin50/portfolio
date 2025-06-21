@@ -60,11 +60,11 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                   PointerDeviceKind.unknown
                 },
               ),
-              home: ConnectOptionPage(
-                option: snapshot.requireData.connectData!.items.first,
-                plasmaData: SpherePlasmaData.BJF,
-              ),
-              // const HomePage(),
+              home: const HomePage(),
+              // ConnectOptionPage(
+              //   option: snapshot.requireData.connectData!.items[1],
+              //   plasmaData: SpherePlasmaData.BJF,
+              // ),
               builder: (context, child) {
                 final colors = Theme.of(context) //
                     .extension<AppTheme>()!

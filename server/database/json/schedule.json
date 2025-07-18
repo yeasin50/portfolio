@@ -1,0 +1,96 @@
+{
+
+  "version": 0,
+  "updated_at": "2025-02-07T12:00:00Z",
+  "data": [
+      {
+        "title": "Daily Schedule",
+        "headers":["Day", "work-hour","meeting"],
+        "time_zone": "BST",
+        "entites": [
+            {
+                "Saturday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Sunday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Monday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Tuesday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Wednesday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Thusday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+                "Friday": [
+                    {
+                        "start_work" : "05:00 am",
+                        "end_work" : "08:00 am",
+                    },
+                    {
+                        "start_meeting" : "09:00 am",
+                        "end_meeting" : "09:30 am",
+                    },
+                ],
+            }
+        ],
+      },
+
+      {
+        "title": "Hodildays",
+        "headers":["Events", "period"],
+        "time_zone": "BST",
+        "entities": {
+            "Eid-Ul-Fitar": 7,
+            "Eid-Ul-Aldha": 7,
+        }
+      }
+  ]
+}

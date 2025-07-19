@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 ///  [RoutineInfo] is the data of RoutineView
@@ -17,7 +19,7 @@ class TimeSlot {
   final TimeOfDay start;
   final TimeOfDay end;
 
-  static parseTimeOfDay(String data) {
+  static TimeOfDay? parseTimeOfDay(String data) {
     int? hour = int.tryParse(data.split(":").first);
     final minuteAm = data.split(":").last.split(" ");
     final minute = int.tryParse(minuteAm.first);
@@ -36,42 +38,36 @@ class TimeSlot {
     final endSection = map.keys.firstWhere((e) => e.startsWith("end"));
 
     return TimeSlot(
-      start: parseTimeOfDay(parseTimeOfDay(startSection)),
-      end: parseTimeOfDay(parseTimeOfDay(endSection)),
+      start: parseTimeOfDay(map[startSection])!,
+      end: parseTimeOfDay(map[endSection])!, //
     );
   }
 }
 
 class EntityRow {
-  const EntityRow({
-    required this.name,
-    required this.slot,
-    required this.duration,
-  });
+  const EntityRow({required this.name, this.slot = const [], required this.duration});
   final String name;
-  final TimeSlot? slot;
+  final List<TimeSlot> slot;
   final Duration? duration;
 
   ///
   factory EntityRow.fromMap(MapEntry e) {
-    TimeSlot? slot;
+    List<TimeSlot> slots = [];
     Duration? duration;
-    if (e.value is List) {
-      slot = TimeSlot.fromMap(e.value);
-    } else if (e.value is int) {
+    final value = e.value;
+    if (value is List) {
+      for (final r in value) {
+        slots.add(TimeSlot.fromMap(r));
+      }
+    } else if (value is int) {
       duration = Duration(days: e.value);
     }
-    return EntityRow(name: e.key, slot: slot, duration: duration);
+    return EntityRow(name: e.key, slot: slots, duration: duration);
   }
 }
 
 class RoutineInfo {
-  RoutineInfo({
-    required this.title,
-    required this.headers,
-    required this.timezone,
-    required this.entities,
-  });
+  RoutineInfo({required this.title, required this.headers, required this.timezone, required this.entities});
 
   final String title;
   final List<String> headers;

@@ -13,6 +13,9 @@ dependencies:
   sun_scheduler:
     path: ../
 
+  time_machine2: ^0.12.1
+  # timezone: ^0.10.1
+  flutter_timezone: ^4.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

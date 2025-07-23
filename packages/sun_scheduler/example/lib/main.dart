@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:sun_scheduler/sun_scheduler.dart';
-import 'package:time_machine2/time_machine2.dart' as tm;
-import 'package:flutter_timezone/flutter_timezone.dart' as tz;
+import 'package:time_machine2/time_machine2.dart' as tz;
 
-void main() {
-    WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MaterialApp(home: MainApp()));
 }
 
@@ -16,17 +16,20 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  List<String> availableTimezone = [];
-  String? myTimezone;
-  List<String> filterTimezone = [];
+  List<tz.DateTimeZone> availableTimezone = [];
+  tz.DateTimeZone? myTimezone;
+  List<tz.DateTimeZone> filterTimezone = [];
 
   final seachController = TextEditingController();
 
+  late tz.DateTimeZoneProvider tzdb;
   @override
   void initState() {
     super.initState();
 
-    tm.TimeMachine.initialize().then((_) {
+    tz.TimeMachine.initialize({'rootBundle': rootBundle}).then((_) async {
+      tzdb = await tz.DateTimeZoneProviders.tzdb;
+
       fetchLocalDB();
     });
 
@@ -34,9 +37,9 @@ class _MainAppState extends State<MainApp> {
   }
 
   void fetchLocalDB() async {
-    availableTimezone = await tz.FlutterTimezone.getAvailableTimezones();
+    availableTimezone = (await tzdb.getAllZones()).toList();
     filterTimezone = [...availableTimezone];
-    myTimezone = await tz.FlutterTimezone.getLocalTimezone();
+    myTimezone = tz.DateTimeZone.local;
 
     setState(() {});
   }
@@ -49,7 +52,7 @@ class _MainAppState extends State<MainApp> {
     } else {
       filterTimezone =
           availableTimezone
-              .where((e) => e.toLowerCase().contains(text.toLowerCase()))
+              .where((e) => e.id.toLowerCase().contains(text.toLowerCase()))
               .toList();
     }
 
@@ -80,27 +83,39 @@ class _MainAppState extends State<MainApp> {
                 if (availableTimezone.isEmpty)
                   Text("loading....")
                 else
-                  Expanded(
-                    child: Column(
-                      children: [
-                        SearchBar(controller: seachController),
-                        Expanded(
-                          child: ListView.separated(
-                            itemCount: filterTimezone.length,
-                            separatorBuilder: (_, _) => SizedBox(height: 8),
-                            itemBuilder: (contex, i) {
-                              return ListTile(
-                                title: Text(
-                                  filterTimezone[i],
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  exampleUI(),
+
+                // Expanded(
+                //   child: Column(
+                //     children: [
+                //       SearchBar(controller: seachController),
+                //       Expanded(
+                //         child: ListView.separated(
+                //           itemCount: filterTimezone.length,
+                //           separatorBuilder: (_, _) => SizedBox(height: 8),
+                //           itemBuilder: (contex, i) {
+                //             final zone = filterTimezone[i];
+                //             final bstDateTime = tz.Instant.dateTime(
+                //               DateTime.now(), //  in future, it will get from  the datebase
+                //             );
+                //             final convertime = tz.ZonedDateTime(
+                //               bstDateTime,
+                //               zone,
+                //             );
+                //             final zTime =
+                //                 "${zone.id} : ${convertime.clockTime}";
+                //             return ListTile(
+                //               title: Text(
+                //                 zTime,
+                //                 style: TextStyle(color: Colors.white),
+                //               ),
+                //             );
+                //           },
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

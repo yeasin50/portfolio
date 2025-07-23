@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sun_scheduler/src/route_parser.dart';
 import 'package:sun_scheduler/src/routine_info.dart';
 
 import 'package:sun_scheduler/sun_scheduler.dart';
@@ -43,10 +44,10 @@ void main() {
     final jsonString = fixture("test_data.json");
 
     final jsonData = jsonDecode(jsonString)["data"];
-    print(jsonData); // this one is a list
 
     for (final data in jsonData) {
       final r = RoutineInfo.fromMap(data);
     }
   });
+
 }

@@ -5,7 +5,6 @@
     {
       "title": "Daily Schedule",
       "headers": ["Day", "work-hour", "meeting"],
-      "timezone": "BST",
       "entities": {
         "Saturday": [
           {

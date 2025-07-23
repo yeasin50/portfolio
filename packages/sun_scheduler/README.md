@@ -1,15 +1,15 @@
----
-wikilink: false
----
+A easy to way to inform others about your schedule of any location.
 
-### what works
+So we can just use timemachine2 for our case. If you just want to change to local, you don't have to use any package.
 
-- `flutter_timezone: ^4.1.1` properly gives us the available timezone and local timezone
+## Schema design
 
-### what doesn't work
+Make sure to add update date in `updated_at` on your current dateTime in UTC format.
 
-- timemachine, timemachine2 and timezone are to initialize for me
-
-### What all I need to figure out
-
-- get the timeOffset dataset so that I can parse from one timezone to another
+```json
+{
+  "version": 1,
+  "updated_at": "YourEditingDateTime in UTC format",
+  "data": []
+}
+```

@@ -84,7 +84,14 @@ class RowBuilder extends StatelessWidget {
         for (int i = 0; i < data.length; i++)
           Expanded(
             child: Align(
-              alignment: Alignment(i==0? -1 : i==data.length-1? 0: 0, 0),
+              alignment: Alignment(
+                i == 0
+                    ? -1
+                    : i == data.length - 1
+                    ? 0
+                    : 0,
+                0,
+              ),
               child: Text(data[i], style: style),
             ),
           ), //

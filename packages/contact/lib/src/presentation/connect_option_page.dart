@@ -1,19 +1,26 @@
-import 'package:contact/src/presentation/widgets/connect_option_header_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:core/core.dart' as core;
+import 'package:text_effect/text_effect.dart';
 
 import '../../contact.dart';
 
 import 'package:effects/effects.dart' as eff;
 
+import 'widgets/connect_option_header_delegate.dart';
 import 'widgets/schedule_view.dart';
-import 'widgets/tldr_builder.dart';
 
 ///  show the details of [ConnectOption] in a separate page
 ///  use ripple route on parent
 ///
 class ConnectOptionPage extends StatefulWidget {
   const ConnectOptionPage._({
+    required this.option,
+    required this.plasmaData,
+  });
+
+  @Deprecated("use [ConnectOptionPage.route] instead")
+  const ConnectOptionPage({
+    super.key,
     required this.option,
     required this.plasmaData,
   });
@@ -77,6 +84,15 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<ContactThemeExt>()!;
+    final dfstyle = Theme.of(context).textTheme;
+    final tldrStyle = dfstyle.bodyMedium!.copyWith(
+      fontWeight: theme.tldr.fontWeight,
+      color: theme.tldr.color,
+      fontSize: theme.tldr.fontSize,
+      leadingDistribution: TextLeadingDistribution.even,
+    );
+
     return Scaffold(
       body: eff.BackgroundView(
         colors: [
@@ -88,9 +104,7 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
           slivers: [
             SliverPersistentHeader(
               pinned: true,
-              delegate: ConnectOptionHeaderDelegate(
-                title: widget.option.name,
-              ),
+              delegate: ConnectOptionHeaderDelegate(title: widget.option.name),
             ),
             SliverLayoutBuilder(
               builder: (context, constraints) {
@@ -99,8 +113,7 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if ((widget.option.tldr ?? "")
-                          .isNotEmpty) //shift tldr builder
+                      if (widget.option.tldr.isNotEmpty)
                         Center(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints.tightFor(
@@ -112,7 +125,30 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 spacing: 24,
                                 children: [
-                                  TldrBuilder(text: widget.option.tldr!),
+                                  ParagraphPainter(
+                                    style: tldrStyle,
+                                    hoverTextStyle:
+                                        tldrStyle.copyWith(color: Colors.cyan),
+                                    data: widget.option.tldr.map((e) {
+                                      var p = ParagraphData.fromSpan(e);
+
+                                      if (e.dialog != null || e.url != null) {
+                                        p = p.copyWith(
+                                          onTap: () {
+                                            if (p.dialog != null) {
+                                              //todo: dialog desing
+                                              debugPrint(
+                                                  "dialog ${p.dialog.toString()}");
+                                            }
+                                            if (p.url != null) {
+                                              // todo: url nave
+                                            }
+                                          },
+                                        );
+                                      }
+                                      return p;
+                                    }).toList(),
+                                  ),
                                   if (widget.option.showSchedule)
                                     ScheduleView(
                                       schedules: widget.option.schedules,

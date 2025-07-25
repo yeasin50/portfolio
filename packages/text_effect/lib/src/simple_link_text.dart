@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 ///  to preview and navigate on  [linkText]
 /// currently it will have single link [url]
-///
+@Deprecated("use [ParagraphPainter] instead")
 class SimpleLinkText extends StatefulWidget {
   SimpleLinkText({
     super.key,

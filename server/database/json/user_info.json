@@ -3,11 +3,10 @@
   "updated_at": "2025-02-07T12:00:00Z",
   "intro": {
     "name": "Md.Yeasin Sheikh",
-    "title": "Software Developer | Flutter specialist",
-    "short_title": "Software Developer | Flutter",
-    "description": "A limited lifespan who loves to solve problems and create values."
+    "title": "Flutter Developer | Golang Enthusiast",
+    "short_title": "Software Engineer | Flutter",
+    "description": "A limited lifespan with a passion for solving problems and creating value."
   },
-
   "connects": [
     {
       "name": "github",
@@ -20,7 +19,26 @@
       "name": "stackOverflow",
       "logo": "stack_overflow_96.png",
       "url": "https://stackoverflow.com/users/10157127/md-yeasin-sheikh",
-      "description": "Ranked #2 in August 2022 • Earned 7 gold badges for outstanding contributions, including Flutter & Dart.Love solving bugs and helping others.",
+      "description": "Enjoy solving bugs and helping others. Ranked #2 in August 2022. Mostly contribute to Flutter and Dart, with gold badges as recognition.",
+      "text_spans": [
+        {
+          "text": "Enjoy solving bugs and helping others. "
+        },
+        {
+          "text": "Ranked #2",
+          "url": "something"
+        },
+        {
+          "text": " in August 2022. Mostly contribute to Flutter and Dart, with "
+        },
+        {
+          "text": "gold badges",
+          "url": ""
+        },
+        {
+          "text": " as recognition."
+        }
+      ],
       "show": true,
       "blur_hash": "U3SY]h?b00.8IT%M%M%M00xv9Fj[_Nt7xujs"
     },
@@ -30,6 +48,13 @@
       "url": "https://www.linkedin.com/in/mdyeasinsheikh/",
       "show": true,
       "blur_hash": "U6Rp5w_4V[RPIT%MRj-;00tQ%MRk?bof%NIT"
+    },
+    {
+      "name": "youtube",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
+      "url": "https://www.youtube.com/@yt.yeasin50",
+      "show": false,
+      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
     },
     {
       "name": "youtube",
@@ -48,16 +73,16 @@
       },
       "start": "2021-07-01T00:00:00Z",
       "end": null,
-      "description": "Freelance hybrid developer with extensive experience in bringing creative ideas to life. Led multiple projects, including DataHub for Daffodil Health Department, and worked on a variety of Flutter-based applications.",
+      "description":"Remote hybrid developer experienced in Health, Fintech, Real Estate, and Social domains using Flutter and hybrid technologies.",
       "show": true
     },
     {
       "title": "Flutter Developer",
       "organization": {
-        "name": "NDA (Part-time)"
+        "name": "Stealth Startup"
       },
       "start": "2025-02-01T00:00:00Z",
-      "end": null,
+      "end": "2025-07-02T00:00:00Z",
       "description": "Refactoring legacy Flutter codebase to improve performance and maintainability, while contributing new features to the production app at a London-based company.",
       "show": true
     },
@@ -69,7 +94,7 @@
       },
       "start": "2023-12-01T00:00:00Z",
       "end": "2024-11-30T00:00:00Z",
-      "description": "Refactored and built a US–France based real estate app with new features, advanced search, and user verification.",
+      "description": "Refactored and built a US-France based real estate app with new features, advanced search, and user verification.",
       "show": true
     },
     {
@@ -120,7 +145,7 @@
   ],
   "certificate": [
     {
-      "name": "FlutterDevcamp State Management Special",
+      "name": "FlutterDevCamp State Management Special",
       "organization": {
         "name": "GDG London"
       },

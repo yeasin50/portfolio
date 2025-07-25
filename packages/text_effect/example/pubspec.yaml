@@ -16,6 +16,8 @@ dependencies:
 
   text_effect:
     path: ..
+  core:
+    path: ../../core
 
 dev_dependencies:
   flutter_test:

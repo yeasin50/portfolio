@@ -1,15 +1,21 @@
 name: text_effect
-version: 0.0.1
+version: 1.0.0
+repository: https://github.com/yeasin50/portfolio
+publish_to: none
 description: >
   To show text_effect
    - counter
-   - expand and  rotate
+   - hoverText
 
 environment:
   sdk: ^3.6.0
   flutter: ">=1.17.0"
 
 dependencies:
+  collection: ^1.19.1
+  core:
+    path: ../core
+
   flutter:
     sdk: flutter
   url_launcher: ^6.3.1

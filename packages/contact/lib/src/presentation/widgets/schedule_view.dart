@@ -9,7 +9,7 @@ import '../../infrastructure/schedule_info.dart';
 
 ///  represent simple view for  [Schedules]
 ///
-/// if timeSlot is empty, it gonna highLight available_from
+/// if time-slot is empty, it gonna highlight available_from
 /// else a expandable list
 ///
 ///TODO:  add timeSlot
@@ -28,7 +28,7 @@ class ScheduleView extends StatelessWidget {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
 
     final availableStr = schedules?.availableFrom == null
-        ? "Available..."
+        ? "Get in touch..."
         : "Available from ${core.PortfolioDateFormat.basic(schedules!.availableFrom!)}";
 
     ///  todo:

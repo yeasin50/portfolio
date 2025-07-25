@@ -93,6 +93,7 @@ class _HomeState extends State<_Home> {
         children: [
           CertificateListView(certificates: certificates),
           ExperienceView(experiences: items),
+          Text("some text"),
           // EducationItemsView(educations: educations),
         ],
       ),

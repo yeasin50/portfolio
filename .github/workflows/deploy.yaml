@@ -31,7 +31,7 @@ jobs:
       - run: |
           cd apps/portfolio_yeasin/build/web
           git init
-          git config --global user.email yeasinsheikh50@gmail.com
+          git config --global user.email 46500228+yeasin50@users.noreply.github.com
           git config --global user.name yeasin50
           git remote add origin https://${{secrets.COMMIT_SECRET}}@github.com/yeasin50/portfolio.git
           git checkout -b gh-pages

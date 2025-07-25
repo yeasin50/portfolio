@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/portfolio/">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="portfolio_yeasin">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Md. Yeasin Sheikh</title>
+</head>
+
+<body>
+  <div class="loading_view">
+    <div class="progress-bar"></div>
+    <div class="loading-text">Good things take time,</div>
+    <div class="loading-text1">but they are limited in this life.</div>
+    <div class="built-text">Built with Flutter and 💙</div>
+  </div>
+
+  <script src="flutter_bootstrap.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loaderContainer = document.getElementsByClassName("loading_view")[0];
+
+      _flutter.loader.load({
+        onEntrypointLoaded: async function (engineInitializer) {
+          const appRunner = await engineInitializer.initializeEngine();
+
+          // Wait for animations to complete
+          await new Promise(resolve => setTimeout(resolve, 3000));
+
+          // Fade out loader
+          if (document.body.contains(loaderContainer)) {
+            loaderContainer.style.transition = 'opacity 0.5s ease-out';
+            loaderContainer.style.opacity = '0';
+
+            setTimeout(() => {
+              if (document.body.contains(loaderContainer)) {
+                document.body.removeChild(loaderContainer);
+              }
+            }, 500);
+          }
+
+          await appRunner.runApp();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

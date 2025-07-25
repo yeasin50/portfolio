@@ -26,8 +26,16 @@ class PreferenceBuilder extends StatelessWidget {
       initialExpanded: true, // item.items.isEmpty,
       lowerBound: item.items.isEmpty ? .80 : .23,
       //     item.items.isEmpty && item.description.length < 300 ? 1 : .2,
+      titlePadding: EdgeInsets.only(bottom: 8, top: 24),
       expandIconColor: theme.expandIconColor,
       children: [
+        if (item.description.trim().isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: TldrBuilder(
+              text: item.description,
+            ),
+          ),
         for (final li in item.items)
           Padding(
             padding: const EdgeInsets.only(bottom: 24),

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import 'schedule_info.dart';
@@ -8,7 +9,7 @@ import 'schedule_info.dart';
 class ConnectOption {
   const ConnectOption({
     required this.name,
-    this.tldr,
+    this.tldr = const [],
     this.background,
     required this.principles,
     this.schedules,
@@ -16,7 +17,10 @@ class ConnectOption {
   });
 
   final String name;
-  final String? tldr;
+
+  /// same as tldr but little long description can have link, dialogs etc
+  final List<TextSpanData> tldr;
+
   final Color? background;
   final List<ConnectionPrinciple> principles;
   final Schedules? schedules;
@@ -27,10 +31,17 @@ class ConnectOption {
   }
 
   factory ConnectOption.fromMap(Map<String, dynamic> map) {
+    List<TextSpanData> spans = [];
+    if (map["tldr"] != null) {
+      spans = List.from(
+        map["tldr"].map((e) => TextSpanData.fromMap(e)),
+      );
+    }
+
     return ConnectOption(
       name: map["type"],
       background: map["background"],
-      tldr: map["tldr"],
+      tldr: spans,
       schedules:
           map["schedules"] != null ? Schedules.fromMap(map["schedules"]) : null,
       principles: List.from(map["principles"]?.map(
@@ -47,11 +58,15 @@ class ConnectionPrinciple {
     required this.title,
     required this.category,
     this.items = const [],
+    this.description = "",
     this.show = true,
   });
 
+  /// A category that represents the overarching theme of the principle (e.g., "concern", "ok", "not-ok").
   final String category;
   final String title;
+  final String description;
+
   final List<PrincipleInfo> items;
   final bool show;
 
@@ -59,6 +74,7 @@ class ConnectionPrinciple {
     return ConnectionPrinciple(
       category: map["category"],
       title: map["title"],
+      description: map["description"] ?? "",
       items: map["items"] == null
           ? []
           : List.from(map["items"].map((e) => PrincipleInfo.fromMap(e))),
@@ -84,6 +100,8 @@ class PrincipleInfo {
   final String name;
   final List<String> data;
   final String description;
+
+  /// A category that represents the overarching theme of the principle (e.g., "concern", "ok", "not-ok").
   final String category;
 
   final bool show;

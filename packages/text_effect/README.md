@@ -28,13 +28,22 @@ used to render textSpan for [AdvanceRichText](/lib/src/paragraph.dart) and [Para
       ),
       data: [
         ParagraphData(text: "Normal text"),
-        ParagraphData(text: " hover effect for link", url: "asd"),
+        ParagraphData(text: " hover effect for link", url: "asd", onTap:(){
+          //link tap
+        }),
         ParagraphData(
             text: "  extra something.... "),
         ParagraphData(
-            text: "I am bold with url",
-            url: "asd",
-            bold: true),
+        text: "gold badges as recognition.",
+        onTap: () {
+          debugPrint("tapped gold badges as recognition");
+        },
+        dialog: TextSpanDialogData(
+          title: "dialog title",
+          description: "descr",
+          items: [],
+        ),
+      ),
       ],
   )
   ```

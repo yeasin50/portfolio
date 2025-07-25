@@ -3,8 +3,74 @@
   "updated_at": "2025-03-05T12:00:00Z",
   "data": [
     {
-      "type": "Software\nDevelopment",
-      "tldr": "I have worked on various types of projects for personal clients, companies, and government organizations throughout my development journey. Recent are under NDA, I will be happy if yours is not, but good ones are often lies here. I often work as a part-time developer (20h/W) and take on additional contractual projects that require a few hours of maintenance each week. The rest of the time, I enjoy learning new things and contributing on different platforms. I also enjoy bug hunting and refactoring Flutter projects.  You will find me efficient in Flutter application development. I prioritize working on ethical projects that align with my values and avoid anything that conflicts with my principles.",
+      "type": "Software Development",
+      "tldr": [
+        {
+          "text": "I've been working since 2021 wide range of projects for personal clients, companies and government organizations-most under "
+        },
+        {
+          "text": "NDA",
+          "dialog": {
+            "title": "NDA (Non-Disclosure Agreement)",
+            "description": "A legal agreement that restricts one or more parties from disclosing confidential or proprietary information shared during a project or partnership. It's commonly used to protect sensitive business or technical details."
+          }
+        },
+        {
+          "text": " While I'd be glad if your project isn't under "
+        },
+        {
+          "text": "NDA",
+          "dialog": {
+            "title": "NDA (Non-Disclosure Agreement)",
+            "description": "A legal agreement that restricts one or more parties from disclosing confidential or proprietary information shared during a project or partnership. It's commonly used to protect sensitive business or technical details."
+          }
+        },
+        {
+          "text": " the best ones often are."
+        },
+        {
+          "text": "I typically work part-time (20h/week) and take on smaller contracts that require ~4 hours of weekly maintenance. My standard availability is around 35 hours per week."
+        },
+        {
+          "text": " If your backend is built with Golang and the project is focused on creating "
+        },
+        {
+          "text": "real value for people",
+          "dialog": {
+            "title": "Value-Focused",
+            "description": "Projects aimed at meaningful, positive impact aligned with ethical and community values.",
+            "items": [
+              "Education",
+              "Public Awareness",
+              "Health & Well-being",
+              "Humanitarian Efforts",
+              "Personal Productivity",
+              "Environmental Sustainability",
+              "Faith-Inspired Ethics (Islam)",
+              "Prioritizing genuine value over profit"
+            ]
+          }
+        },
+        {
+          "text": " rather than being "
+        },
+        {
+          "text": "purely business-driven.",
+          "dialog": {
+            "text": "business-driven",
+            "description": "business-driven or subscription-based"
+          }
+        },
+        {
+          "text": " I'm open to committing full-time (35h/week). "
+        },
+        {
+          "text": "I prioritize ethical projects that align with my values and avoid those that conflict with my principles. "
+        },
+        {
+          "text": "I'm particularly efficient in Flutter application development and enjoy bug hunting and learning new technologies in my spare time."
+        }
+      ],
       "schedules": {
         "state": "available",
         "message": "I will be available from this date.",
@@ -28,7 +94,7 @@
             {
               "name": "Backend Development",
               "data": [
-                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine—whether it's REST, GraphQL, or WebSocket.",
+                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine-whether it's REST, GraphQL, or WebSocket.",
                 "I have been using Golang with PostgreSQL as a database since last year, but I am still in the learning phase for backend development.",
                 "I use FVM Flutter SDK and Docker for backend development consistency."
               ]
@@ -36,7 +102,7 @@
             {
               "name": "State Management",
               "data": [
-                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don’t invite me to a project using GetX.",
+                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don't invite me to a project using GetX.",
                 "For SDK or concern separation, I use InheritedWidget or just Stream—yes, Stream works well as a state management solution for mid-level projects."
               ]
             },
@@ -64,26 +130,26 @@
             {
               "name": "Development Environment",
               "data": [
-                "I use Debian as my primary workstation my laptop. DistroBox and separate drive for others stuffs. VS Code is my primary editor, and nowadays, I try NeoVim outside my workspace. Tmux is my favorite terminal multiplexer."
+                "I use Debian as my primary workstation and laptop. NeoVim is my primary editor, and in past I am used to VS Code. Tmux is my favorite terminal multiplexer with kitty terminal. Yes night theme for less bug attraction."
               ]
             },
             {
               "name": "Communication",
               "data": [
-                "For casual communication, Telegram is fine. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? Honestly, a very confusing experience.",
-                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please — don’t tell me you're still using Excel sheets for managing tasks.",
+                "For casual communication, Telegram is fine for solo. For team collaboration, Slack feels better, while Discord is okay. Microsoft Teams? A very confusing experience.",
+                "For task management, GitHub Issues/Projects, Jira, and Trello work well. It gets tricky when using Notion for task tracking. And please, don't tell me you're still using Excel sheets for managing tasks. Btw I love obsidian.",
                 "No phone calls without a pre-scheduled meeting or clear heads-up. No sudden calls or surprise meetings.",
-                "I only stay active during common scheduled check-ins — like 30 minutes — to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
+                "I only stay active during common scheduled check-ins,  like 30 minutes to avoid constant distractions. A weekly or monthly plan is necessary to stay aligned."
               ]
             },
             {
               "name": "Philosophy & Learning",
               "data": [
-                "My philosophy on writing code is to make it understandable by humans—including non-programmers.",
+                "My philosophy on writing code is to make it understandable by humans-including non-programmers.",
                 "I prefer tasks to be clearly prioritized based on business impact and like to break large tasks into smaller, manageable pieces.",
-                "I’m always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
+                "I'm always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
                 "I love programming over drag-and-drop development.",
-                "I prefer an effective coding style and material design (Currently investing time in UX as well)."
+                "I prefer an effective coding style and material design (Currently investing time in UX and Human as well)."
               ]
             }
           ]
@@ -96,7 +162,7 @@
             {
               "name": "Flutter & Application Development",
               "data": [
-                "My expertise shines in the Flutter framework, as I spend most of my time working with it.",
+                "My expertise shines in the Flutter framework, as I spend most of my time working with it. Currently Golang.",
                 "GoRouter is my go-to choice for routing.",
                 "I prefer ThemeExtension over a static theme class.",
                 "I like code generation but prefer writing small cases manually (e.g., JSON, ThemeExtension).",
@@ -106,7 +172,7 @@
             {
               "name": "Backend Development",
               "data": [
-                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine—whether it's REST, GraphQL, or WebSocket.",
+                "For backend solutions, I work with Firebase, Supabase, and Serverpod. If you have a backend developer, any backend solution is fine-whether it's REST, GraphQL, or WebSocket.",
                 "I have been using Golang with PostgreSQL as a database since last year, but I am still in the learning phase for backend development.",
                 "I use FVM Flutter SDK and Docker for backend development consistency."
               ]
@@ -114,7 +180,7 @@
             {
               "name": "State Management",
               "data": [
-                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don’t invite me to a project using GetX.",
+                "As for state management, I prefer Bloc. Riverpod, Provider, or built-in solutions are fine. Please don't invite me to a project using GetX.",
                 "For SDK or concern separation, I use InheritedWidget or just Stream—yes, Stream works well as a state management solution for mid-level projects."
               ]
             },
@@ -129,14 +195,14 @@
               "name": "Version Control & CI/CD",
               "data": [
                 "Git for version, task, issue control, and code reviews.",
-                "I prefer CI/CD tools like Git, Bristi-CLI, Code-Magic for building or deployment. Otherwise, I use a makefile to make life easier.",
+                "I prefer CI/CD tools like Git, Bristi-CLI, Code-Magic for building or deployment. Otherwise, I use a makefile/bash to make life easier.",
                 "I like writing only unit tests but often face issues with rapid changes that break things. Usually, organizations/clients don't provide enough time/requirements to write unit/widget tests often for rapid development and feature changes."
               ]
             },
             {
               "name": "Documentation",
               "data": [
-                "For documentation generation, I prefer using dart-doc. This has become my coding style. Notion doesn't feel like home yet."
+                "For documentation generation, I prefer using dart-doc. This has become my coding style. Notion doesn't feel like home yet but love obsidiain. I like md file."
               ]
             },
             {
@@ -144,7 +210,7 @@
               "data": [
                 "My philosophy on writing code is to make it understandable by humans—including non-programmers.",
                 "I prefer tasks to be clearly prioritized based on business impact and like to break large tasks into smaller, manageable pieces.",
-                "I’m always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
+                "I'm always eager to learn new technologies and basic computing (80's), often dedicating personal time to explore emerging trends. But I am not interested in learning low performant tech despite being popular, PHP or Python for backend; I am interested in Rust and have a future goal in it.",
                 "I love programming over drag-and-drop development.",
                 "I prefer an effective coding style and material design (Currently investing time in UX as well)."
               ]
@@ -169,14 +235,14 @@
                 "Toxic company culture or excessive workplace politics",
                 "Clients looking for low-budget developers",
                 "Companies that demand unrealistic deadlines with unfair compensation",
-                "Micromanaging clients who don’t trust developers",
+                "Micromanaging clients who don't trust developers",
                 "Projects that lack clear vision, proper documentation, or realistic expectations",
                 "Projects with a poorly defined or constantly changing scope",
                 "Unpaid trial work or 'test tasks' before hiring",
                 "Equity-only payment models with no guaranteed compensation",
                 "Clients who expect endless revisions without extra pay",
                 "Non-technical clients who refuse to listen to expert advice",
-                "Excessive NDA or contract restrictions limiting future work (while I’m open to reasonable NDAs for sensitive projects)",
+                "Excessive NDA or contract restrictions limiting future work (while I'm open to reasonable NDAs for sensitive projects)",
                 "Spam, fake engagement, or deceptive marketing projects",
                 "Not interested in full-time work exceeding 35 hours per week",
                 "Timely payment and clear communication are essential to me. If I have to chase payments or remind clients/org about the work I've already done, it goes against my professional values."
@@ -189,7 +255,26 @@
     },
     {
       "type": "Scholarship",
-      "tldr": "Open for a postgraduate program in Computer Science, Software Engineering, AI, Data Science, or Machine Learning—where I'll interact more with computers than humans 😀 while benefiting humankind. I hold a Bachelor's in Computer Science and Engineering (GPA: 3.67/4) and work as a Software Developer (Flutter).",
+      "tldr-old": "Open for a postgraduate program in Computer Science, Software Engineering, -",
+      "tldr": [
+        {
+          "text": "Open for a postgraduate program in "
+        },
+        {
+          "text": "Computer Science/Software Engineering",
+          "dialog": {
+            "title": "subject",
+            "items": ["AI", "Data Science", "Machine Learning"]
+          }
+        },
+        {
+          "text": " where I'll interact more with computers than humans while benefiting humankind."
+        },
+        {
+          "text": " I hold a Bachelor's in Computer Science and Engineering (GPA: 3.67/4) and work experience as a Software Developer (Flutter)."
+        },
+        {"text": "~2026"}
+      ],
       "principles": [
         {
           "category": "general",
@@ -197,7 +282,7 @@
           "items": [
             {
               "name": " ",
-              "description": "Do I think pursuing a Master's is the right path in life? Based on my experience and knowledge, my answer would be no. However, exposure to a foreign culture and education might change my perspective. As a software developer, I have collaborated with professionals from 8–10 countries, building global connections. While knowledge is widely accessible, pursuing a Master’s in my home country didn’t interest me, as I found it inefficient for my growth.",
+              "description": "Do I think pursuing a Master's is the right path in life? Based on my experience and knowledge, my answer would be no. However, exposure to a foreign culture and education might change my perspective. As a software developer, I have collaborated with professionals from 8-10 countries, building global connections. While knowledge is widely accessible, pursuing a Master's in my home country didn't interest me, as I found it inefficient for my growth.",
               "data": []
             },
             {
@@ -218,9 +303,9 @@
               "data": [
                 "As Ludwig Wittgenstein said, 'The limits of my language mean the limits of my world.' Perhaps studying abroad will enrich my perspective and culture, rather than feeling like Kafka's prison.",
                 "Leaving behind my beloved workstation, which I have built over five years.",
-                "Family? Not really an issue. My physical presence is not required, and as the eldest, I have responsibilities to maintain. It’s more of my parents’ wish, which I am choosing to follow.",
+                "Family? Not really an issue. My physical presence is not required, and as the eldest, I have responsibilities to maintain. It's more of my parents' wish, which I am choosing to follow.",
                 "My job commitments—I'm handling two foreign projects, one for over a year. Without a powerful laptop like my PC, working might not be feasible, and I have no plans to bring my old laptop.",
-                "Financially, I can work for 1-2 months and live comfortably for the rest of the year in my home country. That won’t be as easy abroad.",
+                "Financially, I can work for 1-2 months and live comfortably for the rest of the year in my home country. That won't be as easy abroad.",
                 "Cultural differences can be challenging."
               ]
             }
@@ -272,15 +357,15 @@
           "items": [
             {
               "name": "Meaningless Opportunities Abroad",
-              "description": "I’ve been working as a remote developer for companies across different countries for the past few years. I’m not just looking for any place to go. I prefer connections with government or recognized organizations and always check if an opportunity aligns with my preferences (as mentioned in the 'Looking For' section)."
+              "description": "I've been working as a remote developer for companies across different countries for the past few years. I'm not just looking for any place to go. I prefer connections with government or recognized organizations and always check if an opportunity aligns with my preferences (as mentioned in the 'Looking For' section)."
             },
             {
               "name": "Title-Driven Leadership & Empty Recognition",
-              "description": "I’ve worked under professors who care more about boosting their profiles with photos and project names than actually supporting the project. They often skip important details to save money and don’t fully understand the project requirements. The toughest part was working with non-technical people who think they know better than professionals. I’m not interested in working with such groups."
+              "description": "I've worked under professors who care more about boosting their profiles with photos and project names than actually supporting the project. They often skip important details to save money and don't fully understand the project requirements. The toughest part was working with non-technical people who think they know better than professionals. I'm not interested in working with such groups."
             },
             {
               "name": "Cannot Contribute to My Skills",
-              "description": "I’m looking for opportunities that allow me to grow and enhance my skills. If an environment doesn’t offer the chance to learn, improve, or build on my existing knowledge, it’s not a good fit for me."
+              "description": "I'm looking for opportunities that allow me to grow and enhance my skills. If an environment doesn't offer the chance to learn, improve, or build on my existing knowledge, it's not a good fit for me."
             }
           ]
         }
@@ -289,7 +374,7 @@
     },
     {
       "type": "Bug hunting",
-      "tldr": "",
+      "tldr": [],
       "show": true
     }
   ]

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:core/core.dart';
 
 import 'package:text_effect/text_effect.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      theme: ThemeData(),
-      home: const MyApp(),
-    ),
-  );
+  runApp(MaterialApp(theme: ThemeData(), home: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -20,50 +16,85 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ///
-  final data = [
+  late final data = [
     ParagraphData(text: "Enjoy solving bugs and helping others."),
-    ParagraphData(text: " Ranked #2 in August 2022", url: "asd"),
+    ParagraphData(
+      text: " Ranked #2 in August 2022",
+      url: "asd",
+      onTap: () {
+        debugPrint("tapped asd");
+      },
+    ),
     ParagraphData(text: "  Mostly contribute to Flutter and Dart, with "),
-    ParagraphData(text: "gold badges as recognition.", url: "asd", bold: true),
+    ParagraphData(
+      text: "gold badges as recognition.",
+      onTap: () {
+        debugPrint("tapped gold badges as recognition");
+        final offset = Offset(12, 12);
+        ParagraphDialog.show(
+          context: context,
+          offset: offset,
+          data: TextSpanDialogData(
+            title: "title",
+            description: "description",
+            items: ["adasd", "other text"],
+          ),
+        );
+      },
+      dialog: TextSpanDialogData(
+        title: "dialog title",
+        description: "description",
+        items: [],
+      ),
+    ),
   ];
 
-  final style = TextStyle(
-    color: Colors.black,
-    fontSize: 32,
-  );
+  final style = TextStyle(color: Colors.black, fontSize: 32);
 
-  final hoverStyle = TextStyle(
-    color: Colors.greenAccent,
-    fontSize: 32,
-  );
+  final hoverStyle = TextStyle(color: Colors.greenAccent, fontSize: 32);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final offset = Offset(12, 12);
+          // ParagraphDialog.show(
+          //   context: context,
+          //   offset: offset,
+          //   data: TextSpanDialogData(
+          //     title: "title",
+          //     description: "description",
+          //     items: ["adasd", "other text"],
+          //   ),
+          // );
+        },
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextSwitcher(
-              primaryText: "primaryText will be little long huhahaha",
-              secondaryText: "secondaryText",
-              primaryTextStyle: style,
-              onInit: (ctrl) {
-                ctrl.forward();
-              },
-            ),
-            const SizedBox(height: 32),
-            AdvanceRichText(
-              style: style,
-              hoverTextStyle: hoverStyle,
-              data: data,
-            ),
+            // TextSwitcher(
+            //   primaryText: "primaryText will be little long huhahaha",
+            //   secondaryText: "secondaryText",
+            //   primaryTextStyle: style,
+            //   onInit: (ctrl) {
+            //     ctrl.forward();
+            //   },
+            // ),
+            // const SizedBox(height: 32),
+            // AdvanceRichText(
+            //   style: style,
+            //   hoverTextStyle: hoverStyle,
+            //   data: data,
+            // ),
             const SizedBox(height: 32),
             ParagraphPainter(
               style: style,
               hoverTextStyle: hoverStyle,
               data: data,
-            )
+            ),
           ],
         ),
       ),

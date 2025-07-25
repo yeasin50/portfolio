@@ -52,6 +52,13 @@
     {
       "name": "youtube",
       "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
+      "url": "https://www.youtube.com/@yt.yeasin50",
+      "show": false,
+      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
+    },
+    {
+      "name": "youtube",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
       "url": "https://www.youtube.com/@FlutterforMe",
       "show": false,
       "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
@@ -66,16 +73,16 @@
       },
       "start": "2021-07-01T00:00:00Z",
       "end": null,
-      "description": "Freelance hybrid developer with extensive experience in bringing creative ideas to life. Led multiple projects, including DataHub for Daffodil Health Department, and worked on a variety of Flutter-based applications.",
+      "description":"Remote hybrid developer experienced in Health, Fintech, Real Estate, and Social domains using Flutter and hybrid technologies.",
       "show": true
     },
     {
       "title": "Flutter Developer",
       "organization": {
-        "name": "NDA (Part-time)"
+        "name": "Stealth Startup"
       },
       "start": "2025-02-01T00:00:00Z",
-      "end": null,
+      "end": "2025-07-02T00:00:00Z",
       "description": "Refactoring legacy Flutter codebase to improve performance and maintainability, while contributing new features to the production app at a London-based company.",
       "show": true
     },

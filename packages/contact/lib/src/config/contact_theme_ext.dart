@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ///  theme gonna use inside contact features
 /// make sure to provide inside the MaterialTheme's Extension
@@ -56,14 +57,14 @@ class ContactThemeExt extends ThemeExtension<ContactThemeExt> {
 
   // Dark Theme
   static ContactThemeExt darkTheme() {
-    return const ContactThemeExt(
+    return ContactThemeExt(
       expandIconColor: Color(0xFFB0BEC5), // Light Gray
       pageTitle: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFFFFFFFF),
       ),
-      tldr: TextStyle(
+      tldr: GoogleFonts.montserrat(
         fontSize: 16,
         fontWeight: FontWeight.normal,
         color: Color(0xFFB0BEC5),

@@ -1,3 +1,5 @@
+import 'package:contact/contact.dart';
+import 'package:effects/effects.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
@@ -59,6 +61,10 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
                 },
               ),
               home: const HomePage(),
+              // ConnectOptionPage(
+              //   option: snapshot.requireData.connectData!.items[1],
+              //   plasmaData: SpherePlasmaData.BJF,
+              // ),
               builder: (context, child) {
                 final colors = Theme.of(context) //
                     .extension<AppTheme>()!

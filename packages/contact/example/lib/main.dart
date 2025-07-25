@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-MaterialApp(
-  theme: ThemeData.dark().copyWith(
-    extensions: [
-      ContactThemeExt.darkTheme(),
-    ],
-  ),
-      home: MainApp(),
-    ),
+    Builder(builder: (context) {
+      return MaterialApp(
+        theme: ThemeData.dark().copyWith(
+          extensions: [
+            ContactThemeExt.darkTheme(),
+          ],
+        ),
+        home: MainApp(),
+      );
+    }),
   );
 }
 

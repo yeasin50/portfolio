@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:effects/effects.dart';
 import 'package:flutter/material.dart';
 
+part 'text_reveal_with_animated_arrow.dart';
+
 ///  create simple animated Arrow bullet point and next to the
 /// [child] as text
-/// TODO:  need some work
 /// ```dart
 /// eff.AnimatedArrowView(
 ///       child: DefaultTextStyle(

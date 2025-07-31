@@ -31,12 +31,12 @@ class ScheduleView extends StatelessWidget {
         ? "Get in touch..."
         : "Available from ${core.PortfolioDateFormat.basic(schedules!.availableFrom!)}";
 
-    ///  todo:
-    final dateView = eff.AnimatedArrowView(
-      child: DefaultTextStyle(
-        style: theme.tldr.copyWith(color: Colors.black), //FIXME:
-        child: Text(availableStr),
-      ),
+    final dateView = eff.TextRevealWithArrow(
+      label: availableStr,
+      primaryTextStyle:
+          theme.tldr.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
+      hoverTextStyle:
+          theme.tldr.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
     );
 
     return Column(

@@ -73,9 +73,7 @@ class _SkillChipState extends State<SkillChip>
         },
         child: InkWell(
           customBorder: StadiumBorder(),
-          onTap: () {
-            //todo: expand tree skill
-          },
+          //   //todo: expand tree skill
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
             child: Text(

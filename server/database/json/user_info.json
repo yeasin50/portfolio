@@ -50,6 +50,13 @@
       "blur_hash": "U6Rp5w_4V[RPIT%MRj-;00tQ%MRk?bof%NIT"
     },
     {
+      "name": "blog",
+      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/blog.png",
+      "url": "https://yeasin50.github.io/yt",
+      "show": true,
+      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
+    },
+    {
       "name": "youtube",
       "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
       "url": "https://www.youtube.com/@yt.yeasin50",
@@ -72,7 +79,7 @@
         "name": "Freelance"
       },
       "start": "2021-07-01T00:00:00Z",
-      "end": null,
+      "end": "2025-07-02T00:00:00Z",
       "description":"Remote hybrid developer experienced in Health, Fintech, Real Estate, and Social domains using Flutter and hybrid technologies.",
       "show": true
     },

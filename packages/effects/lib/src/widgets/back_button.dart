@@ -1,6 +1,8 @@
 import 'package:effects/effects.dart';
 import 'package:flutter/material.dart';
 
+
+@Deprecated("Might remove in Future. Or replace AnimatedArrowView with something cool here")
 class AnimatedBackButton extends StatefulWidget {
   const AnimatedBackButton({
     super.key,

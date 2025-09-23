@@ -158,7 +158,7 @@ class _ParagraphPainterState extends State<ParagraphPainter>
                 setState(() => _hoveredOffset = pos);
                 controller.reset();
                 controller.forward();
-                debugPrint("hover item $_hoveredOffset");
+                // debugPrint("hover item $_hoveredOffset");
               }
             },
             onExit: (_) {

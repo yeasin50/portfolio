@@ -5,11 +5,11 @@ MAIN_FILE ?= apps/portfolio_yeasin/lib/main_dev.dart
 
 .PHONY: run_web
 run:
-	@sudo kill -9 $$(sudo lsof -t -i :$(PORT)) 2>/dev/null || true
-	@fvm flutter run -t $(MAIN_FILE) -d web-server --web-port=$(PORT) --web-hostname=localhost & \
-	sleep 5 && \
-	echo "http://localhost:$(PORT)" | xclip -selection clipboard && \
-	echo "URL copied to clipboard"
+	# @sudo kill -9 $$(sudo lsof -t -i :$(PORT)) 2>/dev/null || true
+	@fvm flutter run -t $(MAIN_FILE) -d web-server --web-port=$(PORT) --web-hostname=localhost 
+	# sleep 5 && \
+	# echo "http://localhost:$(PORT)" | xclip -selection clipboard && \
+	# echo "URL copied to clipboard"
 
 bs:
 	@echo "======================================="
@@ -21,7 +21,7 @@ server:
 	@echo "======================================="
 	@echo "🚀 Running local server"
 	@echo "======================================="
-	cd server && go run cmd/main.go
+	cd server && air 
 
 dev: 
 	@echo "======================================="

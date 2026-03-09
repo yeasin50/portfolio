@@ -27,3 +27,4 @@ y: nothing Ig, just different flavor of app, yea; could just change the entry po
 x: -\_-, why complicated then
 y: just to practice mono-repo 😐
 x: yea you've no life, don;t know how sort out and prioritize things; improve can be done later, make it Work first
+a: This is a shitty code; dang.... lots of stuff does not make any sense 1. The mono-repo is fine but done it wrong

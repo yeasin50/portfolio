@@ -1,5 +1,7 @@
 library;
 
+export 'src/api_service.dart';
+
 export 'src/date_format.dart';
 export 'src/organization_info.dart';
 export 'src/project_info.dart';

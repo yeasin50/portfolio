@@ -235,6 +235,11 @@
     {
       "type": "Scholarship",
       "tldr-old": "Open for a postgraduate program in Computer Science, Software Engineering, -",
+      "schedules": {
+        "state": "available",
+        "message": "I will be available from this date.",
+        "time_slots": {}
+      },
       "tldr": [
         {
           "text": "Open for a postgraduate program in "
@@ -364,6 +369,11 @@
           "text": " What better thing can a person do than teach others while filling his own void."
         }
       ],
+      "schedules": {
+        "state": "available",
+        "message": "I will be available from this date.",
+        "time_slots": {}
+      },
       "principles": [
         {
           "category": "general",
@@ -396,6 +406,15 @@
                 "This batch starts 8 months before the final defense",
                 "As a mentor, I will guide you through the required steps. You must meet all deadlines to achieve the goal",
                 "The project is not about building the next giant product, but about shaping your idea and solving a specific valuable problem"
+              ]
+            },
+            {
+              "name": "Institutional Sessions",
+              "description": "For universities or training centers who want Flutter sessions or workshops.",
+              "data": [
+                "Guest lectures",
+                "Hands-on Flutter sessions",
+                "Discussion on real-world development"
               ]
             }
           ]

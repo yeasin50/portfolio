@@ -1,12 +1,13 @@
 import 'package:contact/contact.dart';
-import 'package:core/core.dart';
+import 'package:core/core.dart' hide ApiService;
+import 'package:core/core.dart' as api;
+
 import 'package:experience/experience.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_yeasin/src/infrastructure/api_service.dart';
 import 'package:portfolio_yeasin/src/infrastructure/connect_repo.dart';
 import 'package:portfolio_yeasin/src/infrastructure/models/user_info_response.dart';
 
-import '../app/app_config.dart';
 import 'project_repository.dart';
 
 ///
@@ -44,14 +45,21 @@ class UserRepository {
 
   ///  create new instance to pass down the widget tree
   ///
-  static Future<UserRepository> create(AppConfig config) async {
+  static Future<UserRepository> create(api.ApiConfig config) async {
+    //old
     final apiService = ApiService(config.baseUrl);
+
+    final service = api.ApiService(
+      config: config,
+      tokenProvider: () async => "",
+      refreshTokenHandler: () async => "",
+    );
 
     try {
       final response = await Future.wait([
         apiService.getUserInfo(),
-        UserConnectRepo.create(apiService),
-        ProjectRepository.create(apiService)
+        UserConnectRepo.create(apiService, service),
+        ProjectRepository.create(apiService),
       ]);
 
       final userInfo = response.first as UserInfoResponse;

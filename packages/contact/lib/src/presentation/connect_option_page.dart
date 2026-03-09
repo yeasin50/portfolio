@@ -1,5 +1,7 @@
+import 'package:contact/src/infrastructure/schedule_info.dart';
 import 'package:flutter/material.dart';
 import 'package:core/core.dart' as core;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:text_effect/text_effect.dart';
 
 import '../../contact.dart';
@@ -13,10 +15,7 @@ import 'widgets/schedule_view.dart';
 ///  use ripple route on parent
 ///
 class ConnectOptionPage extends StatefulWidget {
-  const ConnectOptionPage._({
-    required this.option,
-    required this.plasmaData,
-  });
+  const ConnectOptionPage._({required this.option, required this.plasmaData});
 
   @Deprecated("use [ConnectOptionPage.route] instead")
   const ConnectOptionPage({
@@ -39,16 +38,17 @@ class ConnectOptionPage extends StatefulWidget {
     Color primaryColor = Colors.white,
     required eff.SpherePlasmaData plasmaData,
   }) {
+
     final route = eff.RippleRoute(
-      builder: (context) => ConnectOptionPage._(
-        option: option,
-        plasmaData: plasmaData,
-      ),
       center: animateTO,
       popPosition: animateFrom ?? animateTO,
       duration: pushDuration,
       popDuration: popDuration ?? pushDuration,
       color: primaryColor,
+      builder: (context) {
+        // refresh  the bloc
+        return ConnectOptionPage._(option: option, plasmaData: plasmaData);
+      },
     );
     return route;
   }
@@ -58,8 +58,9 @@ class ConnectOptionPage extends StatefulWidget {
 }
 
 class _ConnectOptionPageState extends State<ConnectOptionPage> {
-  late final ScrollController _scrollController =
-      PrimaryScrollController.of(context);
+  late final ScrollController _scrollController = PrimaryScrollController.of(
+    context,
+  );
 
   double scrollProgress = 0;
 
@@ -84,6 +85,85 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: eff.BackgroundView(
+        colors: [Color(0xFF1E2036), Color(0xFF343C59)],
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers:
+              [
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: ConnectOptionHeaderDelegate(
+                        title: widget.option.name,
+                      ),
+                    ),
+                    SliverLayoutBuilder(
+                      builder: (context, constraints) {
+                        return SliverToBoxAdapter(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (widget.option.tldr.isNotEmpty)
+                                Center(
+                                  child: ConstrainedBox(
+                                    constraints: const BoxConstraints.tightFor(
+                                      width: core.Spacing.maxWidth,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: 48.0,
+                                      ),
+                                      child: _TLDRBuilder(
+                                        data: widget.option.tldr,
+                                        schedules: widget.option.schedules,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              for (final item in widget.option.principles)
+                                Center(
+                                  child: ConstrainedBox(
+                                    constraints: const BoxConstraints.tightFor(
+                                      width: core.Spacing.maxWidth,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: 48.0,
+                                      ),
+                                      child: PreferenceBuilder(item: item),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ]
+                  .map(
+                    (e) => SliverPadding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      sliver: e,
+                    ),
+                  )
+                  .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+/// render  top sections text desc with schedule/Contact button
+class _TLDRBuilder extends StatelessWidget {
+  const _TLDRBuilder({super.key, required this.data, this.schedules});
+
+  final Schedules? schedules;
+  final List<core.TextSpanData> data;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<ContactThemeExt>()!;
     final dfstyle = Theme.of(context).textTheme;
     final tldrStyle = dfstyle.bodyMedium!.copyWith(
@@ -93,96 +173,33 @@ class _ConnectOptionPageState extends State<ConnectOptionPage> {
       leadingDistribution: TextLeadingDistribution.even,
     );
 
-    return Scaffold(
-      body: eff.BackgroundView(
-        colors: [
-          Color(0xFF1E2036),
-          Color(0xFF343C59),
-        ],
-        child: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: ConnectOptionHeaderDelegate(title: widget.option.name),
-            ),
-            SliverLayoutBuilder(
-              builder: (context, constraints) {
-                return SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (widget.option.tldr.isNotEmpty)
-                        Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints.tightFor(
-                              width: core.Spacing.maxWidth,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 48.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                spacing: 24,
-                                children: [
-                                  ParagraphPainter(
-                                    style: tldrStyle,
-                                    hoverTextStyle:
-                                        tldrStyle.copyWith(color: Colors.cyan),
-                                    data: widget.option.tldr.map((e) {
-                                      var p = ParagraphData.fromSpan(e);
-
-                                      if (e.dialog != null || e.url != null) {
-                                        p = p.copyWith(
-                                          onTap: () {
-                                            if (p.dialog != null) {
-                                              //todo: dialog desing
-                                              debugPrint(
-                                                  "dialog ${p.dialog.toString()}");
-                                            }
-                                            if (p.url != null) {
-                                              // todo: url nave
-                                            }
-                                          },
-                                        );
-                                      }
-                                      return p;
-                                    }).toList(),
-                                  ),
-                                  if (widget.option.showSchedule)
-                                    ScheduleView(
-                                      schedules: widget.option.schedules,
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      for (final item in widget.option.principles)
-                        Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints.tightFor(
-                              width: core.Spacing.maxWidth,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 48.0),
-                              child: PreferenceBuilder(item: item),
-                            ),
-                          ),
-                        )
-                    ],
-                  ),
-                );
-              },
-            ),
-          ]
-              .map((e) => SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    sliver: e,
-                  ))
-              .toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: 24,
+      children: [
+        ParagraphPainter(
+          style: tldrStyle,
+          hoverTextStyle: tldrStyle.copyWith(color: Colors.cyan),
+          data: data.map((e) {
+            var p = ParagraphData.fromSpan(e);
+            if (e.dialog != null || e.url != null) {
+              p = p.copyWith(
+                onTap: () {
+                  if (p.dialog != null) {
+                    //todo: dialog desing
+                    debugPrint("dialog ${p.dialog.toString()}");
+                  }
+                  if (p.url != null) {
+                    // todo: url nave
+                  }
+                },
+              );
+            }
+            return p;
+          }).toList(),
         ),
-      ),
+        if (schedules != null) ScheduleView(schedules: schedules),
+      ],
     );
   }
 }

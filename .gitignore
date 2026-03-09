@@ -47,7 +47,6 @@ __pycache__/
 _build/
 
 # Custom
-lib/generated_plugin_registrant.dart
 examples/**/.gitignore
 
 # FVM Version Cache

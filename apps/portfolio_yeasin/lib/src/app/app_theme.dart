@@ -9,11 +9,7 @@ import 'package:stackoverflow_stats/stackoverflow_stats.dart';
 import 'theme/connect_theme_ext.dart';
 import 'theme/theme.dart';
 
-enum AppThemeMode {
-  dark,
-  light,
-  soft,
-}
+enum AppThemeMode { dark, light, soft }
 
 class AppThemeConfig {
   static ThemeData data(AppThemeMode mode) {
@@ -22,27 +18,27 @@ class AppThemeConfig {
       fontFamily: GoogleFonts.montserrat().fontFamily,
       extensions: switch (mode) {
         AppThemeMode.light => [
-            AppTheme.dayTheme(),
-            WorkCardTheme.dayCardTheme(),
-            NavigationTheme.dayTheme(),
-            ExperienceTheme.dayTheme(),
-            ActionThemeExt.dayTheme(),
-            ContactThemeExt.dayTheme(),
-            StackOverflowTheme.dayTheme(),
-            SkillThemeExt.dayTheme(),
-            EffectThemeExt.day,
-          ],
+          AppTheme.dayTheme(),
+          WorkCardTheme.dayCardTheme(),
+          NavigationTheme.dayTheme(),
+          ExperienceTheme.dayTheme(),
+          ActionThemeExt.dayTheme(),
+          ContactThemeExt.dayTheme(),
+          StackOverflowTheme.dayTheme(),
+          SkillThemeExt.dayTheme(),
+          EffectThemeExt.day,
+        ],
         _ => [
-            AppTheme.darkTheme(),
-            WorkCardTheme.darkCardTheme(),
-            NavigationTheme.darkTheme(),
-            ExperienceTheme.darkTheme(),
-            ActionThemeExt.darkTheme(),
-            ContactThemeExt.darkTheme(),
-            StackOverflowTheme.darkTheme(),
-            SkillThemeExt.darkTheme(),
-            EffectThemeExt.dark,
-          ],
+          AppTheme.darkTheme(),
+          WorkCardTheme.darkCardTheme(),
+          NavigationTheme.darkTheme(),
+          ExperienceTheme.darkTheme(),
+          ActionThemeExt.darkTheme(),
+          ContactThemeExt.darkTheme(),
+          StackOverflowTheme.darkTheme(),
+          SkillThemeExt.darkTheme(),
+          EffectThemeExt.dark,
+        ],
       },
     );
   }

@@ -33,25 +33,22 @@ class ProjectTile extends StatelessWidget {
 
     final date = PortfolioDateFormat.work(p.createdAt);
 
-    final title = Text(
-      p.title,
-      style: textTheme.titleLarge,
-    );
+    final title = Text(p.title, style: textTheme.titleLarge);
 
     return switch (tileType) {
       ProjectTileType.titleLarge => _ProjectTileLargeTitle(project: project),
       ProjectTileType.grid => ProjectCard(project: project),
       ProjectTileType.grid3D => ProjectCard3D(project: project),
       _ => Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(date),
-            const SizedBox(width: 12),
-            title,
-            const SizedBox(width: 12),
-            Text("${p.category} / ${p.roll}"),
-          ],
-        )
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(date),
+          const SizedBox(width: 12),
+          title,
+          const SizedBox(width: 12),
+          Text("${p.category} / ${p.roll}"),
+        ],
+      ),
     };
   }
 }
@@ -67,10 +64,7 @@ class _ProjectTileLargeTitle extends StatelessWidget {
 
     final Project p = Project.ui;
 
-    final title = Text(
-      p.title,
-      style: textTheme.displayMedium,
-    );
+    final title = Text(p.title, style: textTheme.displayMedium);
 
     final date = PortfolioDateFormat.work(p.createdAt);
     final subTitle = Text("$date / ${p.category} / ${p.roll}");
@@ -80,10 +74,7 @@ class _ProjectTileLargeTitle extends StatelessWidget {
     return width < 800
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              title,
-              subTitle,
-            ],
+            children: [title, subTitle],
           )
         : Row(
             crossAxisAlignment: CrossAxisAlignment.end,

@@ -27,10 +27,7 @@ import 'connect_item_view.dart';
 /// ),
 ///```
 class ConnectsSimpleView extends StatelessWidget {
-  const ConnectsSimpleView({
-    super.key,
-    required this.animation,
-  });
+  const ConnectsSimpleView({super.key, required this.animation});
   final double animation;
 
   @override
@@ -79,7 +76,10 @@ class _SimpleConnectFlowDelete extends FlowDelegate {
     final double spaceNeeded = itemSize.fold(0.0, (p, e) => p + e.width);
 
     double dx = lerpDouble(
-        (context.size.width / 2) - spaceNeeded / 2, 0, animation.value)!;
+      (context.size.width / 2) - spaceNeeded / 2,
+      0,
+      animation.value,
+    )!;
 
     for (int i = 0; i < context.childCount; i++) {
       context.paintChild(

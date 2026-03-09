@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 /// TO snap on dragging ;
 /// Used on Intro in HomePage
 class IntroSnapScrollPhysics extends ScrollPhysics {
-  const IntroSnapScrollPhysics({
-    required this.snapHeight,
-    super.parent,
-  });
+  const IntroSnapScrollPhysics({required this.snapHeight, super.parent});
 
   final double snapHeight;
 

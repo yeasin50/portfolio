@@ -25,14 +25,18 @@ class UserInfoResponse {
       version: map["version"],
       updatedAt: DateTime.tryParse(map["updated_at"]) ?? DateTime.now(),
       into: IntroInfo.fromMap(map["intro"]),
-      connects:
-          List.from(map["connects"]?.map((e) => Connect.fromMap(e)) ?? []),
-      experience:
-          List.from(map["experience"]?.map((e) => Experience.fromMap(e)) ?? []),
-      education:
-          List.from(map["education"]?.map((e) => Education.fromMap(e)) ?? []),
+      connects: List.from(
+        map["connects"]?.map((e) => Connect.fromMap(e)) ?? [],
+      ),
+      experience: List.from(
+        map["experience"]?.map((e) => Experience.fromMap(e)) ?? [],
+      ),
+      education: List.from(
+        map["education"]?.map((e) => Education.fromMap(e)) ?? [],
+      ),
       certificates: List.from(
-          map["certificate"]?.map((e) => Certificate.fromMap(e)) ?? []),
+        map["certificate"]?.map((e) => Certificate.fromMap(e)) ?? [],
+      ),
     );
   }
 

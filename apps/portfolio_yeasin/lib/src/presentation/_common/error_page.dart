@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:effects/effects.dart' as eff;
 
-/// if something wrong on route or data 
+/// if something wrong on route or data
 class ErrorView extends StatelessWidget {
-  const ErrorView({
-    super.key,
-    required this.msg,
-  });
+  const ErrorView({super.key, required this.msg});
   final String msg;
 
   @override
@@ -19,9 +16,7 @@ class ErrorView extends StatelessWidget {
       ],
       child: Directionality(
         textDirection: TextDirection.ltr,
-        child: Center(
-          child: Text(msg),
-        ),
+        child: Center(child: Text(msg)),
       ),
     );
   }

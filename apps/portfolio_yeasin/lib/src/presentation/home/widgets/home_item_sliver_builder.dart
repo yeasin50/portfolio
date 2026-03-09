@@ -34,9 +34,7 @@ class HomeItemSliverBuilder extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
-                      child: TitleView(
-                        title: title,
-                      ),
+                      child: TitleView(title: title),
                     ),
                     ...children,
                   ],

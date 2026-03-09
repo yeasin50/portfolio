@@ -8,8 +8,7 @@ enum Page {
   home("Anchor"),
   work("The Forge"),
   // about("The Story"),
-  contact("Bridges"),
-  ;
+  contact("Bridges");
 
   bool get isHome => this == Page.home;
   bool get isWork => this == Page.work;
@@ -23,10 +22,7 @@ enum Page {
 ///  should get full constraints of parent widget in order to use [NavigationDelegate]
 ///
 class NavigationButtons extends StatefulWidget {
-  const NavigationButtons({
-    super.key,
-    required this.scrollT,
-  });
+  const NavigationButtons({super.key, required this.scrollT});
 
   /// scrollOffset from sliver delegant
   final double scrollT;
@@ -64,8 +60,8 @@ class _NavigationBarState extends State<NavigationButtons>
 
     final bool isInConnectPageSection =
         (scrollController.position.maxScrollExtent - scrollController.offset)
-                .abs() <
-            height / 3;
+            .abs() <
+        height / 3;
     if (!selectedPage.isConnect && isInConnectPageSection) {
       selectedPage = Page.contact;
       setState(() {});
@@ -84,19 +80,17 @@ class _NavigationBarState extends State<NavigationButtons>
 
     final pageHeight = MediaQuery.sizeOf(context).height;
 
-    final distanceToScroll = (switch (p) {
-              Page.home => 0,
-              Page.work => pageHeight,
-              Page.contact => scrollController.position.maxScrollExtent,
-            } -
-            currentOffset)
-        .abs();
+    final distanceToScroll =
+        (switch (p) {
+                  Page.home => 0,
+                  Page.work => pageHeight,
+                  Page.contact => scrollController.position.maxScrollExtent,
+                } -
+                currentOffset)
+            .abs();
 
     final duration = (distanceToScroll / speedFactor)
-        .clamp(
-          Durations.short1.inMilliseconds,
-          Durations.long3.inMilliseconds,
-        )
+        .clamp(Durations.short1.inMilliseconds, Durations.long3.inMilliseconds)
         .toInt();
 
     selectedPage = p;
@@ -177,19 +171,16 @@ class _NavigationItemState extends State<NavigationItem> {
       child: Material(
         color: widget.isActive
             ? //
-            navTheme.activeColor
+              navTheme.activeColor
             : navTheme.inactiveColor,
         shape: const StadiumBorder(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 32,
-            vertical: 8,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
           child: Text(
             widget.label,
             style: widget.isActive
                 ? //
-                navTheme.activeTextStyle
+                  navTheme.activeTextStyle
                 : navTheme.inactiveTextStyle,
           ),
         ),

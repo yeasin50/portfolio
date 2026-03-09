@@ -41,10 +41,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
     Text _buildText(String txt) {
-      return Text(
-        txt,
-        style: textTheme.titleLarge?.copyWith(color: textColor),
-      );
+      return Text(txt, style: textTheme.titleLarge?.copyWith(color: textColor));
     }
 
     return Scaffold(
@@ -53,9 +50,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
           Center(
             child: AspectRatio(
               aspectRatio: 1,
-              child: eff.PlasmaBallSphere(
-                data: eff.SpherePlasmaData.BJF,
-              ),
+              child: eff.PlasmaBallSphere(data: eff.SpherePlasmaData.BJF),
             ),
           ),
           Center(
@@ -88,9 +83,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
                           text: "increase viewport",
                           url: "",
                         ),
-                        text_effect.ParagraphData(
-                          text: ">720",
-                        ),
+                        text_effect.ParagraphData(text: ">720"),
                       ],
                     ),
                   ),
@@ -103,7 +96,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
                 eff.AnimatedArrowView(child: _buildText("change the device")),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

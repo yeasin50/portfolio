@@ -12,9 +12,7 @@ void main(List<String> args) {
   runApp(
     MaterialApp(
       theme: ThemeData.dark().copyWith(
-        extensions: [
-          WorkCardTheme.darkCardTheme(),
-        ],
+        extensions: [WorkCardTheme.darkCardTheme()],
       ),
       home: Scaffold(
         body: Padding(
@@ -23,8 +21,9 @@ void main(List<String> args) {
             child: SizedBox(
               width: 400,
               child: AspectRatio(
-                  aspectRatio: 4 / 3,
-                  child: ProjectCard3D(project: Project.ui)),
+                aspectRatio: 4 / 3,
+                child: ProjectCard3D(project: Project.ui),
+              ),
             ),
           ),
         ),
@@ -41,10 +40,7 @@ void main(List<String> args) {
   "but still not what I wanted, I might shift to the glsl",
 )
 class ProjectCard3D extends StatefulWidget {
-  const ProjectCard3D({
-    super.key,
-    required this.project,
-  });
+  const ProjectCard3D({super.key, required this.project});
 
   final Project project;
   @override
@@ -86,10 +82,7 @@ class _ProjectCard3DState extends State<ProjectCard3D>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            project.title,
-            style: cardTheme.titleStyle,
-          ),
+          Text(project.title, style: cardTheme.titleStyle),
           Text(
             project.category * 44,
             textAlign: TextAlign.start,
@@ -210,26 +203,14 @@ class ProjectCard3dFLowDelegate extends FlowDelegate {
     //   ..rotateY(90 * math.pi / 180 + (math.pi / 2 * animation.value));
 
     if (animation.value < .5) {
-      context.paintChild(
-        1,
-        transform: bgTransform,
-      );
+      context.paintChild(1, transform: bgTransform);
 
-      context.paintChild(
-        0,
-        transform: fgTransform,
-      );
+      context.paintChild(0, transform: fgTransform);
     } else {
-      context.paintChild(
-        0,
-        transform: fgTransform,
-      );
+      context.paintChild(0, transform: fgTransform);
       //can add a different layer
 
-      context.paintChild(
-        1,
-        transform: bgTransform,
-      );
+      context.paintChild(1, transform: bgTransform);
     }
   }
 

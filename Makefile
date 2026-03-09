@@ -8,6 +8,8 @@ MAIN_FILE ?= apps/portfolio_yeasin/lib/main_dev.dart
 version:
 	@fvm flutter --version
 
+format_check:
+	dart format -o none --set-exit-if-changed .
 
 run:
 	# @sudo kill -9 $$(sudo lsof -t -i :$(PORT)) 2>/dev/null || true

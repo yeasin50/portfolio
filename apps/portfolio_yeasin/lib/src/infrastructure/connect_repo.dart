@@ -37,6 +37,7 @@ class UserConnectRepo implements IConnectRepo {
         "https://api.web3forms.com/submit",
         isCompletePath: true,
         fromJson: ContactResponse.fromJson,
+        body: req,
       );
       return response;
     } catch (e, st) {

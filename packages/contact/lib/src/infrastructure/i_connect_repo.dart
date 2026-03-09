@@ -25,7 +25,7 @@ abstract class ContactRequest with _$ContactRequest {
   const ContactRequest._();
 
   const factory ContactRequest({
-    required String apiKey,
+    @JsonKey(name: "access_key") required String apiKey,
     required String name,
     required String email,
     required String subject,

@@ -8,7 +8,7 @@ part of 'i_connect_repo.dart';
 
 _ContactRequest _$ContactRequestFromJson(Map<String, dynamic> json) =>
     _ContactRequest(
-      apiKey: json['api_key'] as String,
+      apiKey: json['access_key'] as String,
       name: json['name'] as String,
       email: json['email'] as String,
       subject: json['subject'] as String,
@@ -17,7 +17,7 @@ _ContactRequest _$ContactRequestFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ContactRequestToJson(_ContactRequest instance) =>
     <String, dynamic>{
-      'api_key': instance.apiKey,
+      'access_key': instance.apiKey,
       'name': instance.name,
       'email': instance.email,
       'subject': instance.subject,

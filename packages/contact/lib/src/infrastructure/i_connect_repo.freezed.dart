@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ContactRequest {
 
- String get apiKey; String get name; String get email; String get subject; String get message;
+@JsonKey(name: "access_key") String get apiKey; String get name; String get email; String get subject; String get message;
 /// Create a copy of ContactRequest
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ContactRequestCopyWith<$Res>  {
   factory $ContactRequestCopyWith(ContactRequest value, $Res Function(ContactRequest) _then) = _$ContactRequestCopyWithImpl;
 @useResult
 $Res call({
- String apiKey, String name, String email, String subject, String message
+@JsonKey(name: "access_key") String apiKey, String name, String email, String subject, String message
 });
 
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String apiKey,  String name,  String email,  String subject,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "access_key")  String apiKey,  String name,  String email,  String subject,  String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ContactRequest() when $default != null:
 return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message);case _:
@@ -178,7 +178,7 @@ return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message)
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String apiKey,  String name,  String email,  String subject,  String message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "access_key")  String apiKey,  String name,  String email,  String subject,  String message)  $default,) {final _that = this;
 switch (_that) {
 case _ContactRequest():
 return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message);case _:
@@ -198,7 +198,7 @@ return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message)
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String apiKey,  String name,  String email,  String subject,  String message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "access_key")  String apiKey,  String name,  String email,  String subject,  String message)?  $default,) {final _that = this;
 switch (_that) {
 case _ContactRequest() when $default != null:
 return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message);case _:
@@ -213,10 +213,10 @@ return $default(_that.apiKey,_that.name,_that.email,_that.subject,_that.message)
 @JsonSerializable()
 
 class _ContactRequest extends ContactRequest {
-  const _ContactRequest({required this.apiKey, required this.name, required this.email, required this.subject, required this.message}): super._();
+  const _ContactRequest({@JsonKey(name: "access_key") required this.apiKey, required this.name, required this.email, required this.subject, required this.message}): super._();
   factory _ContactRequest.fromJson(Map<String, dynamic> json) => _$ContactRequestFromJson(json);
 
-@override final  String apiKey;
+@override@JsonKey(name: "access_key") final  String apiKey;
 @override final  String name;
 @override final  String email;
 @override final  String subject;
@@ -255,7 +255,7 @@ abstract mixin class _$ContactRequestCopyWith<$Res> implements $ContactRequestCo
   factory _$ContactRequestCopyWith(_ContactRequest value, $Res Function(_ContactRequest) _then) = __$ContactRequestCopyWithImpl;
 @override @useResult
 $Res call({
- String apiKey, String name, String email, String subject, String message
+@JsonKey(name: "access_key") String apiKey, String name, String email, String subject, String message
 });
 
 

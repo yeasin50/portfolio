@@ -1,8 +1,78 @@
 name: portfolio_workspace
 
+publish_to: https://yeasin50.github.io/portfolio/
+
 environment:
-  sdk: ">=3.6.0 <4.0.0"
-  flutter: ">=3.3.0 <4.0.0"
+  sdk: ^3.11.1
 
 dev_dependencies:
-  melos: ^6.3.1
+  melos: ^7.4.0
+
+workspace:
+  - apps/portfolio_yeasin
+
+  - packages/contact
+  - packages/core
+  - packages/effects
+  - packages/experience
+  - packages/github_stats
+  - packages/skill
+  - packages/stackoverflow_stats
+  # - packages/sun_scheduler
+  - packages/text_effect
+
+ignore:
+  - packages/**/example
+
+
+scripts:
+    build_runner:
+      description: "Run build_runner and slang generator across all packages"
+      run: |
+        melos exec  --flutter -- flutter pub run build_runner build --delete-conflicting-outputs
+        # melos exec  --flutter -- dart run slang
+
+    watch_runner: >
+      melos exec  --depends-on="build_runner" --
+      dart pub run build_runner watch --delete-conflicting-outputs 
+
+    test:selective_unit_test:
+      run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+      description: Run Flutter tests for a specific package in this project.
+      # select-package:
+      #   flutter: true
+      #   dir-exists: test
+
+    test:
+      run: melos run test:selective_unit_test --no-select
+      description: Run all Flutter tests in this project.
+
+    dart_format:
+      run: melos exec -- dart format .
+      description: Run `dart analyze` in all packages.
+
+    analyze:
+      run: melos exec -- flutter analyze .
+      description: Run `dart analyze` in all packages.
+
+    gen_coverage: melos exec -- "\$MELOS_ROOT_PATH/combine_coverage.sh"
+
+    upgrade:
+      run: melos exec -- flutter pub upgrade --major-versions
+      description: upgrade all packages
+
+    cache_repair:
+      run: melos exec -- flutter pub cache repair
+      description: upgrade all packages
+
+    pub_get:
+      run: melos exec -- flutter pub  get
+      description: get packages
+
+    clean:
+      run: melos exec -- flutter clean
+
+    outdated:
+      run: melos exec -- flutter pub outdated
+      description: check outdated packages
+

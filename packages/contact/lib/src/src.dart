@@ -14,3 +14,5 @@ export 'widgets/option_view.dart';
 export 'widgets/options_page_builder.dart';
 export 'widgets/sphere_painter.dart';
 export 'widgets/widgets.dart';
+
+export '../src/presentation/bloc/contact_bloc.dart';

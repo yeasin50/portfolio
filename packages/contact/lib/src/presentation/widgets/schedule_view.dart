@@ -1,3 +1,4 @@
+import 'package:contact/src/presentation/contact_form_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:core/core.dart' as core;
@@ -14,10 +15,7 @@ import '../../infrastructure/schedule_info.dart';
 ///
 ///TODO:  add timeSlot
 class ScheduleView extends StatelessWidget {
-  const ScheduleView({
-    super.key,
-    required this.schedules,
-  });
+  const ScheduleView({super.key, required this.schedules});
   final Schedules? schedules;
 
   @override
@@ -31,22 +29,30 @@ class ScheduleView extends StatelessWidget {
         ? "Get in touch..."
         : "Available from ${core.PortfolioDateFormat.basic(schedules!.availableFrom!)}";
 
-    final dateView = eff.TextRevealWithArrow(
-      label: availableStr,
-      primaryTextStyle:
-          theme.tldr.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
-      hoverTextStyle:
-          theme.tldr.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-    );
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: dateView,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: SizedBox(
+        width: 220,
+        child: eff.TextRevealWithArrow(
+          onTap: () {
+            final route = ContactFormPage.route(
+              animateTO: FractionalOffset(0, 0),
+              plasmaData: eff.SpherePlasmaData.BJF,
+            );
+            Navigator.of(context).push(route);
+          },
+          label: availableStr,
+          primaryTextStyle: theme.tldr.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+          hoverTextStyle: theme.tldr.copyWith(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      ],
+      ),
+      //
     );
   }
 }

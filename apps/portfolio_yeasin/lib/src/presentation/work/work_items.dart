@@ -9,11 +9,7 @@ import 'widgets/project_tile.dart';
 import 'work_page.dart';
 
 class WorkItems extends StatefulWidget {
-  const WorkItems({
-    super.key,
-    this.maxItem,
-    this.showFilter = false,
-  });
+  const WorkItems({super.key, this.maxItem, this.showFilter = false});
 
   ///  if null, it will show all
   final int? maxItem;
@@ -43,27 +39,21 @@ class _WorkItemsState extends State<WorkItems> {
   @override
   void initState() {
     super.initState();
-    final projects = context.provider.projects;
-    final nbItem = (widget.maxItem == null || widget.maxItem! >= projects.length
-            ? projects
-            : projects.sublist(widget.maxItem!))
-        .length;
 
-    filteredProjects = projects.sublist(0, nbItem);
+    final projects = context.provider.projects;
+    final limit = widget.maxItem ?? projects.length;
+    filteredProjects = projects.take(limit).toList();
 
     filters = projects.map((e) => e.category).toSet().toList();
     selectedFilter = [...filters];
 
-    showSeeMore = nbItem < projects.length;
+    showSeeMore = filteredProjects.length < projects.length;
   }
 
   Widget buildProject(Project e) => ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 500),
-        child: ProjectTile(
-          tileType: ProjectTileType.grid,
-          project: e,
-        ),
-      );
+    constraints: const BoxConstraints(maxWidth: 500),
+    child: ProjectTile(tileType: ProjectTileType.grid, project: e),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +84,11 @@ class _WorkItemsState extends State<WorkItems> {
                 return buildProject(e);
               })
             else ...[
-              for (int i = 0;
-                  i < filteredProjects.length + filteredProjects.length % 2;
-                  i += 2)
+              for (
+                int i = 0;
+                i < filteredProjects.length + filteredProjects.length % 2;
+                i += 2
+              )
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,12 +96,10 @@ class _WorkItemsState extends State<WorkItems> {
                   children: [
                     Expanded(child: buildProject(filteredProjects[i])),
                     if (i + 1 < filteredProjects.length)
-                      Expanded(
-                        child: buildProject(filteredProjects[i + 1]),
-                      )
+                      Expanded(child: buildProject(filteredProjects[i + 1])),
                   ],
                 ),
-            ]
+            ],
           ],
         ),
         if (showSeeMore)

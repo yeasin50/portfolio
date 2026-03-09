@@ -11,12 +11,15 @@ import 'models/user_info_response.dart';
 ///  Get data from  [baseUri] endPoint.
 ///* If it contains `githubusercontent` then it has been handled accordingly ;xD
 ///
+@Deprecated("This will be remove,  use core pkg")
 class ApiService {
   ApiService(String baseAPIUrl) {
     baseUri = Uri.parse(baseAPIUrl);
   }
 
   late final Uri baseUri;
+
+  /// TODO:  replace with config
 
   Future<T> _get<T>(
     String path, {
@@ -34,7 +37,8 @@ class ApiService {
 
     if (response.statusCode != 200) {
       throw Exception(
-          'API Exception: ${response.statusCode}: ${response.body}');
+        'API Exception: ${response.statusCode}: ${response.body}',
+      );
     }
 
     if (fromJson != null) {
@@ -46,10 +50,7 @@ class ApiService {
   }
 
   Future<UserInfoResponse> getUserInfo() async {
-    return _get(
-      "/user_info",
-      fromJson: UserInfoResponse.fromMap,
-    );
+    return _get("/user_info", fromJson: UserInfoResponse.fromMap);
   }
 
   Future<List<Project>> getProjects() async {

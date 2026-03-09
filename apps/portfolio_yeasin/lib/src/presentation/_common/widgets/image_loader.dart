@@ -43,18 +43,14 @@ class ImageLoader extends StatelessWidget {
     }
 
     ///  handle low_res/high_res image load failure
-    Widget buildImage(
-      String imgPath,
-      String? blurHash, {
-      Widget? errorWidget,
-    }) {
+    Widget buildImage(String imgPath, String? blurHash, {Widget? errorWidget}) {
       return Image.network(
         imgPath,
         fit: BoxFit.cover,
         loadingBuilder: (context, child, loadingProgress) =>
             loadingProgress != null
-                ? BlurHash(hash: blurHash ?? "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ")
-                : child,
+            ? BlurHash(hash: blurHash ?? "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ")
+            : child,
         errorBuilder: (context, error, stackTrace) =>
             errorWidget ?? const ErrorImageWidget(),
       );
@@ -78,26 +74,17 @@ class ImageLoader extends StatelessWidget {
 }
 
 class ErrorImageWidget extends StatelessWidget {
-  const ErrorImageWidget({
-    super.key,
-    this.hash,
-  });
+  const ErrorImageWidget({super.key, this.hash});
   final String? hash;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BlurHash(
-          hash: hash ?? "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ",
-        ),
+        BlurHash(hash: hash ?? "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ"),
         const Center(
-          child: Icon(
-            Icons.error_outline_rounded,
-            size: 32,
-            color: Colors.red,
-          ),
-        )
+          child: Icon(Icons.error_outline_rounded, size: 32, color: Colors.red),
+        ),
       ],
     );
   }

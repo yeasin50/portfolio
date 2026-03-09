@@ -18,10 +18,7 @@ const _animationBreakPoint = .90;
   "use [ConnectsSimpleView] for the time being",
 )
 class ConnectView extends StatefulWidget {
-  const ConnectView({
-    super.key,
-    required this.animationValue,
-  });
+  const ConnectView({super.key, required this.animationValue});
 
   final double animationValue;
 
@@ -39,25 +36,40 @@ class _ConnectViewState extends State<ConnectView>
 
   late Animation animation = TweenSequence([
     TweenSequenceItem(
-        tween: Tween(begin: 0.0, end: 1.3)
-            .chain(CurveTween(curve: Curves.easeOut)),
-        weight: 50),
+      tween: Tween(
+        begin: 0.0,
+        end: 1.3,
+      ).chain(CurveTween(curve: Curves.easeOut)),
+      weight: 50,
+    ),
     TweenSequenceItem(
-        tween: Tween(begin: 1.3, end: 0.85)
-            .chain(CurveTween(curve: Curves.easeInOut)),
-        weight: 30),
+      tween: Tween(
+        begin: 1.3,
+        end: 0.85,
+      ).chain(CurveTween(curve: Curves.easeInOut)),
+      weight: 30,
+    ),
     TweenSequenceItem(
-        tween: Tween(begin: 0.85, end: 1.15)
-            .chain(CurveTween(curve: Curves.easeOut)),
-        weight: 25),
+      tween: Tween(
+        begin: 0.85,
+        end: 1.15,
+      ).chain(CurveTween(curve: Curves.easeOut)),
+      weight: 25,
+    ),
     TweenSequenceItem(
-        tween: Tween(begin: 1.15, end: 0.95)
-            .chain(CurveTween(curve: Curves.easeInOut)),
-        weight: 20),
+      tween: Tween(
+        begin: 1.15,
+        end: 0.95,
+      ).chain(CurveTween(curve: Curves.easeInOut)),
+      weight: 20,
+    ),
     TweenSequenceItem(
-        tween: Tween(begin: 0.95, end: 1.0)
-            .chain(CurveTween(curve: Curves.easeIn)),
-        weight: 15),
+      tween: Tween(
+        begin: 0.95,
+        end: 1.0,
+      ).chain(CurveTween(curve: Curves.easeIn)),
+      weight: 15,
+    ),
   ]).animate(controller);
 
   @override
@@ -91,7 +103,8 @@ class _ConnectViewState extends State<ConnectView>
   Widget build(BuildContext context) {
     return Flow(
       delegate: ConnectFlowDelegate(
-          Animation.fromValueListenable(ValueNotifier(widget.animationValue))),
+        Animation.fromValueListenable(ValueNotifier(widget.animationValue)),
+      ),
       clipBehavior: Clip.none,
       children: data
           .map(

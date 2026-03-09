@@ -43,19 +43,17 @@ class _FilterBarState extends State<FilterBar> {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: widget.items.map(
-        (e) {
-          final labelStyle = theme.hintTextStyle;
-          return eff.FilterChip(
-            label: e,
-            isActive: selected.contains(e),
-            activeColor: theme.hoverColor,
-            inActiveColor: theme.background,
-            labelStyle: labelStyle,
-            onTap: () => onTap(e),
-          );
-        },
-      ).toList(),
+      children: widget.items.map((e) {
+        final labelStyle = theme.hintTextStyle;
+        return eff.FilterChip(
+          label: e,
+          isActive: selected.contains(e),
+          activeColor: theme.hoverColor,
+          inActiveColor: theme.background,
+          labelStyle: labelStyle,
+          onTap: () => onTap(e),
+        );
+      }).toList(),
     );
   }
 }

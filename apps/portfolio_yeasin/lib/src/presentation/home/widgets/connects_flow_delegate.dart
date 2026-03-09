@@ -27,10 +27,8 @@ class ConnectFlowDelegate extends FlowDelegate {
 
     for (int i = 0; i < context.childCount; i++) {
       double angle = (startAngle + (angleStep * i)) * (math.pi / 180);
-      double radius = itemSize.sublist(0, i).fold(
-                0.0,
-                (p, e) => p + e.width + padding,
-              ) *
+      double radius =
+          itemSize.sublist(0, i).fold(0.0, (p, e) => p + e.width + padding) *
           animation.value;
 
       double x = radius * math.cos(angle);
@@ -58,7 +56,7 @@ class ConnectFlowDelegate extends FlowDelegate {
 @Deprecated("have dropped,  use [ConnectFlowDelegate], else work on it")
 class ConnectMultiChildDelegate extends MultiChildLayoutDelegate {
   ConnectMultiChildDelegate({required this.animation})
-      : super(relayout: animation);
+    : super(relayout: animation);
 
   final Animation animation;
 
@@ -79,16 +77,17 @@ class ConnectMultiChildDelegate extends MultiChildLayoutDelegate {
 
     for (int i = 0; i < itemSize.length; i++) {
       double angle = (startAngle + (angleStep * i)) * (math.pi / 180);
-      double radius = itemSize.sublist(0, i).fold(
-            0.0,
-            (p, e) => p + e.width + padding,
-          );
+      double radius = itemSize
+          .sublist(0, i)
+          .fold(0.0, (p, e) => p + e.width + padding);
 
       double x = radius * math.cos(angle);
       double y = radius * math.sin(angle);
 
       positionChild(
-          i, Offset(x, y) + Offset(0, radius * (1 - animation.value)));
+        i,
+        Offset(x, y) + Offset(0, radius * (1 - animation.value)),
+      );
     }
   }
 

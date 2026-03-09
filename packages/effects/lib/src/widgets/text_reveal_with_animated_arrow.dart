@@ -2,13 +2,20 @@ part of 'animated_arrow_view.dart';
 
 ///  create simple animated Arrow bullet point and next to the
 /// ```dart
-/// eff.TextRevealWithArrow(
-///      label: availableStr,
-///      primaryTextStyle:
-///          theme.tldr.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
-///      hoverTextStyle:
-///          theme.tldr.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
-///    )
+///  eff.TextRevealWithArrow(
+///     onTap: !isValid ? null : () {},
+///     initialAnimationValue: 0,
+///     label: "Submit",
+///     primaryTextStyle: theme.tldr.copyWith(
+///       color: Colors.white,
+///       fontWeight: FontWeight.w500,
+///     ),
+///     hoverTextStyle: theme.tldr.copyWith(
+///       color: Colors.black,
+///       fontWeight: FontWeight.w600,
+///     ),
+///   ),
+/// ),
 /// ```
 class TextRevealWithArrow extends StatefulWidget {
   const TextRevealWithArrow({
@@ -20,7 +27,10 @@ class TextRevealWithArrow extends StatefulWidget {
     this.backgroundColor,
     this.bulletColor,
     this.initialAnimationValue = 0,
+    this.onTap,
   });
+
+  final VoidCallback? onTap;
 
   final String label;
 
@@ -49,40 +59,56 @@ class _TextRevealWithArrowState extends State<TextRevealWithArrow>
   late final AnimationController controller;
   late final AnimationController rippleController;
 
+  bool get isDiablaed => widget.onTap == null;
+
   @override
   void initState() {
     super.initState();
     assert(
-        widget.initialAnimationValue >= 0 &&
-            widget.initialAnimationValue <= 1.0,
-        "initialAnimationValue should be withing 0-1");
+      widget.initialAnimationValue >= 0 && widget.initialAnimationValue <= 1.0,
+      "initialAnimationValue should be withing 0-1",
+    );
 
     rippleController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 3),
-    )..repeat();
+    );
 
-    controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    )..addListener(
-        () {
-          if (controller.isCompleted) {
-            rippleController.animateBack(1);
-          } else {
-            rippleController.repeat();
-          }
-        },
-      );
+    if (!isDiablaed) rippleController.repeat();
+
+    controller = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() {
+        if (controller.isCompleted) {
+          rippleController.animateBack(1);
+        } else {
+          if (isDiablaed) return;
+          rippleController.repeat();
+        }
+      });
     controller.value = widget.initialAnimationValue;
   }
 
   void onForward(_) {
+    if (isDiablaed) return;
     controller.forward();
   }
 
   void onExit(_) {
     controller.reverse();
+  }
+
+  @override
+  void didUpdateWidget(covariant TextRevealWithArrow oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.onTap != widget.onTap) {
+      if (widget.onTap != null) {
+        rippleController.repeat();
+      } else {
+        rippleController.stop();
+        rippleController.reset();
+      }
+    }
   }
 
   @override
@@ -100,46 +126,59 @@ class _TextRevealWithArrowState extends State<TextRevealWithArrow>
     return MouseRegion(
       onEnter: onForward,
       onExit: onExit,
-      child: AnimatedBuilder(
-        animation: Listenable.merge([controller, rippleController]),
-        builder: (context, child) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: DecoratedBox(
-              decoration: ShapeDecoration(
-                color: widget.backgroundColor ?? theme.cardColor.first,
-                shape: _ArrowShapeBuilder(
-                  animation: controller,
-                  rippleAnimation: rippleController,
-                  color: widget.bulletColor ?? theme.glowColor,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedOpacity(
+          opacity: isDiablaed ? .4 : 1,
+          duration: Durations.medium3,
+          child: AnimatedBuilder(
+            animation: Listenable.merge([controller, rippleController]),
+            builder: (context, child) {
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: DecoratedBox(
+                  decoration: ShapeDecoration(
+                    color: widget.backgroundColor ?? theme.cardColor.first,
+                    shape: _ArrowShapeBuilder(
+                      animation: controller,
+                      rippleAnimation: rippleController,
+                      color: widget.bulletColor ?? theme.glowColor,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: lerpDouble(42, 16, controller.value)!,
+                      top: 6,
+                      bottom: 6,
+                      right: 16,
+                    ),
+                    child: Stack(
+                      children: [
+                        child!,
+                        ClipPath(
+                          clipper: RevealClipPath(controller),
+                          child: Center(
+                            child: Text(
+                              widget.label,
+                              style: widget.hoverTextStyle.copyWith(),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: lerpDouble(42, 16, controller.value)!,
-                  top: 6,
-                  bottom: 6,
-                  right: 16,
-                ),
-                child: Stack(
-                  children: [
-                    child!,
-                    ClipPath(
-                      clipper: RevealClipPath(controller),
-                      child: Text(
-                        widget.label,
-                        style: widget.hoverTextStyle,
-                      ),
-                    )
-                  ],
-                ),
+              );
+            },
+            child: Center(
+              child: Text(
+                widget.label,
+                style: widget.primaryTextStyle.copyWith(),
+                textAlign: TextAlign.center,
               ),
             ),
-          );
-        },
-        child: Text(
-          widget.label,
-          style: widget.primaryTextStyle,
+          ),
         ),
       ),
     );

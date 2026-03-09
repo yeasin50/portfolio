@@ -1,0 +1,20 @@
+root = "."
+test_runner = "go test ./..."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/main ./cmd/main.go"
+  bin = "./tmp/main"
+  
+  #  Watch these directories for changes
+  include_dir = ["cmd", "internal", "config", "database"]
+  include_ext = ["go", "tpl", "tmpl", "html", "json"]
+  exclude_dir = ["tmp", "vendor", "docs"]
+  
+  # Delay to prevent rapid re-triggers
+  delay = 1000 # ms
+  log = "air.log"
+  stop_on_error = true
+
+[log]
+  time = true

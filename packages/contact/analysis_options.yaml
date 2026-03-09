@@ -1,4 +1,18 @@
 include: package:flutter_lints/flutter.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  language:
+    strict-raw-types: true
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+linter:
+  rules:
+    always_specify_types: false
+    avoid_types_on_closure_parameters: false
+    lines_longer_than_80_chars: true 
+
+# 3. Configure the Formatter
+formatter:
+  page_width: 80

@@ -79,16 +79,8 @@ class _ConnectButtonState extends State<ConnectButton>
                 width: 48,
                 fit: BoxFit.cover,
                 opacity: controller,
-                // loadingBuilder: (context, child, loadingProgress) =>
-                //     loadingProgress != null
-                //         ? BlurHash(
-                //             hash: widget.connect.blurhash ??
-                //                 "LDDK_B%\$vfTI?dVFabaLqDNEHrtQ",
-                //           )
-                //         : child,
-                errorBuilder: (context, error, stackTrace) => const Icon(
-                  Icons.error,
-                ),
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.error),
               ),
             ),
           ),

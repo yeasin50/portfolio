@@ -18,30 +18,24 @@ class ActionThemeExt extends ThemeExtension<ActionThemeExt> {
     required this.hintBackgroundColor,
   });
   static ActionThemeExt darkTheme() => const ActionThemeExt(
-        iconColor: Color(0xFFE0F7FA),
-        // iconFocusedColor: Color(0xFFB3E5FC),
-        borderColor: Color(0xFF90A4AE),
-        background: Color(0xFF222437),
-        hoverColor: Color(0xFF2E344B),
-        hintTextStyle: TextStyle(
-          color: Color(0xFFB0BEC5),
-          fontSize: 12,
-        ),
-        hintBackgroundColor: Color(0xFF2A2D48),
-      );
+    iconColor: Color(0xFFE0F7FA),
+    // iconFocusedColor: Color(0xFFB3E5FC),
+    borderColor: Color(0xFF90A4AE),
+    background: Color(0xFF222437),
+    hoverColor: Color(0xFF2E344B),
+    hintTextStyle: TextStyle(color: Color(0xFFB0BEC5), fontSize: 12),
+    hintBackgroundColor: Color(0xFF2A2D48),
+  );
 
   static ActionThemeExt dayTheme() => const ActionThemeExt(
-        iconColor: Color(0xFF455A64),
-        // iconFocusedColor: Color(0xFF0277BD),
-        borderColor: Color(0xFF039BE5),
-        background: Color(0xFFBBDEFB),
-        hoverColor: Color(0xFFFFF59D),
-        hintTextStyle: TextStyle(
-          color: Color(0xFF78909C),
-          fontSize: 12,
-        ),
-        hintBackgroundColor: Color(0xFFAEDFF7),
-      );
+    iconColor: Color(0xFF455A64),
+    // iconFocusedColor: Color(0xFF0277BD),
+    borderColor: Color(0xFF039BE5),
+    background: Color(0xFFBBDEFB),
+    hoverColor: Color(0xFFFFF59D),
+    hintTextStyle: TextStyle(color: Color(0xFF78909C), fontSize: 12),
+    hintBackgroundColor: Color(0xFFAEDFF7),
+  );
 
   @override
   ActionThemeExt copyWith({
@@ -71,8 +65,11 @@ class ActionThemeExt extends ThemeExtension<ActionThemeExt> {
       background: Color.lerp(background, other.background, t)!,
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
       hintTextStyle: TextStyle.lerp(hintTextStyle, other.hintTextStyle, t)!,
-      hintBackgroundColor:
-          Color.lerp(hintBackgroundColor, other.hintBackgroundColor, t)!,
+      hintBackgroundColor: Color.lerp(
+        hintBackgroundColor,
+        other.hintBackgroundColor,
+        t,
+      )!,
     );
   }
 }

@@ -4,9 +4,5 @@ import 'package:portfolio_yeasin/src/app/app_config.dart';
 import 'src/app/yeasin_portfolio.dart';
 
 void main() {
-  runApp(
-    const YeasinPortfolio(
-      config: AppConfig.dev,
-    ),
-  );
+  runApp(const YeasinPortfolio(config: AppConfig.dev));
 }

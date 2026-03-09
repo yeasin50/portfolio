@@ -5,10 +5,7 @@ import '/src/presentation/_common/widgets/image_loader.dart';
 import '../../../app/app.dart';
 
 class ProjectCard extends StatefulWidget {
-  const ProjectCard({
-    super.key,
-    required this.project,
-  });
+  const ProjectCard({super.key, required this.project});
 
   final Project project;
 
@@ -92,10 +89,7 @@ class _ProjectCardState extends State<ProjectCard>
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                project.title,
-                style: cardTheme.titleStyle,
-              ),
+              Text(project.title, style: cardTheme.titleStyle),
               Text(
                 project.description,
                 textAlign: TextAlign.start,
@@ -105,7 +99,7 @@ class _ProjectCardState extends State<ProjectCard>
                 style: cardTheme.descriptionStyle,
               ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -83,14 +83,19 @@ class WorkCardTheme extends ThemeExtension<WorkCardTheme> {
 
   @override
   ThemeExtension<WorkCardTheme> lerp(
-      covariant ThemeExtension<WorkCardTheme>? other, double t) {
+    covariant ThemeExtension<WorkCardTheme>? other,
+    double t,
+  ) {
     if (other is! WorkCardTheme) return this;
     return WorkCardTheme(
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
       bgColor: Color.lerp(bgColor, other.bgColor, t)!,
       titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
-      descriptionStyle:
-          TextStyle.lerp(descriptionStyle, other.descriptionStyle, t)!,
+      descriptionStyle: TextStyle.lerp(
+        descriptionStyle,
+        other.descriptionStyle,
+        t,
+      )!,
       buttonStyle: ButtonStyle.lerp(buttonStyle, other.buttonStyle, t)!,
     );
   }

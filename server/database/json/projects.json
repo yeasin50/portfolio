@@ -1,7 +1,28 @@
 {
-  "version": 0,
-  "updated_at": "2025-02-07T12:00:00Z",
+  "version": 1,
+  "updated_at": "2026-03-07T12:00:00Z",
   "data": [
+    {
+      "id": "2025-06",
+      "title": "SaaS Platform for Private Organization",
+      "description": "Designed and developed a full SaaS management platform for a private organization using Flutter, Golang, and PostgreSQL. The system was containerized with Docker and deployed in a production environment. Due to confidentiality agreements, specific domain details cannot be publicly disclosed.",
+      "category": "SaaS Platform",
+      "role": "Software Engineer",
+      "created_at": "2023-11-01T00:00:00Z",
+      "thumbnail": {
+        "type": "image",
+        "blur_hash": "LDDK_B%$vfTI?dVFabaLqDNEHrtQ"
+      },
+      "media": [],
+      "tasks": [
+        "System analysis and architecture design",
+        "Developed backend services using Golang",
+        "Built Flutter applications for three different user roles",
+        "Containerized services using Docker for deployment",
+        "WIP: Website development using Go and HTMX"
+      ],
+      "show": false
+    },
     {
       "id": "1",
       "title": "Locato",

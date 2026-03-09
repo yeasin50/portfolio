@@ -3,7 +3,7 @@
   "updated_at": "2025-02-07T12:00:00Z",
   "intro": {
     "name": "Md.Yeasin Sheikh",
-    "title": "Flutter Developer | Golang Enthusiast",
+    "title": "Software Engineer | Flutter & Golang",
     "short_title": "Software Engineer | Flutter",
     "description": "A limited lifespan with a passion for solving problems and creating value."
   },
@@ -50,22 +50,22 @@
       "blur_hash": "U6Rp5w_4V[RPIT%MRj-;00tQ%MRk?bof%NIT"
     },
     {
+      "name": "youtube",
+      "logo": "youtube.png",
+      "url": "https://www.youtube.com/@yt.yeasin50",
+      "show": true,
+      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
+    },
+    {
       "name": "blog",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/blog.png",
+      "logo": "blog.png",
       "url": "https://yeasin50.github.io/yt",
       "show": true,
       "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
     },
     {
       "name": "youtube",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
-      "url": "https://www.youtube.com/@yt.yeasin50",
-      "show": false,
-      "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
-    },
-    {
-      "name": "youtube",
-      "logo": "https://raw.githubusercontent.com/yeasin50/yeasin50/refs/heads/master/assets/logo/yt.png",
+      "logo": "youtube.png",
       "url": "https://www.youtube.com/@FlutterforMe",
       "show": false,
       "blur_hash": "U2SigP_300-;tQ-;xu%M00%M4Tof_3xux]of"
@@ -80,7 +80,7 @@
       },
       "start": "2021-07-01T00:00:00Z",
       "end": "2025-07-02T00:00:00Z",
-      "description":"Remote hybrid developer experienced in Health, Fintech, Real Estate, and Social domains using Flutter and hybrid technologies.",
+      "description": "Remote hybrid developer experienced in Health, Fintech, Real Estate, and Social domains using Flutter and hybrid technologies.",
       "show": true
     },
     {

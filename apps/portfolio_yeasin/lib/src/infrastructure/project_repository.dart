@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/core.dart' hide ApiService;
 import 'package:portfolio_yeasin/src/infrastructure/api_service.dart';
 
 import 'utils/get_resource.dart';

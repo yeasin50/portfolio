@@ -29,7 +29,10 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
@@ -47,11 +50,17 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
 
     final LayerLink layerLink = LayerLink();
 
-    final targetAnchor =
-        Alignment.lerp(Alignment.bottomCenter, Alignment.bottomLeft, t)!;
+    final targetAnchor = Alignment.lerp(
+      Alignment.bottomCenter,
+      Alignment.bottomLeft,
+      t,
+    )!;
 
-    final followerAnchor =
-        Alignment.lerp(Alignment.topCenter, Alignment.topLeft, t)!;
+    final followerAnchor = Alignment.lerp(
+      Alignment.topCenter,
+      Alignment.topLeft,
+      t,
+    )!;
 
     return Stack(
       clipBehavior: Clip.none,
@@ -70,10 +79,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                 textAlign: t > .5 ? TextAlign.start : TextAlign.center,
                 text: TextSpan(
                   children: [
-                    TextSpan(
-                      text: info.name,
-                      style: nameTextStyle,
-                    ),
+                    TextSpan(text: info.name, style: nameTextStyle),
                     const TextSpan(text: "\n"), //someday  gonna remove this
                     // text: lerpText(info.title, info.shortTitle, t),
                     //   style: titleTextStyle,
@@ -117,8 +123,9 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                         child: Text(
                           text,
                           textAlign: TextAlign.center,
-                          style: textTheme.headlineLarge
-                              ?.copyWith(color: textColor),
+                          style: textTheme.headlineLarge?.copyWith(
+                            color: textColor,
+                          ),
                         ),
                       );
               }(),

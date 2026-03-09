@@ -6,18 +6,13 @@ import 'work_items.dart';
 import 'package:effects/effects.dart' as eff;
 
 class WorkPage extends StatefulWidget {
-  const WorkPage({
-    super.key,
-    this.showFilter = false,
-  });
+  const WorkPage({super.key, this.showFilter = false});
   final bool showFilter;
 
   static PageRouteBuilder route({bool showFilter = false}) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
-        return WorkPage(
-          showFilter: showFilter,
-        );
+        return WorkPage(showFilter: showFilter);
       },
       maintainState: true,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -47,9 +42,7 @@ class _WorkPageState extends State<WorkPage> {
         padding: const EdgeInsets.symmetric(vertical: 56, horizontal: 24),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints.tightFor(
-              width: Spacing.maxWidth,
-            ),
+            constraints: const BoxConstraints.tightFor(width: Spacing.maxWidth),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               spacing: 24,
@@ -63,9 +56,7 @@ class _WorkPageState extends State<WorkPage> {
                     child: const Icon(Icons.arrow_back_ios, size: 12),
                   ),
                 ),
-                TitleView.large(
-                  title: "Work",
-                ),
+                TitleView.large(title: "Work"),
                 WorkItems(showFilter: widget.showFilter),
               ],
             ),

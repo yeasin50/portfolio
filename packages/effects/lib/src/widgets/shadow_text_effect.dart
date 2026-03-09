@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../effects.dart';
 
+// TODO:  trigger to dissolve shadow with a bool
 /// shows shadow opposite of the mouse,
 /// colors and blur fade is proportional to the distance of mouse
 ///
@@ -16,13 +17,13 @@ class ShadowTextEffect extends StatefulWidget {
     this.style,
     required this.shadowColor,
     this.maxShadowDistance,
-    this.textAlign, 
+    this.textAlign,
   });
 
   final String text;
   final TextStyle? style;
   final Color shadowColor;
-  final TextAlign? textAlign; 
+  final TextAlign? textAlign;
 
   /// max blur distance from the actual  position
   /// if null then  it gonna use [style] fontSize->height
@@ -71,7 +72,8 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
   Offset shadowOffset = Offset.zero;
   double blurRadius = 0;
 
-  late final double maxShadowDistance = widget.maxShadowDistance ??
+  late final double maxShadowDistance =
+      widget.maxShadowDistance ??
       (widget.style?.fontSize ??
               Theme.of(context).textTheme.bodyMedium?.fontSize ??
               14) *
@@ -94,8 +96,12 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
 
     double scaledDistance = lerpDouble(0, maxShadowDistance, lerpFactor)!;
     shadowOffset = normalizedDirection * scaledDistance;
-
     setState(() {});
+  }
+
+  Color get shadowColor {
+    final t = lerpDouble(0, 100, lerpFactor)!.toInt();
+    return widget.shadowColor.withAlpha(t);
   }
 
   @override
@@ -107,12 +113,10 @@ class _ShadowTextEffectState extends State<ShadowTextEffect>
       style: style?.copyWith(
         shadows: [
           Shadow(
-            color: widget.shadowColor.withAlpha(
-              lerpDouble(0, 150, lerpFactor)!.toInt(),
-            ),
+            color: shadowColor,
             offset: shadowOffset,
-            blurRadius: lerpDouble(120, 0, lerpFactor)!,
-          )
+            blurRadius: lerpDouble(120, 5, lerpFactor)!,
+          ),
         ],
       ),
     );

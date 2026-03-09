@@ -76,10 +76,16 @@ class NavigationTheme extends ThemeExtension<NavigationTheme> {
       activeColor: Color.lerp(activeColor, other.activeColor, t)!,
       inactiveColor: Color.lerp(inactiveColor, other.inactiveColor, t)!,
       hoverColor: Color.lerp(hoverColor, other.hoverColor, t)!,
-      activeTextStyle:
-          TextStyle.lerp(activeTextStyle, other.activeTextStyle, t)!,
-      inactiveTextStyle:
-          TextStyle.lerp(inactiveTextStyle, other.inactiveTextStyle, t)!,
+      activeTextStyle: TextStyle.lerp(
+        activeTextStyle,
+        other.activeTextStyle,
+        t,
+      )!,
+      inactiveTextStyle: TextStyle.lerp(
+        inactiveTextStyle,
+        other.inactiveTextStyle,
+        t,
+      )!,
     );
   }
 }

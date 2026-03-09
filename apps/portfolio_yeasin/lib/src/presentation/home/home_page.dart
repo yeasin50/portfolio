@@ -30,9 +30,7 @@ class _HomePageState extends State<HomePage>
     duration: Durations.medium3,
     upperBound: MediaQuery.sizeOf(context).height,
     lowerBound: 0,
-  )..addListener(
-      () => scrollController.jumpTo(animationController.value),
-    );
+  )..addListener(() => scrollController.jumpTo(animationController.value));
 
   /// Mouse scroll doesn't listen by scrollPhysics.
   /// That's why we need it
@@ -67,8 +65,8 @@ class _HomePageState extends State<HomePage>
     fabLoc = currentPosition < viewPortHeight
         ? null
         : currentPosition < maxExtent - 100
-            ? FloatingActionButtonLocation.miniEndDocked
-            : fabCenter;
+        ? FloatingActionButtonLocation.miniEndDocked
+        : fabCenter;
 
     setState(() {});
   }
@@ -85,7 +83,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final hasExceedMaxWidth = MediaQuery.sizeOf(context).width <
+    final hasExceedMaxWidth =
+        MediaQuery.sizeOf(context).width <
         Spacing.maxWidth + Spacing.navBarPreserve * 3;
 
     return Scaffold(
@@ -102,80 +101,77 @@ class _HomePageState extends State<HomePage>
         onPointerSignal: onPointerSignal,
         child: CustomScrollView(
           controller: scrollController,
-          slivers: [
-            SliverPersistentHeader(
-              pinned: !hasExceedMaxWidth,
-              delegate: IntroPersistenceHeaderDelegate(
-                info: provider.intro,
-                maxHeight: size.height,
-                minHeight: minIntroHeight,
-              ),
-            ),
-            if (soInfo.id != null)
-              HomeItemSliverBuilder(
-                title: "StackOverflow",
-                children: [
-                  so.SoProfileView(
-                    userId: soInfo.id!,
-                    description: soInfo.profile!.description,
-                    textSpans: soInfo.profile!.textSpans,
-                  ),
-                ],
-              ),
-            HomeItemSliverBuilder(
-              title: "Experience",
-              children: provider.experiences.map(
-                (e) => ExperienceItemBuilder(experience: e),
-              ),
-            ),
-            const HomeItemSliverBuilder(
-              title: "Work",
-              children: [
-                WorkItems(maxItem: 4),
-              ],
-            ),
-            HomeItemSliverBuilder(
-              title: "Certificate",
-              children: [
-                CertificateListView(
-                  certificates: provider.certificates,
-                )
-              ],
-            ),
-            const HomeItemSliverBuilder(
-              title: "Skills",
-              children: [
-                SkillItems(),
-              ],
-            ),
-            HomeItemSliverBuilder(
-              title: "Education",
-              children: provider.educations.map(
-                (e) => EducationItemBuilder(
-                  education: e,
-                ),
-              ),
-            ),
-            if (context.provider.connectData != null)
-              SliverLayoutBuilder(
-                builder: (context, constraints) {
-                  return SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: constraints.viewportMainAxisExtent,
-                      child: const _ConnectInHomePage(),
+          slivers:
+              [
+                    SliverPersistentHeader(
+                      pinned: !hasExceedMaxWidth,
+                      delegate: IntroPersistenceHeaderDelegate(
+                        info: provider.intro,
+                        maxHeight: size.height,
+                        minHeight: minIntroHeight,
+                      ),
                     ),
-                  );
-                },
-              )
-          ]
-              .map(
-                (e) => SliverPadding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                  sliver: e,
-                ),
-              )
-              .toList(),
+                    if (soInfo.id != null)
+                      HomeItemSliverBuilder(
+                        title: "StackOverflow",
+                        children: [
+                          so.SoProfileView(
+                            userId: soInfo.id!,
+                            description: soInfo.profile!.description,
+                            textSpans: soInfo.profile!.textSpans,
+                          ),
+                        ],
+                      ),
+                    HomeItemSliverBuilder(
+                      title: "Experience",
+                      children: provider.experiences.map(
+                        (e) => ExperienceItemBuilder(experience: e),
+                      ),
+                    ),
+                    const HomeItemSliverBuilder(
+                      title: "Work",
+                      children: [WorkItems(maxItem: 6)],
+                    ),
+                    HomeItemSliverBuilder(
+                      title: "Certificate",
+                      children: [
+                        CertificateListView(
+                          certificates: provider.certificates,
+                        ),
+                      ],
+                    ),
+                    const HomeItemSliverBuilder(
+                      title: "Skills",
+                      children: [SkillItems()],
+                    ),
+                    HomeItemSliverBuilder(
+                      title: "Education",
+                      children: provider.educations.map(
+                        (e) => EducationItemBuilder(education: e),
+                      ),
+                    ),
+                    if (context.provider.connectData != null)
+                      SliverLayoutBuilder(
+                        builder: (context, constraints) {
+                          return SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: constraints.viewportMainAxisExtent,
+                              child: const _ConnectInHomePage(),
+                            ),
+                          );
+                        },
+                      ),
+                  ]
+                  .map(
+                    (e) => SliverPadding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 0,
+                      ),
+                      sliver: e,
+                    ),
+                  )
+                  .toList(),
         ),
       ),
     );
@@ -195,18 +191,15 @@ class _ConnectInHomePage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 72, bottom: 8.0),
           child: Center(
             child: ConstrainedBox(
-              constraints:
-                  const BoxConstraints.tightFor(width: Spacing.maxWidth),
+              constraints: const BoxConstraints.tightFor(
+                width: Spacing.maxWidth,
+              ),
               child: const TitleView(title: "Get in touch for.."),
             ),
           ),
         ),
         if (context.provider.connectData != null)
-          Expanded(
-            child: ConnectPageBody(
-              data: context.provider.connectData!,
-            ),
-          ),
+          Expanded(child: ConnectPageBody(data: context.provider.connectData!)),
       ],
     );
   }

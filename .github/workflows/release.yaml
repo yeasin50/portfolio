@@ -1,0 +1,38 @@
+name: release on yeasin50/github-page
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build Web
+    env:
+      my_secret: ${{secrets.commit_secret}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.41.4
+
+      - run: |
+          flutter clean
+          flutter pub get
+          flutter build web --target lib/main_prod.dart --release --base-href /
+        working-directory: apps/portfolio_yeasin
+
+      - name: Push to yeasin50/yeasin50
+        run: |
+          cd apps/portfolio_yeasin/build/web
+          git init
+          git config  user.email 46500228+yeasin50@users.noreply.github.com
+          git config  user.name yeasin50
+          git remote add origin https://${{secrets.COMMIT_SECRET}}@github.com/yeasin50/yeasin50.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "🚀 Prod release from portfolio repo"
+          git push origin gh-pages -f

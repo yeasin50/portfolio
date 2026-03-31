@@ -1,4 +1,4 @@
-name: release on yeasin50/github-page
+name: release on yeasin50.github.io
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           git init
           git config  user.email 46500228+yeasin50@users.noreply.github.com
           git config  user.name yeasin50
-          git remote add origin https://${{secrets.COMMIT_SECRET}}@github.com/yeasin50/yeasin50.git
+          git remote add origin https://${{secrets.COMMIT_SECRET}}@github.com/yeasin50/yeasin50.github.io.git
           git checkout -b gh-pages
           git add --all
           git commit -m "🚀 Prod release from portfolio repo"

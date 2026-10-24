@@ -9,7 +9,12 @@ typedef OnSubmitTap = Future<void> Function(ContactRequest req);
 
 /// user can contact me .x. // TODO : ney; Not build for ui keyboard stuffs
 class ContactFormPage extends StatelessWidget {
-  const ContactFormPage._();
+  const ContactFormPage._(this.onBack);
+
+  const ContactFormPage({this.onBack});
+
+  /// if null then use Navigator.pop
+  final VoidCallback? onBack;
 
   static eff.RippleRoute route({
     required FractionalOffset animateTO,
@@ -20,7 +25,7 @@ class ContactFormPage extends StatelessWidget {
     required eff.SpherePlasmaData plasmaData,
   }) {
     final route = eff.RippleRoute(
-      builder: (context) => ContactFormPage._(),
+      builder: (context) => ContactFormPage._(null),
       center: animateTO,
       popPosition: animateFrom ?? animateTO,
       duration: pushDuration,
@@ -45,7 +50,7 @@ class ContactFormPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: eff.AnimatedBackButton(
-                        onTap: Navigator.of(context).pop,
+                        onTap: onBack ?? Navigator.of(context).pop,
                         child: Text("back"),
                       ),
                     ),

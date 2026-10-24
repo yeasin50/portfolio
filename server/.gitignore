@@ -15,10 +15,8 @@ vendor/
 *.log
 *.test
 *.prof
-*.sum
-*.mod
-/go.sum
-/go.mod
+
+tmp/
 
 # IDE and Editor files
 .vscode/

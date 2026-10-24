@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
+import 'package:effects/effects.dart' as eff;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
-import '../infrastructure/provider.dart';
 import 'package:logger/logger.dart';
-import 'package:effects/effects.dart' as eff;
 
+import '/src/infrastructure/user_repository.dart';
+import '../infrastructure/provider.dart';
 import '../presentation/_common/error_page.dart';
 import '../presentation/_common/viewport_requirement_page.dart';
 import 'app_config.dart' show AppConfig;
@@ -33,12 +33,6 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
 
   late final AppRouter router = AppRouter();
   late final routerConfig = router.router(context);
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +64,6 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
             scrollBehavior: const ScrollBehavior().copyWith(
               dragDevices: PointerDeviceKind.values.toSet(),
             ),
-            builder: (context, child) {
-              final colors = Theme.of(
-                context,
-              ).extension<AppTheme>()!.backgroundGradient;
-              return eff.BackgroundView(
-                key: const ValueKey("BG painter"),
-                colors: colors,
-                child: ViewportRequirementPage(child: child!),
-              );
-            },
           ),
         );
       },

@@ -4,9 +4,12 @@ export 'infrastructure/connect_option.dart';
 export 'infrastructure/i_connect_repo.dart';
 export 'option_alignment.dart';
 export 'option_view.dart';
+
+export 'presentation/contact_form_page.dart';
 export 'presentation/connect_page.dart';
 export 'presentation/connect_option_page.dart';
 export 'presentation/widgets/preference_builder.dart';
+
 export 'sphere_painter.dart';
 export 'utils/option_info.dart';
 export 'utils/utils.dart';

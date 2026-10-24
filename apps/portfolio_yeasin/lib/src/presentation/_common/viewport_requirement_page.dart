@@ -27,14 +27,9 @@ class _ViewportRequirementPageState extends State<ViewportRequirementPage> {
   }
 }
 
-class _ViewPortWarn extends StatefulWidget {
-  const _ViewPortWarn({super.key});
+class _ViewPortWarn extends StatelessWidget {
+  const _ViewPortWarn();
 
-  @override
-  State<_ViewPortWarn> createState() => __ViewPortWarnState();
-}
-
-class __ViewPortWarnState extends State<_ViewPortWarn> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -50,7 +45,10 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
           Center(
             child: AspectRatio(
               aspectRatio: 1,
-              child: eff.PlasmaBallSphere(data: eff.SpherePlasmaData.BJF),
+              child: eff.PlasmaBallSphere(
+                data: eff.SpherePlasmaData.BJF,
+                intialAnimationValue: 1.0,
+              ),
             ),
           ),
           Center(
@@ -68,7 +66,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
                 ),
                 Center(
                   child: ConstrainedBox(
-                    constraints: BoxConstraints.tightFor(width: 350),
+                    constraints: .tightFor(width: 350),
                     child: text_effect.ParagraphPainter(
                       style: textTheme.titleLarge!.copyWith(
                         color: textColor,
@@ -90,7 +88,7 @@ class __ViewPortWarnState extends State<_ViewPortWarn> {
                 ),
                 eff.BulletView(
                   type: eff.BulletType.concern,
-                  size: Size.square(24),
+                  size: .square(24),
                   t: 1,
                 ),
                 eff.AnimatedArrowView(child: _buildText("change the device")),

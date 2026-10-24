@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -32,12 +34,16 @@ class PlasmaBallSphere extends StatefulWidget {
     super.key,
     required this.data,
     this.child,
+    this.intialAnimationValue = 0,
   });
 
   final SpherePlasmaData data;
 
   ///  default child is 200x200 box
   final Widget? child;
+
+  /// we can  initially set value for coreDense and coreSpreed
+  final double intialAnimationValue;
 
   @override
   State<PlasmaBallSphere> createState() => _PlasmaBallSphereState();
@@ -67,29 +73,36 @@ class _PlasmaBallSphereState extends State<PlasmaBallSphere>
       vsync: this,
       duration: Duration(seconds: 200),
     );
-    animation = Tween(begin: 0.0, end: 100) //
-        .animate(controller);
+
+    animation = Tween(begin: 0.0, end: 100).animate(controller);
     controller.repeat(reverse: true);
 
     coreController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
+      value: widget.intialAnimationValue,
     );
 
-    coreSpreedAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: .10, end: .02), weight: .4),
-      TweenSequenceItem(tween: Tween(begin: .02, end: .25), weight: .6),
-    ]).animate(CurvedAnimation(
-      parent: coreController,
-      curve: const Interval(0.0, 0.4, curve: Curves.easeInOut),
-    ));
+    coreSpreedAnimation =
+        TweenSequence([
+          TweenSequenceItem(tween: Tween(begin: .10, end: .02), weight: .4),
+          TweenSequenceItem(tween: Tween(begin: .02, end: .25), weight: .6),
+        ]).animate(
+          CurvedAnimation(
+            parent: coreController,
+            curve: const Interval(0.0, 0.4, curve: Curves.easeInOut),
+          ),
+        );
 
-    coreDenseAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: .0, end: .1), weight: .3),
-    ]).animate(CurvedAnimation(
-      parent: coreController,
-      curve: const Interval(.7, 1.0, curve: Curves.easeInOut),
-    ));
+    coreDenseAnimation =
+        TweenSequence([
+          TweenSequenceItem(tween: Tween(begin: .0, end: .1), weight: .3),
+        ]).animate(
+          CurvedAnimation(
+            parent: coreController,
+            curve: const Interval(.7, 1.0, curve: Curves.easeInOut),
+          ),
+        );
   }
 
   @override
@@ -102,12 +115,8 @@ class _PlasmaBallSphereState extends State<PlasmaBallSphere>
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) {
-        coreController.forward();
-      },
-      onExit: (_) {
-        coreController.reverse();
-      },
+      onEnter: (_) => coreController.forward(),
+      onExit: (_) => coreController.reverse(),
       child: AnimatedBuilder(
         animation: coreController,
         builder: (context, child) {
@@ -245,13 +254,11 @@ class _PlasmaBallPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     assert(coreDense >= 0 && coreDense <= 1, "coreDense should be within 0-1");
     assert(
-        coreSpreed >= 0 && coreSpreed <= 1, "coreSpreed should be within 0-1");
+      coreSpreed >= 0 && coreSpreed <= 1,
+      "coreSpreed should be within 0-1",
+    );
 
-    List<double> rgb(Color color) => [
-          color.r,
-          color.g,
-          color.b,
-        ];
+    List<double> rgb(Color color) => [color.r, color.g, color.b];
     final shader = setValues(program.fragmentShader(), [
       size.width,
       size.height,

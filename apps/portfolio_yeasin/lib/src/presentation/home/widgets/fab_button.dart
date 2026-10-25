@@ -3,28 +3,16 @@ import 'package:effects/effects.dart' as eff;
 
 ///  animate to top/ open  menu for [HomePage]  by replacing navigation button
 ///
-class FabButton extends StatefulWidget {
-  const FabButton({super.key});
+class FabButton extends StatelessWidget {
+  const FabButton({super.key, required this.onTap});
 
-  @override
-  State<FabButton> createState() => _FabButtonState();
-}
+  final VoidCallback? onTap;
 
-class _FabButtonState extends State<FabButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 24.0, top: 24),
-      child: eff.HomeIcon(
-        onTap: () {
-          final controller = PrimaryScrollController.maybeOf(context);
-          controller?.animateTo(
-            0,
-            duration: Durations.extralong4,
-            curve: Curves.easeOutBack,
-          );
-        },
-      ),
+      child: eff.HomeIcon(onTap: onTap),
     );
   }
 }

@@ -25,10 +25,16 @@ enum Page {
 ///  should get full constraints of parent widget in order to use [NavigationDelegate]
 ///
 class NavigationButtons extends StatefulWidget {
-  const NavigationButtons({super.key, required this.scrollT});
+  const NavigationButtons({
+    super.key,
+    required this.scrollT,
+    required this.scrollController,
+  });
 
   /// scrollOffset from sliver delegant
   final double scrollT;
+
+  final ScrollController scrollController;
 
   @override
   State<NavigationButtons> createState() => _NavigationBarState();
@@ -38,7 +44,7 @@ class _NavigationBarState extends State<NavigationButtons>
     with SingleTickerProviderStateMixin {
   Page selectedPage = Page.home;
 
-  late final scrollController = PrimaryScrollController.of(context);
+  late final scrollController = widget.scrollController;
 
   @override
   void initState() {
@@ -49,7 +55,7 @@ class _NavigationBarState extends State<NavigationButtons>
   }
 
   void scrollListener() {
-    final height = MediaQuery.sizeOf(context).height;
+    final height = scrollController.position.viewportDimension;
 
     if (!selectedPage.isHome && scrollController.offset < height * .4) {
       selectedPage = Page.home;
@@ -89,7 +95,9 @@ class _NavigationBarState extends State<NavigationButtons>
     const speedFactor = 1;
     final currentOffset = scrollController.offset;
 
-    final pageHeight = MediaQuery.sizeOf(context).height;
+    final pageHeight = scrollController.position.viewportDimension;
+
+    ///  MediaQuery.sizeOf(context).height;
 
     final distanceToScroll =
         (switch (p) {

@@ -20,12 +20,15 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.info,
     required this.maxHeight,
     required this.minHeight,
+    required this.scrollController,
   });
 
   final IntroInfo info;
 
   final double maxHeight;
   final double minHeight;
+
+  final ScrollController scrollController;
 
   @override
   Widget build(
@@ -50,27 +53,14 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
 
     final LayerLink layerLink = LayerLink();
 
-    final targetAnchor = Alignment.lerp(
-      Alignment.bottomCenter,
-      Alignment.bottomLeft,
-      t,
-    )!;
-
-    final followerAnchor = Alignment.lerp(
-      Alignment.topCenter,
-      Alignment.topLeft,
-      t,
-    )!;
+    final targetAnchor = Alignment.lerp(.bottomCenter, .bottomLeft, t)!;
+    final followerAnchor = Alignment.lerp(.topCenter, .topLeft, t)!;
 
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Align(
-          alignment: Alignment.lerp(
-            const Alignment(0, -.5),
-            Alignment.topLeft,
-            t,
-          )!,
+          alignment: Alignment.lerp(const Alignment(0, -.5), .topLeft, t)!,
           child: CompositedTransformTarget(
             link: layerLink,
             child: Padding(
@@ -131,10 +121,13 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
               }(),
               Expanded(
                 child: Align(
-                  alignment: Alignment.topCenter,
+                  alignment: .topCenter,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    child: NavigationButtons(scrollT: t),
+                    padding: const .symmetric(vertical: 24),
+                    child: NavigationButtons(
+                      scrollT: t,
+                      scrollController: scrollController,
+                    ),
                   ),
                 ),
               ),

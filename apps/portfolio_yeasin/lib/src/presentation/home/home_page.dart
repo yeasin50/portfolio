@@ -3,9 +3,10 @@ import 'package:core/core.dart';
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/infrastructure/provider.dart';
-import 'package:portfolio_yeasin/src/presentation/home/widgets/fab_button.dart';
 import 'package:stackoverflow_stats/stackoverflow_stats.dart' as so;
+
+import '/src/infrastructure/provider.dart';
+import '/src/presentation/home/widgets/fab_button.dart';
 import '../../infrastructure/utils/stack_overflow_user_mixin.dart';
 import '../work/work_items.dart';
 import 'widgets/widgets.dart';
@@ -21,11 +22,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin, StackOverflowMixin {
-  late final scrollController = PrimaryScrollController.of(context);
+  final scrollController = ScrollController();
 
   double minIntroHeight = 150;
 
-  double get pageHeight => MediaQuery.maybeSizeOf(context)?.height ?? 1080;
+  double get pageHeight => scrollController.hasClients
+      ? scrollController.position.viewportDimension
+      : 1080;
+
   void _handleAnimation() {
     if (!scrollController.hasClients) return;
 
@@ -37,12 +41,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  late final AnimationController animationController = AnimationController(
-    vsync: this,
-    duration: Durations.medium3,
-    upperBound: pageHeight,
-    lowerBound: 0,
-  )..addListener(_handleAnimation);
+  late final AnimationController animationController;
 
   /// Mouse scroll doesn't listen by scrollPhysics.
   /// That's why we need it
@@ -61,7 +60,16 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      animationController = AnimationController(
+        vsync: this,
+        duration: Durations.medium3,
+        upperBound: pageHeight,
+        lowerBound: 0,
+      );
+
+      animationController.addListener(_handleAnimation);
       scrollController.addListener(scrollLister);
     });
   }
@@ -82,12 +90,24 @@ class _HomePageState extends State<HomePage>
     setState(() {});
   }
 
+  void onFavTap() {
+    scrollController.animateTo(
+      0,
+      duration: Durations.extralong4,
+      curve: Curves.easeOutBack,
+    );
+  }
+
   @override
   void dispose() {
     animationController
       ..removeListener(_handleAnimation)
       ..dispose();
-    scrollController.dispose();
+
+    scrollController
+      ..removeListener(scrollLister)
+      ..dispose();
+
     super.dispose();
   }
 
@@ -108,7 +128,7 @@ class _HomePageState extends State<HomePage>
           if (fabLoc == null) return const SizedBox();
           return child!;
         },
-        child: const FabButton(),
+        child: FabButton(onTap: onFavTap),
       ),
       body: Listener(
         onPointerSignal: onPointerSignal,
@@ -119,6 +139,7 @@ class _HomePageState extends State<HomePage>
                     SliverPersistentHeader(
                       pinned: !hasExceedMaxWidth,
                       delegate: IntroPersistenceHeaderDelegate(
+                        scrollController: scrollController, // can be better
                         info: provider.intro,
                         maxHeight: size.height,
                         minHeight: minIntroHeight,
@@ -177,10 +198,7 @@ class _HomePageState extends State<HomePage>
                   ]
                   .map(
                     (e) => SliverPadding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 0,
-                      ),
+                      padding: const .symmetric(horizontal: 24, vertical: 0),
                       sliver: e,
                     ),
                   )

@@ -22,14 +22,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin, StackOverflowMixin {
+    with TickerProviderStateMixin, StackOverflowMixin {
   final scrollController = ScrollController();
 
   double minIntroHeight = 150;
-
-  double get pageHeight => scrollController.hasClients
-      ? scrollController.position.viewportDimension
-      : 1080;
 
   void _handleAnimation() {
     if (!scrollController.hasClients) return;
@@ -42,12 +38,19 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  late final AnimationController animationController;
+  late AnimationController animationController = AnimationController(
+    vsync: this,
+    duration: Durations.medium3,
+    upperBound: 1080,
+    lowerBound: 0,
+  );
 
   /// Mouse scroll doesn't listen by scrollPhysics.
   /// That's why we need it
   void onPointerSignal(PointerSignalEvent event) {
     if (animationController.isAnimating) return;
+
+    final pageHeight = scrollController.position.viewportDimension;
 
     if (event is PointerScrollEvent) {
       if (event.scrollDelta.dy > 0 && scrollController.offset < pageHeight) {
@@ -66,7 +69,7 @@ class _HomePageState extends State<HomePage>
       animationController = AnimationController(
         vsync: this,
         duration: Durations.medium3,
-        upperBound: pageHeight,
+        upperBound: MediaQuery.sizeOf(context).height,
         lowerBound: 0,
       );
 
@@ -117,6 +120,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+
     final hasExceedMaxWidth =
         MediaQuery.sizeOf(context).width <
         Spacing.maxWidth + Spacing.navBarPreserve * 3;

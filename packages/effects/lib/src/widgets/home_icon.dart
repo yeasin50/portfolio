@@ -33,7 +33,6 @@ class _HomeIconState extends State<HomeIcon> {
       return;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ///dang....
       _scrollController = InheritedProvider.of<ScrollController>(context);
 
       _scrollController?.addListener(listener);

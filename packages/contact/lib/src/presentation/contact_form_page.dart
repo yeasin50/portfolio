@@ -76,10 +76,7 @@ class ContactFormPage extends StatelessWidget {
                     layoutBuilder: (currentChild, previousChildren) {
                       return Stack(
                         alignment: Alignment.center,
-                        children: [
-                          ...previousChildren,
-                          if (currentChild != null) currentChild,
-                        ],
+                        children: [...previousChildren, ?currentChild],
                       );
                     },
 
@@ -92,6 +89,10 @@ class ContactFormPage extends StatelessWidget {
                             key: const ValueKey("form"),
                             alignment: const Alignment(0, -.3),
                             child: SingleChildScrollView(
+                              padding: const .symmetric(
+                                horizontal: 24,
+                                vertical: 32,
+                              ),
                               child: ConstrainedBox(
                                 constraints: const BoxConstraints.tightFor(
                                   width: 500,

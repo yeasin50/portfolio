@@ -1,8 +1,13 @@
+import 'package:effects/effects.dart' as eff;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:contact/contact.dart';
 import 'package:portfolio_yeasin/src/presentation/home/home_page.dart';
+
+import '../presentation/_common/viewport_requirement_page.dart';
+import '../presentation/error_page.dart';
+import 'app_theme.dart';
 
 class AppRouter {
   final uri = Uri.base;
@@ -11,7 +16,7 @@ class AppRouter {
   static String workRoute = "/work";
   static String getInTouch = "/get_in_touch";
 
-  // we can't have path_parameter in githubPage, so it tricks to navigate to the contactPage if needed
+  // issue #41; we can't have path_parameter in githubPage, so it tricks to navigate to the contactPage if needed
   // http://localhost:40879/#?ping
   final ValueNotifier<int> _refresher = ValueNotifier(1);
 
@@ -40,27 +45,43 @@ class AppRouter {
       redirect: _redirect,
       redirectLimit: 2,
       initialExtra: true,
+      errorBuilder: (context, stat) => ErrorPage(error: stat.error),
       routes: [
-        GoRoute(
-          path: homeRoute,
-          builder: (context, state) {
-            if (state.extra != null) _refresher.value += 1;
-            return HomePage();
-          },
+        ShellRoute(
           routes: [
             GoRoute(
-              path: getInTouch.replaceFirst("/", ""),
-              builder: (context, state) => ContactFormPage(
-                onBack: () {
-                  if (context.canPop()) {
-                    context.pop();
-                  } else {
-                    context.go(homeRoute);
-                  }
-                },
-              ),
+              path: homeRoute,
+              builder: (context, state) {
+                if (state.extra != null) _refresher.value += 1;
+                return HomePage();
+              },
+              routes: [
+                GoRoute(
+                  path: getInTouch.replaceFirst("/", ""),
+                  builder: (context, state) => ContactFormPage(
+                    onBack: () {
+                      context.canPop() ? context.pop() : context.go(homeRoute);
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
+
+          builder: (context, state, child) {
+            final colors = Theme.of(context).extension<AppTheme>()!;
+
+            final bool ignorePageSizeRequirement =
+                state.fullPath?.contains("get_in_touch") ?? false;
+
+            return eff.BackgroundView(
+              key: const ValueKey("BG painter"),
+              colors: colors.backgroundGradient,
+              child: ignorePageSizeRequirement
+                  ? child
+                  : ViewportRequirementPage(child: child),
+            );
+          },
         ),
       ],
     );

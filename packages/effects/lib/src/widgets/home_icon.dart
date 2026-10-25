@@ -1,17 +1,15 @@
 import 'package:effects/src/widgets/sphere_view.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/inhereted_provider.dart';
+
 /// circle button with homeIcon
 ///
 /// if [scrollProgress] is not null, It check for [PrimaryScrollController] to show scroll offset.
 /// it will show scroll progress around icon
 ///
 class HomeIcon extends StatefulWidget {
-  const HomeIcon({
-    super.key,
-    this.onTap,
-    this.scrollProgress,
-  });
+  const HomeIcon({super.key, this.onTap, this.scrollProgress});
 
   final VoidCallback? onTap;
 
@@ -35,7 +33,8 @@ class _HomeIconState extends State<HomeIcon> {
       return;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController = PrimaryScrollController.maybeOf(context);
+      _scrollController = InheritedProvider.of<ScrollController>(context);
+
       _scrollController?.addListener(listener);
     });
   }
@@ -72,10 +71,7 @@ class _HomeIconState extends State<HomeIcon> {
                     color: Colors.white,
                   ),
                 ),
-              Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
+              Icon(Icons.home, color: Colors.white),
             ],
           ),
         ),

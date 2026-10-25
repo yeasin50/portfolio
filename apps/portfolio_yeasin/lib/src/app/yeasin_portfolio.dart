@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
+import 'package:effects/effects.dart' as eff;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_yeasin/src/infrastructure/user_repository.dart';
-import 'package:portfolio_yeasin/src/presentation/home/home_page.dart';
-import '../infrastructure/provider.dart';
 import 'package:logger/logger.dart';
-import 'package:effects/effects.dart' as eff;
 
+import '/src/infrastructure/user_repository.dart';
+import '../infrastructure/provider.dart';
 import '../presentation/_common/error_page.dart';
 import '../presentation/_common/viewport_requirement_page.dart';
 import 'app_config.dart' show AppConfig;
+import 'app_router.dart';
 import 'app_theme.dart';
 
 class YeasinPortfolio extends StatefulWidget {
@@ -30,6 +30,9 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
       // logger: ,
     ),
   );
+
+  late final AppRouter router = AppRouter();
+  late final routerConfig = router.router(context);
 
   @override
   Widget build(BuildContext context) {
@@ -54,23 +57,13 @@ class _YeasinPortfolioState extends State<YeasinPortfolio> {
         return AppProvider(
           config: widget.config,
           repo: snapshot.requireData,
-          child: MaterialApp(
+          child: MaterialApp.router(
+            routerConfig: routerConfig,
             // showPerformanceOverlay: kDebugMode,
             theme: AppThemeConfig.data(AppThemeMode.dark),
             scrollBehavior: const ScrollBehavior().copyWith(
               dragDevices: PointerDeviceKind.values.toSet(),
             ),
-            home: ViewportRequirementPage(child: const HomePage()),
-            builder: (context, child) {
-              final colors = Theme.of(
-                context,
-              ).extension<AppTheme>()!.backgroundGradient;
-              return eff.BackgroundView(
-                key: const ValueKey("BG painter"),
-                colors: colors,
-                child: child!,
-              );
-            },
           ),
         );
       },

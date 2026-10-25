@@ -1,4 +1,6 @@
+import 'package:contact/contact.dart';
 import 'package:core/core.dart';
+import 'package:effects/effects.dart' as eff;
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/theme.dart';
@@ -8,7 +10,8 @@ enum Page {
   home("Anchor"),
   work("The Forge"),
   // about("The Story"),
-  contact("Bridges");
+  contact("Bridges"),
+  contactForm("Contact");
 
   bool get isHome => this == Page.home;
   bool get isWork => this == Page.work;
@@ -35,7 +38,9 @@ class _NavigationBarState extends State<NavigationButtons>
     with SingleTickerProviderStateMixin {
   Page selectedPage = Page.home;
 
-  late final scrollController = PrimaryScrollController.of(context);
+  late final scrollController = eff.InheritedProvider.of<ScrollController>(
+    context,
+  )!;
 
   @override
   void initState() {
@@ -46,7 +51,7 @@ class _NavigationBarState extends State<NavigationButtons>
   }
 
   void scrollListener() {
-    final height = MediaQuery.sizeOf(context).height;
+    final height = scrollController.position.viewportDimension;
 
     if (!selectedPage.isHome && scrollController.offset < height * .4) {
       selectedPage = Page.home;
@@ -75,16 +80,29 @@ class _NavigationBarState extends State<NavigationButtons>
   }
 
   void onTap(Page p) {
+    if (p == .contactForm) {
+      final route = ContactFormPage.route(
+        animateTO: FractionalOffset(0, 0),
+        plasmaData: eff.SpherePlasmaData.BJF,
+      );
+      Navigator.of(context).push(route);
+      return;
+    }
     const speedFactor = 1;
     final currentOffset = scrollController.offset;
 
-    final pageHeight = MediaQuery.sizeOf(context).height;
+    final pageHeight = scrollController.position.viewportDimension;
+
+    ///  MediaQuery.sizeOf(context).height;
 
     final distanceToScroll =
         (switch (p) {
-                  Page.home => 0,
-                  Page.work => pageHeight,
-                  Page.contact => scrollController.position.maxScrollExtent,
+                  .home => 0,
+                  .work => pageHeight,
+                  .contact => scrollController.position.maxScrollExtent,
+                  .contactForm => throw Exception(
+                    "should nav to route instead of scroll",
+                  ),
                 } -
                 currentOffset)
             .abs();
@@ -126,8 +144,9 @@ class _NavigationBarState extends State<NavigationButtons>
     final children = Page.values
         .map(
           (e) => NavigationItem(
+            //TODO: outline contact better
             label: e.label,
-            isActive: e == selectedPage,
+            isActive: e == .contactForm || e == selectedPage,
             onTap: () => onTap(e),
           ),
         )

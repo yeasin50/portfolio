@@ -1,0 +1,72 @@
+╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+The following assertion was thrown while finalizing the widget tree:
+Looking up a deactivated widget's ancestor is unsafe.
+At this point the state of the widget's element tree is no longer stable.
+To safely refer to a widget's ancestor in its dispose() method, save a reference to the ancestor by
+calling dependOnInheritedWidgetOfExactType() in the widget's didChangeDependencies() method.
+
+When the exception was thrown, this was the stack:
+#0      Element._debugCheckStateIsActiveForAncestorLookup.<anonymous closure> (package:flutter/src/widgets/framework.dart:5062:9)
+#1      Element._debugCheckStateIsActiveForAncestorLookup (package:flutter/src/widgets/framework.dart:5076:6)
+#2      Element.getElementForInheritedWidgetOfExactType (package:flutter/src/widgets/framework.dart:5111:12)
+#3      InheritedModel._findModels (package:flutter/src/widgets/inherited_model.dart:152:45)
+#4      InheritedModel.inheritFrom (package:flutter/src/widgets/inherited_model.dart:200:5)
+XCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+The following assertion was thrown while finalizing the widget tree:
+A ScrollController was used after being disposed.
+Once you have called dispose() on a ScrollController, it can no longer be used.
+
+When the exception was thrown, this was the stack:
+#0      ChangeNotifier.debugAssertNotDisposed.<anonymous closure> (package:flutter/src/foundation/change_notifier.dart:184:9)
+#1      ChangeNotifier.debugAssertNotDisposed (package:flutter/src/foundation/change_notifier.dart:191:6)
+#2      ChangeNotifier.dispose (package:flutter/src/foundation/change_notifier.dart:377:27)
+#3      ScrollController.dispose (package:flutter/src/widgets/scroll_controller.dart:273:11)
+#4      _ModalScopeState.dispose (package:flutter/src/widgets/routes.dart:1150:29)
+#5      StatefulElement.unmount (package:flutter/src/widgets/framework.dart:6043:11)
+#6      _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2119:13)
+#7      _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#8      SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7114:14)
+#9      _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#10     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#11     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#12     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#13     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#14     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#15     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#16     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#17     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#18     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#19     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#20     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#21     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#22     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#23     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#24     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#25     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#26     MultiChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7236:16)
+#27     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#28     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#29     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#30     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#31     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#32     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#33     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#34     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#35     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#36     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#37     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#38     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#39     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#40     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#41     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#42     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#43     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#44     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#45     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#46     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#47     ComponentElement.visitChildren (package:flutter/src/widgets/framework.dart:5884:14)
+#48     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#49     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:2117:7)
+#50     SingleChildRenderObjectElement.visitChildren (package:flutter/src/widgets/framework.dart:7114:14)
+#51     _InactiveElements._unmount (package:flutter/src/widgets/framework.dart:2115:13)
+#52     _InactiveElements._unmount.<anonymous closure> (package:flutter/src/widgets/framework.dart:

@@ -25,16 +25,10 @@ enum Page {
 ///  should get full constraints of parent widget in order to use [NavigationDelegate]
 ///
 class NavigationButtons extends StatefulWidget {
-  const NavigationButtons({
-    super.key,
-    required this.scrollT,
-    required this.scrollController,
-  });
+  const NavigationButtons({super.key, required this.scrollT});
 
   /// scrollOffset from sliver delegant
   final double scrollT;
-
-  final ScrollController scrollController;
 
   @override
   State<NavigationButtons> createState() => _NavigationBarState();
@@ -44,7 +38,9 @@ class _NavigationBarState extends State<NavigationButtons>
     with SingleTickerProviderStateMixin {
   Page selectedPage = Page.home;
 
-  late final scrollController = widget.scrollController;
+  late final scrollController = eff.InheritedProvider.of<ScrollController>(
+    context,
+  )!;
 
   @override
   void initState() {

@@ -20,15 +20,12 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.info,
     required this.maxHeight,
     required this.minHeight,
-    required this.scrollController,
   });
 
   final IntroInfo info;
 
   final double maxHeight;
   final double minHeight;
-
-  final ScrollController scrollController;
 
   @override
   Widget build(
@@ -124,10 +121,7 @@ class IntroPersistenceHeaderDelegate extends SliverPersistentHeaderDelegate {
                   alignment: .topCenter,
                   child: Padding(
                     padding: const .symmetric(vertical: 24),
-                    child: NavigationButtons(
-                      scrollT: t,
-                      scrollController: scrollController,
-                    ),
+                    child: NavigationButtons(scrollT: t),
                   ),
                 ),
               ),

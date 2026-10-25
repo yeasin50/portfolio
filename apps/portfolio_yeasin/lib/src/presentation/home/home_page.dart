@@ -1,5 +1,6 @@
 import 'package:contact/contact.dart';
 import 'package:core/core.dart';
+import 'package:effects/effects.dart' show InheritedProvider;
 import 'package:experience/experience.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -120,89 +121,91 @@ class _HomePageState extends State<HomePage>
         MediaQuery.sizeOf(context).width <
         Spacing.maxWidth + Spacing.navBarPreserve * 3;
 
-    return Scaffold(
-      floatingActionButtonLocation: fabLoc,
-      floatingActionButton: AnimatedBuilder(
-        animation: scrollController,
-        builder: (context, child) {
-          if (fabLoc == null) return const SizedBox();
-          return child!;
-        },
-        child: FabButton(onTap: onFavTap),
-      ),
-      body: Listener(
-        onPointerSignal: onPointerSignal,
-        child: CustomScrollView(
-          controller: scrollController,
-          slivers:
-              [
-                    SliverPersistentHeader(
-                      pinned: !hasExceedMaxWidth,
-                      delegate: IntroPersistenceHeaderDelegate(
-                        scrollController: scrollController, // can be better
-                        info: provider.intro,
-                        maxHeight: size.height,
-                        minHeight: minIntroHeight,
+    return InheritedProvider<ScrollController>(
+      value: scrollController,
+      child: Scaffold(
+        floatingActionButtonLocation: fabLoc,
+        floatingActionButton: AnimatedBuilder(
+          animation: scrollController,
+          builder: (context, child) {
+            if (fabLoc == null) return const SizedBox();
+            return child!;
+          },
+          child: FabButton(onTap: onFavTap),
+        ),
+        body: Listener(
+          onPointerSignal: onPointerSignal,
+          child: CustomScrollView(
+            controller: scrollController,
+            slivers:
+                [
+                      SliverPersistentHeader(
+                        pinned: !hasExceedMaxWidth,
+                        delegate: IntroPersistenceHeaderDelegate(
+                          info: provider.intro,
+                          maxHeight: size.height,
+                          minHeight: minIntroHeight,
+                        ),
                       ),
-                    ),
-                    if (soInfo.id != null)
+                      if (soInfo.id != null)
+                        HomeItemSliverBuilder(
+                          title: "StackOverflow",
+                          children: [
+                            so.SoProfileView(
+                              userId: soInfo.id!,
+                              description: soInfo.profile!.description,
+                              textSpans: soInfo.profile!.textSpans,
+                            ),
+                          ],
+                        ),
                       HomeItemSliverBuilder(
-                        title: "StackOverflow",
+                        title: "Experience",
+                        children: provider.experiences.map(
+                          (e) => ExperienceItemBuilder(experience: e),
+                        ),
+                      ),
+                      const HomeItemSliverBuilder(
+                        title: "Work",
+                        children: [WorkItems(maxItem: 6)],
+                      ),
+                      HomeItemSliverBuilder(
+                        title: "Certificate",
                         children: [
-                          so.SoProfileView(
-                            userId: soInfo.id!,
-                            description: soInfo.profile!.description,
-                            textSpans: soInfo.profile!.textSpans,
+                          CertificateListView(
+                            certificates: provider.certificates,
                           ),
                         ],
                       ),
-                    HomeItemSliverBuilder(
-                      title: "Experience",
-                      children: provider.experiences.map(
-                        (e) => ExperienceItemBuilder(experience: e),
+                      const HomeItemSliverBuilder(
+                        title: "Skills",
+                        children: [SkillItems()],
                       ),
-                    ),
-                    const HomeItemSliverBuilder(
-                      title: "Work",
-                      children: [WorkItems(maxItem: 6)],
-                    ),
-                    HomeItemSliverBuilder(
-                      title: "Certificate",
-                      children: [
-                        CertificateListView(
-                          certificates: provider.certificates,
+                      HomeItemSliverBuilder(
+                        title: "Education",
+                        children: provider.educations.map(
+                          (e) => EducationItemBuilder(education: e),
                         ),
-                      ],
-                    ),
-                    const HomeItemSliverBuilder(
-                      title: "Skills",
-                      children: [SkillItems()],
-                    ),
-                    HomeItemSliverBuilder(
-                      title: "Education",
-                      children: provider.educations.map(
-                        (e) => EducationItemBuilder(education: e),
                       ),
-                    ),
-                    if (context.provider.connectData != null)
-                      SliverLayoutBuilder(
-                        builder: (context, constraints) {
-                          return SliverToBoxAdapter(
-                            child: SizedBox(
-                              height: constraints.viewportMainAxisExtent,
-                              child: const _ConnectInHomePage(),
-                            ),
-                          );
-                        },
+                      if (context.provider.connectData != null)
+                        SliverLayoutBuilder(
+                          builder: (context, constraints) {
+                            return SliverToBoxAdapter(
+                              child: SizedBox(
+                                height: constraints.viewportMainAxisExtent,
+                                child: const _ConnectInHomePage(),
+                              ),
+                            );
+                          },
+                        ),
+                    ]
+                    .map(
+                      (e) => SliverPadding(
+                        padding: const .symmetric(horizontal: 24, vertical: 0),
+                        sliver: e,
                       ),
-                  ]
-                  .map(
-                    (e) => SliverPadding(
-                      padding: const .symmetric(horizontal: 24, vertical: 0),
-                      sliver: e,
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+          ),
         ),
       ),
     );

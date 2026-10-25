@@ -6,6 +6,7 @@ import 'package:contact/contact.dart';
 import 'package:portfolio_yeasin/src/presentation/home/home_page.dart';
 
 import '../presentation/_common/viewport_requirement_page.dart';
+import '../presentation/error_page.dart';
 import 'app_theme.dart';
 
 class AppRouter {
@@ -15,7 +16,7 @@ class AppRouter {
   static String workRoute = "/work";
   static String getInTouch = "/get_in_touch";
 
-  // we can't have path_parameter in githubPage, so it tricks to navigate to the contactPage if needed
+  // issue #41; we can't have path_parameter in githubPage, so it tricks to navigate to the contactPage if needed
   // http://localhost:40879/#?ping
   final ValueNotifier<int> _refresher = ValueNotifier(1);
 
@@ -44,6 +45,7 @@ class AppRouter {
       redirect: _redirect,
       redirectLimit: 2,
       initialExtra: true,
+      errorBuilder: (context, stat) => ErrorPage(error: stat.error),
       routes: [
         ShellRoute(
           routes: [
@@ -65,19 +67,16 @@ class AppRouter {
               ],
             ),
           ],
+
           builder: (context, state, child) {
-            final colors = Theme.of(
-              context,
-            ).extension<AppTheme>()!.backgroundGradient;
+            final colors = Theme.of(context).extension<AppTheme>()!;
+
             final bool ignorePageSizeRequirement =
                 state.fullPath?.contains("get_in_touch") ?? false;
-            debugPrint(
-              "builder wrapper $ignorePageSizeRequirement : " +
-                  state.fullPath.toString(),
-            );
+
             return eff.BackgroundView(
               key: const ValueKey("BG painter"),
-              colors: colors,
+              colors: colors.backgroundGradient,
               child: ignorePageSizeRequirement
                   ? child
                   : ViewportRequirementPage(child: child),

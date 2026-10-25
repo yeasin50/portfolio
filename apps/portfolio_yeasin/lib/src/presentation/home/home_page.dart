@@ -25,18 +25,29 @@ class _HomePageState extends State<HomePage>
 
   double minIntroHeight = 150;
 
+  double get pageHeight => MediaQuery.maybeSizeOf(context)?.height ?? 1080;
+  void _handleAnimation() {
+    if (!scrollController.hasClients) return;
+
+    scrollController.jumpTo(
+      animationController.value.clamp(
+        0.0,
+        scrollController.position.maxScrollExtent,
+      ),
+    );
+  }
+
   late final AnimationController animationController = AnimationController(
     vsync: this,
     duration: Durations.medium3,
-    upperBound: MediaQuery.sizeOf(context).height,
+    upperBound: pageHeight,
     lowerBound: 0,
-  )..addListener(() => scrollController.jumpTo(animationController.value));
+  )..addListener(_handleAnimation);
 
   /// Mouse scroll doesn't listen by scrollPhysics.
   /// That's why we need it
   void onPointerSignal(PointerSignalEvent event) {
     if (animationController.isAnimating) return;
-    final pageHeight = MediaQuery.sizeOf(context).height;
 
     if (event is PointerScrollEvent) {
       if (event.scrollDelta.dy > 0 && scrollController.offset < pageHeight) {
@@ -73,8 +84,10 @@ class _HomePageState extends State<HomePage>
 
   @override
   void dispose() {
-    animationController.dispose();
-    scrollController.removeListener(scrollLister);
+    animationController
+      ..removeListener(_handleAnimation)
+      ..dispose();
+    scrollController.dispose();
     super.dispose();
   }
 

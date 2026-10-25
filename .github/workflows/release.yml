@@ -15,22 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Preserve latest 5 releases
-        working-directory: apps/portfolio_yeasin
-        run: |
-          git fetch --tags
-          TAG="deploy-$(date -u +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}"
-          git tag -a "$TAG" "$GITHUB_SHA" \
-            -m "Production deployment $TAG"
-
-          git push origin "$TAG"
-
-          git tag --list 'deploy-*' --sort=-creatordate \
-            | tail -n +6 \
-            | while read -r old_tag; do
-                git push origin --delete "$old_tag"
-                git tag -d "$old_tag"
-              done
+      # - name: Preserve latest 5 releases
+      #   working-directory: apps/portfolio_yeasin
+      #   run: |
+      #     git fetch --tags
+      #     TAG="deploy-$(date -u +%Y%m%d-%H%M%S)-${GITHUB_SHA::7}"
+      #     git tag -a "$TAG" "$GITHUB_SHA" \
+      #       -m "Production deployment $TAG"
+      #
+      #     git push origin "$TAG"
+      #
+      #     git tag --list 'deploy-*' --sort=-creatordate \
+      #       | tail -n +6 \
+      #       | while read -r old_tag; do
+      #           git push origin --delete "$old_tag"
+      #           git tag -d "$old_tag"
+      #         done
 
       - uses: subosito/flutter-action@v2
         with:

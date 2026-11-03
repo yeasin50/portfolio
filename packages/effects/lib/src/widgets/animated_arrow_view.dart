@@ -57,37 +57,28 @@ class _AnimatedArrowViewState extends State<AnimatedArrowView>
   void initState() {
     super.initState();
     assert(
-        widget.initialAnimationValue >= 0 &&
-            widget.initialAnimationValue <= 1.0,
-        "initialAnimationValue should be withing 0-1");
+      widget.initialAnimationValue >= 0 && widget.initialAnimationValue <= 1.0,
+      "initialAnimationValue should be withing 0-1",
+    );
 
     rippleController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 3),
     )..repeat();
 
-    controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    )..addListener(
-        () {
-          if (controller.isCompleted) {
-            rippleController.animateBack(1);
-          } else {
-            rippleController.repeat();
-          }
-        },
-      );
+    controller = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() {
+        if (controller.isCompleted) {
+          rippleController.animateBack(1);
+        } else {
+          rippleController.repeat();
+        }
+      });
     controller.value = widget.initialAnimationValue;
   }
 
-  void onForward(_) {
-    controller.forward();
-  }
-
-  void onExit(_) {
-    controller.reverse();
-  }
+  void onForward(_) => controller.forward();
+  void onExit(_) => controller.reverse();
 
   @override
   void dispose() {
@@ -135,6 +126,7 @@ class _AnimatedArrowViewState extends State<AnimatedArrowView>
   }
 }
 
+//FIXME: adjustable width
 class _ArrowShapeBuilder extends OutlinedBorder {
   const _ArrowShapeBuilder({
     required this.animation,
@@ -155,15 +147,16 @@ class _ArrowShapeBuilder extends OutlinedBorder {
 
     for (int i = 1; i <= numberOfRipple; i++) {
       final ripplePaint = Paint()
-        ..color =
-            color.withAlpha(lerpDouble(255, 50, rippleAnimation.value)!.toInt())
+        ..color = color.withAlpha(
+          lerpDouble(255, 50, rippleAnimation.value)!.toInt(),
+        )
         ..style = PaintingStyle.stroke
         ..strokeWidth = lerpDouble(1, 8, rippleAnimation.value)!;
 
       ///  expand height
       canvas.drawCircle(
         rect.centerLeft,
-        lerpDouble(radius, rect.width, rippleAnimation.value * i)!,
+        lerpDouble(radius, rect.right - rect.left, rippleAnimation.value * i)!,
         ripplePaint,
       );
     }

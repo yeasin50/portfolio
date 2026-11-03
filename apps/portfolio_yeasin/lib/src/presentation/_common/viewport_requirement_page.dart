@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:effects/effects.dart' as eff;
 import '../../app/app.dart';
-import 'package:text_effect/text_effect.dart' as text_effect;
+
+import '../home/widgets/widgets.dart' show ConnectsSimpleView;
 
 /// Temporary widget until  I create mobile view which  I may not soon
 class ViewportRequirementPage extends StatefulWidget {
@@ -20,10 +21,19 @@ class ViewportRequirementPage extends StatefulWidget {
 }
 
 class _ViewportRequirementPageState extends State<ViewportRequirementPage> {
+  late bool hideChild = shouldHide;
+
+  bool get shouldHide => MediaQuery.sizeOf(context).width < widget.minWidth;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    hideChild = shouldHide;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final hide = MediaQuery.sizeOf(context).width < widget.minWidth;
-    return hide ? const _ViewPortWarn() : widget.child;
+    return hideChild ? const _ViewPortWarn() : widget.child;
   }
 }
 
@@ -35,67 +45,52 @@ class _ViewPortWarn extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final textColor = Theme.of(context).extension<AppTheme>()!.primaryText;
 
-    Text _buildText(String txt) {
-      return Text(txt, style: textTheme.titleLarge?.copyWith(color: textColor));
-    }
-
     return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: eff.PlasmaBallSphere(
-                data: eff.SpherePlasmaData.BJF,
-                intialAnimationValue: 1.0,
+      body: Padding(
+        padding: const .all(24),
+        child: Stack(
+          children: [
+            Center(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: eff.PlasmaBallSphere(
+                  data: eff.SpherePlasmaData.BJF,
+                  intialAnimationValue: 1.0,
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 24,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "I need more space",
-                  style: textTheme.titleLarge?.copyWith(
-                    color: textColor,
-                    fontSize: 48,
+
+            Center(
+              child: Column(
+                mainAxisSize: .min,
+                spacing: 24,
+                children: [
+                  eff.BulletView(
+                    type: eff.BulletType.concern,
+                    size: .square(32),
+                    t: 1,
                   ),
-                ),
-                Center(
-                  child: ConstrainedBox(
-                    constraints: .tightFor(width: 350),
-                    child: text_effect.ParagraphPainter(
-                      style: textTheme.titleLarge!.copyWith(
-                        color: textColor,
-                        fontSize: 28,
-                      ),
-                      hoverTextStyle: textTheme.titleLarge!.copyWith(
-                        color: Colors.greenAccent,
-                        fontSize: 28,
-                      ),
-                      data: [
-                        text_effect.ParagraphData(
-                          text: "increase viewport",
-                          url: "",
-                        ),
-                        text_effect.ParagraphData(text: ">720"),
-                      ],
+                  eff.AnimatedArrowView(
+                    child: Text(
+                      "Tiny device? Nah",
+                      style: textTheme.titleLarge?.copyWith(color: textColor),
                     ),
                   ),
-                ),
-                eff.BulletView(
-                  type: eff.BulletType.concern,
-                  size: .square(24),
-                  t: 1,
-                ),
-                eff.AnimatedArrowView(child: _buildText("change the device")),
-              ],
+                  Text(
+                    "Try a larger screen or continue below",
+                    style: textTheme.bodyLarge?.copyWith(
+                      color: textColor,
+                      fontWeight: .w500,
+                    ),
+                  ),
+                  Flexible(
+                    child: ConnectsSimpleView(animation: 1, isFlow: false),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

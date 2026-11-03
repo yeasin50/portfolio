@@ -27,8 +27,15 @@ import 'connect_item_view.dart';
 /// ),
 ///```
 class ConnectsSimpleView extends StatelessWidget {
-  const ConnectsSimpleView({super.key, required this.animation});
+  const ConnectsSimpleView({
+    super.key,
+    required this.animation,
+    this.isFlow = true,
+  });
+
   final double animation;
+
+  final bool isFlow;
 
   @override
   Widget build(BuildContext context) {
@@ -43,28 +50,32 @@ class ConnectsSimpleView extends StatelessWidget {
       }
     }
 
-    return Flow(
-      delegate: _SimpleConnectFlowDelete(
-        Animation.fromValueListenable(ValueNotifier(animation)),
-      ),
-      clipBehavior: Clip.none,
-      children: data
-          .map(
-            (e) => ConnectButton(
-              connect: e,
-              onHovered: (v) {},
-              onTap: () => navToSite(e.url),
+    final children = data
+        .map(
+          (e) => ConnectButton(
+            connect: e,
+            onHovered: (v) {},
+            onTap: () => navToSite(e.url),
+          ),
+        )
+        .toList();
+
+    return isFlow
+        ? Flow.unwrapped(
+            delegate: _SimpleConnectFlowDelete(
+              Animation.fromValueListenable(ValueNotifier(animation)),
             ),
+            clipBehavior: .none,
+            children: children,
           )
-          .toList(),
-    );
+        : Wrap(spacing: 24, runSpacing: 24, children: children);
   }
 }
 
 class _SimpleConnectFlowDelete extends FlowDelegate {
   const _SimpleConnectFlowDelete(this.animation) : super(repaint: animation);
 
-  final Animation animation;
+  final Animation<double> animation;
 
   @override
   void paintChildren(FlowPaintingContext context) {

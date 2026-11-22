@@ -1,8 +1,14 @@
-# Let's make the portfolio
+<p align="center">
+  <img src="./_res/portfolio_readme.gif" alt="Portfolio Preview" width="100%">
+</p>
 
-[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+[![Maintained with Melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
-## RUN
+## [Checkout Live Portfolio](https://yeasin50.github.io)
+
+---
+
+## Development
 
 **Local server**
 
@@ -31,4 +37,4 @@
 
 - [user_info json structure](./server/docs/user_info.md)
 - [project json structure](./server/docs/project.md)
-- [connect_option json structure](./server/docs/connect_option.md.md)
+- [connect_option json structure](./server/docs/connect_option.md)
